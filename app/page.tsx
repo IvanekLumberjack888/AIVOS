@@ -1,8 +1,8 @@
-﻿"use client";
-import { useState, useEffect, useRef } from "react";
-import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle } from "lucide-react";
+"use client";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv } from "lucide-react";
 
-type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search";
+type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
 interface Msg { role: MsgRole; text: string; }
 
@@ -30,6 +30,7 @@ const PARA_COLORS: Record<string, string> = {
 
 const NAV = [
   { id: "dashboard" as Section, Icon: LayoutDashboard, label: "Dashboard" },
+  { id: "brief"     as Section, Icon: Tv,              label: "Brain Brief" },
   { id: "memory"    as Section, Icon: Brain,           label: "Memory"    },
   { id: "para"      as Section, Icon: FolderOpen,      label: "P.A.R.A."  },
   { id: "knowledge" as Section, Icon: BookOpen,        label: "Knowledge" },
@@ -46,11 +47,13 @@ const cardStyle = {
   padding: 24,
 };
 
+const monoFont = "JetBrains Mono, monospace";
+
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div style={cardStyle}>
-      <div style={{ color: "#6b7280", fontSize: 11, fontFamily: "JetBrains Mono, monospace", letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 6 }}>{label}</div>
-      <div style={{ color: "#f8fff8", fontSize: 22, fontFamily: "JetBrains Mono, monospace", fontWeight: 700 }}>{value}</div>
+      <div style={{ color: "#6b7280", fontSize: 11, fontFamily: monoFont, letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 6 }}>{label}</div>
+      <div style={{ color: "#f8fff8", fontSize: 22, fontFamily: monoFont, fontWeight: 700 }}>{value}</div>
     </div>
   );
 }
@@ -60,35 +63,33 @@ function Dashboard({ time }: { time: Date }) {
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
       <div style={{ marginBottom: "2rem" }}>
-        <p style={{ color: "#6b7280", fontSize: 13, fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>
+        <p style={{ color: "#6b7280", fontSize: 13, fontFamily: monoFont, marginBottom: 4 }}>
           {time.toLocaleDateString("cs-CZ", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
           {" · Konica day " + konicaDay}
         </p>
-        <div style={{ color: "#10b981", fontSize: 48, fontWeight: 900, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>
+        <div style={{ color: "#10b981", fontSize: 48, fontWeight: 900, fontFamily: monoFont, lineHeight: 1 }}>
           {time.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit" })}
           <span style={{ color: "#374151", fontSize: 32 }}>{":" + String(time.getSeconds()).padStart(2, "0")}</span>
         </div>
       </div>
-
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
         <StatCard label="Projects" value="5" />
         <StatCard label="Ollama" value="qwen2.5" />
         <StatCard label="DP-700" value="12%" />
       </div>
-
       <div style={{ ...cardStyle, marginBottom: 20 }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: "JetBrains Mono, monospace", letterSpacing: 2, marginBottom: 20, textTransform: "uppercase" as const }}>Active Projects</div>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: monoFont, letterSpacing: 2, marginBottom: 20, textTransform: "uppercase" as const }}>Active Projects</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           {PROJECTS.map(p => (
             <div key={p.name}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid " + p.color, color: p.color, fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>{p.tag}</span>
+                  <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid " + p.color, color: p.color, fontFamily: monoFont, letterSpacing: 1 }}>{p.tag}</span>
                   <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.name}</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <span style={{ color: "#6b7280", fontSize: 12 }}>{p.phase}</span>
-                  <span style={{ color: p.color, fontSize: 13, fontFamily: "JetBrains Mono, monospace", fontWeight: 700, minWidth: 36, textAlign: "right" as const }}>{p.progress + "%"}</span>
+                  <span style={{ color: p.color, fontSize: 13, fontFamily: monoFont, fontWeight: 700, minWidth: 36, textAlign: "right" as const }}>{p.progress + "%"}</span>
                 </div>
               </div>
               <div style={{ height: 4, background: "rgba(16,185,129,0.1)", borderRadius: 4 }}>
@@ -98,15 +99,195 @@ function Dashboard({ time }: { time: Date }) {
           ))}
         </div>
       </div>
-
       <div style={{ ...cardStyle, border: "1px solid rgba(16,185,129,0.4)" }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: "JetBrains Mono, monospace", letterSpacing: 2, marginBottom: 12, textTransform: "uppercase" as const }}>{"Today's Focus"}</div>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: monoFont, letterSpacing: 2, marginBottom: 12, textTransform: "uppercase" as const }}>{"Today's Focus"}</div>
         <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Konica: support tickets + ADF pipeline shadowing</p>
         <p style={{ color: "#6b7280", fontSize: 13 }}>DP-700: 30 min Fabric Forge · AIVOS: Next.js scaffold</p>
       </div>
     </div>
   );
 }
+
+// ─── BRAIN BRIEF ─────────────────────────────────────────────────────────────
+
+type BriefData = {
+  date: string;
+  text: string;
+  stats: { high: number; medium: number; low: number; total: number };
+  high: VideoItem[];
+  medium: VideoItem[];
+};
+type VideoItem = {
+  title: string; channel: string; url: string;
+  summary: string; action: string; tags: string; score?: number;
+};
+
+function BriefView() {
+  const [brief, setBrief] = useState<BriefData | null>(null);
+  const [history, setHistory] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState("latest");
+  const [speaking, setSpeaking] = useState(false);
+  const [error, setError] = useState("");
+
+  const loadBrief = useCallback((dateKey: string) => {
+    const url = dateKey === "latest" ? "/briefs/latest.json" : `/briefs/${dateKey}.json`;
+    fetch(url)
+      .then(r => { if (!r.ok) throw new Error("404"); return r.json(); })
+      .then(data => { setBrief(data); setError(""); })
+      .catch(() => setError("Brief pro toto datum není k dispozici."));
+  }, []);
+
+  useEffect(() => {
+    loadBrief("latest");
+    fetch("/briefs/index.json").then(r => r.json()).then(setHistory).catch(() => {});
+  }, [loadBrief]);
+
+  const speak = useCallback(() => {
+    if (!brief) return;
+    if (speaking) { window.speechSynthesis.cancel(); setSpeaking(false); return; }
+    const u = new SpeechSynthesisUtterance(brief.text);
+    const czVoice = window.speechSynthesis.getVoices().find(v => v.lang.startsWith("cs") || v.lang.startsWith("sk"));
+    if (czVoice) u.voice = czVoice;
+    u.rate = 0.95;
+    u.onend = () => setSpeaking(false);
+    u.onerror = () => setSpeaking(false);
+    window.speechSynthesis.speak(u);
+    setSpeaking(true);
+  }, [brief, speaking]);
+
+  const switchDate = (d: string) => {
+    window.speechSynthesis.cancel(); setSpeaking(false);
+    setSelectedDate(d); loadBrief(d);
+  };
+
+  const triageLabel = (color: string) => (
+    <div style={{ color, fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>
+      {color === "#10b981" ? "● High relevance" : "● Medium"}
+    </div>
+  );
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
+      {/* Header stats */}
+      {brief && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
+          {[
+            { label: "HIGH",  val: brief.stats.high,   color: "#10b981" },
+            { label: "MED",   val: brief.stats.medium, color: "#f59e0b" },
+            { label: "SKIP",  val: brief.stats.low,    color: "#4b5563" },
+            { label: "TOTAL", val: brief.stats.total,  color: "#6ee7b7" },
+          ].map(({ label, val, color }) => (
+            <div key={label} style={{ ...cardStyle, padding: "14px 0", textAlign: "center" }}>
+              <div style={{ color, fontSize: 22, fontFamily: monoFont, fontWeight: 700 }}>{val}</div>
+              <div style={{ color: "#4b5563", fontSize: 9, fontFamily: monoFont, letterSpacing: 1, marginTop: 2 }}>{label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Date & play */}
+      <div style={{ ...cardStyle, marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+        <div>
+          <div style={{ color: "#6b7280", fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Brain Brief</div>
+          <div style={{ color: "#f8fff8", fontSize: 18, fontFamily: monoFont, fontWeight: 700 }}>{brief?.date ?? "Načítám..."}</div>
+        </div>
+        <button onClick={speak} style={{
+          padding: "10px 24px",
+          background: speaking ? "rgba(239,68,68,0.15)" : "rgba(16,185,129,0.2)",
+          border: `1px solid ${speaking ? "#ef4444" : "#10b981"}`,
+          borderRadius: 10, cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 8,
+          color: speaking ? "#ef4444" : "#10b981",
+          fontSize: 13, fontFamily: monoFont, fontWeight: 700,
+          transition: "all 0.2s",
+        }}>
+          <span>{speaking ? "⏹" : "▶"}</span>
+          {speaking ? "Zastavit" : "Přehrát brief"}
+        </button>
+      </div>
+
+      {/* HIGH videos */}
+      {brief && brief.high.length > 0 && (
+        <div style={{ ...cardStyle, marginBottom: 16 }}>
+          {triageLabel("#10b981")}
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {brief.high.map((v, i) => <BriefVideoCard key={i} video={v} color="#10b981" />)}
+          </div>
+        </div>
+      )}
+
+      {/* MEDIUM videos */}
+      {brief && brief.medium.length > 0 && (
+        <div style={{ ...cardStyle, marginBottom: 16 }}>
+          {triageLabel("#f59e0b")}
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {brief.medium.slice(0, 8).map((v, i) => <BriefVideoCard key={i} video={v} color="#f59e0b" />)}
+          </div>
+        </div>
+      )}
+
+      {/* History */}
+      {history.length > 1 && (
+        <div style={cardStyle}>
+          <div style={{ color: "#4b5563", fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>Historie</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {history.map(d => (
+              <button key={d} onClick={() => switchDate(d)} style={{
+                padding: "4px 12px", borderRadius: 20,
+                background: selectedDate === d ? "rgba(16,185,129,0.2)" : "transparent",
+                border: `1px solid ${selectedDate === d ? "#10b981" : "rgba(16,185,129,0.2)"}`,
+                color: selectedDate === d ? "#10b981" : "#6b7280",
+                fontSize: 11, fontFamily: monoFont, cursor: "pointer",
+              }}>{d}</button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {error && <div style={{ color: "#ef4444", fontSize: 13, marginTop: 16 }}>{error}</div>}
+    </div>
+  );
+}
+
+function BriefVideoCard({ video, color }: { video: VideoItem; color: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ padding: "12px 16px", borderRadius: 10, background: "rgba(16,185,129,0.04)", border: `1px solid ${color}20` }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 2 }}>
+            {video.score && (
+              <span style={{ fontSize: 10, fontFamily: monoFont, color, border: `1px solid ${color}40`, borderRadius: 4, padding: "1px 6px" }}>
+                {video.score}/10
+              </span>
+            )}
+            <a href={video.url} target="_blank" rel="noopener noreferrer"
+              style={{ color: "#d1fae5", textDecoration: "none", fontSize: 14, fontWeight: 600, lineHeight: 1.3 }}>
+              {video.title}
+            </a>
+          </div>
+          <div style={{ color: "#4b5563", fontSize: 11, fontFamily: monoFont }}>{video.channel}</div>
+        </div>
+        <button onClick={() => setOpen(!open)} style={{ background: "none", border: "none", color: "#4b5563", cursor: "pointer", fontSize: 14, padding: "0 4px" }}>
+          {open ? "▲" : "▼"}
+        </button>
+      </div>
+      {open && (
+        <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${color}15` }}>
+          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 8px" }}>{video.summary}</p>
+          {video.action && video.action !== "N/A" && (
+            <div style={{ fontSize: 12, color: "#10b981", background: "rgba(16,185,129,0.08)", borderRadius: 6, padding: "6px 10px", fontFamily: monoFont }}>
+              → {video.action}
+            </div>
+          )}
+          {video.tags && <div style={{ marginTop: 8, fontSize: 10, color: "#4b5563", fontFamily: monoFont }}>{video.tags}</div>}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── MEMORY ──────────────────────────────────────────────────────────────────
 
 function Memory() {
   const [msgs, setMsgs] = useState<Msg[]>([{ role: "system", text: "qwen2.5:7b ready @ localhost:11434 · ctx 32k · temp 0.7" }]);
@@ -118,16 +299,10 @@ function Memory() {
 
   const send = async () => {
     if (!input.trim() || loading) return;
-    const q = input.trim();
-    setInput("");
-    setLoading(true);
+    const q = input.trim(); setInput(""); setLoading(true);
     setMsgs(m => [...m, { role: "user", text: q }]);
     try {
-      const res = await fetch("/api/ollama", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: q }),
-      });
+      const res = await fetch("/api/ollama", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ prompt: q }) });
       const data = await res.json();
       setMsgs(m => [...m, { role: "assistant", text: data.response ?? data.error ?? "No response" }]);
     } catch {
@@ -137,15 +312,12 @@ function Memory() {
   };
 
   const getBubbleStyle = (role: MsgRole) => ({
-    maxWidth: "80%",
-    padding: "12px 16px",
+    maxWidth: "80%", padding: "12px 16px",
     borderRadius: role === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
     background: role === "user" ? "rgba(16,185,129,0.2)" : "rgba(22,32,26,0.85)",
     border: "1px solid rgba(16,185,129,0.2)",
     color: role === "system" ? "#6b7280" : "#f8fff8",
-    fontSize: 14,
-    lineHeight: 1.6,
-    whiteSpace: "pre-wrap" as const,
+    fontSize: 14, lineHeight: 1.6, whiteSpace: "pre-wrap" as const,
   });
 
   return (
@@ -160,18 +332,11 @@ function Memory() {
         <div ref={endRef} />
       </div>
       <div style={{ display: "flex", gap: 12, padding: 16, background: "rgba(22,32,26,0.85)", borderRadius: 16, border: "1px solid rgba(16,185,129,0.2)" }}>
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && send()}
+        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()}
           placeholder="Ask your local memory..."
-          style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#f8fff8", fontSize: 14 }}
-        />
-        <button
-          onClick={send}
-          disabled={loading}
-          style={{ padding: "8px 20px", background: "#10b981", border: "none", borderRadius: 10, color: "white", fontWeight: 700, fontSize: 13, cursor: "pointer", opacity: loading ? 0.5 : 1 }}
-        >
+          style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#f8fff8", fontSize: 14 }} />
+        <button onClick={send} disabled={loading}
+          style={{ padding: "8px 20px", background: "#10b981", border: "none", borderRadius: 10, color: "white", fontWeight: 700, fontSize: 13, cursor: "pointer", opacity: loading ? 0.5 : 1 }}>
           Send
         </button>
       </div>
@@ -185,7 +350,7 @@ function PARAView() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         {Object.entries(PARA).map(([key, items]) => (
           <div key={key} style={cardStyle}>
-            <div style={{ color: PARA_COLORS[key], fontSize: 11, fontFamily: "JetBrains Mono, monospace", letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 16 }}>{key}</div>
+            <div style={{ color: PARA_COLORS[key], fontSize: 11, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 16 }}>{key}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {items.map(item => (
                 <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.1)" }}>
@@ -212,6 +377,8 @@ function Placeholder({ title, desc }: { title: string; desc: string }) {
   );
 }
 
+// ─── ROOT ─────────────────────────────────────────────────────────────────────
+
 export default function AIVOS() {
   const [section, setSection] = useState<Section>("dashboard");
   const [time, setTime] = useState<Date | null>(null);
@@ -230,6 +397,7 @@ export default function AIVOS() {
   function renderSection() {
     switch (section) {
       case "dashboard":  return time ? <Dashboard time={time} /> : null;
+      case "brief":      return <BriefView />;
       case "memory":     return <Memory />;
       case "para":       return <PARAView />;
       case "knowledge":  return <Placeholder title="Knowledge Base" desc="Semantic search via pgvector + Neon — coming in Phase 3." />;
@@ -243,26 +411,21 @@ export default function AIVOS() {
     <div style={{ display: "flex", height: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", overflow: "hidden" }}>
       <aside style={{ width: 220, background: "rgba(22,32,26,0.9)", borderRight: "1px solid rgba(16,185,129,0.15)", display: "flex", flexDirection: "column", flexShrink: 0 }}>
         <div style={{ padding: "24px 20px 20px", borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
-          <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 20, fontWeight: 900, color: "#10b981" }}>AIVOS</div>
+          <div style={{ fontFamily: monoFont, fontSize: 20, fontWeight: 900, color: "#10b981" }}>AIVOS</div>
           <div style={{ fontSize: 11, color: "#6b7280", marginTop: 2 }}>Personal AI OS v0.1</div>
         </div>
         <nav style={{ flex: 1, padding: "12px 10px", display: "flex", flexDirection: "column", gap: 2 }}>
           {NAV.map(({ id, Icon, label }) => {
             const active = section === id;
             return (
-              <button
-                key={id}
-                onClick={() => setSection(id)}
-                style={{
-                  display: "flex", alignItems: "center", gap: 12,
-                  padding: "10px 14px", borderRadius: 10, border: "none", cursor: "pointer",
-                  background: active ? "rgba(16,185,129,0.15)" : "transparent",
-                  color: active ? "#10b981" : "#6b7280",
-                  fontWeight: active ? 600 : 400,
-                  fontSize: 14, transition: "all 0.2s", textAlign: "left" as const,
-                  width: "100%",
-                }}
-              >
+              <button key={id} onClick={() => setSection(id)} style={{
+                display: "flex", alignItems: "center", gap: 12,
+                padding: "10px 14px", borderRadius: 10, border: "none", cursor: "pointer",
+                background: active ? "rgba(16,185,129,0.15)" : "transparent",
+                color: active ? "#10b981" : "#6b7280",
+                fontWeight: active ? 600 : 400,
+                fontSize: 14, transition: "all 0.2s", textAlign: "left" as const, width: "100%",
+              }}>
                 <Icon size={16} />
                 {label}
               </button>
@@ -277,11 +440,10 @@ export default function AIVOS() {
           <div style={{ color: "#4b5563", fontSize: 10 }}>{"© 2026 Ivo Doležal"}</div>
         </div>
       </aside>
-
       <main style={{ flex: 1, overflowY: "auto" }}>
         <header style={{ padding: "16px 32px", borderBottom: "1px solid rgba(16,185,129,0.1)", background: "rgba(22,32,26,0.6)", backdropFilter: "blur(20px)", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 10 }}>
           <div style={{ color: "#f8fff8", fontSize: 16, fontWeight: 600 }}>{NAV.find(n => n.id === section)?.label}</div>
-          <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 13, color: "#6b7280" }}>
+          <div style={{ fontFamily: monoFont, fontSize: 13, color: "#6b7280" }}>
             {time ? time.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "--:--:--"}
           </div>
         </header>
