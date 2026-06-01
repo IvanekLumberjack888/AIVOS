@@ -29,14 +29,14 @@ const PARA_COLORS: Record<string, string> = {
 };
 
 const NAV = [
-  { id: "dashboard" as Section, Icon: LayoutDashboard, label: "Dashboard" },
+  { id: "dashboard" as Section, Icon: LayoutDashboard, label: "Dashboard"   },
   { id: "brief"     as Section, Icon: Tv,              label: "Brain Brief" },
-  { id: "memory"    as Section, Icon: Brain,           label: "Memory"    },
-  { id: "para"      as Section, Icon: FolderOpen,      label: "P.A.R.A."  },
-  { id: "knowledge" as Section, Icon: BookOpen,        label: "Knowledge" },
-  { id: "inbox"     as Section, Icon: Inbox,           label: "Inbox"     },
-  { id: "sessions"  as Section, Icon: Terminal,        label: "Sessions"  },
-  { id: "search"    as Section, Icon: Search,          label: "Search"    },
+  { id: "memory"    as Section, Icon: Brain,           label: "Memory"      },
+  { id: "para"      as Section, Icon: FolderOpen,      label: "P.A.R.A."    },
+  { id: "knowledge" as Section, Icon: BookOpen,        label: "Knowledge"   },
+  { id: "inbox"     as Section, Icon: Inbox,           label: "Inbox"       },
+  { id: "sessions"  as Section, Icon: Terminal,        label: "Sessions"    },
+  { id: "search"    as Section, Icon: Search,          label: "Search"      },
 ];
 
 const cardStyle = {
@@ -49,6 +49,8 @@ const cardStyle = {
 
 const monoFont = "JetBrains Mono, monospace";
 
+// ─── STAT CARD ───────────────────────────────────────────────────────────────
+
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div style={cardStyle}>
@@ -57,6 +59,8 @@ function StatCard({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
+
+// ─── DASHBOARD ───────────────────────────────────────────────────────────────
 
 function Dashboard({ time }: { time: Date }) {
   const konicaDay = Math.max(1, Math.ceil((time.getTime() - new Date("2026-04-01").getTime()) / 86400000));
@@ -120,14 +124,18 @@ type BriefData = {
 type VideoItem = {
   title: string; channel: string; url: string;
   summary: string; action: string; tags: string; score?: number;
+  key_points?: string[];
 };
 
 function BriefView() {
   const [brief, setBrief] = useState<BriefData | null>(null);
   const [history, setHistory] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState("latest");
-  const [speaking, setSpeaking] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [error, setError] = useState("");
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const loadBrief = useCallback((dateKey: string) => {
     const url = dateKey === "latest" ? "/briefs/latest.json" : `/briefs/${dateKey}.json`;
@@ -142,33 +150,56 @@ function BriefView() {
     fetch("/briefs/index.json").then(r => r.json()).then(setHistory).catch(() => {});
   }, [loadBrief]);
 
-  const speak = useCallback(() => {
-    if (!brief) return;
-    if (speaking) { window.speechSynthesis.cancel(); setSpeaking(false); return; }
-    const u = new SpeechSynthesisUtterance(brief.text);
-    const czVoice = window.speechSynthesis.getVoices().find(v => v.lang.startsWith("cs") || v.lang.startsWith("sk"));
-    if (czVoice) u.voice = czVoice;
-    u.rate = 0.95;
-    u.onend = () => setSpeaking(false);
-    u.onerror = () => setSpeaking(false);
-    window.speechSynthesis.speak(u);
-    setSpeaking(true);
-  }, [brief, speaking]);
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const onTime = () => setProgress(audio.currentTime);
+    const onDur  = () => setDuration(audio.duration);
+    const onEnd  = () => setPlaying(false);
+    audio.addEventListener("timeupdate", onTime);
+    audio.addEventListener("loadedmetadata", onDur);
+    audio.addEventListener("ended", onEnd);
+    return () => {
+      audio.removeEventListener("timeupdate", onTime);
+      audio.removeEventListener("loadedmetadata", onDur);
+      audio.removeEventListener("ended", onEnd);
+    };
+  }, [brief]);
+
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (playing) { audio.pause(); setPlaying(false); }
+    else { audio.play(); setPlaying(true); }
+  };
+
+  const seek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.currentTime = Number(e.target.value);
+    setProgress(Number(e.target.value));
+  };
+
+  const fmt = (s: number) => {
+    if (!s || isNaN(s)) return "0:00";
+    return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+  };
 
   const switchDate = (d: string) => {
-    window.speechSynthesis.cancel(); setSpeaking(false);
+    const audio = audioRef.current;
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    setPlaying(false); setProgress(0); setDuration(0);
     setSelectedDate(d); loadBrief(d);
   };
 
-  const triageLabel = (color: string) => (
-    <div style={{ color, fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>
-      {color === "#10b981" ? "● High relevance" : "● Medium"}
-    </div>
-  );
+  const audioSrc = selectedDate === "latest"
+    ? "/briefs/latest_brief.mp3"
+    : `/briefs/${selectedDate}_brief.mp3`;
 
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
-      {/* Header stats */}
+
+      {/* Stats */}
       {brief && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
           {[
@@ -185,41 +216,51 @@ function BriefView() {
         </div>
       )}
 
-      {/* Date & play */}
-      <div style={{ ...cardStyle, marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-        <div>
-          <div style={{ color: "#6b7280", fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Brain Brief</div>
-          <div style={{ color: "#f8fff8", fontSize: 18, fontFamily: monoFont, fontWeight: 700 }}>{brief?.date ?? "Načítám..."}</div>
+      {/* Player */}
+      <div style={{ ...cardStyle, marginBottom: 20 }}>
+        <audio ref={audioRef} src={audioSrc} preload="metadata" />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+          <div>
+            <div style={{ color: "#4b5563", fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 2 }}>Brain Brief Podcast</div>
+            <div style={{ color: "#f8fff8", fontSize: 16, fontFamily: monoFont, fontWeight: 700 }}>{brief?.date ?? "Načítám..."}</div>
+          </div>
+          <button onClick={togglePlay} style={{
+            width: 52, height: 52, borderRadius: "50%",
+            background: playing ? "rgba(16,185,129,0.15)" : "rgba(16,185,129,0.9)",
+            border: `1px solid ${playing ? "#10b981" : "transparent"}`,
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 20, color: playing ? "#10b981" : "#0f1410",
+            transition: "all 0.2s",
+          }}>
+            {playing ? "⏸" : "▶"}
+          </button>
         </div>
-        <button onClick={speak} style={{
-          padding: "10px 24px",
-          background: speaking ? "rgba(239,68,68,0.15)" : "rgba(16,185,129,0.2)",
-          border: `1px solid ${speaking ? "#ef4444" : "#10b981"}`,
-          borderRadius: 10, cursor: "pointer",
-          display: "flex", alignItems: "center", gap: 8,
-          color: speaking ? "#ef4444" : "#10b981",
-          fontSize: 13, fontFamily: monoFont, fontWeight: 700,
-          transition: "all 0.2s",
-        }}>
-          <span>{speaking ? "⏹" : "▶"}</span>
-          {speaking ? "Zastavit" : "Přehrát brief"}
-        </button>
+        <input type="range" min={0} max={duration || 100} value={progress} onChange={seek}
+          style={{
+            width: "100%", appearance: "none" as const, height: 3, borderRadius: 2,
+            outline: "none", cursor: "pointer", display: "block", marginBottom: 6,
+            background: `linear-gradient(to right, #10b981 ${(progress / (duration || 1)) * 100}%, rgba(16,185,129,0.15) 0%)`,
+          }} />
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, fontFamily: monoFont, color: "#4b5563" }}>
+          <span>{fmt(progress)}</span>
+          <span>{fmt(duration)}</span>
+        </div>
       </div>
 
-      {/* HIGH videos */}
+      {/* HIGH */}
       {brief && brief.high.length > 0 && (
         <div style={{ ...cardStyle, marginBottom: 16 }}>
-          {triageLabel("#10b981")}
+          <div style={{ color: "#10b981", fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>● High relevance</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {brief.high.map((v, i) => <BriefVideoCard key={i} video={v} color="#10b981" />)}
           </div>
         </div>
       )}
 
-      {/* MEDIUM videos */}
+      {/* MEDIUM */}
       {brief && brief.medium.length > 0 && (
         <div style={{ ...cardStyle, marginBottom: 16 }}>
-          {triageLabel("#f59e0b")}
+          <div style={{ color: "#f59e0b", fontSize: 10, fontFamily: monoFont, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>● Medium</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {brief.medium.slice(0, 8).map((v, i) => <BriefVideoCard key={i} video={v} color="#f59e0b" />)}
           </div>
@@ -275,6 +316,13 @@ function BriefVideoCard({ video, color }: { video: VideoItem; color: string }) {
       {open && (
         <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${color}15` }}>
           <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 8px" }}>{video.summary}</p>
+          {video.key_points && video.key_points.length > 0 && (
+            <div style={{ marginBottom: 8 }}>
+              {video.key_points.map((kp, i) => (
+                <div key={i} style={{ color: "#6b7280", fontSize: 12, paddingLeft: 12, marginBottom: 2 }}>· {kp}</div>
+              ))}
+            </div>
+          )}
           {video.action && video.action !== "N/A" && (
             <div style={{ fontSize: 12, color: "#10b981", background: "rgba(16,185,129,0.08)", borderRadius: 6, padding: "6px 10px", fontFamily: monoFont }}>
               → {video.action}
@@ -343,6 +391,8 @@ function Memory() {
     </div>
   );
 }
+
+// ─── PARA ─────────────────────────────────────────────────────────────────────
 
 function PARAView() {
   return (
