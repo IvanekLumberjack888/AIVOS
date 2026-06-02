@@ -112,7 +112,6 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
       display: "flex", flexDirection: "column",
       boxShadow: "-8px 0 32px rgba(0,0,0,0.5)",
     }}>
-      <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         {/* Header */}
         <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(16,185,129,0.15)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -192,6 +191,7 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
             <Send size={16} />
           </button>
         </div>
+      </div>
     </div>
   );
 }
