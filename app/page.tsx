@@ -105,16 +105,14 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
 
   return (
     <div style={{
-      position: "fixed", inset: 0, zIndex: 100,
-      background: "rgba(0,0,0,0.7)", display: "flex", alignItems: "flex-end", justifyContent: "flex-end",
-    }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div style={{
-        width: "min(520px, 100vw)", height: "min(700px, 100vh)",
-        background: "#0f1410", borderLeft: "1px solid rgba(16,185,129,0.2)",
-        borderTop: "1px solid rgba(16,185,129,0.2)",
-        borderRadius: "16px 0 0 0",
-        display: "flex", flexDirection: "column",
-      }}>
+      position: "fixed", top: 57, right: 0, bottom: 0, zIndex: 100,
+      width: "min(480px, 100vw)",
+      background: "#0a0f0a",
+      borderLeft: "1px solid rgba(16,185,129,0.25)",
+      display: "flex", flexDirection: "column",
+      boxShadow: "-8px 0 32px rgba(0,0,0,0.5)",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         {/* Header */}
         <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(16,185,129,0.15)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -194,7 +192,6 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
             <Send size={16} />
           </button>
         </div>
-      </div>
     </div>
   );
 }
