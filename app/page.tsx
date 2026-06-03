@@ -49,8 +49,6 @@ const card = {
 
 const mono = "JetBrains Mono, monospace";
 
-// ─── TYPES ───────────────────────────────────────────────────────────────────
-
 type BriefData = {
   date: string;
   text: string;
@@ -63,8 +61,6 @@ type VideoItem = {
   summary: string; action: string; tags: string;
   score?: number; key_points?: string[];
 };
-
-// ─── DEEP DIVE CHAT ───────────────────────────────────────────────────────────
 
 function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => void }) {
   const [msgs, setMsgs] = useState<{ role: "user" | "assistant"; text: string }[]>([]);
@@ -81,7 +77,6 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
     setLoading(true);
     const newMsgs = [...msgs, { role: "user" as const, text: q }];
     setMsgs(newMsgs);
-
     try {
       const res = await fetch("/api/chat-brief", {
         method: "POST",
@@ -106,96 +101,86 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
   return (
     <div style={{
       position: "fixed", top: 57, right: 0, bottom: 0, zIndex: 100,
-      width: "min(480px, 100vw)",
+      left: 220,
+      width: "min(480px, calc(100vw - 220px))",
       background: "#0a0f0a",
       borderLeft: "1px solid rgba(16,185,129,0.25)",
       display: "flex", flexDirection: "column",
       boxShadow: "-8px 0 32px rgba(0,0,0,0.5)",
     }}>
-        {/* Header */}
-        <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(16,185,129,0.15)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Deep Dive</div>
-            <div style={{ color: "#f8fff8", fontSize: 13, fontWeight: 600, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{video.title}</div>
-            <div style={{ color: "#4b5563", fontSize: 11, fontFamily: mono, marginTop: 2 }}>{video.channel}</div>
-          </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", color: "#4b5563", cursor: "pointer", padding: 4, flexShrink: 0 }}>
-            <X size={18} />
-          </button>
+      <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(16,185,129,0.15)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Deep Dive</div>
+          <div style={{ color: "#f8fff8", fontSize: 13, fontWeight: 600, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{video.title}</div>
+          <div style={{ color: "#4b5563", fontSize: 11, fontFamily: mono, marginTop: 2 }}>{video.channel}</div>
         </div>
+        <button onClick={onClose} style={{ background: "none", border: "none", color: "#4b5563", cursor: "pointer", padding: 4, flexShrink: 0 }}>
+          <X size={18} />
+        </button>
+      </div>
 
-        {/* Quick prompts */}
+      {msgs.length === 0 && (
+        <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
+          <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 8 }}>Rychlé dotazy</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {quickPrompts.map(q => (
+              <button key={q} onClick={() => send(q)} style={{
+                padding: "5px 10px", borderRadius: 20,
+                background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)",
+                color: "#6ee7b7", fontSize: 11, cursor: "pointer", fontFamily: mono,
+              }}>{q}</button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
         {msgs.length === 0 && (
-          <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
-            <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 8 }}>Rychlé dotazy</div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {quickPrompts.map(q => (
-                <button key={q} onClick={() => send(q)} style={{
-                  padding: "5px 10px", borderRadius: 20,
-                  background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)",
-                  color: "#6ee7b7", fontSize: 11, cursor: "pointer", fontFamily: mono,
-                  transition: "all 0.15s",
-                }}>{q}</button>
-              ))}
+          <div style={{ color: "#4b5563", fontSize: 13, textAlign: "center", marginTop: 40 }}>
+            Zeptej se na cokoliv k tomuto videu 👆
+          </div>
+        )}
+        {msgs.map((m, i) => (
+          <div key={i} style={{ marginBottom: 12, display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start" }}>
+            <div style={{
+              maxWidth: "85%", padding: "10px 14px",
+              borderRadius: m.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
+              background: m.role === "user" ? "rgba(16,185,129,0.2)" : "rgba(22,32,26,0.9)",
+              border: "1px solid rgba(16,185,129,0.2)",
+              color: "#f8fff8", fontSize: 13, lineHeight: 1.6,
+              whiteSpace: "pre-wrap" as const,
+            }}>{m.text}</div>
+          </div>
+        ))}
+        {loading && (
+          <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: 12 }}>
+            <div style={{ padding: "10px 14px", borderRadius: "14px 14px 14px 4px", background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.2)", color: "#10b981", fontSize: 13 }}>
+              ●●● přemýšlím...
             </div>
           </div>
         )}
-
-        {/* Messages */}
-        <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
-          {msgs.length === 0 && (
-            <div style={{ color: "#4b5563", fontSize: 13, textAlign: "center", marginTop: 40 }}>
-              Zeptej se na cokoliv k tomuto videu 👆
-            </div>
-          )}
-          {msgs.map((m, i) => (
-            <div key={i} style={{
-              marginBottom: 12,
-              display: "flex",
-              justifyContent: m.role === "user" ? "flex-end" : "flex-start",
-            }}>
-              <div style={{
-                maxWidth: "85%", padding: "10px 14px",
-                borderRadius: m.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
-                background: m.role === "user" ? "rgba(16,185,129,0.2)" : "rgba(22,32,26,0.9)",
-                border: "1px solid rgba(16,185,129,0.2)",
-                color: "#f8fff8", fontSize: 13, lineHeight: 1.6,
-                whiteSpace: "pre-wrap" as const,
-              }}>{m.text}</div>
-            </div>
-          ))}
-          {loading && (
-            <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: 12 }}>
-              <div style={{ padding: "10px 14px", borderRadius: "14px 14px 14px 4px", background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.2)", color: "#10b981", fontSize: 13 }}>
-                ●●● přemýšlím...
-              </div>
-            </div>
-          )}
-          <div ref={endRef} />
-        </div>
-
-        {/* Input */}
-        <div style={{ padding: "12px 16px", borderTop: "1px solid rgba(16,185,129,0.15)", display: "flex", gap: 8 }}>
-          <input
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && !e.shiftKey && send()}
-            placeholder="Zeptej se na toto video..."
-            style={{ flex: 1, background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 10, padding: "10px 14px", color: "#f8fff8", fontSize: 13, outline: "none" }}
-          />
-          <button onClick={() => send()} disabled={loading || !input.trim()} style={{
-            padding: "10px 14px", background: input.trim() ? "#10b981" : "rgba(16,185,129,0.1)",
-            border: "none", borderRadius: 10, cursor: input.trim() ? "pointer" : "default",
-            color: input.trim() ? "#0f1410" : "#4b5563", transition: "all 0.2s",
-          }}>
-            <Send size={16} />
-          </button>
-        </div>
+        <div ref={endRef} />
       </div>
+
+      <div style={{ padding: "12px 16px", borderTop: "1px solid rgba(16,185,129,0.15)", display: "flex", gap: 8 }}>
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && !e.shiftKey && send()}
+          placeholder="Zeptej se na toto video..."
+          style={{ flex: 1, background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 10, padding: "10px 14px", color: "#f8fff8", fontSize: 13, outline: "none" }}
+        />
+        <button onClick={() => send()} disabled={loading || !input.trim()} style={{
+          padding: "10px 14px", background: input.trim() ? "#10b981" : "rgba(16,185,129,0.1)",
+          border: "none", borderRadius: 10, cursor: input.trim() ? "pointer" : "default",
+          color: input.trim() ? "#0f1410" : "#4b5563", transition: "all 0.2s",
+        }}>
+          <Send size={16} />
+        </button>
+      </div>
+    </div>
   );
 }
-
-// ─── BRIEF VIDEO CARD ─────────────────────────────────────────────────────────
 
 function BriefVideoCard({ video, color }: { video: VideoItem; color: string }) {
   const [open, setOpen] = useState(false);
@@ -226,7 +211,6 @@ function BriefVideoCard({ video, color }: { video: VideoItem; color: string }) {
               background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)",
               color: "#10b981", fontSize: 10, fontFamily: mono, cursor: "pointer",
               letterSpacing: 1, textTransform: "uppercase" as const,
-              transition: "all 0.15s",
             }}>
               Deep Dive
             </button>
@@ -257,8 +241,6 @@ function BriefVideoCard({ video, color }: { video: VideoItem; color: string }) {
     </>
   );
 }
-
-// ─── BRAIN BRIEF ─────────────────────────────────────────────────────────────
 
 function BriefView() {
   const [brief, setBrief] = useState<BriefData | null>(null);
@@ -329,7 +311,6 @@ function BriefView() {
 
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
-
       {brief && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
           {[
@@ -415,8 +396,6 @@ function BriefView() {
   );
 }
 
-// ─── STAT CARD ───────────────────────────────────────────────────────────────
-
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div style={card}>
@@ -425,8 +404,6 @@ function StatCard({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-
-// ─── DASHBOARD ───────────────────────────────────────────────────────────────
 
 function Dashboard({ time }: { time: Date }) {
   const konicaDay = Math.max(1, Math.ceil((time.getTime() - new Date("2026-04-01").getTime()) / 86400000));
@@ -477,8 +454,6 @@ function Dashboard({ time }: { time: Date }) {
     </div>
   );
 }
-
-// ─── MEMORY ──────────────────────────────────────────────────────────────────
 
 function Memory() {
   const [msgs, setMsgs] = useState<Msg[]>([{ role: "system", text: "qwen2.5:7b ready @ localhost:11434 · ctx 32k · temp 0.7" }]);
@@ -558,8 +533,6 @@ function Placeholder({ title, desc }: { title: string; desc: string }) {
     </div>
   );
 }
-
-// ─── ROOT ─────────────────────────────────────────────────────────────────────
 
 export default function AIVOS() {
   const [section, setSection] = useState<Section>("dashboard");
