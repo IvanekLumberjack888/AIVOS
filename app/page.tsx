@@ -192,7 +192,6 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
           </button>
         </div>
       </div>
-    </div>
   );
 }
 
