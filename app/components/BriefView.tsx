@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Send, X, Play, Pause, ChevronDown, ChevronUp } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -134,8 +135,21 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
               maxWidth: "80%", padding: "10px 14px", borderRadius: 12,
               background: m.role === "user" ? "rgba(0,229,160,0.15)" : "rgba(22,42,30,0.9)",
               border: "1px solid rgba(0,229,160,0.15)",
-              color: "#e8f5ee", fontSize: 13, lineHeight: 1.6, whiteSpace: "pre-wrap",
-            }}>{m.text}</div>
+              color: "#e8f5ee", fontSize: 13, lineHeight: 1.6,
+            }}>
+              {m.role === "user" ? m.text : (
+                <ReactMarkdown components={{
+                  p: ({children}) => <p style={{margin: "0 0 6px"}}>{children}</p>,
+                  h2: ({children}) => <h2 style={{fontSize: 14, color: "#00E5A0", margin: "10px 0 4px", fontFamily: mono}}>{children}</h2>,
+                  h3: ({children}) => <h3 style={{fontSize: 13, color: "#6ee7b7", margin: "8px 0 4px"}}>{children}</h3>,
+                  ul: ({children}) => <ul style={{margin: "4px 0", paddingLeft: 16}}>{children}</ul>,
+                  li: ({children}) => <li style={{marginBottom: 3, color: "#8cb89e"}}>{children}</li>,
+                  strong: ({children}) => <strong style={{color: "#e8f5ee", fontWeight: 600}}>{children}</strong>,
+                  hr: () => <hr style={{border: "none", borderTop: "1px solid rgba(0,229,160,0.1)", margin: "8px 0"}} />,
+                  code: ({children}) => <code style={{background: "rgba(0,229,160,0.08)", padding: "1px 6px", borderRadius: 4, fontSize: 11, fontFamily: mono, color: "#00E5A0"}}>{children}</code>,
+                }}>{m.text}</ReactMarkdown>
+              )}
+            </div>
           ))}
           {loading && (
             <div style={{ alignSelf: "flex-start", color: "#4b7a5e", fontSize: 12, fontFamily: mono }}>
