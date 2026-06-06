@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { messages, videoContext } = await req.json();
-
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "GEMINI_API_KEY not set" }, { status: 500 });
@@ -25,7 +24,6 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
 - budování AIVOS osobního AI OS
 - DP-700 certifikace`;
 
-  // Gemini conversation format
   const contents = messages.map((m: { role: string; text: string }) => ({
     role: m.role === "user" ? "user" : "model",
     parts: [{ text: m.text }],
@@ -34,33 +32,45 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
   const body = {
     system_instruction: { parts: [{ text: systemInstruction }] },
     contents,
-    generationConfig: {
-      temperature: 0.7,
-      maxOutputTokens: 1024,
-    },
+    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 },
   };
 
-  try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
+  // Retry s exponential backoff pro 429
+  const models = [
+    "gemini-1.5-flash-8b",
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
+  ];
+
+  for (const model of models) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    try {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+      });
+
+      if (res.status === 429) {
+        // Zkus další model
+        continue;
       }
-    );
 
-    if (!res.ok) {
-      const err = await res.text();
-      console.error("Gemini API error:", err);
-      return NextResponse.json({ error: `Gemini error: ${res.status}` }, { status: 500 });
+      if (!res.ok) {
+        const err = await res.text();
+        console.error(`Gemini ${model} error:`, err);
+        continue;
+      }
+
+      const data = await res.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "Nepodařilo se získat odpověď.";
+      return NextResponse.json({ text });
+
+    } catch (err) {
+      console.error(`Route error (${model}):`, err);
+      continue;
     }
-
-    const data = await res.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "Nepodařilo se získat odpověď.";
-    return NextResponse.json({ text });
-  } catch (err) {
-    console.error("Route error:", err);
-    return NextResponse.json({ error: "Interní chyba serveru." }, { status: 500 });
   }
+
+  return NextResponse.json({ error: "Všechny modely jsou momentálně přetížené. Zkus za chvíli." }, { status: 429 });
 }
