@@ -14,6 +14,7 @@ type VideoItem = {
   tags: string;
   score?: number;
   key_points?: string[];
+  source?: string; // "YouTube" | "Newsletter" (volitelné, default YouTube)
 };
 
 type BriefData = {
@@ -35,8 +36,21 @@ function getVideoId(url: string): string {
   return url.split("v=")[1]?.split("&")[0] ?? "";
 }
 
+function isYouTube(url: string): boolean {
+  return url.includes("youtube.com") || url.includes("youtu.be");
+}
+
 function getThumbnail(url: string): string {
   return `https://img.youtube.com/vi/${getVideoId(url)}/mqdefault.jpg`;
+}
+
+// Doména článku jako label pro newsletter karty (medium.com, dev.to...)
+function getDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "link";
+  }
 }
 
 function fmt(s: number): string {
@@ -205,6 +219,7 @@ function VideoCard({
   const [expanded, setExpanded] = useState(false);
   const [deepDive, setDeepDive] = useState(false);
   const hasContent = video.summary || (video.key_points && video.key_points.length > 0);
+  const isVideo = isYouTube(video.url);
 
   return (
     <>
@@ -216,15 +231,29 @@ function VideoCard({
         opacity: done ? 0.5 : 1,
         transition: "all 0.2s",
       }}>
-        {/* Thumbnail */}
+        {/* Thumbnail (video) NEBO article header (newsletter) */}
         <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#0a1410", overflow: "hidden" }}>
-          <img
-            src={getThumbnail(video.url)}
-            alt=""
-            loading="lazy"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-          />
+          {isVideo ? (
+            <img
+              src={getThumbnail(video.url)}
+              alt=""
+              loading="lazy"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            />
+          ) : (
+            <div style={{
+              width: "100%", height: "100%",
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", gap: 6,
+              background: "linear-gradient(135deg, rgba(0,229,160,0.08), rgba(13,26,18,0.95))",
+            }}>
+              <span style={{ fontSize: 24 }}>📰</span>
+              <span style={{ fontSize: 10, color: "#4b7a5e", fontFamily: mono, letterSpacing: 1 }}>
+                {getDomain(video.url)}
+              </span>
+            </div>
+          )}
           {/* Score badge */}
           <div style={{
             position: "absolute", top: 8, right: 8,
@@ -235,7 +264,17 @@ function VideoCard({
           }}>
             {tier === "high" ? "HIGH" : "MED"} {video.score && `· ${video.score}`}
           </div>
-          {/* YouTube link overlay */}
+          {/* Source type badge (vlevo nahoře) */}
+          <div style={{
+            position: "absolute", top: 8, left: 8,
+            fontSize: 9, fontFamily: mono, fontWeight: 600, letterSpacing: 0.5,
+            padding: "2px 7px", borderRadius: 20,
+            background: "rgba(0,0,0,0.55)",
+            color: isVideo ? "#ff6b6b" : "#6ee7b7",
+          }}>
+            {isVideo ? "▶ YT" : "✎ READ"}
+          </div>
+          {/* Link overlay */}
           <a href={video.url} target="_blank" rel="noreferrer" style={{
             position: "absolute", inset: 0, display: "flex",
             alignItems: "center", justifyContent: "center",
