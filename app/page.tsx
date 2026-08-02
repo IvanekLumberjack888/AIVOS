@@ -133,7 +133,7 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
     } catch {
       setMsgs(m => {
         const newM = [...m];
-        newM[newM.length - 1] = { role: "assistant", text: "Nepodařilo se spojit s AI službou Gemini." };
+        newM[newM.length - 1] = { role: "assistant", text: "Failed to connect to Gemini AI service." };
         return newM;
       });
     }
@@ -141,10 +141,10 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
   };
 
   const quickPrompts = [
-    "Jak to použít v Azure ADF?",
-    "Shrň to pro mě jednoduše",
-    "Co bych měl vyzkoušet jako první?",
-    "Jak to využít pro certifikace (AZ-900, etc)?",
+    "How to use this in Azure ADF?",
+    "Summarize key insights simply",
+    "What should I try first?",
+    "How to apply this for cloud certifications (AZ-900, etc)?",
   ];
 
   return (
@@ -171,7 +171,7 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
 
       {msgs.length === 0 && (
         <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
-          <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 8 }}>Rychlé dotazy</div>
+          <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 8 }}>Quick Prompts</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {quickPrompts.map(q => (
               <button key={q} onClick={() => send(q)} style={{
@@ -187,7 +187,7 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
       <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
         {msgs.length === 0 && (
           <div style={{ color: "#4b5563", fontSize: 13, textAlign: "center", marginTop: 40 }}>
-            Zeptej se na cokoliv k tomuto videu 👆
+            Ask anything about this video 👆
           </div>
         )}
         {msgs.map((m, i) => (
@@ -198,16 +198,16 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
               background: m.role === "user" ? "rgba(16,185,129,0.2)" : "rgba(22,32,26,0.9)",
               border: "1px solid rgba(16,185,129,0.2)",
               color: "#f8fff8", fontSize: 13, lineHeight: 1.5, whiteSpace: "pre-wrap",
-            }}>{m.text || (loading && i === msgs.length - 1 ? "Generuji odpověď..." : "")}</div>
+            }}>{m.text || (loading && i === msgs.length - 1 ? "Generating response..." : "")}</div>
           </div>
         ))}
-        {loading && <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, marginTop: 4 }}>● Streamování tokenů skrze Gemini 2.0 Flash...</div>}
+        {loading && <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, marginTop: 4 }}>● Streaming tokens via Gemini 2.0 Flash...</div>}
         <div ref={endRef} />
       </div>
 
       <div style={{ padding: "12px 16px", borderTop: "1px solid rgba(16,185,129,0.15)", display: "flex", gap: 8 }}>
         <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()}
-          placeholder="Napiš dotaz..."
+          placeholder="Type your question..."
           style={{ flex: 1, background: "rgba(22,32,26,0.8)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 8, padding: "8px 12px", color: "#f8fff8", fontSize: 13, outline: "none" }} />
         <button onClick={() => send()} disabled={loading} style={{ padding: "8px 14px", background: "#10b981", border: "none", borderRadius: 8, color: "white", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Send size={14} />
@@ -293,7 +293,7 @@ function BriefView() {
     fetch(url)
       .then(r => { if (!r.ok) throw new Error("404"); return r.json(); })
       .then(data => { setBrief(data); setError(""); })
-      .catch(() => setError("Brief pro toto datum není k dispozici."));
+      .catch(() => setError("Brief for this date is unavailable."));
   }, []);
 
   useEffect(() => {
@@ -375,7 +375,7 @@ function BriefView() {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
             <div>
               <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 2 }}>Brain Brief Podcast</div>
-              <div style={{ color: "#f8fff8", fontSize: 16, fontFamily: mono, fontWeight: 700 }}>{brief?.date ?? "Načítám..."}</div>
+              <div style={{ color: "#f8fff8", fontSize: 16, fontFamily: mono, fontWeight: 700 }}>{brief?.date ?? "Loading..."}</div>
             </div>
             <button onClick={togglePlay} style={{
               width: 52, height: 52, borderRadius: "50%",
@@ -419,7 +419,7 @@ function BriefView() {
 
         {history.length > 1 && (
           <div style={card}>
-            <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>Historie</div>
+            <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>HISTORY</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {history.map(d => (
                 <button key={d} onClick={() => switchDate(d)} style={{
@@ -477,7 +477,7 @@ function KnowledgeView() {
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Vyhledat v architektuře, PySpark, ADF, Gemini, RAG..."
+              placeholder="Search across Architecture, PySpark, ADF, Gemini, RAG..."
               style={{
                 width: "100%", background: "rgba(10,15,10,0.8)", border: "1px solid rgba(16,185,129,0.3)",
                 borderRadius: 10, padding: "10px 14px 10px 36px", color: "#f8fff8", fontSize: 14, outline: "none"
@@ -530,7 +530,7 @@ function KnowledgeView() {
                   onClick={() => setExpandedId(isExpanded ? null : item.id)}
                   style={{ background: "none", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 6, color: "#10b981", cursor: "pointer", padding: "4px 10px", fontSize: 11, fontFamily: mono }}
                 >
-                  {isExpanded ? "Zavřít" : "Detail"}
+                  {isExpanded ? "Close" : "Details"}
                 </button>
               </div>
 
@@ -601,7 +601,7 @@ function InboxView() {
             value={inputText}
             onChange={e => setInputText(e.target.value)}
             onKeyDown={e => e.key === "Enter" && addItem()}
-            placeholder={type === "youtube" ? "Vlož YouTube URL odkaz..." : type === "task" ? "Nová úloha / zaměření..." : "Rychlá poznámka..."}
+            placeholder={type === "youtube" ? "Enter YouTube URL link..." : type === "task" ? "New task / focus item..." : "Quick note..."}
             style={{
               flex: 1, background: "rgba(10,15,10,0.8)", border: "1px solid rgba(16,185,129,0.3)",
               borderRadius: 10, padding: "10px 14px", color: "#f8fff8", fontSize: 14, outline: "none"
@@ -611,15 +611,15 @@ function InboxView() {
             padding: "10px 20px", background: "#10b981", border: "none", borderRadius: 10,
             color: "white", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6
           }}>
-            <Plus size={16} /> Přidat
+            <Plus size={16} /> Add
           </button>
         </div>
 
         <div style={{ display: "flex", gap: 10 }}>
           {[
-            { id: "task" as const, label: "Úloha", Icon: CheckSquare },
+            { id: "task" as const, label: "Task", Icon: CheckSquare },
             { id: "youtube" as const, label: "YouTube Link", Icon: LinkIcon },
-            { id: "note" as const, label: "Poznámka", Icon: FileText },
+            { id: "note" as const, label: "Note", Icon: FileText },
           ].map(t => (
             <button
               key={t.id}
@@ -639,7 +639,7 @@ function InboxView() {
       </div>
 
       <div style={{ ...card }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 14 }}>Doručená Pošta ({items.length})</div>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 14 }}>INBOX QUEUE ({items.length})</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {items.map(item => (
             <div key={item.id} style={{
