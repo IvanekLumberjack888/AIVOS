@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check } from "lucide-react";
+import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info } from "lucide-react";
 
 type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
@@ -275,7 +275,7 @@ function BriefVideoCard({ video, color, onDeepDive }: { video: VideoItem; color:
   );
 }
 
-// ─── BRAIN BRIEF ─────────────────────────────────────────────────────────────
+// ─── BRAIN BRIEF (ENHANCED PIPELINE INFOGRAPHIC & MONETIZATION) ────────────────
 
 function BriefView() {
   const [brief, setBrief] = useState<BriefData | null>(null);
@@ -286,6 +286,7 @@ function BriefView() {
   const [duration, setDuration] = useState(0);
   const [error, setError] = useState("");
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
+  const [showArchInfo, setShowArchInfo] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const loadBrief = useCallback((dateKey: string) => {
@@ -354,6 +355,92 @@ function BriefView() {
         marginRight: panelOpen ? 496 : 0,
         transition: "margin-right 0.3s ease",
       }}>
+        {/* Architecture & How It Works Banner */}
+        <div style={{ ...card, marginBottom: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
+            <div>
+              <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
+                <Zap size={14} /> Automated Daily YouTube AI Digest
+              </div>
+              <h2 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 700, margin: 0 }}>Brain Brief Architecture & Pro Workflows</h2>
+            </div>
+            <button onClick={() => setShowArchInfo(!showArchInfo)} style={{
+              padding: "6px 12px", borderRadius: 8, background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)",
+              color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6
+            }}>
+              <Info size={13} /> {showArchInfo ? "Hide How It Works" : "How It Works"}
+            </button>
+          </div>
+
+          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
+            Automated pipeline that monitors custom YouTube playlists, extracts transcripts via <code style={{ color: "#6ee7b7", fontFamily: mono }}>yt-dlp</code>, and scores video relevance (1–10) using <strong>Google Gemini 2.0 Flash</strong>.
+          </p>
+
+          {showArchInfo && (
+            <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(16,185,129,0.15)", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+              <div style={{ background: "rgba(10,15,10,0.6)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.15)" }}>
+                <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>1. Transcript Ingestion</div>
+                <div style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.4 }}>Headless subtitle extraction with zero heavy video downloads via Python + yt-dlp.</div>
+              </div>
+              <div style={{ background: "rgba(10,15,10,0.6)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.15)" }}>
+                <div style={{ color: "#34d399", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>2. Gemini 2.0 Flash Triage</div>
+                <div style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.4 }}>AI ranks videos (1-10), generates key points, and extracts actionable implementation steps.</div>
+              </div>
+              <div style={{ background: "rgba(10,15,10,0.6)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.15)" }}>
+                <div style={{ color: "#6ee7b7", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>3. Audio Podcast Brief</div>
+                <div style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.4 }}>Generates daily hands-free MP3 audio summaries for morning listening.</div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Monetization & Pro Hacks Card */}
+        <div style={{ ...card, marginBottom: 20, background: "linear-gradient(135deg, rgba(22,32,26,0.9), rgba(16,185,129,0.08))", border: "1px solid rgba(16,185,129,0.3)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" }}>
+              <Lock size={13} /> Pro Hacks & Monetized Blueprints
+            </div>
+            <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, background: "rgba(16,185,129,0.15)", color: "#10b981", fontFamily: mono }}>SIDE-HUSTLE READY</span>
+          </div>
+
+          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>Unlock Full Python Scripts & Notion Templates</h3>
+          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.5, margin: "0 0 14px" }}>
+            Get access to pre-configured Python automation pipelines, Notion P.A.R.A. templates, and step-by-step setup guides for global creators.
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <a href="https://buymeacoffee.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <button style={{
+                padding: "8px 14px", borderRadius: 8, background: "#FFDD00", border: "none",
+                color: "#000000", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
+                display: "flex", alignItems: "center", gap: 6
+              }}>
+                <Coffee size={14} /> Buy Me a Coffee (5% fee)
+              </button>
+            </a>
+
+            <a href="https://gumroad.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <button style={{
+                padding: "8px 14px", borderRadius: 8, background: "rgba(16,185,129,0.2)", border: "1px solid #10b981",
+                color: "#10b981", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
+                display: "flex", alignItems: "center", gap: 6
+              }}>
+                <ShoppingBag size={14} /> Gumroad Templates
+              </button>
+            </a>
+
+            <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <button style={{
+                padding: "8px 14px", borderRadius: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)",
+                color: "#f8fff8", fontWeight: 600, fontSize: 12, fontFamily: mono, cursor: "pointer",
+                display: "flex", alignItems: "center", gap: 6
+              }}>
+                <ExternalLink size={14} /> Ko-fi (0% fee)
+              </button>
+            </a>
+          </div>
+        </div>
+
         {brief && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
             {[
