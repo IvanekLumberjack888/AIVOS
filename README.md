@@ -63,7 +63,7 @@ Support development or purchase the full commercial package with Notion P.A.R.A.
 
 - ☕ **Buy Me a Coffee**: [buymeacoffee.com](https://buymeacoffee.com)
 - 🛒 **Gumroad Templates**: [gumroad.com](https://gumroad.com)
-- ☕ **Ko-fi Workspace**: [ko-fi.com](https://ko-fi.com)
+- ☕ **Support on Ko-fi**: [ko-fi.com/aivos_os](https://ko-fi.com/aivos_os)
 
 ---
 

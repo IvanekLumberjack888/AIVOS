@@ -429,13 +429,13 @@ function BriefView() {
               </button>
             </a>
 
-            <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+            <a href="https://ko-fi.com/aivos_os" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
                 padding: "8px 14px", borderRadius: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)",
                 color: "#f8fff8", fontWeight: 600, fontSize: 12, fontFamily: mono, cursor: "pointer",
                 display: "flex", alignItems: "center", gap: 6
               }}>
-                <ExternalLink size={14} /> Ko-fi (0% fee)
+                <ExternalLink size={14} /> Support on Ko-fi (0% fee)
               </button>
             </a>
           </div>
