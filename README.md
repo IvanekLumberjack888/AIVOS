@@ -61,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000) to launch your local AIVOS-O
 
 Support development or purchase the full commercial package with Notion P.A.R.A. templates & Medium Article Generator:
 
-- ☕ **Buy Me a Coffee**: [buymeacoffee.com](https://buymeacoffee.com)
+- ☕ **Buy Me a Coffee**: [buymeacoffee.com/aivos_os](https://buymeacoffee.com/aivos_os)
 - 🛒 **Gumroad Templates**: [gumroad.com](https://gumroad.com)
 - ☕ **Support on Ko-fi**: [ko-fi.com/aivos_os](https://ko-fi.com/aivos_os)
 

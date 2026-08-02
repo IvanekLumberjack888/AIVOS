@@ -409,7 +409,7 @@ function BriefView() {
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            <a href="https://buymeacoffee.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+            <a href="https://buymeacoffee.com/aivos_os" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
                 padding: "8px 14px", borderRadius: 8, background: "#FFDD00", border: "none",
                 color: "#000000", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
