@@ -12,7 +12,7 @@ const DEMO_PROJECTS = [
   { name: "Be certified (AZ-900, etc)", tag: "CERT",  progress: 60, phase: "Self-developing",    color: "#34d399" },
   { name: "AIVOS Platform Build",       tag: "BUILD", progress: 25, phase: "Phase 1 Scaffold",   color: "#6ee7b7" },
   { name: "Power BI Analytics",         tag: "DONE",  progress: 100, phase: "Completed",        color: "#34d399" },
-  { name: "yt-brain RAG Pipeline",      tag: "DEV",   progress: 50, phase: "Transcripts & LLM",  color: "#f59e0b" },
+  { name: "yt-brain RAG Pipeline",      tag: "DEV",   progress: 50, phase: "Transcripts & LLM",  color: "#c084fc" },
 ];
 
 const DEMO_PARA: Record<string, string[]> = {
@@ -445,7 +445,7 @@ function BriefView() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
             {[
               { label: "HIGH",  val: brief.stats.high,   color: "#10b981" },
-              { label: "MED",   val: brief.stats.medium, color: "#f59e0b" },
+              { label: "MED",   val: brief.stats.medium, color: "#c084fc" },
               { label: "SKIP",  val: brief.stats.low,    color: "#4b5563" },
               { label: "TOTAL", val: brief.stats.total,  color: "#6ee7b7" },
             ].map(({ label, val, color }) => (
@@ -497,9 +497,9 @@ function BriefView() {
 
         {brief && brief.medium.length > 0 && (
           <div style={{ ...card, marginBottom: 16 }}>
-            <div style={{ color: "#f59e0b", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>● Medium</div>
+            <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>● Medium</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {brief.medium.slice(0, 8).map((v, i) => <BriefVideoCard key={i} video={v} color="#f59e0b" onDeepDive={setActiveVideo} />)}
+              {brief.medium.slice(0, 8).map((v, i) => <BriefVideoCard key={i} video={v} color="#c084fc" onDeepDive={setActiveVideo} />)}
             </div>
           </div>
         )}
@@ -1171,8 +1171,8 @@ export default function AIVOS() {
           })}
         </nav>
         <div style={{ padding: "16px 20px", borderTop: "1px solid rgba(16,185,129,0.1)", fontSize: 11 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, color: ollamaOk ? "#10b981" : "#f59e0b", marginBottom: 4 }}>
-            <Circle size={6} fill={ollamaOk ? "#10b981" : "#f59e0b"} />
+          <div style={{ display: "flex", alignItems: "center", gap: 6, color: ollamaOk ? "#10b981" : "#6b7280", marginBottom: 4 }}>
+            <Circle size={6} fill={ollamaOk ? "#10b981" : "#6b7280"} />
             {"Ollama " + (ollamaOk ? "online" : "offline")}
           </div>
           <div style={{ color: "#4b5563", fontSize: 10 }}>{"© 2026 Ivo Doležal"}</div>
