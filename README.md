@@ -1,77 +1,72 @@
-# AIVOS - Personal AI OS 🚀
+# AIVOS-OS Official — Starter Edition 🚀
 
-**AIVOS** (*Personal AI OS v0.1*) is a personal operating system designed for intelligent management of personal projects, knowledge bases, long-term memory, and daily summaries using the **P.A.R.A.** framework and AI model integration (Notion, Claude, Ollama).
+> **AIVOS-OS (Personal AI Operating System)** is a modern, ultra-fast web workspace designed for Data Engineers, Cloud Integrators, and AI Developers. Built with **Next.js 16 (Turbopack)**, **Google Gemini 2.0 Flash**, and local **Ollama (`qwen2.5`)** LLM privacy.
 
-🌐 **Live Deployment on Vercel:** [aivos-two.vercel.app](https://aivos-two.vercel.app)  
-📦 **GitHub Repository:** [IvanekLumberjack888/AIVOS](https://github.com/IvanekLumberjack888/AIVOS)
-
----
-
-## ⚡ Key Modules & Architecture
-
-- 📊 **Dashboard** – Main control panel displaying real-time project statistics (*Cloud Integration*, *Cloud Certifications*, *AIVOS Build*).
-- 📺 **Brain Brief (`BriefView.tsx`)** – Daily YouTube AI digest with content scoring and interactive **Deep Dive AI Chat**.
-- 🧠 **Memory** – Notes and contextual memory connected to the AI assistant.
-- 📂 **P.A.R.A. System** – Information architecture categorized into 4 core pillars:
-  - `10 PROJECTS` (Active goals with explicit deadlines)
-  - `20 AREAS` (Long-term responsibilities: Career, Health, AI)
-  - `30 RESOURCES` (Topics & study materials: ADF, Fabric, LangChain)
-  - `40 ARCHIVE` (Completed & inactive projects)
-- 📖 **Knowledge Base** *(Phase 3)* – Semantic document search via pgvector & Neon DB.
-- 📥 **Inbox** *(Phase 4)* – Gmail MCP integration for rapid task and message collection.
-- 💻 **Sessions** *(Phase 5)* – Claude Code & GitHub MCP integration.
-- 🔍 **Universal Search** *(Phase 6)* – Cross-source search (Notion, GitHub, Memory).
+![AIVOS-OS Starter](https://img.shields.io/badge/AIVOS--OS-Starter--v0.2-10b981?style=for-the-badge)
+![Next.js 16](https://img.shields.io/badge/Next.js-16_Turbopack-black?style=for-the-badge&logo=nextdotjs)
+![Gemini 2.0 Flash](https://img.shields.io/badge/AI-Gemini_2.0_Flash-4285F4?style=for-the-badge&logo=google)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 ---
 
-## 🛠️ Tech Stack & Integrations
+## ⚡ Live Public Demo
 
-- **Framework:** [Next.js 16 (App Router)](https://nextjs.org/) + React 19 + TypeScript
-- **Styling:** Modern Dark Emerald UI theme (`#0f1410`, `#16201a`, `#10b981`), Tailwind CSS v4
-- **Icons:** `lucide-react`
-- **Integrations:**
-  - **Notion API (`@notionhq/client`):** Live sync with P.A.R.A. databases and tasks
-  - **Ollama API:** Local / remote LLM endpoint (`http://localhost:11434`)
-  - **YouTube Brief Pipeline:** Video summary processing and RAG chat
+🌐 **Live Vercel Showcase**: [aivos-two.vercel.app](https://aivos-two.vercel.app)
 
 ---
 
-## 💻 Local Development & Setup
+## 💎 Product Tier Ecosystem
 
-### 1. Clone the repository
+| Tier | Status | Features Included | Target Audience |
+| :--- | :--- | :--- | :--- |
+| 🟢 **`AIVOS-OS Starter`** | **Public Open-Source** | UI Dashboard, Knowledge Base Search, SSE Streaming Demo, Public Inbox | Developers, Starters, Showcase |
+| ⚡ **`AIVOS-OS Pro`** | **Commercial Product** | **Medium Article Generator API**, `yt-dlp` Transcript Pipeline, Notion P.A.R.A. System Templates | Creators, Engineers, Solopreneurs |
+| 🔒 **`AIVOS-OS Private`** | **Internal Personal OS** | Live Notion Workspace Sync, Local Ollama Privacy Memory, Private Automation | Personal Workspace |
+
+---
+
+## ✨ Features in Starter Edition
+
+- **⚡ Server-Sent Events (SSE) Streaming**: Real-time token-by-token response streaming powered by Google Gemini 2.0 Flash.
+- **📚 Knowledge Base Search**: Fast client-side search across technical architecture notes, PySpark, Azure ADF, and RAG.
+- **📥 Automation & Quick Capture Inbox**: Rapid task logging and link capturing system.
+- **🎙️ Brain Brief Digest**: Automated YouTube video relevance triage and daily podcast summaries.
+- **🔒 Ollama Local Fallback**: Privacy-first fallback to local LLMs (`qwen2.5:7b` @ `localhost:11434`).
+
+---
+
+## 🛠️ Getting Started Locally
+
 ```bash
+# Clone the repository
 git clone https://github.com/IvanekLumberjack888/AIVOS.git
 cd AIVOS
-```
 
-### 2. Install dependencies
-```bash
+# Install dependencies
 npm install
-```
 
-### 3. Environment Setup
-Create a `.env.local` file in the root directory:
-```env
-NOTION_API_KEY=your_notion_api_key
-OLLAMA_BASE_URL=http://localhost:11434
-```
+# Set up environment variables
+# Create a .env.local file with:
+# GEMINI_API_KEY=your_gemini_api_key
 
-### 4. Run the development server
-```bash
+# Run local development server
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+Open [http://localhost:3000](http://localhost:3000) to launch your local AIVOS-OS Starter dashboard.
 
 ---
 
-## 🗺️ Roadmap & Phases
+## 🛒 Upgrade to AIVOS-OS Pro & Support
 
-- [x] **Phase 1:** Core UI Dashboard, Sidebar, Brain Brief & Deep Dive RAG chat.
-- [x] **Phase 2:** Integration of Notion P.A.R.A. views (`NotionParaView.tsx`, `NotionProjects.tsx`).
-- [ ] **Phase 3:** Hybrid Ollama status check (browser fallback for Vercel deployment vs. serverless).
-- [ ] **Phase 4:** Implementation of pgvector semantic search for Knowledge Base.
-- [ ] **Phase 5:** Responsive mobile drawer for sidebar navigation.
+Support development or purchase the full commercial package with Notion P.A.R.A. templates & Medium Article Generator:
+
+- ☕ **Buy Me a Coffee**: [buymeacoffee.com](https://buymeacoffee.com)
+- 🛒 **Gumroad Templates**: [gumroad.com](https://gumroad.com)
+- ☕ **Ko-fi Workspace**: [ko-fi.com](https://ko-fi.com)
 
 ---
 
-© 2026 Ivo Doležal | Developed with ❤️ for Personal AI Automation
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for details.

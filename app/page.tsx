@@ -1149,8 +1149,8 @@ export default function AIVOS() {
     <div style={{ display: "flex", height: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", overflow: "hidden" }}>
       <aside style={{ width: 220, background: "rgba(22,32,26,0.9)", borderRight: "1px solid rgba(16,185,129,0.15)", display: "flex", flexDirection: "column", flexShrink: 0 }}>
         <div style={{ padding: "24px 20px 20px", borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
-          <div style={{ fontFamily: mono, fontSize: 20, fontWeight: 900, color: "#10b981" }}>AIVOS</div>
-          <div style={{ fontSize: 11, color: "#6b7280", marginTop: 2 }}>Personal AI OS v0.2</div>
+          <div style={{ fontFamily: mono, fontSize: 20, fontWeight: 900, color: "#10b981" }}>AIVOS-OS</div>
+          <div style={{ fontSize: 11, color: "#6b7280", marginTop: 2 }}>Starter Edition v0.2</div>
         </div>
         <nav style={{ flex: 1, padding: "12px 10px", display: "flex", flexDirection: "column", gap: 2 }}>
           {NAV.map(({ id, Icon, label }) => {
