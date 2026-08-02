@@ -8,26 +8,26 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "GEMINI_API_KEY / IVCA_GEMINI_API is not set." }, { status: 500 });
   }
 
-  const systemPrompt = `Jsi AI asistent pro Iva – Data Engineera & AI Specialist (Azure stack, AI Automations).
-Analyzuješ YouTube video a odpovídáš na dotazy k jeho obsahu.
-Mluv česky, technické termíny anglicky. Buď konkrétní a praktický. Bez omáčky.
+  const systemPrompt = `You are an AI assistant for Ivo – Data Engineer & AI Specialist (Azure stack, AI Automations).
+Analyze the YouTube video and answer questions about its content.
+Respond in clear, professional English. Be specific, concise, and practical. No fluff.
 
-Kontext videa:
-Název: ${videoContext.title}
-Kanál: ${videoContext.channel}
-Shrnutí: ${videoContext.summary || "(nedostupné)"}
-Klíčové body: ${(videoContext.key_points || []).join(", ") || "(nedostupné)"}
-Tagy: ${videoContext.tags || ""}
+Video Context:
+Title: ${videoContext.title}
+Channel: ${videoContext.channel}
+Summary: ${videoContext.summary || "(unavailable)"}
+Key Points: ${(videoContext.key_points || []).join(", ") || "(unavailable)"}
+Tags: ${videoContext.tags || ""}
 
-Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
-- práce v Azure ADF, Databricks, Service Bus, Event Hub
-- učení se data engineering a AI/LLM automacím
-- budování AIVOS osobního AI OS
-- certifikace a seberozvoj (AZ-900, etc)`;
+Help Ivo apply this video's technical content in his context:
+- Azure ADF, Databricks, Service Bus, Event Hub integration
+- Data engineering & AI automation workflows
+- Building AIVOS Personal AI Operating System
+- Cloud certifications & self-development (AZ-900, etc)`;
 
   const geminiMessages = [
-    { role: "user", parts: [{ text: systemPrompt + "\n\nPozdrav uživatele a zeptej se co chce vědět o tomto videu." }] },
-    { role: "model", parts: [{ text: `Ahoj! Mám tady video "${videoContext.title}" od ${videoContext.channel}. Co tě k němu zajímá?` }] },
+    { role: "user", parts: [{ text: systemPrompt + "\n\nGreet the user and ask what they want to know about this video." }] },
+    { role: "model", parts: [{ text: `Hi! I have the video "${videoContext.title}" by ${videoContext.channel}. What would you like to explore?` }] },
     ...messages.map((m: { role: string; text: string }) => ({
       role: m.role === "user" ? "user" : "model",
       parts: [{ text: m.text }],
@@ -46,12 +46,12 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
       if (res.status === 429) continue;
       if (!res.ok) continue;
       const data = await res.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "Nepodařilo se získat odpověď.";
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "Could not retrieve response.";
       return NextResponse.json({ text });
     } catch {
       continue;
     }
   }
 
-  return NextResponse.json({ error: "Gemini API je momentálně přetížené. Zkuste to prosím za chvíli." }, { status: 429 });
+  return NextResponse.json({ error: "Gemini API is currently overloaded. Please try again shortly." }, { status: 429 });
 }

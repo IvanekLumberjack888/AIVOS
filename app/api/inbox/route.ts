@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Temporary in-memory queue for quick capture tasks and links
 let inboxItems: Array<{ id: string; type: "task" | "youtube" | "note"; title: string; date: string; done: boolean }> = [
-  { id: "1", type: "task", title: "Vyzkoušet Azure ADF Data Flow optimization", date: "2026-08-02", done: false },
+  { id: "1", type: "task", title: "Test Azure ADF Data Flow optimization", date: "2026-08-02", done: false },
   { id: "2", type: "youtube", title: "https://youtube.com/watch?v=sBF3UumkL4Y", date: "2026-08-02", done: false },
-  { id: "3", type: "note", title: "Architektura: Medallion pattern v Delta Lake", date: "2026-08-02", done: true },
+  { id: "3", type: "note", title: "Architecture: Medallion pattern in Delta Lake", date: "2026-08-02", done: true },
 ];
 
 export async function GET() {
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const newItem = {
       id: Date.now().toString(),
       type: body.type || "task",
-      title: body.title || "Bez názvu",
+      title: body.title || "Untitled",
       date: new Date().toISOString().split("T")[0],
       done: false,
     };

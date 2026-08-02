@@ -10,27 +10,27 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "GEMINI_API_KEY / IVCA_GEMINI_API not set" }, { status: 500 });
   }
 
-  const systemPrompt = `Jsi AI asistent pro Iva – Junior Data Engineera (Azure stack, INTJ, AI Automations).
-Analyzuješ YouTube video a odpovídáš na dotazy k jeho obsahu.
-Mluv česky, technické termTermíny anglicky. Buď konkrétní a praktický. Bez omáčky.
+  const systemPrompt = `You are an AI assistant for Ivo – Data Engineer & AI Specialist (Azure stack, AI Automations).
+Analyze the YouTube video and answer questions about its technical content.
+Respond in clear, professional English. Be specific, concise, and practical. No fluff.
 
-Kontext videa:
-Název: ${videoContext.title}
-Kanál: ${videoContext.channel}
-Shrnutí: ${videoContext.summary}
-Klíčové body: ${(videoContext.key_points || []).join(", ")}
-Akční krok: ${videoContext.action}
-Tagy: ${videoContext.tags}
+Video Context:
+Title: ${videoContext.title}
+Channel: ${videoContext.channel}
+Summary: ${videoContext.summary}
+Key Points: ${(videoContext.key_points || []).join(", ")}
+Action Item: ${videoContext.action}
+Tags: ${videoContext.tags}
 
-Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
-- práce s Azure ADF, Databricks, Service Bus, Event Hub
-- učení se data engineering a AI automacím
-- budování AIVOS osobního AI OS
-- certifikace a seberozvoj (AZ-900, etc)`;
+Help Ivo apply this video's technical content in his context:
+- Azure ADF, Databricks, Service Bus, Event Hub integration
+- Data engineering & AI automation workflows
+- Building AIVOS Personal AI Operating System
+- Cloud certifications & self-development (AZ-900, etc)`;
 
   const geminiMessages = [
-    { role: "user", parts: [{ text: systemPrompt + "\n\nPozdrav uživatele a zeptej se co chce vědět o tomto videu." }] },
-    { role: "model", parts: [{ text: `Ahoj! Mám tady video "${videoContext.title}" od ${videoContext.channel}. Co tě zajímá?` }] },
+    { role: "user", parts: [{ text: systemPrompt + "\n\nGreet the user and ask what they want to know about this video." }] },
+    { role: "model", parts: [{ text: `Hi! I have the video "${videoContext.title}" by ${videoContext.channel}. What would you like to explore?` }] },
     ...messages.map((m: { role: string; text: string }) => ({
       role: m.role === "user" ? "user" : "model",
       parts: [{ text: m.text }],
@@ -52,7 +52,6 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
       return NextResponse.json({ error: err }, { status: 500 });
     }
 
-    // Transform SSE stream from Gemini into client stream
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
 
