@@ -18,7 +18,7 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
 - práce v Konica Minolta (Azure ADF, Databricks, Service Bus, Event Hub)
 - learning data engineering a AI/LLM
 - budování AIVOS osobního AI OS
-- DP-700 certifikace`;
+- certifikace a seberozvoj (AZ-900, etc)`;
 
   const anthropicMessages = messages.map((m: { role: string; text: string }) => ({
     role: m.role === "user" ? "user" : "assistant",

@@ -9,14 +9,14 @@ interface Msg { role: MsgRole; text: string; }
 // Public Showcase Demo Projects (No internal/private company data)
 const DEMO_PROJECTS = [
   { name: "Enterprise Cloud Integration", tag: "WORK",  progress: 65, phase: "Phase 2 / 4",       color: "#10b981" },
-  { name: "DP-700 Certification",      tag: "CERT",  progress: 45, phase: "Study & Practice",  color: "#34d399" },
+  { name: "Be certified (AZ-900, etc)", tag: "CERT",  progress: 60, phase: "Self-developing",    color: "#34d399" },
   { name: "AIVOS Platform Build",       tag: "BUILD", progress: 25, phase: "Phase 1 Scaffold",   color: "#6ee7b7" },
   { name: "Power BI Analytics",         tag: "DONE",  progress: 100, phase: "Completed",        color: "#34d399" },
   { name: "yt-brain RAG Pipeline",      tag: "DEV",   progress: 50, phase: "Transcripts & LLM",  color: "#f59e0b" },
 ];
 
 const DEMO_PARA: Record<string, string[]> = {
-  "10 PROJECTS":  ["Cloud Integration Engine", "DP-700 Fabric Cert", "AIVOS Build", "yt-brain RAG"],
+  "10 PROJECTS":  ["Cloud Integration Engine", "Be certified (AZ-900, etc)", "AIVOS Build", "yt-brain RAG"],
   "20 AREAS":     ["Azure & Data Platform", "AI & LLM Engineering", "Automation & CI/CD", "Personal Growth"],
   "30 RESOURCES": ["Azure Data Factory Docs", "Fabric Forge Guide", "RAG & Vector Patterns", "LangChain / Ollama"],
   "40 ARCHIVES":  ["SQL Analysis Project 2025", "Elections Scraper Tool", "Power BI TimberRide"],
@@ -99,7 +99,7 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
     "Jak to použít v Azure ADF?",
     "Shrň to pro mě jednoduše",
     "Co bych měl vyzkoušet jako první?",
-    "Jak to souvisí s DP-700?",
+    "Jak to využít pro certifikace (AZ-900, etc)?",
   ];
 
   return (
@@ -436,7 +436,7 @@ function Dashboard({ time }: { time: Date }) {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
         <StatCard label="Projects" value={projectCount} />
         <StatCard label="Ollama" value="qwen2.5" />
-        <StatCard label="DP-700" value="45%" />
+        <StatCard label="Certs" value="AZ-900+" />
       </div>
       <div style={{ ...card, marginBottom: 20 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
@@ -493,7 +493,7 @@ function Dashboard({ time }: { time: Date }) {
         ) : (
           <>
             <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Azure Integration Pipelines & Data Engineering</p>
-            <p style={{ color: "#6b7280", fontSize: 13 }}>DP-700: Fabric & Data Engineering Study · AIVOS Platform UI Shell</p>
+            <p style={{ color: "#6b7280", fontSize: 13 }}>Be certified - Self-developing e.g. AZ-900, etc · AIVOS Platform UI Shell</p>
           </>
         )}
       </div>

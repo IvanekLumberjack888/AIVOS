@@ -9,7 +9,7 @@
 
 ## ⚡ Key Modules & Architecture
 
-- 📊 **Dashboard** – Main control panel displaying real-time project statistics (*Konica Onboarding*, *DP-700 Cert*, *AIVOS Build*).
+- 📊 **Dashboard** – Main control panel displaying real-time project statistics (*Cloud Integration*, *Cloud Certifications*, *AIVOS Build*).
 - 📺 **Brain Brief (`BriefView.tsx`)** – Daily YouTube AI digest with content scoring and interactive **Deep Dive AI Chat**.
 - 🧠 **Memory** – Notes and contextual memory connected to the AI assistant.
 - 📂 **P.A.R.A. System** – Information architecture categorized into 4 core pillars:

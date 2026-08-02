@@ -25,7 +25,7 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho konkrétní situaci:
 - práce v Konica Minolta (Azure ADF, Databricks, Service Bus)
 - učení se data engineering a AI
 - budování AIVOS osobního AI OS
-- DP-700 certifikace`;
+- certifikace a seberozvoj (AZ-900, etc)`;
 
   const geminiMessages = [
     { role: "user", parts: [{ text: systemPrompt + "\n\nPozdrav uživatele a zeptej se co chce vědět o tomto videu." }] },
