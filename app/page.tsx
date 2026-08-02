@@ -56,6 +56,7 @@ type BriefData = {
   high: VideoItem[];
   medium: VideoItem[];
 };
+
 type VideoItem = {
   title: string; channel: string; url: string;
   summary: string; action: string; tags: string;
@@ -111,7 +112,7 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
     }}>
       <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(16,185,129,0.15)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Deep Dive</div>
+          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Deep Dive AI</div>
           <div style={{ color: "#f8fff8", fontSize: 13, fontWeight: 600, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{video.title}</div>
           <div style={{ color: "#4b5563", fontSize: 11, fontFamily: mono, marginTop: 2 }}>{video.channel}</div>
         </div>
@@ -148,53 +149,37 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
               borderRadius: m.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
               background: m.role === "user" ? "rgba(16,185,129,0.2)" : "rgba(22,32,26,0.9)",
               border: "1px solid rgba(16,185,129,0.2)",
-              color: "#f8fff8", fontSize: 13, lineHeight: 1.6,
-              whiteSpace: "pre-wrap" as const,
+              color: "#f8fff8", fontSize: 13, lineHeight: 1.5,
             }}>{m.text}</div>
           </div>
         ))}
-        {loading && (
-          <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: 12 }}>
-            <div style={{ padding: "10px 14px", borderRadius: "14px 14px 14px 4px", background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.2)", color: "#10b981", fontSize: 13 }}>
-              ●●● přemýšlím...
-            </div>
-          </div>
-        )}
+        {loading && <div style={{ color: "#10b981", fontSize: 12, fontFamily: mono }}>Generuji odpověď skrze Gemini AI...</div>}
         <div ref={endRef} />
       </div>
 
       <div style={{ padding: "12px 16px", borderTop: "1px solid rgba(16,185,129,0.15)", display: "flex", gap: 8 }}>
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && !e.shiftKey && send()}
-          placeholder="Zeptej se na toto video..."
-          style={{ flex: 1, background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 10, padding: "10px 14px", color: "#f8fff8", fontSize: 13, outline: "none" }}
-        />
-        <button onClick={() => send()} disabled={loading || !input.trim()} style={{
-          padding: "10px 14px", background: input.trim() ? "#10b981" : "rgba(16,185,129,0.1)",
-          border: "none", borderRadius: 10, cursor: input.trim() ? "pointer" : "default",
-          color: input.trim() ? "#0f1410" : "#4b5563", transition: "all 0.2s",
-        }}>
-          <Send size={16} />
+        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()}
+          placeholder="Napiš dotaz..."
+          style={{ flex: 1, background: "rgba(22,32,26,0.8)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 8, padding: "8px 12px", color: "#f8fff8", fontSize: 13, outline: "none" }} />
+        <button onClick={() => send()} disabled={loading} style={{ padding: "8px 14px", background: "#10b981", border: "none", borderRadius: 8, color: "white", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Send size={14} />
         </button>
       </div>
     </div>
   );
 }
 
-// ─── BRIEF VIDEO CARD ─────────────────────────────────────────────────────────
+// ─── BRIEF VIDEO CARD ────────────────────────────────────────────────────────
 
 function BriefVideoCard({ video, color, onDeepDive }: { video: VideoItem; color: string; onDeepDive: (v: VideoItem) => void }) {
   const [open, setOpen] = useState(false);
-
   return (
-    <div style={{ padding: "12px 16px", borderRadius: 10, background: "rgba(16,185,129,0.04)", border: `1px solid ${color}20`, transition: "border-color 0.2s" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 2, flexWrap: "wrap" as const }}>
+    <div style={{ ...card, padding: 14, borderColor: `${color}30` }}>
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
             {video.score && (
-              <span style={{ fontSize: 10, fontFamily: mono, color, border: `1px solid ${color}40`, borderRadius: 4, padding: "1px 6px", flexShrink: 0 }}>
+              <span style={{ fontSize: 10, fontFamily: mono, color, background: `${color}15`, padding: "1px 6px", borderRadius: 4, border: `1px solid ${color}30` }}>
                 {video.score}/10
               </span>
             )}
@@ -421,6 +406,22 @@ function StatCard({ label, value }: { label: string; value: string }) {
 
 function Dashboard({ time }: { time: Date }) {
   const konicaDay = Math.max(1, Math.ceil((time.getTime() - new Date("2026-04-01").getTime()) / 86400000));
+  const [notionProjects, setNotionProjects] = useState<any[]>([]);
+  const [focusData, setFocusData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/notion/projects").then(r => r.ok ? r.json() : null),
+      fetch("/api/notion/focus").then(r => r.ok ? r.json() : null)
+    ]).then(([projData, focData]) => {
+      if (projData?.pages) setNotionProjects(projData.pages);
+      if (focData) setFocusData(focData);
+    }).catch(() => {}).finally(() => setLoading(false));
+  }, []);
+
+  const projectCount = notionProjects.length > 0 ? String(notionProjects.length) : String(PROJECTS.length);
+
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
       <div style={{ marginBottom: "2rem" }}>
@@ -434,36 +435,68 @@ function Dashboard({ time }: { time: Date }) {
         </div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
-        <StatCard label="Projects" value="5" />
+        <StatCard label="Projects" value={projectCount} />
         <StatCard label="Ollama" value="qwen2.5" />
         <StatCard label="DP-700" value="12%" />
       </div>
       <div style={{ ...card, marginBottom: 20 }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, marginBottom: 20, textTransform: "uppercase" as const }}>Active Projects</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          {PROJECTS.map(p => (
-            <div key={p.name}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid " + p.color, color: p.color, fontFamily: mono, letterSpacing: 1 }}>{p.tag}</span>
-                  <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.name}</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const }}>Active Projects</div>
+          {loading && <span style={{ color: "#6b7280", fontSize: 11, fontFamily: mono }}>Syncing Notion...</span>}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {notionProjects.length > 0 ? (
+            notionProjects.map((p, idx) => (
+              <a key={p.id || idx} href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", transition: "all 0.2s" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid #10b981", color: "#10b981", fontFamily: mono }}>NOTION</span>
+                    <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.title}</span>
+                  </div>
+                  <span style={{ color: "#6b7280", fontSize: 12, fontFamily: mono }}>
+                    {p.lastEdited ? new Date(p.lastEdited).toLocaleDateString("cs-CZ") : ""} ↗
+                  </span>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <span style={{ color: "#6b7280", fontSize: 12 }}>{p.phase}</span>
-                  <span style={{ color: p.color, fontSize: 13, fontFamily: mono, fontWeight: 700, minWidth: 36, textAlign: "right" as const }}>{p.progress + "%"}</span>
+              </a>
+            ))
+          ) : (
+            PROJECTS.map(p => (
+              <div key={p.name}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid " + p.color, color: p.color, fontFamily: mono, letterSpacing: 1 }}>{p.tag}</span>
+                    <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.name}</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <span style={{ color: "#6b7280", fontSize: 12 }}>{p.phase}</span>
+                    <span style={{ color: p.color, fontSize: 13, fontFamily: mono, fontWeight: 700, minWidth: 36, textAlign: "right" as const }}>{p.progress + "%"}</span>
+                  </div>
+                </div>
+                <div style={{ height: 4, background: "rgba(16,185,129,0.1)", borderRadius: 4 }}>
+                  <div style={{ height: "100%", width: p.progress + "%", background: "linear-gradient(90deg, " + p.color + ", #6ee7b7)", borderRadius: 4, transition: "width 1s ease" }} />
                 </div>
               </div>
-              <div style={{ height: 4, background: "rgba(16,185,129,0.1)", borderRadius: 4 }}>
-                <div style={{ height: "100%", width: p.progress + "%", background: "linear-gradient(90deg, " + p.color + ", #6ee7b7)", borderRadius: 4, transition: "width 1s ease" }} />
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
       <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)" }}>
         <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, marginBottom: 12, textTransform: "uppercase" as const }}>{"Today's Focus"}</div>
-        <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Konica: support tickets + ADF pipeline shadowing</p>
-        <p style={{ color: "#6b7280", fontSize: 13 }}>DP-700: 30 min Fabric Forge · AIVOS: Next.js scaffold</p>
+        {focusData?.todos && focusData.todos.length > 0 ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {focusData.todos.map((t: any) => (
+              <div key={t.id} style={{ display: "flex", alignItems: "center", gap: 10, color: t.checked ? "#6b7280" : "#d1fae5", fontSize: 14 }}>
+                <span style={{ color: t.checked ? "#10b981" : "#4b5563" }}>{t.checked ? "☑" : "☐"}</span>
+                <span style={{ textDecoration: t.checked ? "line-through" : "none" }}>{t.text}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <>
+            <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Konica: support tickets + ADF pipeline shadowing</p>
+            <p style={{ color: "#6b7280", fontSize: 13 }}>DP-700: 30 min Fabric Forge · AIVOS: Next.js scaffold</p>
+          </>
+        )}
       </div>
     </div>
   );
@@ -518,22 +551,61 @@ function Memory() {
 }
 
 function PARAView() {
+  const [paraData, setParaData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/notion/para")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.para) setParaData(data.para);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
+      {loading && <div style={{ color: "#10b981", fontSize: 13, fontFamily: mono, marginBottom: 16 }}>Načítám živá data z Notion P.A.R.A...</div>}
+
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-        {Object.entries(PARA).map(([key, items]) => (
-          <div key={key} style={card}>
-            <div style={{ color: PARA_COLORS[key], fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 16 }}>{key}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {items.map(item => (
-                <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.1)" }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: PARA_COLORS[key], flexShrink: 0 }} />
-                  <span style={{ color: "#d1fae5", fontSize: 13 }}>{item}</span>
-                </div>
-              ))}
+        {paraData.length > 0 ? (
+          paraData.map((section: any) => (
+            <div key={section.key} style={card}>
+              <div style={{ color: "#10b981", fontSize: 12, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 16, display: "flex", justifyContent: "space-between" }}>
+                <span>{section.emoji} {section.label}</span>
+                <span style={{ color: "#6b7280" }}>({section.count})</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {section.recent && section.recent.map((page: any) => (
+                  <a key={page.id} href={page.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 12px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.1)", transition: "all 0.2s" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10b981", flexShrink: 0 }} />
+                        <span style={{ color: "#d1fae5", fontSize: 13, fontWeight: 500 }}>{page.title}</span>
+                      </div>
+                      <span style={{ color: "#4b5563", fontSize: 11, fontFamily: mono }}>↗</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          Object.entries(PARA).map(([key, items]) => (
+            <div key={key} style={card}>
+              <div style={{ color: PARA_COLORS[key], fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 16 }}>{key}</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {items.map(item => (
+                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.1)" }}>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: PARA_COLORS[key], flexShrink: 0 }} />
+                    <span style={{ color: "#d1fae5", fontSize: 13 }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
