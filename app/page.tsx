@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare } from "lucide-react";
+import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check } from "lucide-react";
 
 type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
@@ -547,6 +547,150 @@ function KnowledgeView() {
   );
 }
 
+// ─── SESSIONS & CONTENT STUDIO (GOOGLE AI / MEDIUM HUB) ──────────────────────
+
+function SessionsView() {
+  const [activeTab, setActiveTab] = useState<"articles" | "notebooks" | "templates">("articles");
+  const [topic, setTopic] = useState("");
+  const [generating, setGenerating] = useState(false);
+  const [generatedArticle, setGeneratedArticle] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const generateArticle = async () => {
+    if (!topic.trim() || generating) return;
+    setGenerating(true);
+    try {
+      const res = await fetch("/api/article", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: topic.trim(), format: "Medium.com Article" })
+      });
+      const data = await res.json();
+      setGeneratedArticle(data.article || data.error || "Could not generate article draft.");
+    } catch {
+      setGeneratedArticle("Failed to connect to Gemini Article Generator.");
+    }
+    setGenerating(false);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(generatedArticle);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const templates = [
+    { title: "P.A.R.A. System & Knowledge Vault", platform: "Notion", tag: "SIDE-HUSTLE", desc: "Complete Notion setup for data engineers organizing Projects, Areas, Resources, and Archives." },
+    { title: "Azure ADF & PySpark Starter Kit", platform: "GitHub Repo", tag: "TEMPLATE", desc: "Production-grade templates for event-driven Azure integration and Delta Lake pipelines." },
+    { title: "AIVOS Personal AI OS Shell", platform: "Next.js + Vercel", tag: "SHOWCASE", desc: "Modern terminal dashboard template with Gemini 2.0 Flash and SSE streaming." },
+  ];
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ ...card, marginBottom: 20 }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Google AI Content Studio & Side-Hustle Hub</div>
+        <h2 style={{ color: "#f8fff8", fontSize: 20, fontWeight: 700, margin: "0 0 12px" }}>Sessions, Articles & Notion Templates</h2>
+        <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
+          Generate high-value technical articles for Medium.com, organize NotebookLM outputs, and manage monetizable Notion templates.
+        </p>
+
+        <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+          {[
+            { id: "articles" as const, label: "Medium Article Generator", Icon: PenTool },
+            { id: "notebooks" as const, label: "NotebookLM Vault", Icon: BookMarked },
+            { id: "templates" as const, label: "Notion & Side-Hustles", Icon: DollarSign },
+          ].map(t => (
+            <button
+              key={t.id}
+              onClick={() => setActiveTab(t.id)}
+              style={{
+                display: "flex", alignItems: "center", gap: 6, padding: "8px 14px", borderRadius: 10,
+                background: activeTab === t.id ? "rgba(16,185,129,0.2)" : "transparent",
+                border: `1px solid ${activeTab === t.id ? "#10b981" : "rgba(16,185,129,0.15)"}`,
+                color: activeTab === t.id ? "#10b981" : "#6b7280",
+                fontSize: 12, fontFamily: mono, cursor: "pointer", fontWeight: activeTab === t.id ? 600 : 400
+              }}
+            >
+              <t.Icon size={14} /> {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeTab === "articles" && (
+        <div style={card}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Gemini 2.0 Flash Article Generator</div>
+          <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
+            <input
+              value={topic}
+              onChange={e => setTopic(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && generateArticle()}
+              placeholder="e.g. Building Event-Driven Azure ADF Pipelines with Event Hub..."
+              style={{
+                flex: 1, background: "rgba(10,15,10,0.8)", border: "1px solid rgba(16,185,129,0.3)",
+                borderRadius: 10, padding: "10px 14px", color: "#f8fff8", fontSize: 14, outline: "none"
+              }}
+            />
+            <button onClick={generateArticle} disabled={generating} style={{
+              padding: "10px 20px", background: "#10b981", border: "none", borderRadius: 10,
+              color: "white", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6,
+              opacity: generating ? 0.6 : 1
+            }}>
+              <Sparkles size={16} /> {generating ? "Generating..." : "Generate Article"}
+            </button>
+          </div>
+
+          {generatedArticle && (
+            <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(16,185,129,0.2)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                <span style={{ color: "#10b981", fontSize: 11, fontFamily: mono, textTransform: "uppercase" }}>Generated Medium.com Draft</span>
+                <button onClick={copyToClipboard} style={{
+                  padding: "4px 10px", borderRadius: 6, background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)",
+                  color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 4
+                }}>
+                  {copied ? <Check size={12} /> : <Copy size={12} />} {copied ? "Copied!" : "Copy Draft"}
+                </button>
+              </div>
+              <div style={{ background: "rgba(10,15,10,0.9)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 10, padding: 16, color: "#d1fae5", fontSize: 13, lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
+                {generatedArticle}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {activeTab === "notebooks" && (
+        <div style={card}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>NotebookLM Research & Audio Outlines</div>
+          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6 }}>
+            Organize research briefs, audio podcast outlines, and synthesized Google Gemini / NotebookLM outputs ready for publishing to Medium.com.
+          </p>
+        </div>
+      )}
+
+      {activeTab === "templates" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {templates.map((t, idx) => (
+            <div key={idx} style={card}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+                <div>
+                  <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid #10b981", color: "#10b981", fontFamily: mono, textTransform: "uppercase" }}>{t.tag}</span>
+                  <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 600, margin: "6px 0 0" }}>{t.title}</h3>
+                </div>
+                <span style={{ color: "#6b7280", fontSize: 12, fontFamily: mono }}>{t.platform}</span>
+              </div>
+              <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.5, margin: "0 0 12px" }}>{t.desc}</p>
+              <button style={{ padding: "6px 12px", background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 8, color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
+                Prepare Template Bundle ↗
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── INBOX & QUICK CAPTURE VIEW ──────────────────────────────────────────────
 
 function InboxView() {
@@ -884,17 +1028,6 @@ function PARAView() {
   );
 }
 
-function Placeholder({ title, desc }: { title: string; desc: string }) {
-  return (
-    <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
-      <div style={card}>
-        <div style={{ color: "#10b981", fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{title}</div>
-        <p style={{ color: "#6b7280", fontSize: 14 }}>{desc}</p>
-      </div>
-    </div>
-  );
-}
-
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
 
 export default function AIVOS() {
@@ -920,7 +1053,7 @@ export default function AIVOS() {
       case "para":       return <PARAView />;
       case "knowledge":  return <KnowledgeView />;
       case "inbox":      return <InboxView />;
-      case "sessions":   return <Placeholder title="Sessions" desc="Claude Code + GitHub MCP — coming in Phase 5." />;
+      case "sessions":   return <SessionsView />;
       case "search":     return <KnowledgeView />;
     }
   }
