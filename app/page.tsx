@@ -6,26 +6,27 @@ type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessio
 type MsgRole = "user" | "assistant" | "system";
 interface Msg { role: MsgRole; text: string; }
 
-const PROJECTS = [
-  { name: "Konica Onboarding",    tag: "WORK",  progress: 42, phase: "Week 5 / 12",      color: "#10b981" },
-  { name: "DP-700 Certification", tag: "CERT",  progress: 12, phase: "Study mode",        color: "#34d399" },
-  { name: "AIVOS Build",          tag: "BUILD", progress: 8,  phase: "Phase 1",           color: "#6ee7b7" },
-  { name: "SwitcherOS",           tag: "WAIT",  progress: 88, phase: "Awaiting approval", color: "#34d399" },
-  { name: "yt-brain pipeline",    tag: "STALL", progress: 35, phase: "CZ/SK transcript",  color: "#f59e0b" },
+// Public Showcase Demo Projects (No internal/private company data)
+const DEMO_PROJECTS = [
+  { name: "Enterprise Cloud Integration", tag: "WORK",  progress: 65, phase: "Phase 2 / 4",       color: "#10b981" },
+  { name: "DP-700 Certification",      tag: "CERT",  progress: 45, phase: "Study & Practice",  color: "#34d399" },
+  { name: "AIVOS Platform Build",       tag: "BUILD", progress: 25, phase: "Phase 1 Scaffold",   color: "#6ee7b7" },
+  { name: "Power BI Analytics",         tag: "DONE",  progress: 100, phase: "Completed",        color: "#34d399" },
+  { name: "yt-brain RAG Pipeline",      tag: "DEV",   progress: 50, phase: "Transcripts & LLM",  color: "#f59e0b" },
 ];
 
-const PARA: Record<string, string[]> = {
-  "10 PROJEKTY": ["Konica Onboarding", "DP-700 Cert", "AIVOS Build", "SwitcherOS", "yt-brain"],
-  "20 OBLASTI":  ["Career & Work", "Learning Data & AI", "Health", "Relationships"],
-  "30 ZDROJE":   ["ADF Roadmap", "DP-700 Fabric Forge", "RAG Patterns", "LangChain", "MCP Docs"],
-  "40 ARCHIV":   ["Job Search 2025", "data-engineer-journey-2026", "Hedin EXIT"],
+const DEMO_PARA: Record<string, string[]> = {
+  "10 PROJECTS":  ["Cloud Integration Engine", "DP-700 Fabric Cert", "AIVOS Build", "yt-brain RAG"],
+  "20 AREAS":     ["Azure & Data Platform", "AI & LLM Engineering", "Automation & CI/CD", "Personal Growth"],
+  "30 RESOURCES": ["Azure Data Factory Docs", "Fabric Forge Guide", "RAG & Vector Patterns", "LangChain / Ollama"],
+  "40 ARCHIVES":  ["SQL Analysis Project 2025", "Elections Scraper Tool", "Power BI TimberRide"],
 };
 
 const PARA_COLORS: Record<string, string> = {
-  "10 PROJEKTY": "#10b981",
-  "20 OBLASTI":  "#34d399",
-  "30 ZDROJE":   "#6ee7b7",
-  "40 ARCHIV":   "#6b7280",
+  "10 PROJECTS":  "#10b981",
+  "20 AREAS":     "#34d399",
+  "30 RESOURCES": "#6ee7b7",
+  "40 ARCHIVES":  "#6b7280",
 };
 
 const NAV = [
@@ -405,7 +406,6 @@ function StatCard({ label, value }: { label: string; value: string }) {
 // ─── DASHBOARD ───────────────────────────────────────────────────────────────
 
 function Dashboard({ time }: { time: Date }) {
-  const konicaDay = Math.max(1, Math.ceil((time.getTime() - new Date("2026-04-01").getTime()) / 86400000));
   const [notionProjects, setNotionProjects] = useState<any[]>([]);
   const [focusData, setFocusData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -415,19 +415,18 @@ function Dashboard({ time }: { time: Date }) {
       fetch("/api/notion/projects").then(r => r.ok ? r.json() : null),
       fetch("/api/notion/focus").then(r => r.ok ? r.json() : null)
     ]).then(([projData, focData]) => {
-      if (projData?.pages) setNotionProjects(projData.pages);
-      if (focData) setFocusData(focData);
+      if (projData?.pages && projData.pages.length > 0) setNotionProjects(projData.pages);
+      if (focData?.todos && focData.todos.length > 0) setFocusData(focData);
     }).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
-  const projectCount = notionProjects.length > 0 ? String(notionProjects.length) : String(PROJECTS.length);
+  const projectCount = notionProjects.length > 0 ? String(notionProjects.length) : String(DEMO_PROJECTS.length);
 
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
       <div style={{ marginBottom: "2rem" }}>
         <p style={{ color: "#6b7280", fontSize: 13, fontFamily: mono, marginBottom: 4 }}>
           {time.toLocaleDateString("cs-CZ", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
-          {" · Konica day " + konicaDay}
         </p>
         <div style={{ color: "#10b981", fontSize: 48, fontWeight: 900, fontFamily: mono, lineHeight: 1 }}>
           {time.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit" })}
@@ -437,12 +436,12 @@ function Dashboard({ time }: { time: Date }) {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
         <StatCard label="Projects" value={projectCount} />
         <StatCard label="Ollama" value="qwen2.5" />
-        <StatCard label="DP-700" value="12%" />
+        <StatCard label="DP-700" value="45%" />
       </div>
       <div style={{ ...card, marginBottom: 20 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const }}>Active Projects</div>
-          {loading && <span style={{ color: "#6b7280", fontSize: 11, fontFamily: mono }}>Syncing Notion...</span>}
+          {loading && <span style={{ color: "#6b7280", fontSize: 11, fontFamily: mono }}>Checking workspace...</span>}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {notionProjects.length > 0 ? (
@@ -450,7 +449,7 @@ function Dashboard({ time }: { time: Date }) {
               <a key={p.id || idx} href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", transition: "all 0.2s" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid #10b981", color: "#10b981", fontFamily: mono }}>NOTION</span>
+                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid #10b981", color: "#10b981", fontFamily: mono }}>PROJECT</span>
                     <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.title}</span>
                   </div>
                   <span style={{ color: "#6b7280", fontSize: 12, fontFamily: mono }}>
@@ -460,7 +459,7 @@ function Dashboard({ time }: { time: Date }) {
               </a>
             ))
           ) : (
-            PROJECTS.map(p => (
+            DEMO_PROJECTS.map(p => (
               <div key={p.name}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -493,8 +492,8 @@ function Dashboard({ time }: { time: Date }) {
           </div>
         ) : (
           <>
-            <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Konica: support tickets + ADF pipeline shadowing</p>
-            <p style={{ color: "#6b7280", fontSize: 13 }}>DP-700: 30 min Fabric Forge · AIVOS: Next.js scaffold</p>
+            <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Azure Integration Pipelines & Data Engineering</p>
+            <p style={{ color: "#6b7280", fontSize: 13 }}>DP-700: Fabric & Data Engineering Study · AIVOS Platform UI Shell</p>
           </>
         )}
       </div>
@@ -558,7 +557,7 @@ function PARAView() {
     fetch("/api/notion/para")
       .then(r => r.ok ? r.json() : null)
       .then(data => {
-        if (data?.para) setParaData(data.para);
+        if (data?.para && data.para.length > 0) setParaData(data.para);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -566,7 +565,7 @@ function PARAView() {
 
   return (
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
-      {loading && <div style={{ color: "#10b981", fontSize: 13, fontFamily: mono, marginBottom: 16 }}>Načítám živá data z Notion P.A.R.A...</div>}
+      {loading && <div style={{ color: "#10b981", fontSize: 13, fontFamily: mono, marginBottom: 16 }}>Checking P.A.R.A. workspace...</div>}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         {paraData.length > 0 ? (
@@ -592,7 +591,7 @@ function PARAView() {
             </div>
           ))
         ) : (
-          Object.entries(PARA).map(([key, items]) => (
+          Object.entries(DEMO_PARA).map(([key, items]) => (
             <div key={key} style={card}>
               <div style={{ color: PARA_COLORS[key], fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 16 }}>{key}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -636,7 +635,7 @@ export default function AIVOS() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/ollama").then(r => setOllamaOk(r.ok)).catch(() => setOllamaOk(false));
+    fetch("/api/ollama").then(r => r.ok ? setOllamaOk(true) : setOllamaOk(false)).catch(() => setOllamaOk(false));
   }, []);
 
   function renderSection() {
@@ -645,10 +644,10 @@ export default function AIVOS() {
       case "brief":      return <BriefView />;
       case "memory":     return <Memory />;
       case "para":       return <PARAView />;
-      case "knowledge":  return <Placeholder title="Knowledge Base" desc="Semantic search via pgvector + Neon — coming in Phase 3." />;
+      case "knowledge":  return <Placeholder title="Knowledge Base" desc="Semantic search via pgvector + local wiki — coming in Phase 3." />;
       case "inbox":      return <Placeholder title="Inbox" desc="Gmail MCP integration — coming in Phase 4." />;
       case "sessions":   return <Placeholder title="Sessions" desc="Claude Code + GitHub MCP — coming in Phase 5." />;
-      case "search":     return <Placeholder title="Universal Search" desc="Search across Notion, GitHub, Memory, KB — coming in Phase 6." />;
+      case "search":     return <Placeholder title="Universal Search" desc="Search across GitHub, Memory, KB — coming in Phase 6." />;
     }
   }
 
