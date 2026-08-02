@@ -1,7 +1,9 @@
 import { Client } from "@notionhq/client";
 
+const notionToken = process.env.NOTION_API_KEY || process.env.IVCA_NOTION_API;
+
 export const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
+  auth: notionToken,
 });
 
 // Your P.A.R.A. page IDs
@@ -74,7 +76,7 @@ export async function queryDatabase(
   databaseId: string,
   pageSize = 20
 ): Promise<NotionPage[]> {
-  const res = await notion.databases.query({
+  const res = await (notion as any).databases.query({
     database_id: databaseId,
     page_size: pageSize,
     sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
