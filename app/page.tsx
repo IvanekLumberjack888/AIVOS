@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send } from "lucide-react";
+import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, RefreshCw, Mail, Play, CheckCircle2 } from "lucide-react";
 
 type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
@@ -64,7 +64,16 @@ type VideoItem = {
   score?: number; key_points?: string[];
 };
 
-// ─── DEEP DIVE CHAT ───────────────────────────────────────────────────────────
+type WikiItem = {
+  id: string;
+  title: string;
+  category: string;
+  tags: string[];
+  summary: string;
+  content: string;
+};
+
+// ─── DEEP DIVE CHAT (WITH SSE STREAMING) ──────────────────────────────────────
 
 function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => void }) {
   const [msgs, setMsgs] = useState<{ role: "user" | "assistant"; text: string }[]>([]);
@@ -79,18 +88,47 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
     if (!q || loading) return;
     setInput("");
     setLoading(true);
-    const newMsgs = [...msgs, { role: "user" as const, text: q }];
-    setMsgs(newMsgs);
+
+    const userMsg = { role: "user" as const, text: q };
+    const updatedMsgs = [...msgs, userMsg];
+    setMsgs(updatedMsgs);
+
+    // Placeholder for assistant response
+    setMsgs(m => [...m, { role: "assistant", text: "" }]);
+
     try {
-      const res = await fetch("/api/chat-brief", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newMsgs, videoContext: video }),
+        body: JSON.stringify({ messages: updatedMsgs, videoContext: video }),
       });
-      const data = await res.json();
-      setMsgs(m => [...m, { role: "assistant", text: data.text || data.error || "Chyba." }]);
+
+      if (!res.ok || !res.body) {
+        throw new Error("Stream connection error");
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let streamedText = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        streamedText += chunk;
+
+        setMsgs(m => {
+          const newM = [...m];
+          newM[newM.length - 1] = { role: "assistant", text: streamedText };
+          return newM;
+        });
+      }
     } catch {
-      setMsgs(m => [...m, { role: "assistant", text: "Nepodařilo se spojit s AI." }]);
+      setMsgs(m => {
+        const newM = [...m];
+        newM[newM.length - 1] = { role: "assistant", text: "Nepodařilo se spojit s AI službou Gemini." };
+        return newM;
+      });
     }
     setLoading(false);
   };
@@ -113,7 +151,9 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
     }}>
       <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(16,185,129,0.15)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4 }}>Deep Dive AI</div>
+          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 4, display: "flex", alignItems: "center", gap: 4 }}>
+            <Sparkles size={12} /> Deep Dive SSE Stream
+          </div>
           <div style={{ color: "#f8fff8", fontSize: 13, fontWeight: 600, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{video.title}</div>
           <div style={{ color: "#4b5563", fontSize: 11, fontFamily: mono, marginTop: 2 }}>{video.channel}</div>
         </div>
@@ -150,11 +190,11 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
               borderRadius: m.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
               background: m.role === "user" ? "rgba(16,185,129,0.2)" : "rgba(22,32,26,0.9)",
               border: "1px solid rgba(16,185,129,0.2)",
-              color: "#f8fff8", fontSize: 13, lineHeight: 1.5,
-            }}>{m.text}</div>
+              color: "#f8fff8", fontSize: 13, lineHeight: 1.5, whiteSpace: "pre-wrap",
+            }}>{m.text || (loading && i === msgs.length - 1 ? "Generuji odpověď..." : "")}</div>
           </div>
         ))}
-        {loading && <div style={{ color: "#10b981", fontSize: 12, fontFamily: mono }}>Generuji odpověď skrze Gemini AI...</div>}
+        {loading && <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, marginTop: 4 }}>● Streamování tokenů skrze Gemini 2.0 Flash...</div>}
         <div ref={endRef} />
       </div>
 
@@ -197,8 +237,9 @@ function BriefVideoCard({ video, color, onDeepDive }: { video: VideoItem; color:
             background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)",
             color: "#10b981", fontSize: 10, fontFamily: mono, cursor: "pointer",
             letterSpacing: 1, textTransform: "uppercase" as const,
+            display: "flex", alignItems: "center", gap: 4
           }}>
-            Deep Dive
+            <Sparkles size={11} /> Deep Dive
           </button>
           <button onClick={() => setOpen(!open)} style={{ background: "none", border: "none", color: "#4b5563", cursor: "pointer", fontSize: 14, padding: "0 4px" }}>
             {open ? "▲" : "▼"}
@@ -389,6 +430,149 @@ function BriefView() {
         {error && <div style={{ color: "#ef4444", fontSize: 13, marginTop: 16 }}>{error}</div>}
       </div>
     </>
+  );
+}
+
+// ─── KNOWLEDGE BASE (WIKI.JSON SEARCH) ────────────────────────────────────────
+
+function KnowledgeView() {
+  const [wikiData, setWikiData] = useState<WikiItem[]>([]);
+  const [search, setSearch] = useState("");
+  const [selectedCat, setSelectedCat] = useState("ALL");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/data/wiki.json")
+      .then(r => r.ok ? r.json() : [])
+      .then(setWikiData)
+      .catch(() => {});
+  }, []);
+
+  const categories = ["ALL", ...Array.from(new Set(wikiData.map(item => item.category)))];
+
+  const filtered = wikiData.filter(item => {
+    const matchesCat = selectedCat === "ALL" || item.category === selectedCat;
+    const query = search.toLowerCase();
+    const matchesSearch = !query ||
+      item.title.toLowerCase().includes(query) ||
+      item.summary.toLowerCase().includes(query) ||
+      item.content.toLowerCase().includes(query) ||
+      item.tags.some(t => t.toLowerCase().includes(query));
+    return matchesCat && matchesSearch;
+  });
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ ...card, marginBottom: 20 }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Knowledge Base Search</div>
+        <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
+          <div style={{ flex: 1, position: "relative" }}>
+            <input
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Vyhledat v architektuře, PySpark, ADF, Gemini, RAG..."
+              style={{
+                width: "100%", background: "rgba(10,15,10,0.8)", border: "1px solid rgba(16,185,129,0.3)",
+                borderRadius: 10, padding: "10px 14px 10px 36px", color: "#f8fff8", fontSize: 14, outline: "none"
+              }}
+            />
+            <Search size={16} style={{ position: "absolute", left: 12, top: 12, color: "#6b7280" }} />
+          </div>
+        </div>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCat(cat)}
+              style={{
+                padding: "4px 12px", borderRadius: 20,
+                background: selectedCat === cat ? "rgba(16,185,129,0.2)" : "transparent",
+                border: `1px solid ${selectedCat === cat ? "#10b981" : "rgba(16,185,129,0.15)"}`,
+                color: selectedCat === cat ? "#10b981" : "#6b7280",
+                fontSize: 11, fontFamily: mono, cursor: "pointer"
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+        {filtered.map(item => {
+          const isExpanded = expandedId === item.id;
+          return (
+            <div key={item.id} style={card}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid #10b981", color: "#10b981", fontFamily: mono }}>{item.category}</span>
+                    <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 600, margin: 0 }}>{item.title}</h3>
+                  </div>
+                  <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.5, margin: "0 0 10px" }}>{item.summary}</p>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {item.tags.map(t => (
+                      <span key={t} style={{ fontSize: 10, color: "#6ee7b7", fontFamily: mono, background: "rgba(16,185,129,0.08)", padding: "2px 6px", borderRadius: 4 }}>
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                  style={{ background: "none", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 6, color: "#10b981", cursor: "pointer", padding: "4px 10px", fontSize: 11, fontFamily: mono }}
+                >
+                  {isExpanded ? "Zavřít" : "Detail"}
+                </button>
+              </div>
+
+              {isExpanded && (
+                <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid rgba(16,185,129,0.15)", color: "#d1fae5", fontSize: 13, lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
+                  {item.content}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── INBOX & AUTOMATION VIEW ─────────────────────────────────────────────────
+
+function InboxView() {
+  return (
+    <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ ...card, marginBottom: 20 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+          <Mail style={{ color: "#10b981" }} size={24} />
+          <h3 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 700, margin: 0 }}>Gmail & YouTube Playlist Automation Hub</h3>
+        </div>
+        <p style={{ color: "#9ca3af", fontSize: 14, lineHeight: 1.6 }}>
+          Automatizovaný sběr e-mailů a YouTube playlistů poháněný přes Google AI (Gemini 2.0 Flash).
+        </p>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div style={card}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10 }}>YouTube Playlist Worker</div>
+          <p style={{ color: "#6b7280", fontSize: 13, marginBottom: 14 }}>Skript `scripts/yt_brain_pipeline.py` stahuje titulky přes `yt-dlp` a boduje videa pomocí Gemini AI.</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#10b981", fontSize: 12, fontFamily: mono }}>
+            <CheckCircle2 size={14} /> Připraven k použití
+          </div>
+        </div>
+
+        <div style={card}>
+          <div style={{ color: "#34d399", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10 }}>Gmail Webhook / MCP</div>
+          <p style={{ color: "#6b7280", fontSize: 13, marginBottom: 14 }}>Automatická kategorizace důležitých zpráv a synchronizace úkolů z doručené pošty.</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#f59e0b", fontSize: 12, fontFamily: mono }}>
+            ● Fáze 4 – Aktivní vývoj
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -644,10 +828,10 @@ export default function AIVOS() {
       case "brief":      return <BriefView />;
       case "memory":     return <Memory />;
       case "para":       return <PARAView />;
-      case "knowledge":  return <Placeholder title="Knowledge Base" desc="Semantic search via pgvector + local wiki — coming in Phase 3." />;
-      case "inbox":      return <Placeholder title="Inbox" desc="Gmail MCP integration — coming in Phase 4." />;
+      case "knowledge":  return <KnowledgeView />;
+      case "inbox":      return <InboxView />;
       case "sessions":   return <Placeholder title="Sessions" desc="Claude Code + GitHub MCP — coming in Phase 5." />;
-      case "search":     return <Placeholder title="Universal Search" desc="Search across GitHub, Memory, KB — coming in Phase 6." />;
+      case "search":     return <Placeholder title="Universal Search" desc="Search across Knowledge, Memory & Projects." />;
     }
   }
 

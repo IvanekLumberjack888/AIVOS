@@ -1,0 +1,66 @@
+[
+  {
+    "id": "azure-adf-overview",
+    "title": "Azure Data Factory – Core Concepts & Pipeline Design",
+    "category": "Azure & Integration",
+    "tags": ["ADF", "ETL", "Azure", "Integration"],
+    "summary": "Overview of Azure Data Factory pipelines, activities, data flows, linked services, and triggers for enterprise data integration.",
+    "content": "Azure Data Factory (ADF) is a cloud-based data integration service for creating automated ETL and ELT data pipelines.\n\nKey Components:\n- Pipelines: Logical grouping of activities that perform a task.\n- Activities: Single processing steps (Copy Activity, Databricks Notebook, Execute Pipeline, Web Activity).\n- Datasets: Named structures pointing to data stores (SQL DB, Blob Storage, ADLS Gen2).\n- Linked Services: Connection strings defining how ADF connects to external resources.\n- Integration Runtimes (IR): Compute infrastructure powering execution (Azure IR, Self-Hosted IR for on-prem)."
+  },
+  {
+    "id": "databricks-pyspark-basics",
+    "title": "Databricks & PySpark – Data Processing Patterns",
+    "category": "Data Platform",
+    "tags": ["Databricks", "PySpark", "Spark", "Data Engineering"],
+    "summary": "Best practices for writing distributed Spark jobs in Python, Delta Lake optimizations, and cluster management.",
+    "content": "Azure Databricks provides a managed Apache Spark environment tailored for large-scale data transformation.\n\nCore Techniques:\n- Delta Lake: ACID transactions, time travel (`VERSION AS OF`), and schema enforcement.\n- Dataframe API: Prefer vectorized PySpark operations over python UDFs for maximum execution speed.\n- Partitioning & Z-Ordering: Use `OPTIMIZE table ZORDER BY (col)` to reduce read scan volumes.\n- Memory Management: Watch out for shuffle spill and adjust `spark.sql.shuffle.partitions`."
+  },
+  {
+    "id": "azure-event-hub-service-bus",
+    "title": "Azure Event Hub vs. Service Bus – Event-Driven Architecture",
+    "category": "Azure & Integration",
+    "tags": ["EventHub", "ServiceBus", "Messaging", "Architecture"],
+    "summary": "Architectural guidelines for selecting between telemetry event streaming (Event Hub) and high-value transactional messaging (Service Bus).",
+    "content": "Selecting the right Azure messaging service:\n\n1. Azure Event Hubs:\n- Designed for high-throughput big data streaming (telemetry, log ingestion, IoT).\n- Partition-based consumer model with high parallelism.\n- Time-series replay capabilities.\n\n2. Azure Service Bus:\n- Enterprise messaging broker for transactions and workflow decoupling.\n- Features: Queues, Topics & Subscriptions, Dead-lettering, Duplicate detection, FIFO sessions."
+  },
+  {
+    "id": "gemini-api-rag-integration",
+    "title": "Google Gemini 2.0 Flash API – RAG & Multimodal AI Integration",
+    "category": "AI & LLM",
+    "tags": ["Gemini", "GoogleAI", "RAG", "LLM"],
+    "summary": "Implementing low-latency RAG chat, structured output generation, and system instructions with Gemini 2.0 Flash.",
+    "content": "Google Gemini 2.0 Flash provides ultra-fast inference with a 1M+ token context window, making it ideal for real-time document Q&A and video transcript analysis.\n\nImplementation Notes:\n- Endpoint: `generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`\n- Auth: `key=YOUR_GEMINI_API_KEY` (from Google AI Studio)\n- System Instructions: Pass system context in systemInstruction or initial conversation turn to constrain responses.\n- Streaming: Use Server-Sent Events (SSE) `streamGenerateContent` for real-time token rendering."
+  },
+  {
+    "id": "ollama-local-llm-setup",
+    "title": "Ollama Local LLM – Offline Privacy-First AI Workflow",
+    "category": "AI & LLM",
+    "tags": ["Ollama", "Qwen", "LocalLLM", "Privacy"],
+    "summary": "Configuring local qwen2.5:7b model for private document chat, zero API cost, and local REST API access.",
+    "content": "Ollama allows running open-source LLMs locally on `localhost:11434` without internet access or API fees.\n\nSetup:\n- Model: `ollama run qwen2.5:7b` (32k context window, excellent Czech language support).\n- Endpoint: `POST http://localhost:11434/api/generate` or `/api/chat`.\n- CORS: Set `OLLAMA_ORIGINS=\"*\"` if calling directly from browser frontend.\n- Integration: Serve as private fallback when offline or for sensitive local memory queries."
+  },
+  {
+    "id": "para-methodology-guide",
+    "title": "P.A.R.A. System – Personal Information Architecture",
+    "category": "Methodology",
+    "tags": ["PARA", "Productivity", "Notion", "Organization"],
+    "summary": "Tiago Forte's P.A.R.A. framework for organizing digital life into Projects, Areas, Resources, and Archives.",
+    "content": "The P.A.R.A. method categorizes every piece of information into 4 distinct pillars:\n\n1. 10 PROJECTS: Active efforts with specific goals and deadlines (e.g. AIVOS Build, Cloud Certifications).\n2. 20 AREAS: Ongoing responsibilities to maintain over time (e.g. Career, Health, AI Learning).\n3. 30 RESOURCES: Topics of interest and reference materials (e.g. ADF Docs, PySpark Snippets).\n4. 40 ARCHIVES: Inactive items from the other 3 categories held for reference."
+  },
+  {
+    "id": "python-web-scraping-automation",
+    "title": "Python Data Pipelines – BeautifulSoup, Pandas & yt-dlp",
+    "category": "Automation",
+    "tags": ["Python", "Scraping", "Pandas", "yt-dlp"],
+    "summary": "Automating data extraction from web pages, YouTube playlists, and tabular data transformation.",
+    "content": "Building Python automation scripts for data collection:\n\n- Web Extraction: Use `BeautifulSoup` + `requests` for static HTML parsing or `playwright` for JS rendering.\n- YouTube Audio/Subtitles: Use `yt-dlp --write-auto-sub --skip-download` to fetch video transcripts efficiently without downloading large video files.\n- Structured Output: Process raw payloads with `pandas` and export clean JSON / CSV datasets."
+  },
+  {
+    "id": "power-bi-dax-modeling",
+    "title": "Power BI & DAX – Enterprise Data Modeling",
+    "category": "Data Analytics",
+    "tags": ["PowerBI", "DAX", "DataModeling", "Analytics"],
+    "summary": "Star schema design, DAX time intelligence functions, and What-If parameter modeling.",
+    "content": "Key principles for scalable Power BI report design:\n\n- Star Schema: Separate Fact tables (sales, events) from Dimension tables (date, customer, product).\n- DAX Measures: Keep measures decoupled from columns; use `CALCULATE`, `SAMEPERIODLASTYEAR`, `DATESYTD` for time intelligence.\n- Performance: Avoid bi-directional relationships on large tables; use `USERELATIONSHIP` explicitly when needed."
+  }
+]
