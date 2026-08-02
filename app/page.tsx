@@ -700,10 +700,10 @@ function Dashboard({ time }: { time: Date }) {
     <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
       <div style={{ marginBottom: "2rem" }}>
         <p style={{ color: "#6b7280", fontSize: 13, fontFamily: mono, marginBottom: 4 }}>
-          {time.toLocaleDateString("cs-CZ", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+          {time.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
         </p>
         <div style={{ color: "#10b981", fontSize: 48, fontWeight: 900, fontFamily: mono, lineHeight: 1 }}>
-          {time.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit" })}
+          {time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}
           <span style={{ color: "#374151", fontSize: 32 }}>{":" + String(time.getSeconds()).padStart(2, "0")}</span>
         </div>
       </div>
@@ -727,7 +727,7 @@ function Dashboard({ time }: { time: Date }) {
                     <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.title}</span>
                   </div>
                   <span style={{ color: "#6b7280", fontSize: 12, fontFamily: mono }}>
-                    {p.lastEdited ? new Date(p.lastEdited).toLocaleDateString("cs-CZ") : ""} ↗
+                    {p.lastEdited ? new Date(p.lastEdited).toLocaleDateString("en-US") : ""} ↗
                   </span>
                 </div>
               </a>
@@ -962,7 +962,7 @@ export default function AIVOS() {
         <header style={{ padding: "16px 32px", borderBottom: "1px solid rgba(16,185,129,0.1)", background: "rgba(22,32,26,0.6)", backdropFilter: "blur(20px)", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 10 }}>
           <div style={{ color: "#f8fff8", fontSize: 16, fontWeight: 600 }}>{NAV.find(n => n.id === section)?.label}</div>
           <div style={{ fontFamily: mono, fontSize: 13, color: "#6b7280" }}>
-            {time ? time.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "--:--:--"}
+            {time ? time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }) : "--:--:--"}
           </div>
         </header>
         {renderSection()}
