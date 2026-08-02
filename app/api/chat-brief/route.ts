@@ -59,7 +59,7 @@ Pomáhej Ivovi pochopit jak použít obsah videa v jeho situaci:
 }
 
 async function geminiCall(messages: { role: string; text: string }[], videoContext: Record<string, unknown>) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.IVCA_GEMINI_API;
   if (!apiKey) return NextResponse.json({ error: "Žádný AI model není dostupný." }, { status: 500 });
 
   const contents = messages.map((m) => ({

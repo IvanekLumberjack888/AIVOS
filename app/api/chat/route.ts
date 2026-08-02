@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const { messages, videoContext } = await req.json();
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.IVCA_GEMINI_API;
   if (!apiKey) {
-    return NextResponse.json({ error: "GEMINI_API_KEY not set" }, { status: 500 });
+    return NextResponse.json({ error: "GEMINI_API_KEY / IVCA_GEMINI_API not set" }, { status: 500 });
   }
 
   const systemPrompt = `Jsi AI asistent pro Iva – Junior Data Engineera (Konica Minolta, Azure stack, ADHD-PI, INTJ).
