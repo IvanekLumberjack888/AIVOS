@@ -1756,7 +1756,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
   return (
     <div style={{ padding: "2rem 1.5rem 4rem", maxWidth: 1240, margin: "0 auto", position: "relative" }}>
 
-      {/* SEO Schema.org JSON-LD Structured Data */}
+      {/* SEO Schema.org JSON-LD Structured Data (Product-First) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -1766,13 +1766,12 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
             "name": "AIVOS Agentic OS",
             "operatingSystem": "Web / Cloud",
             "applicationCategory": "DeveloperApplication",
-            "description": "Enterprise Azure Data Integration, Databricks Delta Lake PySpark Quality & Autonomous AI Agent Platform by Ivo Doležal.",
-            "author": {
-              "@type": "Person",
-              "name": "Ivo Doležal",
-              "jobTitle": "IT Integration and Automation Specialist",
-              "worksFor": { "@type": "Organization", "name": "Konica Minolta IT Solutions Czech" },
-              "sameAs": ["https://ivaneklumberjack888.github.io", "https://ivousd.gumroad.com/l/switcheros-career"]
+            "description": "Enterprise Azure Data Integration, Databricks Delta Lake PySpark Quality & Autonomous AI Agent Platform.",
+            "url": "https://aivos-two.vercel.app",
+            "publisher": {
+              "@type": "Organization",
+              "name": "AIVOS Systems",
+              "url": "https://aivos-two.vercel.app"
             }
           })
         }}
@@ -1808,7 +1807,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
           </h1>
 
           <p style={{ fontSize: 15, color: "#9ca3af", lineHeight: 1.65, margin: "0 0 28px", maxWidth: 540 }}>
-            High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents crafted by <strong>Ivo Doležal · IT Integration and Automation Specialist</strong>.
+            High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents engineered for zero-downtime enterprise cloud integration.
           </p>
 
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
