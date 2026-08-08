@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
-import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info } from "lucide-react";
+import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info, Globe } from "lucide-react";
+import { translations, Language } from "../lib/i18n";
 
 type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
@@ -576,6 +577,7 @@ function BriefView() {
   const [history, setHistory] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState("latest");
   const [digestMode, setDigestMode] = useState<"daily" | "weekly">("daily");
+  const [lang, setLang] = useState<Language>("en");
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -586,6 +588,8 @@ function BriefView() {
   const [showArchInfo, setShowArchInfo] = useState(false);
   const [previewTier, setPreviewTier] = useState<"starter" | "pro" | "private">("starter");
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const t = translations[lang];
 
   const loadBrief = useCallback((dateKey: string) => {
     const url = dateKey === "latest" ? "/briefs/latest.json" : `/briefs/${dateKey}.json`;
@@ -674,7 +678,7 @@ function BriefView() {
         transition: "margin-right 0.3s ease",
       }}>
         
-        {/* Top Control Bar: Environment Tier & Digest Mode Switcher */}
+        {/* Top Control Bar: Language Switcher, Environment Tier & Digest Mode Switcher */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
           {/* Daily vs Weekly Toggle */}
           <div style={{ display: "flex", gap: 8 }}>
@@ -688,7 +692,7 @@ function BriefView() {
                 color: digestMode === "daily" ? "#10b981" : "#6b7280",
               }}
             >
-              ⚡ Daily AI Briefs
+              {t.btn_daily}
             </button>
             <button
               onClick={() => setDigestMode("weekly")}
@@ -701,32 +705,60 @@ function BriefView() {
                 boxShadow: digestMode === "weekly" ? "0 0 14px rgba(234,179,8,0.3)" : "none"
               }}
             >
-              🏆 Weekly Best-of (Týdenní Výběr)
+              {t.btn_weekly}
             </button>
           </div>
 
-          {/* Environment Mode Pills */}
-          <div style={{ display: "flex", gap: 6 }}>
-            {[
-              { id: "starter", label: "🟢 Starter Demo", desc: "Open-source Vercel demo" },
-              { id: "pro", label: "⚡ Pro Commercial", desc: "Medium API & Templates" },
-              { id: "private", label: "🔒 Private Local OS", desc: "Notion & Ollama Live Sync" },
-            ].map(t => (
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            {/* Language Switcher Pills */}
+            <div style={{ display: "flex", gap: 3, background: "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
               <button
-                key={t.id}
-                onClick={() => setPreviewTier(t.id as any)}
-                title={t.desc}
+                onClick={() => setLang("en")}
                 style={{
-                  padding: "5px 12px", borderRadius: 20, fontSize: 10, fontFamily: mono, fontWeight: 600,
-                  cursor: "pointer", transition: "all 0.2s",
-                  background: previewTier === t.id ? "rgba(16,185,129,0.2)" : "transparent",
-                  border: `1px solid ${previewTier === t.id ? "#10b981" : "rgba(255,255,255,0.08)"}`,
-                  color: previewTier === t.id ? "#10b981" : "#6b7280",
+                  padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
+                  border: "none", cursor: "pointer", transition: "all 0.2s",
+                  background: lang === "en" ? "#10b981" : "transparent",
+                  color: lang === "en" ? "#000" : "#6b7280"
                 }}
               >
-                {t.label}
+                🇬🇧 EN
               </button>
-            ))}
+              <button
+                onClick={() => setLang("cz")}
+                style={{
+                  padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
+                  border: "none", cursor: "pointer", transition: "all 0.2s",
+                  background: lang === "cz" ? "#10b981" : "transparent",
+                  color: lang === "cz" ? "#000" : "#6b7280"
+                }}
+              >
+                🇨🇿 CZ
+              </button>
+            </div>
+
+            {/* Environment Mode Pills */}
+            <div style={{ display: "flex", gap: 6 }}>
+              {[
+                { id: "starter", label: t.tier_starter, desc: "Open-source Vercel demo" },
+                { id: "pro", label: t.tier_pro, desc: "Medium API & Templates" },
+                { id: "private", label: t.tier_private, desc: "Notion & Ollama Live Sync" },
+              ].map(tItem => (
+                <button
+                  key={tItem.id}
+                  onClick={() => setPreviewTier(tItem.id as any)}
+                  title={tItem.desc}
+                  style={{
+                    padding: "5px 12px", borderRadius: 20, fontSize: 10, fontFamily: mono, fontWeight: 600,
+                    cursor: "pointer", transition: "all 0.2s",
+                    background: previewTier === tItem.id ? "rgba(16,185,129,0.2)" : "transparent",
+                    border: `1px solid ${previewTier === tItem.id ? "#10b981" : "rgba(255,255,255,0.08)"}`,
+                    color: previewTier === tItem.id ? "#10b981" : "#6b7280",
+                  }}
+                >
+                  {tItem.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -741,17 +773,17 @@ function BriefView() {
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
               <div style={{ color: "#facc15", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>
-                🏆 WEEKLY BEST-OF DIGEST · TOP 1% CURATED CONTENT
+                {t.weekly_hero_badge}
               </div>
               <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "linear-gradient(135deg, #eab308, #ca8a04)", color: "#000", fontFamily: mono, fontWeight: 800 }}>
-                BEST OF THE WEEK
+                {t.weekly_badge}
               </span>
             </div>
             <h3 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
-              Týdenní Výběr: Top-Rated Technical Videos & Cloud Architecture Patterns
+              {t.weekly_title}
             </h3>
             <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
-              Vybrané nejlepší technické příspěvky, návody pro Azure Data Factory, Databricks PySpark a AI automatizace za uplynulých 7 dní s vysokým skóre přínosu (8.5–10).
+              {t.weekly_desc}
             </p>
           </div>
         )}
@@ -765,10 +797,10 @@ function BriefView() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
             <div>
               <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
-                <Zap size={14} /> AIVOS PULSE · TECH & AI ARCHITECTURE INTELLIGENCE
+                <Zap size={14} /> {t.hero_badge}
               </div>
               <h2 style={{ color: "#f8fff8", fontSize: 20, fontWeight: 800, margin: 0 }}>
-                PULSE: Automated High-Signal Tech Video Triage
+                {t.hero_title}
               </h2>
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -777,45 +809,45 @@ function BriefView() {
                 color: "#c084fc", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700,
                 boxShadow: "0 0 12px rgba(168,85,247,0.2)"
               }}>
-                📰 Generate Digest Blog
+                {t.btn_generate_blog}
               </button>
               <button onClick={() => setShowKpiModal(true)} style={{
                 padding: "6px 14px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.4)",
                 color: "#60a5fa", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700
               }}>
-                📊 Enterprise KPI Analytics
+                {t.btn_kpi_analytics}
               </button>
               <button onClick={() => setShowArchInfo(!showArchInfo)} style={{
                 padding: "6px 14px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)",
                 color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 600
               }}>
-                <Info size={13} /> {showArchInfo ? "Skrýt jak PULSE funguje ▲" : "Jak PULSE funguje ▼"}
+                <Info size={13} /> {showArchInfo ? t.btn_how_it_works_hide : t.btn_how_it_works_show}
               </button>
             </div>
           </div>
 
           <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
-            PULSE je inteligentní centrum pro <strong>IT Integration and Automation Specialist</strong>. Sleduje vybrané YouTube playlisty, bezstahově stahuje titulky přes Python <code style={{ color: "#6ee7b7", fontFamily: mono }}>yt-dlp</code>, hodností přínos (1–10) pomocí <strong>Gemini 2.0 Flash</strong> a vytváří denní MP3 podcasty i technické články pro Medium.com.
+            {t.hero_desc}
           </p>
 
           {/* Collapsible Dropdown Menu: How PULSE Works */}
           {showArchInfo && (
             <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(16,185,129,0.2)", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
               <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>1. Headless Subtitles</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>Extrakce titulků bez stahování těžkých videí skrze Python + yt-dlp.</div>
+                <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step1_title}</div>
+                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step1_desc}</div>
               </div>
               <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div style={{ color: "#34d399", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>2. Gemini 2.0 Triage</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>Hodnocení přínosu (1-10), vytažení klíčových bodů a akčních kroků.</div>
+                <div style={{ color: "#34d399", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step2_title}</div>
+                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step2_desc}</div>
               </div>
               <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div style={{ color: "#6ee7b7", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>3. MP3 Podcast Brief</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>Generování denních audio přehledů pro poslech cestou do práce.</div>
+                <div style={{ color: "#6ee7b7", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step3_title}</div>
+                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step3_desc}</div>
               </div>
               <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(168,85,247,0.25)" }}>
-                <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>4. Medium & Substack</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>Syntéza roztříděných videí do publikovatelného blogu na 1-klik.</div>
+                <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step4_title}</div>
+                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step4_desc}</div>
               </div>
             </div>
           )}
