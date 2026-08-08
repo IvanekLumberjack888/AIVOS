@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info, Globe } from "lucide-react";
 import { translations, Language } from "../lib/i18n";
 
-type Section = "landing" | "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
+type Section = "landing" | "solutions" | "marketplace" | "pricing" | "about" | "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
 interface Msg { role: MsgRole; text: string; }
 
@@ -32,15 +32,19 @@ const PARA_COLORS: Record<string, string> = {
 };
 
 const NAV = [
-  { id: "landing"   as Section, Icon: Globe,            label: "Home (Homepage)" },
-  { id: "dashboard" as Section, Icon: LayoutDashboard, label: "Dashboard"   },
-  { id: "brief"     as Section, Icon: Zap,              label: "PULSE"       },
-  { id: "memory"    as Section, Icon: Brain,           label: "Memory"      },
-  { id: "para"      as Section, Icon: FolderOpen,      label: "P.A.R.A."    },
-  { id: "knowledge" as Section, Icon: BookOpen,        label: "Knowledge"   },
-  { id: "inbox"     as Section, Icon: Inbox,           label: "Inbox"       },
-  { id: "sessions"  as Section, Icon: Terminal,        label: "Sessions"    },
-  { id: "search"    as Section, Icon: Search,          label: "Search"      },
+  { id: "landing"     as Section, Icon: Globe,            label: "Home"        },
+  { id: "solutions"   as Section, Icon: Sparkles,         label: "Solutions"   },
+  { id: "marketplace" as Section, Icon: ShoppingBag,      label: "Marketplace" },
+  { id: "pricing"     as Section, Icon: DollarSign,       label: "Pricing"     },
+  { id: "about"       as Section, Icon: Info,             label: "About Us"    },
+  { id: "dashboard"   as Section, Icon: LayoutDashboard, label: "Dashboard"   },
+  { id: "brief"       as Section, Icon: Zap,              label: "PULSE"       },
+  { id: "memory"      as Section, Icon: Brain,           label: "Memory"      },
+  { id: "para"        as Section, Icon: FolderOpen,      label: "P.A.R.A."    },
+  { id: "knowledge"   as Section, Icon: BookOpen,        label: "Knowledge"   },
+  { id: "inbox"       as Section, Icon: Inbox,           label: "Inbox"       },
+  { id: "sessions"    as Section, Icon: Terminal,        label: "Sessions"    },
+  { id: "search"      as Section, Icon: Search,          label: "Search"      },
 ];
 
 const card = {
@@ -1619,216 +1623,423 @@ function PARAView() {
   );
 }
 
-// ─── PUBLIC LANDING SHOWCASE (CAPCO / AXIANS / INTECS INSPIRED) ───────────
+// ─── DATAMOLE & APIFY MULTI-PAGE SHOWCASE ENGINE ────────────────────────────
 
-function LandingView({ onLaunchWorkspace }: { onLaunchWorkspace: () => void }) {
+function PublicHeader({ currentSection, setSection, onOpenLogin }: { currentSection: Section; setSection: (s: Section) => void; onOpenLogin: () => void }) {
   const [lang, setLang] = useState<Language>("en");
   const t = translations[lang];
 
   return (
-    <div style={{ padding: "2.5rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
-      {/* Top Header / Brand Bar with Language Switcher */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{
-            width: 42, height: 42, borderRadius: 12,
-            background: "linear-gradient(135deg, #10b981, #059669)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            color: "#000", fontWeight: 900, fontFamily: mono, fontSize: 20,
-            boxShadow: "0 0 24px rgba(16,185,129,0.4)"
-          }}>
-            AI
-          </div>
-          <div>
-            <div style={{ fontSize: 18, fontWeight: 900, color: "#f8fff8", letterSpacing: 0.5 }}>AIVOS-OS</div>
-            <div style={{ fontSize: 10, color: "#10b981", fontFamily: mono, letterSpacing: 1.5, textTransform: "uppercase" }}>
-              ENTERPRISE PLATFORM & CONSULTING
-            </div>
-          </div>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32, flexWrap: "wrap", gap: 12 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => setSection("landing")}>
+        <div style={{
+          width: 40, height: 40, borderRadius: 12,
+          background: "linear-gradient(135deg, #10b981, #059669)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: "#000", fontWeight: 900, fontFamily: mono, fontSize: 18,
+          boxShadow: "0 0 20px rgba(16,185,129,0.4)"
+        }}>
+          AI
         </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          {/* Language Switcher Pills */}
-          <div style={{ display: "flex", gap: 3, background: "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
-            <button
-              onClick={() => setLang("en")}
-              style={{
-                padding: "5px 12px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 700,
-                border: "none", cursor: "pointer", transition: "all 0.2s",
-                background: lang === "en" ? "#10b981" : "transparent",
-                color: lang === "en" ? "#000" : "#6b7280"
-              }}
-            >
-              🇬🇧 EN
-            </button>
-            <button
-              onClick={() => setLang("cz")}
-              style={{
-                padding: "5px 12px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 700,
-                border: "none", cursor: "pointer", transition: "all 0.2s",
-                background: lang === "cz" ? "#10b981" : "transparent",
-                color: lang === "cz" ? "#000" : "#6b7280"
-              }}
-            >
-              🇨🇿 CZ
-            </button>
+        <div>
+          <div style={{ fontSize: 18, fontWeight: 900, color: "#f8fff8", letterSpacing: 0.5 }}>AIVOS-OS</div>
+          <div style={{ fontSize: 10, color: "#10b981", fontFamily: mono, letterSpacing: 1.5, textTransform: "uppercase" }}>
+            DATA & AI EXPERTS
           </div>
-
-          <button
-            onClick={onLaunchWorkspace}
-            style={{
-              padding: "8px 20px", borderRadius: 10,
-              background: "linear-gradient(135deg, #10b981, #059669)",
-              color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800,
-              border: "none", cursor: "pointer", boxShadow: "0 0 18px rgba(16,185,129,0.3)"
-            }}
-          >
-            {t.landing_cta_launch}
-          </button>
         </div>
       </div>
 
-      {/* Hero Section (Capco / Axians Inspired Luxury Dark Glassmorphism) */}
-      <div style={{
-        ...card, padding: "48px 40px", marginBottom: 32,
-        background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(15,23,42,0.95), rgba(139,92,246,0.12))",
-        border: "1px solid rgba(16,185,129,0.4)", boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
-        position: "relative", overflow: "hidden"
-      }}>
-        {/* Glow backdrop */}
-        <div style={{
-          position: "absolute", top: -100, right: -100, width: 300, height: 300,
-          background: "radial-gradient(circle, rgba(16,185,129,0.25) 0%, transparent 70%)", pointerEvents: "none"
-        }} />
+      {/* Nav Menu Items (Datamole & Apify Style) */}
+      <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+        {[
+          { id: "landing" as Section, label: t.nav_home },
+          { id: "solutions" as Section, label: t.nav_solutions },
+          { id: "marketplace" as Section, label: t.nav_marketplace },
+          { id: "pricing" as Section, label: t.nav_pricing },
+          { id: "about" as Section, label: t.nav_about },
+        ].map(m => (
+          <button
+            key={m.id}
+            onClick={() => setSection(m.id)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              color: currentSection === m.id ? "#10b981" : "#9ca3af",
+              fontSize: 12, fontFamily: mono, fontWeight: currentSection === m.id ? 700 : 500,
+              transition: "all 0.2s", padding: "4px 8px", borderRadius: 6
+            }}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
 
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 20,
-          background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)",
-          color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 1, marginBottom: 20
-        }}>
-          <Sparkles size={14} /> {t.landing_badge}
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        {/* Language Switcher Pills */}
+        <div style={{ display: "flex", gap: 3, background: "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
+          <button
+            onClick={() => setLang("en")}
+            style={{
+              padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
+              border: "none", cursor: "pointer", transition: "all 0.2s",
+              background: lang === "en" ? "#10b981" : "transparent",
+              color: lang === "en" ? "#000" : "#6b7280"
+            }}
+          >
+            🇬🇧 EN
+          </button>
+          <button
+            onClick={() => setLang("cz")}
+            style={{
+              padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
+              border: "none", cursor: "pointer", transition: "all 0.2s",
+              background: lang === "cz" ? "#10b981" : "transparent",
+              color: lang === "cz" ? "#000" : "#6b7280"
+            }}
+          >
+            🇨🇿 CZ
+          </button>
         </div>
 
-        <h1 style={{
-          fontSize: 38, fontWeight: 900, color: "#f8fff8", lineHeight: 1.18, margin: "0 0 16px",
-          letterSpacing: "-0.02em", maxWidth: 880
-        }}>
-          {t.landing_h1}
-        </h1>
+        <button
+          onClick={onOpenLogin}
+          style={{
+            padding: "7px 14px", borderRadius: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
+            color: "#e2e8f0", fontSize: 11, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+          }}
+        >
+          {t.nav_login}
+        </button>
 
-        <p style={{
-          fontSize: 15, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 28px", maxWidth: 800
-        }}>
-          {t.landing_subtitle}
+        <button
+          onClick={() => setSection("dashboard")}
+          style={{
+            padding: "7px 16px", borderRadius: 8,
+            background: "linear-gradient(135deg, #10b981, #059669)",
+            color: "#000", fontSize: 11, fontFamily: mono, fontWeight: 800,
+            border: "none", cursor: "pointer", boxShadow: "0 0 16px rgba(16,185,129,0.3)"
+          }}
+        >
+          {t.nav_workspace}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function AuthModal({ onClose }: { onClose: () => void }) {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSent(true);
+  };
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 120,
+      background: "rgba(5,10,8,0.85)", backdropFilter: "blur(12px)",
+      display: "flex", alignItems: "center", justifyContent: "center", padding: 20
+    }}>
+      <div style={{
+        width: "100%", maxWidth: 440, background: "#0d1410", border: "1px solid rgba(16,185,129,0.3)",
+        borderRadius: 16, padding: 28, boxShadow: "0 16px 48px rgba(0,0,0,0.7)", position: "relative"
+      }}>
+        <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, background: "none", border: "none", color: "#6b7280", cursor: "pointer" }}>
+          <X size={18} />
+        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+          <Lock size={20} style={{ color: "#10b981" }} />
+          <h3 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: "#f8fff8" }}>Sign In to AIVOS OS</h3>
+        </div>
+        <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5, marginBottom: 20 }}>
+          Free Authentication powered by <strong>Firebase Auth / Google OAuth</strong> (100% Free up to 50,000 monthly users). Zero monthly subscription fees.
         </p>
 
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <button
-            onClick={onLaunchWorkspace}
-            style={{
-              padding: "14px 28px", borderRadius: 12,
-              background: "linear-gradient(135deg, #10b981, #059669)",
-              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 800,
-              border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
-              boxShadow: "0 8px 24px rgba(16,185,129,0.3)"
-            }}
-          >
-            {t.landing_cta_launch}
-          </button>
-          <a
-            href="#capabilities"
-            style={{
-              padding: "14px 28px", borderRadius: 12,
-              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
-              color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700,
-              textDecoration: "none", display: "flex", alignItems: "center", gap: 8
-            }}
-          >
-            {t.landing_cta_explore}
-          </a>
-        </div>
-
-        {/* Tech Marquee Ticker */}
-        <div style={{
-          marginTop: 36, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)",
-          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap"
-        }}>
-          <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280", letterSpacing: 2, textTransform: "uppercase" }}>TECH STACK:</span>
-          {["Azure Data Factory", "Databricks PySpark", "Gemini 2.0 Flash", "Model Context Protocol (MCP)", "Delta Lake", "Event Hubs", "Power BI"].map((tech) => (
-            <span key={tech} style={{
-              fontSize: 10, fontFamily: mono, color: "#34d399", background: "rgba(16,185,129,0.1)",
-              padding: "4px 10px", borderRadius: 6, border: "1px solid rgba(16,185,129,0.2)"
+        {sent ? (
+          <div style={{ padding: 14, borderRadius: 10, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#34d399", fontSize: 12 }}>
+            <CheckCircle2 size={16} style={{ display: "inline", marginRight: 6, verticalAlign: "middle" }} />
+            Magic Login Link dispatched to <strong>{email}</strong>! Check your inbox.
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <button type="button" onClick={() => setSent(true)} style={{
+              padding: "12px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)",
+              color: "#f8fff8", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8
             }}>
-              {tech}
-            </span>
-          ))}
-        </div>
+              <span>🌐</span> Continue with Google (Free OAuth)
+            </button>
+            <div style={{ textAlign: "center", fontSize: 11, color: "#4b5563", fontFamily: mono }}>OR MAGIC LINK EMAIL</div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="name@company.com"
+              required
+              style={{
+                padding: "12px 14px", borderRadius: 10, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(16,185,129,0.2)",
+                color: "#f8fff8", fontSize: 13, fontFamily: mono, outline: "none"
+              }}
+            />
+            <button type="submit" style={{
+              padding: "12px", borderRadius: 10, background: "linear-gradient(135deg, #10b981, #059669)",
+              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer"
+            }}>
+              Send Instant Magic Link →
+            </button>
+          </form>
+        )}
       </div>
+    </div>
+  );
+}
 
-      {/* 3 Core Pillars (Capco / Intecs Inspired Bento Grid) */}
-      <div id="capabilities" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 32 }}>
-        {/* Pillar 1 */}
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.3)", background: "rgba(13,20,16,0.9)" }}>
-          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8, textTransform: "uppercase" }}>
-            {t.pillar1_tag}
+// DATAMOLE 3D ISOMETRIC HERO + STAT CARDS HOMEPAGE
+function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
+  const [lang] = useState<Language>("en");
+  const t = translations[lang];
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
+      <PublicHeader currentSection="landing" setSection={setSection} onOpenLogin={onOpenLogin} />
+
+      {/* Datamole-Style Isometric Hero & Stat Cards Layout */}
+      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 32, alignItems: "center", marginBottom: 40 }}>
+        <div>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 20,
+            background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)",
+            color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 1, marginBottom: 18
+          }}>
+            <Sparkles size={14} /> {t.landing_badge}
           </div>
-          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.pillar1_title}</h3>
-          <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.pillar1_desc}</p>
-        </div>
 
-        {/* Pillar 2 */}
-        <div style={{ ...card, border: "1px solid rgba(59,130,246,0.3)", background: "rgba(10,15,25,0.9)" }}>
-          <div style={{ color: "#60a5fa", fontSize: 10, fontFamily: mono, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8, textTransform: "uppercase" }}>
-            {t.pillar2_tag}
-          </div>
-          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.pillar2_title}</h3>
-          <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.pillar2_desc}</p>
-        </div>
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: "#f8fff8", lineHeight: 1.18, margin: "0 0 16px", letterSpacing: "-0.02em" }}>
+            {t.landing_h1}
+          </h1>
 
-        {/* Pillar 3 */}
-        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.3)", background: "rgba(20,12,28,0.9)" }}>
-          <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8, textTransform: "uppercase" }}>
-            {t.pillar3_tag}
-          </div>
-          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.pillar3_title}</h3>
-          <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.pillar3_desc}</p>
-        </div>
-      </div>
+          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 24px" }}>
+            {t.landing_subtitle}
+          </p>
 
-      {/* Author & Specialist Profile Showcase */}
-      <div style={{
-        ...card, padding: 28,
-        background: "linear-gradient(135deg, rgba(22,32,26,0.9), rgba(13,20,16,0.95))",
-        border: "1px solid rgba(16,185,129,0.3)"
-      }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div style={{
-              width: 52, height: 52, borderRadius: "50%",
-              background: "linear-gradient(135deg, #10b981, #059669)",
-              color: "#000", fontWeight: 900, fontSize: 18, fontFamily: mono,
-              display: "flex", alignItems: "center", justifyContent: "center",
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <button onClick={() => setSection("solutions")} style={{
+              padding: "13px 26px", borderRadius: 10, background: "linear-gradient(135deg, #10b981, #059669)",
+              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer",
               boxShadow: "0 0 20px rgba(16,185,129,0.3)"
             }}>
-              ID
-            </div>
-            <div>
-              <div style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8" }}>Ivo Doležal</div>
-              <div style={{ fontSize: 12, color: "#10b981", fontFamily: mono }}>IT Integration and Automation Specialist</div>
-              <div style={{ fontSize: 11, color: "#6b7280", marginTop: 2 }}>Azure Data Stack • PySpark • AI Agents • Enterprise Automation</div>
-            </div>
+              {t.challenges_title} →
+            </button>
+            <button onClick={() => setSection("marketplace")} style={{
+              padding: "13px 24px", borderRadius: 10, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
+              color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+            }}>
+              {t.market_title}
+            </button>
           </div>
+        </div>
 
-          <button
-            onClick={onLaunchWorkspace}
-            style={{
-              padding: "10px 20px", borderRadius: 10,
-              background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)",
-              color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer"
-            }}
-          >
-            Enter AIVOS OS Workspace →
+        {/* Datamole Stat Cards Grid */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ ...card, padding: 20, border: "1px solid rgba(16,185,129,0.3)", background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))" }}>
+            <div style={{ fontSize: 32, fontWeight: 900, color: "#10b981", fontFamily: mono }}>{t.stat1_num}</div>
+            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.stat1_label}</div>
+          </div>
+          <div style={{ ...card, padding: 20, border: "1px solid rgba(59,130,246,0.3)", background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(13,20,16,0.95))" }}>
+            <div style={{ fontSize: 32, fontWeight: 900, color: "#60a5fa", fontFamily: mono }}>{t.stat2_num}</div>
+            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.stat2_label}</div>
+          </div>
+          <div style={{ ...card, padding: 20, border: "1px solid rgba(168,85,247,0.3)", background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(13,20,16,0.95))" }}>
+            <div style={{ fontSize: 32, fontWeight: 900, color: "#c084fc", fontFamily: mono }}>{t.stat3_num}</div>
+            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.stat3_label}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Datamole "Challenges We Solve" Grid */}
+      <div style={{ marginBottom: 40 }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>
+          CHALLENGES WE SOLVE
+        </div>
+        <h2 style={{ fontSize: 24, fontWeight: 800, color: "#f8fff8", margin: "0 0 20px" }}>{t.challenges_subtitle}</h2>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div style={{ ...card, border: "1px solid rgba(16,185,129,0.3)" }}>
+            <div style={{ fontSize: 24, marginBottom: 10 }}>⛓️</div>
+            <h3 style={{ fontSize: 16, fontWeight: 800, color: "#f8fff8", margin: "0 0 8px" }}>{t.ch1_title}</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.ch1_desc}</p>
+          </div>
+          <div style={{ ...card, border: "1px solid rgba(59,130,246,0.3)" }}>
+            <div style={{ fontSize: 24, marginBottom: 10 }}>⚡</div>
+            <h3 style={{ fontSize: 16, fontWeight: 800, color: "#f8fff8", margin: "0 0 8px" }}>{t.ch2_title}</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.ch2_desc}</p>
+          </div>
+          <div style={{ ...card, border: "1px solid rgba(168,85,247,0.3)" }}>
+            <div style={{ fontSize: 24, marginBottom: 10 }}>✍️</div>
+            <h3 style={{ fontSize: 16, fontWeight: 800, color: "#f8fff8", margin: "0 0 8px" }}>{t.ch3_title}</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.ch3_desc}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// APIFY-STYLE SOLUTIONS PAGE
+function SolutionsView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
+  const [lang] = useState<Language>("en");
+  const t = translations[lang];
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
+      <PublicHeader currentSection="solutions" setSection={setSection} onOpenLogin={onOpenLogin} />
+      <div style={{ marginBottom: 32 }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ENTERPRISE SOLUTIONS</div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: 0 }}>Tailored Data Engineering & AI Automation</h1>
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28 }}>
+          <span style={{ fontSize: 11, fontFamily: mono, color: "#10b981", fontWeight: 800 }}>SOLUTION 01</span>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#f8fff8", margin: "6px 0 12px" }}>{t.pillar1_title}</h2>
+          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar1_desc}</p>
+          <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
+            Explore Enterprise Pricing →
           </button>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(59,130,246,0.4)", padding: 28 }}>
+          <span style={{ fontSize: 11, fontFamily: mono, color: "#60a5fa", fontWeight: 800 }}>SOLUTION 02</span>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#f8fff8", margin: "6px 0 12px" }}>{t.pillar2_title}</h2>
+          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar2_desc}</p>
+          <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)", color: "#60a5fa", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
+            Explore Enterprise Pricing →
+          </button>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
+          <span style={{ fontSize: 11, fontFamily: mono, color: "#c084fc", fontWeight: 800 }}>SOLUTION 03</span>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#f8fff8", margin: "6px 0 12px" }}>{t.pillar3_title}</h2>
+          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar3_desc}</p>
+          <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
+            Explore Enterprise Pricing →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// APIFY-STYLE MARKETPLACE PAGE
+function MarketplaceView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
+  const [lang] = useState<Language>("en");
+  const t = translations[lang];
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
+      <PublicHeader currentSection="marketplace" setSection={setSection} onOpenLogin={onOpenLogin} />
+      <div style={{ marginBottom: 32 }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>APIFY-STYLE MARKETPLACE</div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: 0 }}>{t.market_title}</h1>
+        <p style={{ fontSize: 14, color: "#9ca3af", marginTop: 6 }}>{t.market_subtitle}</p>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.3)" }}>
+          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, fontWeight: 800, marginBottom: 8 }}>ACTOR · READY TO RUN</div>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.actor1_title}</h3>
+          <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor1_desc}</p>
+          <button onClick={() => setSection("brief")} style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
+            Run Actor in PULSE →
+          </button>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.3)" }}>
+          <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, fontWeight: 800, marginBottom: 8 }}>ACTOR · MEDIUM API</div>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.actor2_title}</h3>
+          <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor2_desc}</p>
+          <button onClick={() => setSection("sessions")} style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)", color: "#c084fc", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
+            Open Article Generator →
+          </button>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(59,130,246,0.3)" }}>
+          <div style={{ color: "#60a5fa", fontSize: 10, fontFamily: mono, fontWeight: 800, marginBottom: 8 }}>ACTOR · NOTION SYNC</div>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.actor3_title}</h3>
+          <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor3_desc}</p>
+          <button onClick={() => setSection("para")} style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.3)", color: "#60a5fa", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
+            Open Notion P.A.R.A. →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// DEDICATED PRICING PAGE
+function PricingView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
+  const [lang] = useState<Language>("en");
+  const t = translations[lang];
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
+      <PublicHeader currentSection="pricing" setSection={setSection} onOpenLogin={onOpenLogin} />
+      <div style={{ marginBottom: 32, textAlign: "center" }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>PRICING TIERS</div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: "0 0 8px" }}>{t.pricing_title}</h1>
+        <p style={{ fontSize: 14, color: "#9ca3af" }}>{t.pricing_subtitle}</p>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        <div style={{ ...card, border: "1px solid rgba(255,255,255,0.15)", padding: 28 }}>
+          <div style={{ color: "#6b7280", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_starter_title}</div>
+          <div style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: "10px 0" }}>{t.plan_starter_price}</div>
+          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px" }}>{t.plan_starter_desc}</p>
+          <button onClick={() => setSection("dashboard")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", color: "#f8fff8", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
+            Explore Starter Demo →
+          </button>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28, background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))", boxShadow: "0 0 30px rgba(16,185,129,0.2)" }}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>{t.plan_pro_title} · POPULAR</div>
+          <div style={{ fontSize: 32, fontWeight: 900, color: "#10b981", margin: "10px 0" }}>{t.plan_pro_price}</div>
+          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px" }}>{t.plan_pro_desc}</p>
+          <button onClick={() => window.open("https://gumroad.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "linear-gradient(135deg, #10b981, #059669)", color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
+            Get Pro Blueprints →
+          </button>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
+          <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_private_title}</div>
+          <div style={{ fontSize: 32, fontWeight: 900, color: "#c084fc", margin: "10px 0" }}>{t.plan_private_price}</div>
+          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px" }}>{t.plan_private_desc}</p>
+          <button onClick={() => window.open("https://linkedin.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.4)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
+            Contact Ivo Doležal →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// DEDICATED ABOUT PAGE
+function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
+  const [lang] = useState<Language>("en");
+  const t = translations[lang];
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
+      <PublicHeader currentSection="about" setSection={setSection} onOpenLogin={onOpenLogin} />
+      <div style={{ ...card, padding: 36, border: "1px solid rgba(16,185,129,0.3)" }}>
+        <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f8fff8", margin: "0 0 12px" }}>{t.about_title}</h1>
+        <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 20px" }}>{t.about_desc}</p>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          {["Azure Data Stack", "PySpark Delta Lake", "Gemini 2.0 Flash", "Notion P.A.R.A.", "Ollama Local AI", "Vercel Next.js"].map(tag => (
+            <span key={tag} style={{ fontSize: 11, fontFamily: mono, color: "#10b981", background: "rgba(16,185,129,0.1)", padding: "4px 10px", borderRadius: 6, border: "1px solid rgba(16,185,129,0.2)" }}>
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
     </div>
@@ -1841,6 +2052,7 @@ export default function AIVOS() {
   const [section, setSection] = useState<Section>("landing");
   const [time, setTime] = useState<Date | null>(null);
   const [ollamaOk, setOllamaOk] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
     setTime(new Date());
@@ -1854,20 +2066,26 @@ export default function AIVOS() {
 
   function renderSection() {
     switch (section) {
-      case "landing":    return <LandingView onLaunchWorkspace={() => setSection("dashboard")} />;
-      case "dashboard":  return time ? <Dashboard time={time} /> : null;
-      case "brief":      return <BriefView />;
-      case "memory":     return <Memory />;
-      case "para":       return <PARAView />;
-      case "knowledge":  return <KnowledgeView />;
-      case "inbox":      return <InboxView />;
-      case "sessions":   return <SessionsView />;
-      case "search":     return <KnowledgeView />;
+      case "landing":     return <LandingHomeView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
+      case "solutions":   return <SolutionsView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
+      case "marketplace": return <MarketplaceView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
+      case "pricing":     return <PricingView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
+      case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
+      case "dashboard":   return time ? <Dashboard time={time} /> : null;
+      case "brief":       return <BriefView />;
+      case "memory":      return <Memory />;
+      case "para":        return <PARAView />;
+      case "knowledge":   return <KnowledgeView />;
+      case "inbox":       return <InboxView />;
+      case "sessions":    return <SessionsView />;
+      case "search":      return <KnowledgeView />;
     }
   }
 
   return (
-    <div style={{ display: "flex", height: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", overflow: "hidden" }}>
+    <>
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
+      <div style={{ display: "flex", height: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", overflow: "hidden" }}>
       <aside style={{ width: 220, background: "rgba(22,32,26,0.9)", borderRight: "1px solid rgba(16,185,129,0.15)", display: "flex", flexDirection: "column", flexShrink: 0 }}>
         <div
           onClick={() => setSection("landing")}
@@ -1913,5 +2131,6 @@ export default function AIVOS() {
         {renderSection()}
       </main>
     </div>
+    </>
   );
 }
