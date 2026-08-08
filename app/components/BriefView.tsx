@@ -13,6 +13,7 @@ type VideoItem = {
   action: string;
   tags: string;
   score?: number;
+  category?: string;
   key_points?: string[];
   source?: string; // "YouTube" | "Newsletter" (volitelné, default YouTube)
 };

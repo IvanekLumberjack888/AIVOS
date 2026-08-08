@@ -221,14 +221,26 @@ function DeepDiveChat({ video, onClose }: { video: VideoItem; onClose: () => voi
 
 function BriefVideoCard({ video, color, onDeepDive }: { video: VideoItem; color: string; onDeepDive: (v: VideoItem) => void }) {
   const [open, setOpen] = useState(false);
+  const isBulk = (video as any).category === "BULK" || video.tags?.includes("#BULK");
+  const isVideo = video.url.includes("youtube.com") || video.url.includes("youtu.be");
+
   return (
-    <div style={{ ...card, padding: 14, borderColor: `${color}30` }}>
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+    <div style={{
+      background: isBulk ? "rgba(139,92,246,0.06)" : "rgba(255,255,255,0.03)",
+      border: `1px solid ${isBulk ? "rgba(168,85,247,0.35)" : color + "25"}`,
+      borderRadius: 12, padding: "12px 14px", marginBottom: 8,
+      boxShadow: isBulk ? "0 0 14px rgba(168,85,247,0.12)" : "none",
+      transition: "all 0.2s ease"
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-            {video.score && (
-              <span style={{ fontSize: 10, fontFamily: mono, color, background: `${color}15`, padding: "1px 6px", borderRadius: 4, border: `1px solid ${color}30` }}>
-                {video.score}/10
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 9, fontFamily: mono, fontWeight: 700, padding: "2px 6px", borderRadius: 4, background: "rgba(0,0,0,0.4)", color: isVideo ? "#ff6b6b" : "#34d399" }}>
+              {isVideo ? "▶ YT" : "✎ READ"}
+            </span>
+            {isBulk && (
+              <span style={{ fontSize: 9, fontFamily: mono, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: "linear-gradient(135deg, #8b5cf6, #c084fc)", color: "#fff", boxShadow: "0 0 8px rgba(168,85,247,0.5)" }}>
+                🔮 BULK
               </span>
             )}
             <a href={video.url} target="_blank" rel="noopener noreferrer"
@@ -254,7 +266,7 @@ function BriefVideoCard({ video, color, onDeepDive }: { video: VideoItem; color:
         </div>
       </div>
       {open && (
-        <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${color}15` }}>
+        <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${isBulk ? "rgba(168,85,247,0.2)" : color + "15"}` }}>
           <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 8px" }}>{video.summary}</p>
           {video.key_points && video.key_points.length > 0 && (
             <div style={{ marginBottom: 8 }}>
@@ -287,6 +299,7 @@ function BriefView() {
   const [error, setError] = useState("");
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
   const [showArchInfo, setShowArchInfo] = useState(false);
+  const [previewTier, setPreviewTier] = useState<"starter" | "pro" | "private">("starter");
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const loadBrief = useCallback((dateKey: string) => {
@@ -355,8 +368,46 @@ function BriefView() {
         marginRight: panelOpen ? 496 : 0,
         transition: "margin-right 0.3s ease",
       }}>
+        
+        {/* Tier Switcher Bar (Public Preview Controls) */}
+        <div style={{
+          background: "rgba(13,26,18,0.7)", backdropFilter: "blur(12px)",
+          border: "1px solid rgba(16,185,129,0.2)", borderRadius: 12,
+          padding: "10px 16px", marginBottom: 20,
+          display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 14 }}>💎</span>
+            <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 700, color: "#10b981", letterSpacing: 1 }}>
+              ACTIVE ENVIRONMENT MODE:
+            </span>
+          </div>
+          <div style={{ display: "flex", gap: 6 }}>
+            {[
+              { id: "starter", label: "🟢 Starter Public Demo", desc: "Open-source Vercel demo" },
+              { id: "pro", label: "⚡ Pro Commercial", desc: "Medium API & Templates" },
+              { id: "private", label: "🔒 Private Local OS", desc: "Notion & Ollama Live Sync" },
+            ].map(t => (
+              <button
+                key={t.id}
+                onClick={() => setPreviewTier(t.id as any)}
+                title={t.desc}
+                style={{
+                  padding: "5px 12px", borderRadius: 20, fontSize: 10, fontFamily: mono, fontWeight: 600,
+                  cursor: "pointer", transition: "all 0.2s",
+                  background: previewTier === t.id ? "rgba(16,185,129,0.2)" : "transparent",
+                  border: `1px solid ${previewTier === t.id ? "#10b981" : "rgba(255,255,255,0.08)"}`,
+                  color: previewTier === t.id ? "#10b981" : "#6b7280",
+                }}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Architecture & How It Works Banner */}
-        <div style={{ ...card, marginBottom: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
+        <div style={{ ...card, marginBottom: 20, border: "1px solid rgba(16,185,129,0.3)", backdropFilter: "blur(12px)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
             <div>
               <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
@@ -394,26 +445,53 @@ function BriefView() {
           )}
         </div>
 
-        {/* Monetization & Pro Hacks Card */}
-        <div style={{ ...card, marginBottom: 20, background: "linear-gradient(135deg, rgba(22,32,26,0.9), rgba(16,185,129,0.08))", border: "1px solid rgba(16,185,129,0.3)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" }}>
-              <Lock size={13} /> Pro Hacks & Monetized Blueprints
+        {/* High-Converting Monetization & Pro Hacks Card */}
+        <div style={{
+          ...card, marginBottom: 20,
+          background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(139,92,246,0.12), rgba(16,185,129,0.08))",
+          border: "1px solid rgba(139,92,246,0.35)",
+          boxShadow: "0 8px 32px rgba(139,92,246,0.15)",
+          backdropFilter: "blur(16px)"
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#c084fc", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" }}>
+              <Lock size={13} /> Commercial Blueprints & Pro Automation
             </div>
-            <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, background: "rgba(16,185,129,0.15)", color: "#10b981", fontFamily: mono }}>SIDE-HUSTLE READY</span>
+            <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "linear-gradient(135deg, #8b5cf6, #c084fc)", color: "#ffffff", fontFamily: mono, fontWeight: 700 }}>
+              PRODUCTION READY
+            </span>
           </div>
 
-          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>Unlock Full Python Scripts & Notion Templates</h3>
-          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.5, margin: "0 0 14px" }}>
-            Get access to pre-configured Python automation pipelines, Notion P.A.R.A. templates, and step-by-step setup guides for global creators.
+          <h3 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 700, margin: "0 0 8px" }}>
+            Unlock Full Python Automation Scripts & Notion P.A.R.A. Templates
+          </h3>
+          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
+            Get instant access to complete commercial automation pipelines: automated YouTube ingestion scripts, Notion live sync integrations, Medium article generator API, and step-by-step deploy guides for Solopreneurs & Data Engineers.
           </p>
+
+          {/* Feature Pills */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
+            {[
+              "⚡ Gemini 2.0 Flash REST Pipeline",
+              "🐍 Python yt-dlp Transcript Extractor",
+              "📂 Notion P.A.R.A. Auto-Sync",
+              "🔮 299+ Video Bulk Queue Ingestion",
+              "🔒 Local Ollama Privacy Memory",
+            ].map(f => (
+              <span key={f} style={{
+                fontSize: 10, fontFamily: mono, padding: "3px 8px", borderRadius: 6,
+                background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.25)",
+                color: "#d8b4fe"
+              }}>{f}</span>
+            ))}
+          </div>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             <a href="https://buymeacoffee.com/aivos_os" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
-                padding: "8px 14px", borderRadius: 8, background: "#FFDD00", border: "none",
+                padding: "10px 16px", borderRadius: 8, background: "#FFDD00", border: "none",
                 color: "#000000", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
-                display: "flex", alignItems: "center", gap: 6
+                display: "flex", alignItems: "center", gap: 6, boxShadow: "0 4px 14px rgba(255,221,0,0.3)"
               }}>
                 <Coffee size={14} /> Buy Me a Coffee (5% fee)
               </button>
@@ -421,9 +499,9 @@ function BriefView() {
 
             <a href="https://gumroad.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
-                padding: "8px 14px", borderRadius: 8, background: "rgba(16,185,129,0.2)", border: "1px solid #10b981",
+                padding: "10px 16px", borderRadius: 8, background: "rgba(16,185,129,0.2)", border: "1px solid #10b981",
                 color: "#10b981", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
-                display: "flex", alignItems: "center", gap: 6
+                display: "flex", alignItems: "center", gap: 6, boxShadow: "0 4px 14px rgba(16,185,129,0.2)"
               }}>
                 <ShoppingBag size={14} /> Gumroad Templates
               </button>
@@ -431,7 +509,7 @@ function BriefView() {
 
             <a href="https://ko-fi.com/aivos_os" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
-                padding: "8px 14px", borderRadius: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)",
+                padding: "10px 16px", borderRadius: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)",
                 color: "#f8fff8", fontWeight: 600, fontSize: 12, fontFamily: mono, cursor: "pointer",
                 display: "flex", alignItems: "center", gap: 6
               }}>
@@ -441,23 +519,28 @@ function BriefView() {
           </div>
         </div>
 
+        {/* High-Impact Bento Metric Cards */}
         {brief && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
             {[
-              { label: "HIGH",  val: brief.stats.high,   color: "#10b981" },
-              { label: "MED",   val: brief.stats.medium, color: "#c084fc" },
-              { label: "SKIP",  val: brief.stats.low,    color: "#4b5563" },
-              { label: "TOTAL", val: brief.stats.total,  color: "#6ee7b7" },
-            ].map(({ label, val, color }) => (
-              <div key={label} style={{ ...card, padding: "14px 0", textAlign: "center" }}>
-                <div style={{ color, fontSize: 22, fontFamily: mono, fontWeight: 700 }}>{val}</div>
-                <div style={{ color: "#4b5563", fontSize: 9, fontFamily: mono, letterSpacing: 1, marginTop: 2 }}>{label}</div>
+              { label: "HIGH",  val: brief.stats.high,   color: "#10b981", bg: "rgba(16,185,129,0.06)" },
+              { label: "MED",   val: brief.stats.medium, color: "#c084fc", bg: "rgba(192,132,252,0.06)" },
+              { label: "SKIP",  val: brief.stats.low,    color: "#4b5563", bg: "rgba(75,85,99,0.06)" },
+              { label: "TOTAL", val: brief.stats.total,  color: "#6ee7b7", bg: "rgba(110,231,183,0.06)" },
+            ].map(({ label, val, color, bg }) => (
+              <div key={label} style={{
+                ...card, padding: "14px 0", textAlign: "center", background: bg,
+                border: `1px solid ${color}30`
+              }}>
+                <div style={{ color, fontSize: 24, fontFamily: mono, fontWeight: 800 }}>{val}</div>
+                <div style={{ color: "#6b7280", fontSize: 9, fontFamily: mono, letterSpacing: 1, marginTop: 2 }}>{label}</div>
               </div>
             ))}
           </div>
         )}
 
-        <div style={{ ...card, marginBottom: 20 }}>
+        {/* Audio Brief Player */}
+        <div style={{ ...card, marginBottom: 20, border: "1px solid rgba(16,185,129,0.2)" }}>
           <audio ref={audioRef} src={audioSrc} preload="metadata" />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
             <div>
@@ -470,13 +553,14 @@ function BriefView() {
               border: `1px solid ${playing ? "#10b981" : "transparent"}`,
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 20, color: playing ? "#10b981" : "#0f1410", transition: "all 0.2s",
+              boxShadow: playing ? "none" : "0 0 16px rgba(16,185,129,0.4)"
             }}>
               {playing ? "⏸" : "▶"}
             </button>
           </div>
           <input type="range" min={0} max={duration || 100} value={progress} onChange={seek}
             style={{
-              width: "100%", appearance: "none" as const, height: 3, borderRadius: 2,
+              width: "100%", appearance: "none" as const, height: 4, borderRadius: 2,
               outline: "none", cursor: "pointer", display: "block", marginBottom: 6,
               background: `linear-gradient(to right, #10b981 ${(progress / (duration || 1)) * 100}%, rgba(16,185,129,0.15) 0%)`,
             }} />
@@ -488,7 +572,9 @@ function BriefView() {
 
         {brief && brief.high.length > 0 && (
           <div style={{ ...card, marginBottom: 16 }}>
-            <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>● High relevance</div>
+            <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>
+              ● High relevance ({brief.high.length})
+            </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {brief.high.map((v, i) => <BriefVideoCard key={i} video={v} color="#10b981" onDeepDive={setActiveVideo} />)}
             </div>
@@ -497,7 +583,9 @@ function BriefView() {
 
         {brief && brief.medium.length > 0 && (
           <div style={{ ...card, marginBottom: 16 }}>
-            <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>● Medium</div>
+            <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>
+              ● Medium ({brief.medium.length})
+            </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {brief.medium.slice(0, 8).map((v, i) => <BriefVideoCard key={i} video={v} color="#c084fc" onDeepDive={setActiveVideo} />)}
             </div>
