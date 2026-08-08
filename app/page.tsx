@@ -2178,6 +2178,10 @@ function ApifyHeader({ currentSection, setSection, onOpenLogin }: { currentSecti
             )}
           </div>
 
+          <button onClick={() => setSection("brief")} style={{ background: "none", border: "none", cursor: "pointer", color: currentSection === "brief" ? "#10b981" : "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 600, padding: "6px 10px" }}>
+            PULSE
+          </button>
+
           <button onClick={() => setSection("pricing")} style={{ background: "none", border: "none", cursor: "pointer", color: currentSection === "pricing" ? "#10b981" : "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 600, padding: "6px 10px" }}>
             Pricing
           </button>
@@ -2436,7 +2440,7 @@ export default function AIVOS() {
     }
   }
 
-  const isPublicPage = ["landing", "solutions", "marketplace", "pricing", "about"].includes(section);
+  const isPublicPage = ["landing", "solutions", "marketplace", "pricing", "about", "brief"].includes(section);
 
   if (isPublicPage) {
     return (
