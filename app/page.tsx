@@ -1738,11 +1738,13 @@ function AuthModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// LUXURY WOW FRONTEND - AIVOS AGENTIC OS HOMEPAGE (ANIMATED DEMO + STORY FIRST + NUMBERS AFTER)
-function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
+// LUXURY WOW FRONTEND - AIVOS AGENTIC OS HOMEPAGE (THEME AWARE + TRANSLATED + 1140px MAX WIDTH)
+function LandingHomeView({ setSection, onOpenLogin, lang, theme }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language; theme: "dark" | "light" }) {
   const [activeTab, setActiveTab] = useState<"adf" | "pyspark" | "pulse">("adf");
   const [isPlayingDemo, setIsPlayingDemo] = useState<boolean>(true);
   const [demoStep, setDemoStep] = useState<number>(1);
+  const t = translations[lang];
+  const isLight = theme === "light";
 
   // Auto-play interactive demo sequence
   useEffect(() => {
@@ -1753,8 +1755,14 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
     return () => clearInterval(interval);
   }, [isPlayingDemo]);
 
+  const headingColor = isLight ? "#0f172a" : "#f8fff8";
+  const textColor = isLight ? "#475569" : "#9ca3af";
+  const cardBg = isLight ? "#ffffff" : "rgba(13,20,16,0.85)";
+  const cardBorder = isLight ? "1px solid rgba(16,185,129,0.25)" : "1px solid rgba(16,185,129,0.35)";
+  const cardShadow = isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)";
+
   return (
-    <div style={{ padding: "2rem 1.5rem 4rem", maxWidth: 1240, margin: "0 auto", position: "relative" }}>
+    <div style={{ padding: "1.5rem 1rem 4rem", maxWidth: 1140, margin: "0 auto", position: "relative" }}>
 
       {/* SEO Schema.org JSON-LD Structured Data (Product-First) */}
       <script
@@ -1791,23 +1799,24 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         <div>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px", borderRadius: 20,
-            background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.35)",
-            color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 1, marginBottom: 20,
+            background: isLight ? "rgba(16,185,129,0.1)" : "rgba(16,185,129,0.12)",
+            border: isLight ? "1px solid rgba(16,185,129,0.3)" : "1px solid rgba(16,185,129,0.35)",
+            color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 1, marginBottom: 20,
             boxShadow: "0 0 16px rgba(16,185,129,0.2)"
           }}>
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 8px #10b981" }} className="animate-pulse-glow" />
             AIVOS SPARK 2.0 · IT INTEGRATION & AGENTIC OS
           </div>
 
-          <h1 style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 900, color: "#f8fff8", lineHeight: 1.12, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
+          <h1 style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 900, color: headingColor, lineHeight: 1.12, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
             Giving Data Meaning. <br />
             <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Automating Enterprise Cloud.
             </span>
           </h1>
 
-          <p style={{ fontSize: 15, color: "#9ca3af", lineHeight: 1.65, margin: "0 0 28px", maxWidth: 540 }}>
-            High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents engineered for zero-downtime enterprise cloud integration.
+          <p style={{ fontSize: 15, color: textColor, lineHeight: 1.65, margin: "0 0 28px", maxWidth: 540 }}>
+            {t.landing_subtitle}
           </p>
 
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
@@ -1819,8 +1828,10 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
               Explore Azure Solutions →
             </button>
             <button onClick={() => setSection("marketplace")} style={{
-              padding: "14px 26px", borderRadius: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
-              color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+              padding: "14px 26px", borderRadius: 24,
+              background: isLight ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.05)",
+              border: isLight ? "1px solid rgba(0,0,0,0.15)" : "1px solid rgba(255,255,255,0.15)",
+              color: headingColor, fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
             }}>
               SwitcherOS Blueprint ($5) ↗
             </button>
@@ -1828,11 +1839,14 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
 
           {/* Ecosystem Tech Badges */}
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 32, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280", letterSpacing: 1 }}>ECOSYSTEM:</span>
+            <span style={{ fontSize: 10, fontFamily: mono, color: isLight ? "#64748b" : "#6b7280", letterSpacing: 1 }}>ECOSYSTEM:</span>
             {["AZURE ADF", "DATABRICKS", "PYSPARK", "GEMINI 2.0", "NOTION API", "OLLAMA"].map((tech) => (
               <span key={tech} style={{
-                fontSize: 10, fontFamily: mono, fontWeight: 700, color: "#a7f3d0",
-                padding: "3px 8px", borderRadius: 6, background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)"
+                fontSize: 10, fontFamily: mono, fontWeight: 700,
+                color: isLight ? "#059669" : "#a7f3d0",
+                padding: "3px 8px", borderRadius: 6,
+                background: isLight ? "rgba(16,185,129,0.1)" : "rgba(16,185,129,0.08)",
+                border: isLight ? "1px solid rgba(16,185,129,0.25)" : "1px solid rgba(16,185,129,0.2)"
               }}>
                 {tech}
               </span>
@@ -1843,19 +1857,20 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         {/* Right Column: Blikající / Spouštěcí Představení AIVOS (Animated Live Demo Console) */}
         <div style={{
           ...card, padding: 24, borderRadius: 24,
-          background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(10,18,13,0.95))",
-          border: "1px solid rgba(16,185,129,0.4)", boxShadow: "0 20px 50px rgba(0,0,0,0.7)"
+          background: isLight ? "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(255,255,255,0.95))" : "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(10,18,13,0.95))",
+          border: cardBorder, boxShadow: cardShadow
         }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, borderBottom: "1px solid rgba(16,185,129,0.15)", paddingBottom: 12 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, borderBottom: isLight ? "1px solid rgba(0,0,0,0.08)" : "1px solid rgba(16,185,129,0.15)", paddingBottom: 12 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981" }} className="animate-pulse-glow" />
-              <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 800, color: "#10b981" }}>▶ ANIMATED AIVOS PROCESS DEMO</span>
+              <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 800, color: isLight ? "#059669" : "#10b981" }}>▶ ANIMATED AIVOS PROCESS DEMO</span>
             </div>
             <button
               onClick={() => setIsPlayingDemo(!isPlayingDemo)}
               style={{
-                fontSize: 10, fontFamily: mono, color: isPlayingDemo ? "#10b981" : "#9ca3af",
-                background: "rgba(0,0,0,0.5)", border: "1px solid rgba(16,185,129,0.3)",
+                fontSize: 10, fontFamily: mono, color: isPlayingDemo ? "#10b981" : (isLight ? "#64748b" : "#9ca3af"),
+                background: isLight ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.5)",
+                border: "1px solid rgba(16,185,129,0.3)",
                 padding: "3px 10px", borderRadius: 12, cursor: "pointer", fontWeight: 700
               }}
             >
@@ -1875,20 +1890,22 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
                 onClick={() => { setDemoStep(s.step); setIsPlayingDemo(false); }}
                 style={{
                   padding: "8px 10px", borderRadius: 10, cursor: "pointer", textAlign: "center",
-                  background: demoStep === s.step ? "rgba(16,185,129,0.2)" : "rgba(0,0,0,0.4)",
-                  border: `1px solid ${demoStep === s.step ? "#10b981" : "rgba(255,255,255,0.08)"}`,
+                  background: demoStep === s.step ? "rgba(16,185,129,0.2)" : (isLight ? "rgba(0,0,0,0.03)" : "rgba(0,0,0,0.4)"),
+                  border: `1px solid ${demoStep === s.step ? "#10b981" : (isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.08)")}`,
                   transition: "all 0.3s"
                 }}
               >
-                <div style={{ fontSize: 9, fontFamily: mono, color: demoStep === s.step ? "#10b981" : "#6b7280", fontWeight: 800 }}>{s.label}</div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: demoStep === s.step ? "#f8fff8" : "#9ca3af", marginTop: 2 }}>{s.title}</div>
+                <div style={{ fontSize: 9, fontFamily: mono, color: demoStep === s.step ? "#10b981" : (isLight ? "#64748b" : "#6b7280"), fontWeight: 800 }}>{s.label}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: demoStep === s.step ? headingColor : textColor, marginTop: 2 }}>{s.title}</div>
               </div>
             ))}
           </div>
 
           {/* Terminal Animation Stream Output */}
           <div style={{
-            padding: 18, borderRadius: 16, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(16,185,129,0.25)",
+            padding: 18, borderRadius: 16,
+            background: isLight ? "#0f172a" : "rgba(0,0,0,0.75)",
+            border: "1px solid rgba(16,185,129,0.25)",
             fontFamily: mono, fontSize: 12, color: "#34d399", minHeight: 150, display: "flex", flexDirection: "column", justifyContent: "center"
           }}>
             {demoStep === 1 && (
@@ -1922,36 +1939,36 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
       </div>
 
       {/* SECTION II — WHAT AIVOS IS ABOUT & IVO DOLEŽAL'S BACKEND STORY ("O ČEM TEN WEB JE & PŘÍBĚH") */}
-      <div style={{ ...card, padding: 36, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48, position: "relative", zIndex: 1 }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, marginBottom: 8 }}>
-          PHILOSOPHY & ORIGIN
+      <div style={{ ...card, padding: 36, borderRadius: 24, background: cardBg, border: cardBorder, boxShadow: cardShadow, marginBottom: 48, position: "relative", zIndex: 1 }}>
+        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, marginBottom: 8 }}>
+          {t.philosophy_tag}
         </div>
 
-        <h2 style={{ fontSize: "clamp(22px, 4vw, 30px)", fontWeight: 900, color: "#f8fff8", margin: "0 0 16px" }}>
-          O čem je AIVOS OS? Vytvořeno tichou prací na backendu.
+        <h2 style={{ fontSize: "clamp(22px, 4vw, 30px)", fontWeight: 900, color: headingColor, margin: "0 0 16px" }}>
+          {t.philosophy_title}
         </h2>
 
-        <p style={{ fontSize: 15, color: "#d1fae5", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 900 }}>
-          AIVOS je enterprise platforma pro cloudové IT integrace, správa kvality dat a autonomní AI agenty. Stavěno datovým inženýrem, který dává přednost neprůstřelným Azure Data Factory pipeline, PySpark Delta Lake a čistému kódu před obchodnickými řečmi, komunitním otroctvím (Skool/Discord) a vyjednáváním s managementem.
+        <p style={{ fontSize: 15, color: textColor, lineHeight: 1.7, margin: "0 0 24px", maxWidth: 900 }}>
+          {t.philosophy_desc}
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20, marginTop: 24 }}>
-          <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(16,185,129,0.2)" }}>
+          <div style={{ padding: 20, borderRadius: 16, background: isLight ? "rgba(16,185,129,0.04)" : "rgba(0,0,0,0.5)", border: "1px solid rgba(16,185,129,0.2)" }}>
             <div style={{ fontSize: 24, marginBottom: 8 }}>🏢</div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: "#f8fff8", marginBottom: 6 }}>1. Cloud Integration</div>
-            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5 }}>Vysoko-propustné Azure Data Factory pipelines, Service Bus směrování událostí a REST konektory.</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: headingColor, marginBottom: 6 }}>1. Cloud Integration</div>
+            <div style={{ fontSize: 12, color: textColor, lineHeight: 1.5 }}>{t.pillar1_desc}</div>
           </div>
 
-          <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(59,130,246,0.2)" }}>
+          <div style={{ padding: 20, borderRadius: 16, background: isLight ? "rgba(59,130,246,0.04)" : "rgba(0,0,0,0.5)", border: "1px solid rgba(59,130,246,0.2)" }}>
             <div style={{ fontSize: 24, marginBottom: 8 }}>⚡</div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: "#f8fff8", marginBottom: 6 }}>2. Databricks Lakehouse</div>
-            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5 }}>ACID-kompatibilní Delta Lake pipelines a automatická kontrola kvality dat.</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: headingColor, marginBottom: 6 }}>2. Databricks Lakehouse</div>
+            <div style={{ fontSize: 12, color: textColor, lineHeight: 1.5 }}>{t.pillar2_desc}</div>
           </div>
 
-          <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(168,85,247,0.2)" }}>
+          <div style={{ padding: 20, borderRadius: 16, background: isLight ? "rgba(168,85,247,0.04)" : "rgba(0,0,0,0.5)", border: "1px solid rgba(168,85,247,0.2)" }}>
             <div style={{ fontSize: 24, marginBottom: 8 }}>🤖</div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: "#f8fff8", marginBottom: 6 }}>3. Autonomous Agents</div>
-            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5 }}>PULSE triáž videí, Gemini 2.0 Flash RAG a 2-speaker audio podcast generátor.</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: headingColor, marginBottom: 6 }}>3. Autonomous Agents</div>
+            <div style={{ fontSize: 12, color: textColor, lineHeight: 1.5 }}>{t.pillar3_desc}</div>
           </div>
         </div>
       </div>
@@ -1965,32 +1982,32 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
           { num: "24/7", label: "Agentic Telemetry Operations", tag: "PULSE TRIAGE" },
         ].map((stat, idx) => (
           <div key={idx} style={{
-            ...card, padding: 22, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)",
-            background: "rgba(13,20,16,0.85)"
+            ...card, padding: 22, borderRadius: 16,
+            background: cardBg, border: cardBorder, boxShadow: cardShadow
           }}>
-            <div style={{ fontSize: 10, fontFamily: mono, color: "#10b981", fontWeight: 800, letterSpacing: 1, marginBottom: 4 }}>{stat.tag}</div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", fontFamily: mono, margin: "2px 0" }}>{stat.num}</div>
-            <div style={{ fontSize: 12, color: "#9ca3af" }}>{stat.label}</div>
+            <div style={{ fontSize: 10, fontFamily: mono, color: isLight ? "#059669" : "#10b981", fontWeight: 800, letterSpacing: 1, marginBottom: 4 }}>{stat.tag}</div>
+            <div style={{ fontSize: 32, fontWeight: 900, color: headingColor, fontFamily: mono, margin: "2px 0" }}>{stat.num}</div>
+            <div style={{ fontSize: 12, color: textColor }}>{stat.label}</div>
           </div>
         ))}
       </div>
 
       {/* SECTION IV — PRODUCTBOARD INTERACTIVE FEATURE TABS SHOWCASE */}
-      <div style={{ ...card, padding: 32, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48, position: "relative", zIndex: 1 }}>
+      <div style={{ ...card, padding: 32, borderRadius: 24, background: cardBg, border: cardBorder, boxShadow: cardShadow, marginBottom: 48, position: "relative", zIndex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
           <div>
-            <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>PRODUCTBOARD SPARK SHOWCASE</div>
-            <h2 style={{ fontSize: 24, fontWeight: 900, color: "#f8fff8", margin: "4px 0 0" }}>Context-Native IT Capabilities</h2>
+            <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>PRODUCTBOARD SPARK SHOWCASE</div>
+            <h2 style={{ fontSize: 24, fontWeight: 900, color: headingColor, margin: "4px 0 0" }}>Context-Native IT Capabilities</h2>
           </div>
 
-          <div style={{ display: "flex", gap: 8, background: "rgba(0,0,0,0.5)", padding: 4, borderRadius: 20, border: "1px solid rgba(16,185,129,0.25)" }}>
+          <div style={{ display: "flex", gap: 8, background: isLight ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.5)", padding: 4, borderRadius: 20, border: "1px solid rgba(16,185,129,0.25)" }}>
             <button
               onClick={() => setActiveTab("adf")}
               style={{
                 padding: "8px 16px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 800,
                 border: "none", cursor: "pointer",
                 background: activeTab === "adf" ? "#10b981" : "transparent",
-                color: activeTab === "adf" ? "#000" : "#9ca3af"
+                color: activeTab === "adf" ? "#000" : textColor
               }}
             >
               🏢 Azure Cloud ADF
@@ -2001,7 +2018,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
                 padding: "8px 16px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 800,
                 border: "none", cursor: "pointer",
                 background: activeTab === "pyspark" ? "#10b981" : "transparent",
-                color: activeTab === "pyspark" ? "#000" : "#9ca3af"
+                color: activeTab === "pyspark" ? "#000" : textColor
               }}
             >
               ⚡ Databricks PySpark
@@ -2012,7 +2029,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
                 padding: "8px 16px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 800,
                 border: "none", cursor: "pointer",
                 background: activeTab === "pulse" ? "#10b981" : "transparent",
-                color: activeTab === "pulse" ? "#000" : "#9ca3af"
+                color: activeTab === "pulse" ? "#000" : textColor
               }}
             >
               🎙️ PULSE AI Triage
@@ -2024,15 +2041,15 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         {activeTab === "adf" && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
-              <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>Enterprise Cloud & Data Factory Pipelines</h3>
-              <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>Enterprise Cloud & Data Factory Pipelines</h3>
+              <p style={{ fontSize: 13, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>
                 High-throughput Azure Data Factory ETL/ELT pipelines, Service Bus event routing, REST connectors, and robust enterprise architecture designed for zero-downtime operation.
               </p>
               <button onClick={() => setSection("solutions")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
                 View Azure ADF Architecture →
               </button>
             </div>
-            <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.6)", border: "1px solid rgba(16,185,129,0.2)", fontFamily: mono, fontSize: 12, color: "#34d399", lineHeight: 1.6 }}>
+            <div style={{ padding: 20, borderRadius: 16, background: isLight ? "#0f172a" : "rgba(0,0,0,0.6)", border: "1px solid rgba(16,185,129,0.2)", fontFamily: mono, fontSize: 12, color: "#34d399", lineHeight: 1.6 }}>
               {`// Azure Data Factory Pipeline Execution\nconst pipeline = new ADFClient({\n  resourceGroup: "rg-aivos-prod",\n  factoryName: "adf-aivos-integration",\n  concurrency: 64\n});\nawait pipeline.executeTrigger("Trig_Delta_Sync");`}
             </div>
           </div>
@@ -2041,15 +2058,15 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         {activeTab === "pyspark" && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
-              <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>Databricks PySpark & Delta Lake Quality</h3>
-              <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>Databricks PySpark & Delta Lake Quality</h3>
+              <p style={{ fontSize: 13, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>
                 ACID-compliant Delta Lake data pipelines, real-time quality monitoring built on Konica Minolta IT Business Solutions standards, and Power BI analytics integration.
               </p>
               <button onClick={() => setSection("solutions")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)", color: "#60a5fa", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
                 Explore Databricks Blueprints →
               </button>
             </div>
-            <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.6)", border: "1px solid rgba(59,130,246,0.2)", fontFamily: mono, fontSize: 12, color: "#60a5fa", lineHeight: 1.6 }}>
+            <div style={{ padding: 20, borderRadius: 16, background: isLight ? "#0f172a" : "rgba(0,0,0,0.6)", border: "1px solid rgba(59,130,246,0.2)", fontFamily: mono, fontSize: 12, color: "#60a5fa", lineHeight: 1.6 }}>
               {`# Databricks PySpark Delta Lake Quality Check\nfrom delta.tables import DeltaTable\n\ndf = spark.read.format("delta").load("/mnt/delta/gold_sales")\nassert df.filter(df.amount < 0).count() == 0, "Data Quality Assertion Failed"`}
             </div>
           </div>
@@ -2058,15 +2075,15 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         {activeTab === "pulse" && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
-              <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>PULSE Video Triage & AI Podcast Engine</h3>
-              <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>PULSE Video Triage & AI Podcast Engine</h3>
+              <p style={{ fontSize: 13, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>
                 Automated YouTube transcript extraction via headless python yt-dlp, Gemini 2.0 relevance triage scoring (1-10), and 1-click 2-speaker audio podcast briefs.
               </p>
               <button onClick={() => setSection("brief")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
                 Run PULSE Triage →
               </button>
             </div>
-            <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.6)", border: "1px solid rgba(168,85,247,0.2)", fontFamily: mono, fontSize: 12, color: "#c084fc", lineHeight: 1.6 }}>
+            <div style={{ padding: 20, borderRadius: 16, background: isLight ? "#0f172a" : "rgba(0,0,0,0.6)", border: "1px solid rgba(168,85,247,0.2)", fontFamily: mono, fontSize: 12, color: "#c084fc", lineHeight: 1.6 }}>
               {`// PULSE Gemini 2.0 Triage Stream\nconst triage = await gemini.evaluate({\n  transcript: ytSubtitles,\n  model: "gemini-2.0-flash",\n  targetScoreMin: 8\n});`}
             </div>
           </div>
@@ -2075,7 +2092,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
 
       {/* Bouncing Scroll Indicator (from ivaneklumberjack888.github.io) */}
       <div className="animate-bounce-slow" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, margin: "20px 0 10px", cursor: "pointer" }} onClick={() => setSection("solutions")}>
-        <span style={{ color: "#9ca3af", fontSize: 11, fontFamily: mono, letterSpacing: 1.5, textTransform: "uppercase" }}>Scroll to Explore Capabilities</span>
+        <span style={{ color: textColor, fontSize: 11, fontFamily: mono, letterSpacing: 1.5, textTransform: "uppercase" }}>Scroll to Explore Capabilities</span>
         <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#10b981", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 900 }}>
           ↓
         </div>
@@ -2101,21 +2118,20 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
 }
 
 // APIFY-STYLE SOLUTIONS PAGE
-function SolutionsView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
-  const [lang] = useState<Language>("en");
+function SolutionsView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
   const t = translations[lang];
 
   return (
-    <div style={{ padding: "2.5rem 2rem", maxWidth: 1140, margin: "0 auto" }}>
+    <div style={{ padding: "2.5rem 1.5rem", maxWidth: 1140, margin: "0 auto" }}>
       <div style={{ marginBottom: 32 }}>
         <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ENTERPRISE SOLUTIONS</div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: 0 }}>Tailored Data Engineering & AI Automation</h1>
+        <h1 style={{ fontSize: 32, fontWeight: 900, margin: 0 }}>Tailored Data Engineering & AI Automation</h1>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28 }}>
           <span style={{ fontSize: 11, fontFamily: mono, color: "#10b981", fontWeight: 800 }}>SOLUTION 01</span>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#f8fff8", margin: "6px 0 12px" }}>{t.pillar1_title}</h2>
+          <h2 style={{ fontSize: 22, fontWeight: 800, margin: "6px 0 12px" }}>{t.pillar1_title}</h2>
           <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar1_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Enterprise Pricing →
@@ -2124,7 +2140,7 @@ function SolutionsView({ setSection, onOpenLogin }: { setSection: (s: Section) =
 
         <div style={{ ...card, border: "1px solid rgba(59,130,246,0.4)", padding: 28 }}>
           <span style={{ fontSize: 11, fontFamily: mono, color: "#60a5fa", fontWeight: 800 }}>SOLUTION 02</span>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#f8fff8", margin: "6px 0 12px" }}>{t.pillar2_title}</h2>
+          <h2 style={{ fontSize: 22, fontWeight: 800, margin: "6px 0 12px" }}>{t.pillar2_title}</h2>
           <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar2_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)", color: "#60a5fa", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Enterprise Pricing →
@@ -2133,7 +2149,7 @@ function SolutionsView({ setSection, onOpenLogin }: { setSection: (s: Section) =
 
         <div style={{ ...card, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
           <span style={{ fontSize: 11, fontFamily: mono, color: "#c084fc", fontWeight: 800 }}>SOLUTION 03</span>
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#f8fff8", margin: "6px 0 12px" }}>{t.pillar3_title}</h2>
+          <h2 style={{ fontSize: 22, fontWeight: 800, margin: "6px 0 12px" }}>{t.pillar3_title}</h2>
           <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar3_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Enterprise Pricing →
@@ -2145,8 +2161,7 @@ function SolutionsView({ setSection, onOpenLogin }: { setSection: (s: Section) =
 }
 
 // APIFY-STYLE MARKETPLACE PAGE
-function MarketplaceView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
-  const [lang] = useState<Language>("en");
+function MarketplaceView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
   const t = translations[lang];
 
   return (
@@ -2206,8 +2221,7 @@ function MarketplaceView({ setSection, onOpenLogin }: { setSection: (s: Section)
 }
 
 // DEDICATED PRICING PAGE (FABRIC FORGE LAUNCH MODEL INSPIRED)
-function PricingView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
-  const [lang] = useState<Language>("en");
+function PricingView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
   const t = translations[lang];
 
   return (
@@ -2254,8 +2268,7 @@ function PricingView({ setSection, onOpenLogin }: { setSection: (s: Section) => 
 }
 
 // DEDICATED ABOUT PAGE
-function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
-  const [lang] = useState<Language>("en");
+function AboutView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
   const t = translations[lang];
 
   return (
@@ -2299,15 +2312,17 @@ function LinearHeader({
   onOpenLogin,
   theme,
   setTheme,
+  lang,
+  setLang,
 }: {
   currentSection: Section;
   setSection: (s: Section) => void;
   onOpenLogin: () => void;
   theme: "dark" | "light";
   setTheme: (t: "dark" | "light") => void;
+  lang: Language;
+  setLang: (l: Language) => void;
 }) {
-  const [lang, setLang] = useState<Language>("en");
-
   const navItems: { id: Section; label: string }[] = [
     { id: "landing", label: "Home" },
     { id: "solutions", label: "Solutions" },
@@ -2399,14 +2414,14 @@ function LinearHeader({
                 padding: "3px 8px", borderRadius: 12, fontSize: 10, fontFamily: mono, fontWeight: 700,
                 border: "none", cursor: "pointer",
                 background: lang === "cz" ? "#10b981" : "transparent",
-                color: lang === "cz" ? "#000" : "#6b7280"
+                color: lang === "cz" ? "#000" : (isLight ? "#475569" : "#6b7280")
               }}
             >
               CZ
             </button>
           </div>
 
-          <button onClick={onOpenLogin} style={{ background: "none", border: "none", color: "#9ca3af", fontSize: 11, fontFamily: mono, fontWeight: 600, cursor: "pointer" }}>
+          <button onClick={onOpenLogin} style={{ background: "none", border: "none", color: isLight ? "#475569" : "#9ca3af", fontSize: 11, fontFamily: mono, fontWeight: 600, cursor: "pointer" }}>
             Log in
           </button>
 
@@ -2470,7 +2485,7 @@ function NotebookLMView() {
           <div style={{ color: "#3b82f6", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
             <BookMarked size={14} /> GOOGLE NOTEBOOKLM INTEGRATION
           </div>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f8fff8", margin: 0 }}>Gemini 2.0 Research & Notebook Hub</h1>
+          <h1 style={{ fontSize: 28, fontWeight: 900, margin: 0 }}>Gemini 2.0 Research & Notebook Hub</h1>
         </div>
 
         <a
@@ -2499,7 +2514,7 @@ function NotebookLMView() {
             }}
           >
             <div style={{ fontSize: 20, marginBottom: 8 }}>{nb.icon}</div>
-            <div style={{ color: "#f8fff8", fontSize: 14, fontWeight: 700, marginBottom: 4 }}>{nb.title}</div>
+            <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 4 }}>{nb.title}</div>
             <div style={{ color: "#9ca3af", fontSize: 11, fontFamily: mono }}>{nb.sourcesCount} Indexed Sources</div>
           </div>
         ))}
@@ -2513,7 +2528,7 @@ function NotebookLMView() {
       }}>
         <div>
           <div style={{ color: "#60a5fa", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>NOTEBOOKLM AUDIO OVERVIEW</div>
-          <div style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, marginTop: 4 }}>2-Speaker AI Podcast Brief</div>
+          <div style={{ fontSize: 16, fontWeight: 800, marginTop: 4 }}>2-Speaker AI Podcast Brief</div>
           <div style={{ color: "#9ca3af", fontSize: 12, marginTop: 2 }}>Synthesize all indexed notebook sources into a 5-minute audio deep dive podcast.</div>
         </div>
 
@@ -2549,7 +2564,7 @@ function NotebookLMView() {
               padding: 14, borderRadius: 10,
               background: m.role === "user" ? "rgba(59,130,246,0.15)" : "rgba(255,255,255,0.03)",
               border: m.role === "user" ? "1px solid rgba(59,130,246,0.3)" : "1px solid rgba(255,255,255,0.06)",
-              color: "#f8fff8", fontSize: 13, lineHeight: 1.6, whiteSpace: "pre-wrap"
+              fontSize: 13, lineHeight: 1.6, whiteSpace: "pre-wrap"
             }}>
               <div style={{ fontSize: 10, fontFamily: mono, color: m.role === "user" ? "#60a5fa" : "#34d399", marginBottom: 4 }}>
                 {m.role === "user" ? "USER QUERY" : "GEMINI 2.0 NOTEBOOKLM CITATION"}
@@ -2594,6 +2609,7 @@ export default function App() {
   const [ollamaOk, setOllamaOk] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [lang, setLang] = useState<Language>("en");
 
   useEffect(() => {
     setTime(new Date());
@@ -2607,11 +2623,11 @@ export default function App() {
 
   function renderSection() {
     switch (section) {
-      case "landing":     return <LandingHomeView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
-      case "solutions":   return <SolutionsView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
-      case "marketplace": return <MarketplaceView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
-      case "pricing":     return <PricingView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
-      case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
+      case "landing":     return <LandingHomeView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
+      case "solutions":   return <SolutionsView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
+      case "marketplace": return <MarketplaceView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
+      case "pricing":     return <PricingView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
+      case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
       case "dashboard":   return time ? <Dashboard time={time} /> : null;
       case "notebooklm":  return <NotebookLMView />;
       case "brief":       return <BriefView />;
@@ -2639,7 +2655,7 @@ export default function App() {
           paddingTop: 10, paddingBottom: 60,
           transition: "background 0.3s, color 0.3s"
         }}>
-          <LinearHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} theme={theme} setTheme={setTheme} />
+          <LinearHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />
           <main>
             {renderSection()}
           </main>
