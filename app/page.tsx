@@ -1972,7 +1972,7 @@ function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => vo
 
   return (
     <div style={{ padding: "2.5rem 2rem", maxWidth: 1140, margin: "0 auto" }}>
-      <div style={{ ...card, padding: 36, border: "1px solid rgba(16,185,129,0.3)" }}>
+      <div style={{ ...card, padding: 36, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 24 }}>
         <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f8fff8", margin: "0 0 12px" }}>{t.about_title}</h1>
         <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 20px" }}>{t.about_desc}</p>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -1981,6 +1981,23 @@ function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => vo
               {tag}
             </span>
           ))}
+        </div>
+      </div>
+
+      {/* Authentic Backend Philosophy Quote Box */}
+      <div style={{
+        ...card, padding: 32,
+        background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))",
+        border: "1px solid rgba(16,185,129,0.35)", borderRadius: 16
+      }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 800 }}>
+          {t.about_quote_tag}
+        </div>
+        <blockquote style={{ color: "#f8fff8", fontSize: 16, fontWeight: 600, fontStyle: "italic", lineHeight: 1.6, margin: "0 0 14px", borderLeft: "3px solid #10b981", paddingLeft: 16 }}>
+          "{t.about_quote}"
+        </blockquote>
+        <div style={{ color: "#9ca3af", fontSize: 12, fontFamily: mono, paddingLeft: 16 }}>
+          — Ivo Doležal · IT Integration and Automation Specialist (Backend & Data Systems)
         </div>
       </div>
     </div>

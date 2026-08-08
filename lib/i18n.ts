@@ -60,6 +60,8 @@ export const translations = {
     // About Section
     about_title: "About AIVOS Platform",
     about_desc: "AIVOS is an enterprise IT Integration & Automation platform. Headquartered in Prague, Czech Republic, specializing in Azure cloud architectures, PySpark Lakehouse pipelines, Delta Lake data quality governance, and autonomous agentic workflows.",
+    about_quote: "Engineered from the back-row. Built by a Senior Data & Backend Engineer who prefers rock-solid pipelines, automated execution, and clean architecture over sales pitches or corporate politics.",
+    about_quote_tag: "BACKEND & DATA INTEGRATION PHILOSOPHY",
 
     // Public Landing Page (Capco & Axians Inspired)
     landing_badge: "✨ NEXT-GEN IT INTEGRACE & AI AUTOMATIZAČNÍ CONSULTING",
@@ -179,6 +181,8 @@ export const translations = {
     // About Section
     about_title: "O platformě AIVOS",
     about_desc: "AIVOS je enterprise platforma pro IT integrace a automatizaci. Se sídlem v Praze, se specializací na Azure cloudové architektury, PySpark Delta Lake pipelines, kontrolu kvality dat a autonomní AI agenty.",
+    about_quote: "Vytvořeno tichou prací na backendu. Stavěno datovým inženýrem, který dává přednost neprůstřelným pipeline, automatizaci a čistému kódu před obchodnickými řečmi a vyjednáváním s managmentem.",
+    about_quote_tag: "BACKEND A DATOVÁ FILOZOFIE",
 
     // Navigation
     nav_landing: "Úvodní Stránka",
