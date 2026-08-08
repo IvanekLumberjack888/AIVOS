@@ -645,6 +645,24 @@ function BriefView() {
   const audioSrc = selectedDate === "latest" ? "/briefs/latest_brief.mp3" : `/briefs/${selectedDate}_brief.mp3`;
   const panelOpen = activeVideo !== null;
 
+  const generateDigestBlog = () => {
+    if (!brief || !brief.high || brief.high.length === 0) return;
+    const topTitles = brief.high.map(v => v.title).join(", ");
+    const topSummaries = brief.high.map(v => `• ${v.title} (${v.channel}): ${v.summary}`).join("\n");
+    
+    const syntheticVideo: VideoItem = {
+      title: `Top Technical Insights & Architecture Synthesis (${brief.date})`,
+      channel: "AIVOS Tech Digest",
+      url: "https://medium.com",
+      summary: `Synthesized technical digest of top-rated videos: ${topTitles}.\n\nDetailed Breakdown:\n${topSummaries}`,
+      key_points: brief.high.map(v => `${v.title}: ${v.action}`),
+      action: "Publish to Medium / Substack newsletter",
+      tags: "#Digest #TechBlog #DataEngineering"
+    };
+    
+    setMediumVideo(syntheticVideo);
+  };
+
   return (
     <>
       {panelOpen && <DeepDiveChat video={activeVideo!} onClose={() => setActiveVideo(null)} />}
@@ -747,7 +765,13 @@ function BriefView() {
               </div>
               <h2 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 700, margin: 0 }}>Brain Brief Architecture & Pro Workflows</h2>
             </div>
-            <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <button onClick={generateDigestBlog} style={{
+                padding: "6px 12px", borderRadius: 8, background: "rgba(168,85,247,0.18)", border: "1px solid rgba(168,85,247,0.4)",
+                color: "#c084fc", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700
+              }}>
+                📰 Generate Digest Blog
+              </button>
               <button onClick={() => setShowKpiModal(true)} style={{
                 padding: "6px 12px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.4)",
                 color: "#60a5fa", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700
