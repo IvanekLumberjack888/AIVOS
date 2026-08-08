@@ -2118,39 +2118,45 @@ function LandingHomeView({ setSection, onOpenLogin, lang, theme }: { setSection:
 }
 
 // APIFY-STYLE SOLUTIONS PAGE
-function SolutionsView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
+function SolutionsView({ setSection, onOpenLogin, lang, theme }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language; theme: "dark" | "light" }) {
   const t = translations[lang];
+  const isLight = theme === "light";
+  const headingColor = isLight ? "#0f172a" : "#f8fff8";
+  const textColor = isLight ? "#334155" : "#9ca3af";
+  const cardBg = isLight ? "#ffffff" : "rgba(13,20,16,0.85)";
+  const cardBorder = isLight ? "1px solid rgba(16,185,129,0.25)" : "1px solid rgba(16,185,129,0.35)";
+  const cardShadow = isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)";
 
   return (
     <div style={{ padding: "2.5rem 1.5rem", maxWidth: 1140, margin: "0 auto" }}>
       <div style={{ marginBottom: 32 }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ENTERPRISE SOLUTIONS</div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, margin: 0 }}>Tailored Data Engineering & AI Automation</h1>
+        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ENTERPRISE SOLUTIONS</div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: headingColor, margin: 0 }}>Tailored Data Engineering & AI Automation</h1>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28 }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(16,185,129,0.4)", padding: 28 }}>
           <span style={{ fontSize: 11, fontFamily: mono, color: "#10b981", fontWeight: 800 }}>SOLUTION 01</span>
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: "6px 0 12px" }}>{t.pillar1_title}</h2>
-          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar1_desc}</p>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: headingColor, margin: "6px 0 12px" }}>{t.pillar1_title}</h2>
+          <p style={{ fontSize: 14, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar1_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Enterprise Pricing →
           </button>
         </div>
 
-        <div style={{ ...card, border: "1px solid rgba(59,130,246,0.4)", padding: 28 }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(59,130,246,0.4)", padding: 28 }}>
           <span style={{ fontSize: 11, fontFamily: mono, color: "#60a5fa", fontWeight: 800 }}>SOLUTION 02</span>
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: "6px 0 12px" }}>{t.pillar2_title}</h2>
-          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar2_desc}</p>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: headingColor, margin: "6px 0 12px" }}>{t.pillar2_title}</h2>
+          <p style={{ fontSize: 14, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar2_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)", color: "#60a5fa", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Enterprise Pricing →
           </button>
         </div>
 
-        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
           <span style={{ fontSize: 11, fontFamily: mono, color: "#c084fc", fontWeight: 800 }}>SOLUTION 03</span>
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: "6px 0 12px" }}>{t.pillar3_title}</h2>
-          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar3_desc}</p>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: headingColor, margin: "6px 0 12px" }}>{t.pillar3_title}</h2>
+          <p style={{ fontSize: 14, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar3_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Enterprise Pricing →
           </button>
@@ -2161,40 +2167,45 @@ function SolutionsView({ setSection, onOpenLogin, lang }: { setSection: (s: Sect
 }
 
 // APIFY-STYLE MARKETPLACE PAGE
-function MarketplaceView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
+function MarketplaceView({ setSection, onOpenLogin, lang, theme }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language; theme: "dark" | "light" }) {
   const t = translations[lang];
+  const isLight = theme === "light";
+  const headingColor = isLight ? "#0f172a" : "#f8fff8";
+  const textColor = isLight ? "#334155" : "#9ca3af";
+  const cardBg = isLight ? "#ffffff" : "rgba(13,20,16,0.85)";
+  const cardShadow = isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)";
 
   return (
     <div style={{ padding: "2.5rem 1.5rem", maxWidth: 1140, margin: "0 auto" }}>
       <div style={{ marginBottom: 32 }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>APIFY-STYLE MARKETPLACE</div>
-        <h1 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, margin: 0 }}>{t.market_title}</h1>
-        <p style={{ fontSize: 14, color: "#9ca3af", marginTop: 6 }}>{t.market_subtitle}</p>
+        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>APIFY-STYLE MARKETPLACE</div>
+        <h1 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, color: headingColor, margin: 0 }}>{t.market_title}</h1>
+        <p style={{ fontSize: 14, color: textColor, marginTop: 6 }}>{t.market_subtitle}</p>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.3)" }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(16,185,129,0.3)" }}>
           <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, fontWeight: 800, marginBottom: 8 }}>ACTOR · READY TO RUN</div>
-          <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 10px" }}>{t.actor1_title}</h3>
-          <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor1_desc}</p>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>{t.actor1_title}</h3>
+          <p style={{ fontSize: 12, color: textColor, lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor1_desc}</p>
           <button onClick={() => setSection("brief")} style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
             Run Actor in PULSE →
           </button>
         </div>
 
-        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.3)" }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(168,85,247,0.3)" }}>
           <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, fontWeight: 800, marginBottom: 8 }}>ACTOR · MEDIUM API</div>
-          <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 10px" }}>{t.actor2_title}</h3>
-          <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor2_desc}</p>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>{t.actor2_title}</h3>
+          <p style={{ fontSize: 12, color: textColor, lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor2_desc}</p>
           <button onClick={() => setSection("sessions")} style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)", color: "#c084fc", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
             Open Article Generator →
           </button>
         </div>
 
-        <div style={{ ...card, border: "1px solid rgba(59,130,246,0.3)" }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(59,130,246,0.3)" }}>
           <div style={{ color: "#60a5fa", fontSize: 10, fontFamily: mono, fontWeight: 800, marginBottom: 8 }}>ACTOR · NOTION SYNC</div>
-          <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 10px" }}>{t.actor3_title}</h3>
-          <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor3_desc}</p>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>{t.actor3_title}</h3>
+          <p style={{ fontSize: 12, color: textColor, lineHeight: 1.6, margin: "0 0 14px" }}>{t.actor3_desc}</p>
           <button onClick={() => setSection("para")} style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.3)", color: "#60a5fa", fontSize: 11, fontFamily: mono, cursor: "pointer" }}>
             Open Notion P.A.R.A. →
           </button>
@@ -2203,13 +2214,13 @@ function MarketplaceView({ setSection, onOpenLogin, lang }: { setSection: (s: Se
         {/* Featured SwitcherOS Gumroad Product Banner */}
         <div style={{
           ...card, marginTop: 12, padding: 24,
-          background: "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(16,185,129,0.15))",
-          border: "1px solid rgba(236,72,153,0.35)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16
+          background: isLight ? "linear-gradient(135deg, rgba(236,72,153,0.1), rgba(16,185,129,0.1))" : "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(16,185,129,0.15))",
+          border: "1px solid rgba(236,72,153,0.35)", boxShadow: cardShadow, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16
         }}>
           <div>
             <div style={{ color: "#ec4899", fontSize: 10, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>FEATURED GUMROAD BLUEPRINT</div>
-            <h3 style={{ fontSize: 18, fontWeight: 800, margin: "4px 0 2px" }}>SwitcherOS – Career Switch System (Notion Template)</h3>
-            <p style={{ fontSize: 12, color: "#9ca3af", margin: 0 }}>7-step career switch roadmap (non-IT → Junior Data Engineer), P.A.R.A. workspace, and AI prompts.</p>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: headingColor, margin: "4px 0 2px" }}>SwitcherOS – Career Switch System (Notion Template)</h3>
+            <p style={{ fontSize: 12, color: textColor, margin: 0 }}>7-step career switch roadmap (non-IT → Junior Data Engineer), P.A.R.A. workspace, and AI prompts.</p>
           </div>
           <button onClick={() => window.open("https://ivousd.gumroad.com/l/switcheros-career", "_blank")} style={{ padding: "10px 18px", borderRadius: 8, background: "#ec4899", color: "#fff", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
             Get SwitcherOS on Gumroad ↗
@@ -2221,43 +2232,48 @@ function MarketplaceView({ setSection, onOpenLogin, lang }: { setSection: (s: Se
 }
 
 // DEDICATED PRICING PAGE (FABRIC FORGE LAUNCH MODEL INSPIRED)
-function PricingView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
+function PricingView({ setSection, onOpenLogin, lang, theme }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language; theme: "dark" | "light" }) {
   const t = translations[lang];
+  const isLight = theme === "light";
+  const headingColor = isLight ? "#0f172a" : "#f8fff8";
+  const textColor = isLight ? "#334155" : "#9ca3af";
+  const cardBg = isLight ? "#ffffff" : "rgba(13,20,16,0.85)";
+  const cardShadow = isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)";
 
   return (
     <div style={{ padding: "2.5rem 1.5rem", maxWidth: 1140, margin: "0 auto" }}>
       <div style={{ marginBottom: 32, textAlign: "center" }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ACCESSIBLE EARLY-BIRD PRICING</div>
-        <h1 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, margin: "0 0 8px" }}>{t.pricing_title}</h1>
-        <p style={{ fontSize: 14, color: "#9ca3af" }}>{t.pricing_subtitle}</p>
+        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ACCESSIBLE EARLY-BIRD PRICING</div>
+        <h1 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, color: headingColor, margin: "0 0 8px" }}>{t.pricing_title}</h1>
+        <p style={{ fontSize: 14, color: textColor }}>{t.pricing_subtitle}</p>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
         {/* Tier 1: Standard Free */}
-        <div style={{ ...card, border: "1px solid rgba(255,255,255,0.15)", padding: 28 }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: isLight ? "1px solid rgba(0,0,0,0.12)" : "1px solid rgba(255,255,255,0.15)", padding: 28 }}>
           <div style={{ color: "#6b7280", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_starter_title}</div>
-          <div style={{ fontSize: 32, fontWeight: 900, margin: "10px 0" }}>{t.plan_starter_price}</div>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_starter_desc}</p>
-          <button onClick={() => setSection("dashboard")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
+          <div style={{ fontSize: 32, fontWeight: 900, color: headingColor, margin: "10px 0" }}>{t.plan_starter_price}</div>
+          <p style={{ fontSize: 12, color: textColor, margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_starter_desc}</p>
+          <button onClick={() => setSection("dashboard")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: isLight ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.06)", border: isLight ? "1px solid rgba(0,0,0,0.12)" : "1px solid rgba(255,255,255,0.15)", color: headingColor, fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Explore Free Demo →
           </button>
         </div>
 
         {/* Tier 2: Early Bird $5 / mo Launch Deal */}
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28, background: "linear-gradient(135deg, rgba(16,185,129,0.18), rgba(13,20,16,0.95))", boxShadow: "0 0 30px rgba(16,185,129,0.2)" }}>
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28, background: isLight ? "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(255,255,255,0.95))" : "linear-gradient(135deg, rgba(16,185,129,0.18), rgba(13,20,16,0.95))", boxShadow: cardShadow }}>
           <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>{t.plan_pro_title} · LAUNCH DEAL</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#10b981", margin: "10px 0" }}>{t.plan_pro_price}</div>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_pro_desc}</p>
+          <p style={{ fontSize: 12, color: textColor, margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_pro_desc}</p>
           <button onClick={() => window.open("https://ivousd.gumroad.com/l/switcheros-career", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "linear-gradient(135deg, #10b981, #059669)", color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
             Claim $5 Access on Gumroad ↗
           </button>
         </div>
 
         {/* Tier 3: Enterprise / Team */}
-        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
+        <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
           <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_private_title}</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#c084fc", margin: "10px 0" }}>{t.plan_private_price}</div>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_private_desc}</p>
+          <p style={{ fontSize: 12, color: textColor, margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_private_desc}</p>
           <button onClick={() => window.open("https://linkedin.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.4)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
             Contact Enterprise Team →
           </button>
@@ -2268,17 +2284,22 @@ function PricingView({ setSection, onOpenLogin, lang }: { setSection: (s: Sectio
 }
 
 // DEDICATED ABOUT PAGE
-function AboutView({ setSection, onOpenLogin, lang }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language }) {
+function AboutView({ setSection, onOpenLogin, lang, theme }: { setSection: (s: Section) => void; onOpenLogin: () => void; lang: Language; theme: "dark" | "light" }) {
   const t = translations[lang];
+  const isLight = theme === "light";
+  const headingColor = isLight ? "#0f172a" : "#f8fff8";
+  const textColor = isLight ? "#334155" : "#9ca3af";
+  const cardBg = isLight ? "#ffffff" : "rgba(13,20,16,0.85)";
+  const cardShadow = isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)";
 
   return (
     <div style={{ padding: "2.5rem 1.5rem", maxWidth: 1140, margin: "0 auto" }}>
-      <div style={{ ...card, padding: 36, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 24 }}>
-        <h1 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, margin: "0 0 12px" }}>{t.about_title}</h1>
-        <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 20px" }}>{t.about_desc}</p>
+      <div style={{ ...card, background: cardBg, boxShadow: cardShadow, padding: 36, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 24 }}>
+        <h1 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, color: headingColor, margin: "0 0 12px" }}>{t.about_title}</h1>
+        <p style={{ fontSize: 14, color: textColor, lineHeight: 1.7, margin: "0 0 20px" }}>{t.about_desc}</p>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           {["Azure Data Stack", "PySpark Delta Lake", "Gemini 2.0 Flash", "Notion P.A.R.A.", "Ollama Local AI", "Vercel Next.js"].map(tag => (
-            <span key={tag} style={{ fontSize: 11, fontFamily: mono, color: "#10b981", background: "rgba(16,185,129,0.1)", padding: "4px 10px", borderRadius: 6, border: "1px solid rgba(16,185,129,0.2)" }}>
+            <span key={tag} style={{ fontSize: 11, fontFamily: mono, color: isLight ? "#059669" : "#10b981", background: "rgba(16,185,129,0.1)", padding: "4px 10px", borderRadius: 6, border: "1px solid rgba(16,185,129,0.2)" }}>
               {tag}
             </span>
           ))}
@@ -2288,16 +2309,16 @@ function AboutView({ setSection, onOpenLogin, lang }: { setSection: (s: Section)
       {/* Authentic Backend Philosophy Quote Box */}
       <div style={{
         ...card, padding: 32,
-        background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))",
-        border: "1px solid rgba(16,185,129,0.35)", borderRadius: 16
+        background: isLight ? "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(255,255,255,0.95))" : "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))",
+        border: "1px solid rgba(16,185,129,0.35)", boxShadow: cardShadow, borderRadius: 16
       }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 800 }}>
+        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 800 }}>
           {t.about_quote_tag}
         </div>
-        <blockquote style={{ fontSize: 16, fontWeight: 600, fontStyle: "italic", lineHeight: 1.6, margin: "0 0 14px", borderLeft: "3px solid #10b981", paddingLeft: 16 }}>
+        <blockquote style={{ fontSize: 16, fontWeight: 600, fontStyle: "italic", color: headingColor, lineHeight: 1.6, margin: "0 0 14px", borderLeft: "3px solid #10b981", paddingLeft: 16 }}>
           "{t.about_quote}"
         </blockquote>
-        <div style={{ color: "#9ca3af", fontSize: 12, fontFamily: mono, paddingLeft: 16 }}>
+        <div style={{ color: textColor, fontSize: 12, fontFamily: mono, paddingLeft: 16 }}>
           — Ivo Doležal · IT Integration and Automation Specialist (Backend & Data Systems)
         </div>
       </div>
@@ -2624,10 +2645,10 @@ export default function App() {
   function renderSection() {
     switch (section) {
       case "landing":     return <LandingHomeView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
-      case "solutions":   return <SolutionsView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
-      case "marketplace": return <MarketplaceView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
-      case "pricing":     return <PricingView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
-      case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} />;
+      case "solutions":   return <SolutionsView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
+      case "marketplace": return <MarketplaceView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
+      case "pricing":     return <PricingView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
+      case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
       case "dashboard":   return time ? <Dashboard time={time} /> : null;
       case "notebooklm":  return <NotebookLMView />;
       case "brief":       return <BriefView />;
