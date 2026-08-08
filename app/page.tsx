@@ -2041,198 +2041,105 @@ function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => vo
   );
 }
 
-// APIFY-STYLE TOP NAVIGATION HEADER WITH RICH MEGA-MENUS
-function ApifyHeader({ currentSection, setSection, onOpenLogin }: { currentSection: Section; setSection: (s: Section) => void; onOpenLogin: () => void }) {
+// LINEAR / DATAMOLE FUTURISTIC GLASSMORPHIC FLOATING HEADER
+function LinearHeader({ currentSection, setSection, onOpenLogin }: { currentSection: Section; setSection: (s: Section) => void; onOpenLogin: () => void }) {
   const [lang, setLang] = useState<Language>("en");
-  const [activeDropdown, setActiveDropdown] = useState<"product" | "solutions" | "developers" | null>(null);
-  const t = translations[lang];
+
+  const navItems: { id: Section; label: string }[] = [
+    { id: "landing",     label: "Home" },
+    { id: "solutions",   label: "Solutions" },
+    { id: "marketplace", label: "Marketplace" },
+    { id: "brief",       label: "PULSE" },
+    { id: "pricing",     label: "Pricing" },
+    { id: "about",       label: "About" },
+  ];
 
   return (
     <header style={{
-      position: "sticky", top: 0, zIndex: 100,
-      background: "rgba(13,20,16,0.92)", backdropFilter: "blur(20px)",
-      borderBottom: "1px solid rgba(16,185,129,0.18)", padding: "12px 32px"
+      position: "sticky", top: 16, zIndex: 100,
+      maxWidth: 1080, margin: "0 auto", padding: "0 16px"
     }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        
+      <div style={{
+        background: "rgba(13,20,16,0.85)", backdropFilter: "blur(24px)",
+        border: "1px solid rgba(16,185,129,0.3)", borderRadius: 24,
+        padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "space-between",
+        boxShadow: "0 16px 40px rgba(0,0,0,0.7), 0 0 24px rgba(16,185,129,0.15)"
+      }}>
         {/* Brand Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => setSection("landing")}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => setSection("landing")}>
           <div style={{
-            width: 36, height: 36, borderRadius: 10,
+            width: 32, height: 32, borderRadius: 8,
             background: "linear-gradient(135deg, #10b981, #059669)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            color: "#000", fontWeight: 900, fontFamily: mono, fontSize: 16,
-            boxShadow: "0 0 16px rgba(16,185,129,0.4)"
+            color: "#000", fontWeight: 900, fontFamily: mono, fontSize: 14,
+            boxShadow: "0 0 14px rgba(16,185,129,0.4)"
           }}>
             AI
           </div>
-          <span style={{ fontSize: 18, fontWeight: 900, color: "#f8fff8", letterSpacing: 0.5 }}>AIVOS</span>
+          <span style={{ fontSize: 16, fontWeight: 900, color: "#f8fff8", letterSpacing: 0.5, fontFamily: mono }}>AIVOS OS</span>
         </div>
 
-        {/* Apify-Style Top Navigation Items with Mega-Menu Dropdowns */}
-        <div style={{ display: "flex", alignItems: "center", gap: 20, position: "relative" }}>
-          
-          {/* Product Dropdown */}
-          <div style={{ position: "relative" }} onMouseEnter={() => setActiveDropdown("product")} onMouseLeave={() => setActiveDropdown(null)}>
-            <button style={{
-              background: "none", border: "none", cursor: "pointer", color: activeDropdown === "product" ? "#10b981" : "#e2e8f0",
-              fontSize: 13, fontFamily: mono, fontWeight: 600, display: "flex", alignItems: "center", gap: 4, padding: "6px 10px"
-            }}>
-              Product ▾
-            </button>
-            {activeDropdown === "product" && (
-              <div style={{
-                position: "absolute", top: "100%", left: 0, width: 340, background: "#0d1410",
-                border: "1px solid rgba(16,185,129,0.3)", borderRadius: 12, padding: 16,
-                boxShadow: "0 16px 48px rgba(0,0,0,0.8)", display: "flex", flexDirection: "column", gap: 12
-              }}>
-                <div onClick={() => { setSection("brief"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                  <div style={{ color: "#10b981", fontSize: 12, fontWeight: 700, fontFamily: mono }}>⚡ PULSE Video Triage</div>
-                  <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 2 }}>Automated YouTube triage & daily audio podcast briefs.</div>
-                </div>
-                <div onClick={() => { setSection("sessions"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                  <div style={{ color: "#c084fc", fontSize: 12, fontWeight: 700, fontFamily: mono }}>✍️ Medium & Substack Generator</div>
-                  <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 2 }}>One-click technical article draft publishing API.</div>
-                </div>
-                <div onClick={() => { setSection("para"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                  <div style={{ color: "#60a5fa", fontSize: 12, fontWeight: 700, fontFamily: mono }}>🔒 Notion P.A.R.A. Sync</div>
-                  <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 2 }}>Live 2-way sync with zero-trust local LLM memory.</div>
-                </div>
-              </div>
-            )}
-          </div>
+        {/* Linear Floating Nav Links */}
+        <nav style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          {navItems.map(item => {
+            const active = currentSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setSection(item.id)}
+                style={{
+                  background: active ? "rgba(16,185,129,0.15)" : "transparent",
+                  border: active ? "1px solid rgba(16,185,129,0.35)" : "1px solid transparent",
+                  color: active ? "#10b981" : "#9ca3af",
+                  padding: "6px 14px", borderRadius: 16,
+                  fontSize: 12, fontFamily: mono, fontWeight: active ? 800 : 600,
+                  cursor: "pointer", transition: "all 0.2s"
+                }}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
 
-          {/* Solutions Dropdown */}
-          <div style={{ position: "relative" }} onMouseEnter={() => setActiveDropdown("solutions")} onMouseLeave={() => setActiveDropdown(null)}>
-            <button onClick={() => setSection("solutions")} style={{
-              background: "none", border: "none", cursor: "pointer", color: currentSection === "solutions" ? "#10b981" : "#e2e8f0",
-              fontSize: 13, fontFamily: mono, fontWeight: 600, display: "flex", alignItems: "center", gap: 4, padding: "6px 10px"
-            }}>
-              Solutions ▾
-            </button>
-            {activeDropdown === "solutions" && (
-              <div style={{
-                position: "absolute", top: "100%", left: 0, width: 340, background: "#0d1410",
-                border: "1px solid rgba(16,185,129,0.3)", borderRadius: 12, padding: 16,
-                boxShadow: "0 16px 48px rgba(0,0,0,0.8)", display: "flex", flexDirection: "column", gap: 12
-              }}>
-                <div onClick={() => { setSection("solutions"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                  <div style={{ color: "#10b981", fontSize: 12, fontWeight: 700, fontFamily: mono }}>🏢 Enterprise Cloud Integration</div>
-                  <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 2 }}>Azure Data Factory, Service Bus, REST Connectors.</div>
-                </div>
-                <div onClick={() => { setSection("solutions"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                  <div style={{ color: "#60a5fa", fontSize: 12, fontWeight: 700, fontFamily: mono }}>⚡ Databricks Lakehouse</div>
-                  <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 2 }}>PySpark Delta Lake & Konica Minolta Data Quality.</div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Developers Mega-Menu (Apify Style Highlighted Dropdown!) */}
-          <div style={{ position: "relative" }} onMouseEnter={() => setActiveDropdown("developers")} onMouseLeave={() => setActiveDropdown(null)}>
-            <button onClick={() => setSection("marketplace")} style={{
-              background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 20,
-              color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 700, display: "flex", alignItems: "center", gap: 4, padding: "5px 14px", cursor: "pointer"
-            }}>
-              Developers ▾
-            </button>
-
-            {/* Apify-Style Rich Mega-Menu with Banner */}
-            {activeDropdown === "developers" && (
-              <div style={{
-                position: "absolute", top: "100%", left: -100, width: 560, background: "#0d1410",
-                border: "1px solid rgba(16,185,129,0.35)", borderRadius: 16, padding: 20,
-                boxShadow: "0 20px 60px rgba(0,0,0,0.85)", display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 20
-              }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <div style={{ fontSize: 10, fontFamily: mono, color: "#6b7280", letterSpacing: 1, textTransform: "uppercase" }}>RESOURCES & API</div>
-                  <div onClick={() => { setSection("marketplace"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                    <div style={{ color: "#f8fff8", fontSize: 12, fontWeight: 700, fontFamily: mono }}>📄 API Reference</div>
-                    <div style={{ color: "#9ca3af", fontSize: 11 }}>REST endpoints & Model Context Protocol.</div>
-                  </div>
-                  <div onClick={() => { setSection("marketplace"); setActiveDropdown(null); }} style={{ cursor: "pointer", padding: 8, borderRadius: 8, background: "rgba(255,255,255,0.03)" }}>
-                    <div style={{ color: "#f8fff8", fontSize: 12, fontWeight: 700, fontFamily: mono }}>💻 PySpark & ADF Blueprints</div>
-                    <div style={{ color: "#9ca3af", fontSize: 11 }}>Step-by-step code templates.</div>
-                  </div>
-                </div>
-
-                {/* Apify "Earn from your code" style callout banner */}
-                <div style={{
-                  background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(139,92,246,0.15))",
-                  border: "1px solid rgba(16,185,129,0.3)", borderRadius: 12, padding: 16,
-                  display: "flex", flexDirection: "column", justifyContent: "space-between"
-                }}>
-                  <div>
-                    <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800 }}>AIVOS AUTOMATION</div>
-                    <div style={{ color: "#f8fff8", fontSize: 13, fontWeight: 700, marginTop: 4 }}>Deploy Custom Actors & AI Pipelines</div>
-                    <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 4, lineHeight: 1.4 }}>High-throughput Azure & PySpark automation blueprints.</div>
-                  </div>
-                  <button onClick={() => { setSection("pricing"); setActiveDropdown(null); }} style={{
-                    marginTop: 12, padding: "6px 12px", borderRadius: 6, background: "#10b981", color: "#000",
-                    fontSize: 11, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer"
-                  }}>
-                    Get Pro Access →
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <button onClick={() => setSection("brief")} style={{ background: "none", border: "none", cursor: "pointer", color: currentSection === "brief" ? "#10b981" : "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 600, padding: "6px 10px" }}>
-            PULSE
-          </button>
-
-          <button onClick={() => setSection("pricing")} style={{ background: "none", border: "none", cursor: "pointer", color: currentSection === "pricing" ? "#10b981" : "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 600, padding: "6px 10px" }}>
-            Pricing
-          </button>
-
-          <button onClick={() => setSection("about")} style={{ background: "none", border: "none", cursor: "pointer", color: currentSection === "about" ? "#10b981" : "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 600, padding: "6px 10px" }}>
-            About
-          </button>
-        </div>
-
-        {/* Right Actions: Contact sales, Log in, Get started */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        {/* Right Actions */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {/* Language Switcher Pills */}
-          <div style={{ display: "flex", gap: 3, background: "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
+          <div style={{ display: "flex", gap: 2, background: "rgba(0,0,0,0.5)", padding: 2, borderRadius: 16, border: "1px solid rgba(16,185,129,0.25)" }}>
             <button
               onClick={() => setLang("en")}
               style={{
-                padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
-                border: "none", cursor: "pointer", transition: "all 0.2s",
+                padding: "3px 8px", borderRadius: 12, fontSize: 10, fontFamily: mono, fontWeight: 700,
+                border: "none", cursor: "pointer",
                 background: lang === "en" ? "#10b981" : "transparent",
                 color: lang === "en" ? "#000" : "#6b7280"
               }}
             >
-              🇬🇧 EN
+              EN
             </button>
             <button
               onClick={() => setLang("cz")}
               style={{
-                padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
-                border: "none", cursor: "pointer", transition: "all 0.2s",
+                padding: "3px 8px", borderRadius: 12, fontSize: 10, fontFamily: mono, fontWeight: 700,
+                border: "none", cursor: "pointer",
                 background: lang === "cz" ? "#10b981" : "transparent",
                 color: lang === "cz" ? "#000" : "#6b7280"
               }}
             >
-              🇨🇿 CZ
+              CZ
             </button>
           </div>
 
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" style={{ color: "#9ca3af", fontSize: 12, fontFamily: mono, textDecoration: "none", fontWeight: 600 }}>
-            Contact sales
-          </a>
-
-          <button onClick={onOpenLogin} style={{ background: "none", border: "none", color: "#e2e8f0", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
+          <button onClick={onOpenLogin} style={{ background: "none", border: "none", color: "#9ca3af", fontSize: 11, fontFamily: mono, fontWeight: 600, cursor: "pointer" }}>
             Log in
           </button>
 
           <button onClick={() => setSection("dashboard")} style={{
-            padding: "8px 18px", borderRadius: 8, background: "#f8fff8", color: "#000",
-            fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer",
-            boxShadow: "0 0 16px rgba(248,255,248,0.3)"
+            padding: "7px 16px", borderRadius: 16, background: "linear-gradient(135deg, #10b981, #059669)",
+            color: "#000", fontSize: 11, fontFamily: mono, fontWeight: 900, border: "none", cursor: "pointer",
+            boxShadow: "0 0 16px rgba(16,185,129,0.4)"
           }}>
-            Get started
+            🚀 Enter OS
           </button>
         </div>
       </div>
@@ -2446,8 +2353,8 @@ export default function AIVOS() {
     return (
       <>
         {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
-        <div style={{ minHeight: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif" }}>
-          <ApifyHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />
+        <div style={{ minHeight: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", paddingTop: 10 }}>
+          <LinearHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />
           <main style={{ overflowY: "auto" }}>
             {renderSection()}
           </main>
