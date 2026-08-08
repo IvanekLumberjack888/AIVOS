@@ -1738,50 +1738,130 @@ function AuthModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// PRODUCTBOARD AI ULTRA-SLEEK ENTERPRISE HOMEPAGE
+// LUXURY WOW FRONTEND - AIVOS AGENTIC OS HOMEPAGE
 function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
   const [activeTab, setActiveTab] = useState<"adf" | "pyspark" | "pulse">("adf");
+  const [activeNode, setActiveNode] = useState<number>(1);
 
   return (
-    <div style={{ padding: "3rem 2rem", maxWidth: 1180, margin: "0 auto" }}>
+    <div style={{ padding: "2.5rem 2rem 4rem", maxWidth: 1240, margin: "0 auto", position: "relative" }}>
 
-      {/* Productboard AI Badge & Hero Header */}
-      <div style={{ textAlign: "center", maxWidth: 840, margin: "0 auto 48px" }}>
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px", borderRadius: 20,
-          background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.35)",
-          color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 1, marginBottom: 20
-        }}>
-          <Sparkles size={14} /> AIVOS SPARK · CONTEXT-NATIVE AI FOR IT INTEGRATION
+      {/* Hero Ambient Background Lighting Glows */}
+      <div style={{
+        position: "absolute", top: -60, left: "50%", transform: "translateX(-50%)",
+        width: 600, height: 350, background: "radial-gradient(circle, rgba(16,185,129,0.18) 0%, rgba(5,150,105,0.05) 50%, transparent 70%)",
+        pointerEvents: "none", zIndex: 0, filter: "blur(40px)"
+      }} />
+
+      {/* Hero Section Grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: 40, alignItems: "center", marginBottom: 56, position: "relative", zIndex: 1 }}>
+        
+        {/* Left Column: Headline & Action Buttons */}
+        <div>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px", borderRadius: 20,
+            background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.35)",
+            color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 1, marginBottom: 20,
+            boxShadow: "0 0 16px rgba(16,185,129,0.2)"
+          }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 8px #10b981" }} />
+            AIVOS SPARK 2.0 · CONTEXT-NATIVE AI & INTEGRATION ENGINE
+          </div>
+
+          <h1 style={{ fontSize: 46, fontWeight: 900, color: "#f8fff8", lineHeight: 1.12, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
+            Giving Data Meaning. <br />
+            <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Automating Enterprise Cloud.
+            </span>
+          </h1>
+
+          <p style={{ fontSize: 15, color: "#9ca3af", lineHeight: 1.65, margin: "0 0 28px", maxWidth: 540 }}>
+            High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents crafted by <strong>Ivo Doležal · IT Integration and Automation Specialist</strong>.
+          </p>
+
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
+            <button onClick={() => setSection("solutions")} style={{
+              padding: "14px 30px", borderRadius: 24, background: "linear-gradient(135deg, #10b981, #059669)",
+              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 900, border: "none", cursor: "pointer",
+              boxShadow: "0 0 28px rgba(16,185,129,0.45)", transition: "all 0.2s"
+            }}>
+              Explore Azure Solutions →
+            </button>
+            <button onClick={() => setSection("marketplace")} style={{
+              padding: "14px 26px", borderRadius: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
+              color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+            }}>
+              SwitcherOS Blueprint ($5) ↗
+            </button>
+          </div>
+
+          {/* Integration Ecosystem Logos */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 32, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280", letterSpacing: 1 }}>ECOSYSTEM:</span>
+            {["AZURE ADF", "DATABRICKS", "PYSPARK", "GEMINI 2.0", "NOTION API", "OLLAMA"].map((tech) => (
+              <span key={tech} style={{
+                fontSize: 10, fontFamily: mono, fontWeight: 700, color: "#a7f3d0",
+                padding: "3px 8px", borderRadius: 6, background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)"
+              }}>
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
-        <h1 style={{ fontSize: 48, fontWeight: 900, color: "#f8fff8", lineHeight: 1.12, margin: "0 0 20px", letterSpacing: "-0.03em" }}>
-          Supercharge your integration craft with <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>context-native AI</span>
-        </h1>
+        {/* Right Column: Live Interactive Topology Canvas */}
+        <div style={{
+          ...card, padding: 24, borderRadius: 24,
+          background: "linear-gradient(135deg, rgba(16,185,129,0.1), rgba(10,18,13,0.95))",
+          border: "1px solid rgba(16,185,129,0.35)", boxShadow: "0 20px 50px rgba(0,0,0,0.6)"
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, borderBottom: "1px solid rgba(16,185,129,0.15)", paddingBottom: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 8px #10b981" }} />
+              <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 800, color: "#10b981" }}>LIVE AGENTIC TOPOLOGY SIMULATOR</span>
+            </div>
+            <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280" }}>LATENCY: 12ms</span>
+          </div>
 
-        <p style={{ fontSize: 16, color: "#9ca3af", lineHeight: 1.65, margin: "0 0 32px" }}>
-          Eliminate the re-brief tax. AIVOS Spark connects your Azure Data Factory pipelines, Databricks Delta Lake, and Notion P.A.R.A. context seamlessly without manual prompt engineering.
-        </p>
-
-        <div style={{ display: "flex", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
-          <button onClick={() => setSection("solutions")} style={{
-            padding: "14px 32px", borderRadius: 24, background: "linear-gradient(135deg, #10b981, #059669)",
-            color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 900, border: "none", cursor: "pointer",
-            boxShadow: "0 0 28px rgba(16,185,129,0.4)"
-          }}>
-            Explore Solutions →
-          </button>
-          <button onClick={() => setSection("pricing")} style={{
-            padding: "14px 28px", borderRadius: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
-            color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
-          }}>
-            Claim $5 Launch Access ↗
-          </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {[
+              { id: 1, title: "Azure Data Factory (ADF)", desc: "100+ High-Throughput ETL Runs/Day", status: "ONLINE (64 Pipelines)", icon: "🏢", color: "#10b981" },
+              { id: 2, title: "Databricks Delta Lake", desc: "PySpark ACID Compliance & Quality", status: "GOLD DELTA SYNC", icon: "⚡", color: "#60a5fa" },
+              { id: 3, title: "Gemini 2.0 Agentic OS", desc: "PULSE Video Triage & Podcast Engine", status: "2M TOKEN CONTEXT", icon: "🎙️", color: "#c084fc" },
+              { id: 4, title: "Notion P.A.R.A. & Ollama Sync", desc: "Zero-Trust Privacy Local Memory", status: "SYNCED (0s Tax)", icon: "🔒", color: "#34d399" },
+            ].map((node) => {
+              const active = activeNode === node.id;
+              return (
+                <div
+                  key={node.id}
+                  onClick={() => setActiveNode(node.id)}
+                  style={{
+                    padding: 14, borderRadius: 14, cursor: "pointer", transition: "all 0.2s",
+                    background: active ? "rgba(16,185,129,0.15)" : "rgba(0,0,0,0.4)",
+                    border: `1px solid ${active ? node.color : "rgba(255,255,255,0.08)"}`
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <span style={{ fontSize: 18 }}>{node.icon}</span>
+                      <div>
+                        <div style={{ fontSize: 13, fontWeight: 800, color: "#f8fff8" }}>{node.title}</div>
+                        <div style={{ fontSize: 11, color: "#9ca3af" }}>{node.desc}</div>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: 10, fontFamily: mono, color: node.color, fontWeight: 700, padding: "2px 8px", borderRadius: 8, background: "rgba(0,0,0,0.5)" }}>
+                      {node.status}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Productboard High-Impact Telemetry Bar */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 48, position: "relative", zIndex: 1 }}>
         {[
           { num: "100%", label: "ACID Delta Lake Integrity", tag: "DATA QUALITY" },
           { num: "2M+", label: "Gemini 2.0 Token Context", tag: "RAG ENGINE" },
@@ -1800,7 +1880,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
       </div>
 
       {/* Productboard Interactive Feature Tabs Showcase */}
-      <div style={{ ...card, padding: 32, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48 }}>
+      <div style={{ ...card, padding: 32, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48, position: "relative", zIndex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
           <div>
             <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>PRODUCTBOARD SPARK SHOWCASE</div>
