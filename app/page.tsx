@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info, Globe } from "lucide-react";
 import { translations, Language } from "../lib/i18n";
 
-type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
+type Section = "landing" | "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
 interface Msg { role: MsgRole; text: string; }
 
@@ -32,6 +32,7 @@ const PARA_COLORS: Record<string, string> = {
 };
 
 const NAV = [
+  { id: "landing"   as Section, Icon: Globe,            label: "Showcase"    },
   { id: "dashboard" as Section, Icon: LayoutDashboard, label: "Dashboard"   },
   { id: "brief"     as Section, Icon: Zap,              label: "PULSE"       },
   { id: "memory"    as Section, Icon: Brain,           label: "Memory"      },
@@ -1618,10 +1619,226 @@ function PARAView() {
   );
 }
 
+// ─── PUBLIC LANDING SHOWCASE (CAPCO / AXIANS / INTECS INSPIRED) ───────────
+
+function LandingView({ onLaunchWorkspace }: { onLaunchWorkspace: () => void }) {
+  const [lang, setLang] = useState<Language>("en");
+  const t = translations[lang];
+
+  return (
+    <div style={{ padding: "2.5rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto", maxHeight: "100vh" }}>
+      {/* Top Header / Brand Bar with Language Switcher */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{
+            width: 42, height: 42, borderRadius: 12,
+            background: "linear-gradient(135deg, #10b981, #059669)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: "#000", fontWeight: 900, fontFamily: mono, fontSize: 20,
+            boxShadow: "0 0 24px rgba(16,185,129,0.4)"
+          }}>
+            AI
+          </div>
+          <div>
+            <div style={{ fontSize: 18, fontWeight: 900, color: "#f8fff8", letterSpacing: 0.5 }}>AIVOS-OS</div>
+            <div style={{ fontSize: 10, color: "#10b981", fontFamily: mono, letterSpacing: 1.5, textTransform: "uppercase" }}>
+              ENTERPRISE PLATFORM & CONSULTING
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {/* Language Switcher Pills */}
+          <div style={{ display: "flex", gap: 3, background: "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
+            <button
+              onClick={() => setLang("en")}
+              style={{
+                padding: "5px 12px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 700,
+                border: "none", cursor: "pointer", transition: "all 0.2s",
+                background: lang === "en" ? "#10b981" : "transparent",
+                color: lang === "en" ? "#000" : "#6b7280"
+              }}
+            >
+              🇬🇧 EN
+            </button>
+            <button
+              onClick={() => setLang("cz")}
+              style={{
+                padding: "5px 12px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 700,
+                border: "none", cursor: "pointer", transition: "all 0.2s",
+                background: lang === "cz" ? "#10b981" : "transparent",
+                color: lang === "cz" ? "#000" : "#6b7280"
+              }}
+            >
+              🇨🇿 CZ
+            </button>
+          </div>
+
+          <button
+            onClick={onLaunchWorkspace}
+            style={{
+              padding: "8px 20px", borderRadius: 10,
+              background: "linear-gradient(135deg, #10b981, #059669)",
+              color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800,
+              border: "none", cursor: "pointer", boxShadow: "0 0 18px rgba(16,185,129,0.3)"
+            }}
+          >
+            {t.landing_cta_launch}
+          </button>
+        </div>
+      </div>
+
+      {/* Hero Section (Capco / Axians Inspired Luxury Dark Glassmorphism) */}
+      <div style={{
+        ...card, padding: "48px 40px", marginBottom: 32,
+        background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(15,23,42,0.95), rgba(139,92,246,0.12))",
+        border: "1px solid rgba(16,185,129,0.4)", boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+        position: "relative", overflow: "hidden"
+      }}>
+        {/* Glow backdrop */}
+        <div style={{
+          position: "absolute", top: -100, right: -100, width: 300, height: 300,
+          background: "radial-gradient(circle, rgba(16,185,129,0.25) 0%, transparent 70%)", pointerEvents: "none"
+        }} />
+
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 20,
+          background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)",
+          color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 1, marginBottom: 20
+        }}>
+          <Sparkles size={14} /> {t.landing_badge}
+        </div>
+
+        <h1 style={{
+          fontSize: 38, fontWeight: 900, color: "#f8fff8", lineHeight: 1.18, margin: "0 0 16px",
+          letterSpacing: "-0.02em", maxWidth: 880
+        }}>
+          {t.landing_h1}
+        </h1>
+
+        <p style={{
+          fontSize: 15, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 28px", maxWidth: 800
+        }}>
+          {t.landing_subtitle}
+        </p>
+
+        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <button
+            onClick={onLaunchWorkspace}
+            style={{
+              padding: "14px 28px", borderRadius: 12,
+              background: "linear-gradient(135deg, #10b981, #059669)",
+              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 800,
+              border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
+              boxShadow: "0 8px 24px rgba(16,185,129,0.3)"
+            }}
+          >
+            {t.landing_cta_launch}
+          </button>
+          <a
+            href="#capabilities"
+            style={{
+              padding: "14px 28px", borderRadius: 12,
+              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
+              color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700,
+              textDecoration: "none", display: "flex", alignItems: "center", gap: 8
+            }}
+          >
+            {t.landing_cta_explore}
+          </a>
+        </div>
+
+        {/* Tech Marquee Ticker */}
+        <div style={{
+          marginTop: 36, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)",
+          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap"
+        }}>
+          <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280", letterSpacing: 2, textTransform: "uppercase" }}>TECH STACK:</span>
+          {["Azure Data Factory", "Databricks PySpark", "Gemini 2.0 Flash", "Model Context Protocol (MCP)", "Delta Lake", "Event Hubs", "Power BI"].map((tech) => (
+            <span key={tech} style={{
+              fontSize: 10, fontFamily: mono, color: "#34d399", background: "rgba(16,185,129,0.1)",
+              padding: "4px 10px", borderRadius: 6, border: "1px solid rgba(16,185,129,0.2)"
+            }}>
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* 3 Core Pillars (Capco / Intecs Inspired Bento Grid) */}
+      <div id="capabilities" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 32 }}>
+        {/* Pillar 1 */}
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.3)", background: "rgba(13,20,16,0.9)" }}>
+          <div style={{ color: "#10b981", fontSize: 10, fontFamily: mono, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8, textTransform: "uppercase" }}>
+            {t.pillar1_tag}
+          </div>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.pillar1_title}</h3>
+          <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.pillar1_desc}</p>
+        </div>
+
+        {/* Pillar 2 */}
+        <div style={{ ...card, border: "1px solid rgba(59,130,246,0.3)", background: "rgba(10,15,25,0.9)" }}>
+          <div style={{ color: "#60a5fa", fontSize: 10, fontFamily: mono, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8, textTransform: "uppercase" }}>
+            {t.pillar2_tag}
+          </div>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.pillar2_title}</h3>
+          <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.pillar2_desc}</p>
+        </div>
+
+        {/* Pillar 3 */}
+        <div style={{ ...card, border: "1px solid rgba(168,85,247,0.3)", background: "rgba(20,12,28,0.9)" }}>
+          <div style={{ color: "#c084fc", fontSize: 10, fontFamily: mono, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8, textTransform: "uppercase" }}>
+            {t.pillar3_tag}
+          </div>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>{t.pillar3_title}</h3>
+          <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.pillar3_desc}</p>
+        </div>
+      </div>
+
+      {/* Author & Specialist Profile Showcase */}
+      <div style={{
+        ...card, padding: 28,
+        background: "linear-gradient(135deg, rgba(22,32,26,0.9), rgba(13,20,16,0.95))",
+        border: "1px solid rgba(16,185,129,0.3)"
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <div style={{
+              width: 52, height: 52, borderRadius: "50%",
+              background: "linear-gradient(135deg, #10b981, #059669)",
+              color: "#000", fontWeight: 900, fontSize: 18, fontFamily: mono,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 0 20px rgba(16,185,129,0.3)"
+            }}>
+              ID
+            </div>
+            <div>
+              <div style={{ fontSize: 17, fontWeight: 800, color: "#f8fff8" }}>Ivo Doležal</div>
+              <div style={{ fontSize: 12, color: "#10b981", fontFamily: mono }}>IT Integration and Automation Specialist</div>
+              <div style={{ fontSize: 11, color: "#6b7280", marginTop: 2 }}>Azure Data Stack • PySpark • AI Agents • Enterprise Automation</div>
+            </div>
+          </div>
+
+          <button
+            onClick={onLaunchWorkspace}
+            style={{
+              padding: "10px 20px", borderRadius: 10,
+              background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)",
+              color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+            }}
+          >
+            Enter AIVOS OS Workspace →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
 
 export default function AIVOS() {
-  const [section, setSection] = useState<Section>("dashboard");
+  const [section, setSection] = useState<Section>("landing");
   const [time, setTime] = useState<Date | null>(null);
   const [ollamaOk, setOllamaOk] = useState(false);
 
@@ -1637,6 +1854,7 @@ export default function AIVOS() {
 
   function renderSection() {
     switch (section) {
+      case "landing":    return <LandingView onLaunchWorkspace={() => setSection("dashboard")} />;
       case "dashboard":  return time ? <Dashboard time={time} /> : null;
       case "brief":      return <BriefView />;
       case "memory":     return <Memory />;

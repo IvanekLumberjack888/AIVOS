@@ -8,6 +8,7 @@ export type Language = "en" | "cz";
 export const translations = {
   en: {
     // Navigation
+    nav_landing: "Landing Showcase",
     nav_dashboard: "Dashboard",
     nav_pulse: "PULSE",
     nav_memory: "Memory",
@@ -16,6 +17,26 @@ export const translations = {
     nav_inbox: "Inbox",
     nav_sessions: "Sessions",
     nav_search: "Search",
+
+    // Public Landing Page (Capco & Axians Inspired)
+    landing_badge: "✨ NEXT-GEN IT INTEGRATION & AUTOMATION CONSULTANCY",
+    landing_h1: "Giving Data Meaning. Automating Enterprise Workflows.",
+    landing_subtitle: "High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents crafted by Ivo Doležal · IT Integration and Automation Specialist.",
+    landing_cta_launch: "🚀 Launch Workspace",
+    landing_cta_explore: "⚡ Technical Capabilities",
+    
+    // Landing Pillars
+    pillar1_title: "Enterprise Cloud & Data Integration",
+    pillar1_tag: "AZURE & INTEGRATION",
+    pillar1_desc: "High-throughput Azure Data Factory pipelines, Service Bus event routing, REST connectors, and robust ETL/ELT architecture for complex IT environments.",
+
+    pillar2_title: "Databricks Lakehouse & Data Quality",
+    pillar2_tag: "PYSPARK & DELTA LAKE",
+    pillar2_desc: "ACID-compliant Delta Lake pipelines, real-time data quality monitoring built on Konica Minolta IT Business Solutions standards, and Power BI dashboards.",
+
+    pillar3_title: "Autonomous AI & Knowledge Agents",
+    pillar3_tag: "AI & AGENTIC WORKFLOWS",
+    pillar3_desc: "Custom LLM RAG pipelines, PULSE video triage engine, Gemini 2.0 Flash REST streaming, and zero-trust local privacy Ollama memory sync.",
 
     // Environment Bar
     env_mode: "ACTIVE ENVIRONMENT MODE:",
@@ -63,6 +84,7 @@ export const translations = {
 
   cz: {
     // Navigation
+    nav_landing: "Úvodní Stránka",
     nav_dashboard: "Nástěnka",
     nav_pulse: "PULSE",
     nav_memory: "Paměť",
@@ -71,6 +93,26 @@ export const translations = {
     nav_inbox: "Doručené",
     nav_sessions: "Generátor",
     nav_search: "Hledat",
+
+    // Public Landing Page (Capco & Axians Inspired)
+    landing_badge: "✨ NEXT-GEN IT INTEGRACE & AI AUTOMATIZAČNÍ CONSULTING",
+    landing_h1: "Dáváme datům význam. Automatizujeme firemní procesy.",
+    landing_subtitle: "Špičková cloudová integrace, Azure PySpark Lakehouse a autonomní AI agenti navržení Ivem Doležalem · IT Integration and Automation Specialist.",
+    landing_cta_launch: "🚀 Otevřít Pracovní Prostředí",
+    landing_cta_explore: "⚡ Technické Kompetence",
+
+    // Landing Pillars
+    pillar1_title: "Enterprise Cloud & Datová Integrace",
+    pillar1_tag: "AZURE & INTEGRACE",
+    pillar1_desc: "Vysoko-propustné Azure Data Factory pipelines, Service Bus směrování událostí, REST konektory a robustní ETL/ELT architektura pro složitá IT prostředí.",
+
+    pillar2_title: "Databricks Lakehouse & Kvalita Dat",
+    pillar2_tag: "PYSPARK & DELTA LAKE",
+    pillar2_desc: "ACID-compliant Delta Lake datové toky, sledování kvality dat v reálném čase podle standardů Konica Minolta IT Business Solutions a Power BI výstupy.",
+
+    pillar3_title: "Autonomní AI & Znalostní Agenti",
+    pillar3_tag: "AI & AGENTNÍ WORKFLOWS",
+    pillar3_desc: "Custom LLM RAG pipelines, PULSE video triage engine, Gemini 2.0 Flash REST streaming a zero-trust lokální Ollama paměťová synchronizace.",
 
     // Environment Bar
     env_mode: "AKTIVNÍ REŽIM PROSTŘEDÍ:",
