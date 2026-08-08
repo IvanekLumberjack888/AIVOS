@@ -1738,91 +1738,163 @@ function AuthModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// DATAMOLE 3D ISOMETRIC HERO + STAT CARDS HOMEPAGE
+// PRODUCTBOARD AI ULTRA-SLEEK ENTERPRISE HOMEPAGE
 function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
-  const [lang] = useState<Language>("en");
-  const t = translations[lang];
+  const [activeTab, setActiveTab] = useState<"adf" | "pyspark" | "pulse">("adf");
 
   return (
     <div style={{ padding: "3rem 2rem", maxWidth: 1180, margin: "0 auto" }}>
 
-      {/* Datamole-Style Hero Section */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 40, alignItems: "center", marginBottom: 48 }}>
-        <div>
-          <h1 style={{ fontSize: 44, fontWeight: 900, color: "#f8fff8", lineHeight: 1.15, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
-            {t.datamole_h1} <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.datamole_h1_accent}</span>
-          </h1>
-
-          <p style={{ fontSize: 15, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 28px" }}>
-            {t.datamole_subtitle}
-          </p>
-
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <button onClick={() => setSection("solutions")} style={{
-              padding: "14px 28px", borderRadius: 24, background: "#10b981",
-              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 900, border: "none", cursor: "pointer",
-              boxShadow: "0 0 24px rgba(16,185,129,0.4)"
-            }}>
-              {t.datamole_btn_cta}
-            </button>
-            <button onClick={() => setSection("marketplace")} style={{
-              padding: "14px 26px", borderRadius: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
-              color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
-            }}>
-              EXPLORE BLUEPRINTS →
-            </button>
-          </div>
+      {/* Productboard AI Badge & Hero Header */}
+      <div style={{ textAlign: "center", maxWidth: 840, margin: "0 auto 48px" }}>
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px", borderRadius: 20,
+          background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.35)",
+          color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 1, marginBottom: 20
+        }}>
+          <Sparkles size={14} /> AIVOS SPARK · CONTEXT-NATIVE AI FOR IT INTEGRATION
         </div>
 
-        {/* Datamole Isometric AI Diagram Graphic */}
-        <div style={{
-          ...card, padding: 24, borderRadius: 20,
-          background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(13,20,16,0.95))",
-          border: "1px solid rgba(16,185,129,0.35)", textAlign: "center"
-        }}>
-          <div style={{ fontSize: 72, marginBottom: 12 }}>🛸</div>
-          <div style={{ color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>AIVOS ENTERPRISE AI NODE</div>
-          <div style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, marginTop: 4 }}>Azure ADF · Databricks · Gemini 2.0</div>
-          <p style={{ color: "#9ca3af", fontSize: 12, marginTop: 6, lineHeight: 1.5 }}>High-throughput ETL/ELT pipelines paired with autonomous agent triage.</p>
+        <h1 style={{ fontSize: 48, fontWeight: 900, color: "#f8fff8", lineHeight: 1.12, margin: "0 0 20px", letterSpacing: "-0.03em" }}>
+          Supercharge your integration craft with <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>context-native AI</span>
+        </h1>
+
+        <p style={{ fontSize: 16, color: "#9ca3af", lineHeight: 1.65, margin: "0 0 32px" }}>
+          Eliminate the re-brief tax. AIVOS Spark connects your Azure Data Factory pipelines, Databricks Delta Lake, and Notion P.A.R.A. context seamlessly without manual prompt engineering.
+        </p>
+
+        <div style={{ display: "flex", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
+          <button onClick={() => setSection("solutions")} style={{
+            padding: "14px 32px", borderRadius: 24, background: "linear-gradient(135deg, #10b981, #059669)",
+            color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 900, border: "none", cursor: "pointer",
+            boxShadow: "0 0 28px rgba(16,185,129,0.4)"
+          }}>
+            Explore Solutions →
+          </button>
+          <button onClick={() => setSection("pricing")} style={{
+            padding: "14px 28px", borderRadius: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
+            color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+          }}>
+            Claim $5 Launch Access ↗
+          </button>
         </div>
       </div>
 
-      {/* Datamole Stat Cards & About Us Row (Exact Image Match!) */}
-      <div style={{ display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 32, alignItems: "center", marginBottom: 48 }}>
-        {/* Left Column: 3 Pristine Stat Cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <div style={{ ...card, padding: "20px 24px", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 14, background: "rgba(16,185,129,0.06)" }}>
-            <div style={{ fontSize: 36, fontWeight: 900, color: "#10b981", fontFamily: mono }}>{t.datamole_stat1_num}</div>
-            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.datamole_stat1_label}</div>
+      {/* Productboard High-Impact Telemetry Bar */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 48 }}>
+        {[
+          { num: "100%", label: "ACID Delta Lake Integrity", tag: "DATA QUALITY" },
+          { num: "2M+", label: "Gemini 2.0 Token Context", tag: "RAG ENGINE" },
+          { num: "0s", label: "Re-brief Tax (Notion Sync)", tag: "AUTONOMOUS" },
+          { num: "24/7", label: "Agentic Telemetry Operations", tag: "PULSE TRIAGE" },
+        ].map((stat, idx) => (
+          <div key={idx} style={{
+            ...card, padding: 22, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(13,20,16,0.85)"
+          }}>
+            <div style={{ fontSize: 10, fontFamily: mono, color: "#10b981", fontWeight: 800, letterSpacing: 1, marginBottom: 4 }}>{stat.tag}</div>
+            <div style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", fontFamily: mono, margin: "2px 0" }}>{stat.num}</div>
+            <div style={{ fontSize: 12, color: "#9ca3af" }}>{stat.label}</div>
           </div>
-          <div style={{ ...card, padding: "20px 24px", border: "1px solid rgba(59,130,246,0.3)", borderRadius: 14, background: "rgba(59,130,246,0.06)" }}>
-            <div style={{ fontSize: 36, fontWeight: 900, color: "#60a5fa", fontFamily: mono }}>{t.datamole_stat2_num}</div>
-            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.datamole_stat2_label}</div>
+        ))}
+      </div>
+
+      {/* Productboard Interactive Feature Tabs Showcase */}
+      <div style={{ ...card, padding: 32, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
+          <div>
+            <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>PRODUCTBOARD SPARK SHOWCASE</div>
+            <h2 style={{ fontSize: 24, fontWeight: 900, color: "#f8fff8", margin: "4px 0 0" }}>Context-Native IT Capabilities</h2>
           </div>
-          <div style={{ ...card, padding: "20px 24px", border: "1px solid rgba(168,85,247,0.3)", borderRadius: 14, background: "rgba(168,85,247,0.06)" }}>
-            <div style={{ fontSize: 36, fontWeight: 900, color: "#c084fc", fontFamily: mono }}>{t.datamole_stat3_num}</div>
-            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.datamole_stat3_label}</div>
+
+          <div style={{ display: "flex", gap: 8, background: "rgba(0,0,0,0.5)", padding: 4, borderRadius: 20, border: "1px solid rgba(16,185,129,0.25)" }}>
+            <button
+              onClick={() => setActiveTab("adf")}
+              style={{
+                padding: "8px 16px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 800,
+                border: "none", cursor: "pointer",
+                background: activeTab === "adf" ? "#10b981" : "transparent",
+                color: activeTab === "adf" ? "#000" : "#9ca3af"
+              }}
+            >
+              🏢 Azure Cloud ADF
+            </button>
+            <button
+              onClick={() => setActiveTab("pyspark")}
+              style={{
+                padding: "8px 16px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 800,
+                border: "none", cursor: "pointer",
+                background: activeTab === "pyspark" ? "#10b981" : "transparent",
+                color: activeTab === "pyspark" ? "#000" : "#9ca3af"
+              }}
+            >
+              ⚡ Databricks PySpark
+            </button>
+            <button
+              onClick={() => setActiveTab("pulse")}
+              style={{
+                padding: "8px 16px", borderRadius: 16, fontSize: 11, fontFamily: mono, fontWeight: 800,
+                border: "none", cursor: "pointer",
+                background: activeTab === "pulse" ? "#10b981" : "transparent",
+                color: activeTab === "pulse" ? "#000" : "#9ca3af"
+              }}
+            >
+              🎙️ PULSE AI Triage
+            </button>
           </div>
         </div>
 
-        {/* Right Column: Datamole About Us Box */}
-        <div style={{ ...card, padding: 36, border: "1px solid rgba(16,185,129,0.3)", borderRadius: 20 }}>
-          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, marginBottom: 8 }}>
-            {t.datamole_about_sub}
+        {/* Tab Content Display */}
+        {activeTab === "adf" && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center" }}>
+            <div>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>Enterprise Cloud & Data Factory Pipelines</h3>
+              <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
+                High-throughput Azure Data Factory ETL/ELT pipelines, Service Bus event routing, REST connectors, and robust enterprise architecture designed for zero-downtime operation.
+              </p>
+              <button onClick={() => setSection("solutions")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
+                View Azure ADF Architecture →
+              </button>
+            </div>
+            <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.6)", border: "1px solid rgba(16,185,129,0.2)", fontFamily: mono, fontSize: 12, color: "#34d399", lineHeight: 1.6 }}>
+              {`// Azure Data Factory Pipeline Execution\nconst pipeline = new ADFClient({\n  resourceGroup: "rg-aivos-prod",\n  factoryName: "adf-aivos-integration",\n  concurrency: 64\n});\nawait pipeline.executeTrigger("Trig_Delta_Sync");`}
+            </div>
           </div>
-          <h2 style={{ fontSize: 28, fontWeight: 900, color: "#f8fff8", margin: "0 0 14px" }}>
-            {t.datamole_about_title}
-          </h2>
-          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 24px" }}>
-            {t.datamole_about_desc}
-          </p>
-          <button onClick={() => setSection("about")} style={{
-            padding: "10px 22px", borderRadius: 20, background: "transparent",
-            border: "1px solid #10b981", color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 800, cursor: "pointer"
-          }}>
-            {t.datamole_btn_about}
-          </button>
-        </div>
+        )}
+
+        {activeTab === "pyspark" && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center" }}>
+            <div>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>Databricks PySpark & Delta Lake Quality</h3>
+              <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
+                ACID-compliant Delta Lake data pipelines, real-time quality monitoring built on Konica Minolta IT Business Solutions standards, and Power BI analytics integration.
+              </p>
+              <button onClick={() => setSection("solutions")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)", color: "#60a5fa", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
+                Explore Databricks Blueprints →
+              </button>
+            </div>
+            <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.6)", border: "1px solid rgba(59,130,246,0.2)", fontFamily: mono, fontSize: 12, color: "#60a5fa", lineHeight: 1.6 }}>
+              {`# Databricks PySpark Delta Lake Quality Check\nfrom delta.tables import DeltaTable\n\ndf = spark.read.format("delta").load("/mnt/delta/gold_sales")\nassert df.filter(df.amount < 0).count() == 0, "Data Quality Assertion Failed"`}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "pulse" && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center" }}>
+            <div>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>PULSE Video Triage & AI Podcast Engine</h3>
+              <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
+                Automated YouTube transcript extraction via headless python yt-dlp, Gemini 2.0 relevance triage scoring (1-10), and 1-click 2-speaker audio podcast briefs.
+              </p>
+              <button onClick={() => setSection("brief")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
+                Run PULSE Triage →
+              </button>
+            </div>
+            <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.6)", border: "1px solid rgba(168,85,247,0.2)", fontFamily: mono, fontSize: 12, color: "#c084fc", lineHeight: 1.6 }}>
+              {`// PULSE Gemini 2.0 Triage Stream\nconst triage = await gemini.evaluate({\n  transcript: ytSubtitles,\n  model: "gemini-2.0-flash",\n  targetScoreMin: 8\n});`}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
