@@ -1912,6 +1912,22 @@ function MarketplaceView({ setSection, onOpenLogin }: { setSection: (s: Section)
             Open Notion P.A.R.A. →
           </button>
         </div>
+
+        {/* Featured SwitcherOS Gumroad Product Banner */}
+        <div style={{
+          ...card, gridColumn: "span 3", marginTop: 12, padding: 24,
+          background: "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(16,185,129,0.15))",
+          border: "1px solid rgba(236,72,153,0.35)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16
+        }}>
+          <div>
+            <div style={{ color: "#ec4899", fontSize: 10, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>FEATURED GUMROAD BLUEPRINT</div>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: "#f8fff8", margin: "4px 0 2px" }}>SwitcherOS – Career Switch System (Notion Template)</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", margin: 0 }}>7-step career switch roadmap (non-IT → Junior Data Engineer), P.A.R.A. workspace, and AI prompts.</p>
+          </div>
+          <button onClick={() => window.open("https://ivousd.gumroad.com/l/switcheros-career", "_blank")} style={{ padding: "10px 18px", borderRadius: 8, background: "#ec4899", color: "#fff", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
+            Get SwitcherOS on Gumroad ↗
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -1946,8 +1962,8 @@ function PricingView({ setSection, onOpenLogin }: { setSection: (s: Section) => 
           <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>{t.plan_pro_title} · LAUNCH DEAL</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#10b981", margin: "10px 0" }}>{t.plan_pro_price}</div>
           <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_pro_desc}</p>
-          <button onClick={() => window.open("https://gumroad.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "linear-gradient(135deg, #10b981, #059669)", color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
-            Claim $5 Early Bird Access →
+          <button onClick={() => window.open("https://ivousd.gumroad.com/l/switcheros-career", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "linear-gradient(135deg, #10b981, #059669)", color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
+            Claim $5 Access on Gumroad ↗
           </button>
         </div>
 
