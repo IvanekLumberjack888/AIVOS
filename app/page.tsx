@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info, Globe } from "lucide-react";
 import { translations, Language } from "../lib/i18n";
 
-type Section = "landing" | "solutions" | "marketplace" | "pricing" | "about" | "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
+type Section = "landing" | "solutions" | "marketplace" | "pricing" | "about" | "dashboard" | "notebooklm" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
 type MsgRole = "user" | "assistant" | "system";
 interface Msg { role: MsgRole; text: string; }
 
@@ -38,6 +38,7 @@ const NAV = [
   { id: "pricing"     as Section, Icon: DollarSign,       label: "Pricing"     },
   { id: "about"       as Section, Icon: Info,             label: "About Us"    },
   { id: "dashboard"   as Section, Icon: LayoutDashboard, label: "Dashboard"   },
+  { id: "notebooklm"  as Section, Icon: BookMarked,       label: "NotebookLM"  },
   { id: "brief"       as Section, Icon: Zap,              label: "PULSE"       },
   { id: "memory"      as Section, Icon: Brain,           label: "Memory"      },
   { id: "para"        as Section, Icon: FolderOpen,      label: "P.A.R.A."    },
@@ -2181,6 +2182,169 @@ function ApifyHeader({ currentSection, setSection, onOpenLogin }: { currentSecti
   );
 }
 
+// ─── GOOGLE NOTEBOOKLM RESEARCH HUB ──────────────────────────────────────────
+
+function NotebookLMView() {
+  const [activeNotebook, setActiveNotebook] = useState("azure");
+  const [query, setQuery] = useState("");
+  const [chatMsgs, setChatMsgs] = useState<Msg[]>([
+    { role: "assistant", text: "Google NotebookLM ready. Gemini 2.0 Flash indexed 3 sources (ADF Architecture, PySpark Delta Lake, Konica Minolta Standards). Ask anything with exact citation grounds." }
+  ]);
+  const [isGeneratingAudio, setIsGeneratingAudio] = useState(false);
+  const [audioDone, setAudioDone] = useState(false);
+
+  const notebooks = [
+    { id: "azure", title: "Azure & PySpark Architecture", sourcesCount: 4, icon: "📘" },
+    { id: "pulse", title: "PULSE YouTube Transcripts Briefs", sourcesCount: 12, icon: "⚡" },
+    { id: "certs", title: "AZ-900 & DP-700 Study Notebook", sourcesCount: 8, icon: "📜" }
+  ];
+
+  const handleAudioGenerate = () => {
+    setIsGeneratingAudio(true);
+    setTimeout(() => {
+      setIsGeneratingAudio(false);
+      setAudioDone(true);
+    }, 2500);
+  };
+
+  const handleSend = () => {
+    if (!query.trim()) return;
+    const q = query;
+    setQuery("");
+    setChatMsgs(m => [...m, { role: "user", text: q }]);
+
+    setTimeout(() => {
+      setChatMsgs(m => [...m, {
+        role: "assistant",
+        text: `Based on your NotebookLM sources [Source 1: Azure ADF Docs, Source 2: PySpark Delta Lake]:\n\n${q.toLowerCase().includes("pyspark") ? "PySpark Delta Lake enforces ACID transactions using transaction log (_delta_log) stored directly on Azure Data Lake Gen2 storage." : "Azure Data Factory pipelines can trigger Databricks PySpark notebooks via REST API or Linked Services with automatic retry policies."}`
+      }]);
+    }, 800);
+  };
+
+  return (
+    <div style={{ padding: "2rem", maxWidth: 1140, margin: "0 auto", overflowY: "auto" }}>
+      {/* Header Bar */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
+        <div>
+          <div style={{ color: "#3b82f6", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
+            <BookMarked size={14} /> GOOGLE NOTEBOOKLM INTEGRATION
+          </div>
+          <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f8fff8", margin: 0 }}>Gemini 2.0 Research & Notebook Hub</h1>
+        </div>
+
+        <a
+          href="https://notebooklm.google.com"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            padding: "8px 16px", borderRadius: 10, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)",
+            color: "#60a5fa", fontSize: 12, fontFamily: mono, fontWeight: 700, textDecoration: "none", display: "flex", alignItems: "center", gap: 6
+          }}
+        >
+          Open Official NotebookLM ↗
+        </a>
+      </div>
+
+      {/* Notebook Selector Bar */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
+        {notebooks.map(nb => (
+          <div
+            key={nb.id}
+            onClick={() => setActiveNotebook(nb.id)}
+            style={{
+              ...card, cursor: "pointer", transition: "all 0.2s",
+              border: activeNotebook === nb.id ? "1px solid #3b82f6" : "1px solid rgba(255,255,255,0.08)",
+              background: activeNotebook === nb.id ? "rgba(59,130,246,0.12)" : "rgba(13,20,16,0.85)"
+            }}
+          >
+            <div style={{ fontSize: 20, marginBottom: 8 }}>{nb.icon}</div>
+            <div style={{ color: "#f8fff8", fontSize: 14, fontWeight: 700, marginBottom: 4 }}>{nb.title}</div>
+            <div style={{ color: "#9ca3af", fontSize: 11, fontFamily: mono }}>{nb.sourcesCount} Indexed Sources</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Audio Overview Podcast Banner (NotebookLM Signature Feature) */}
+      <div style={{
+        ...card, marginBottom: 24, padding: 24,
+        background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15))",
+        border: "1px solid rgba(59,130,246,0.35)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16
+      }}>
+        <div>
+          <div style={{ color: "#60a5fa", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>NOTEBOOKLM AUDIO OVERVIEW</div>
+          <div style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, marginTop: 4 }}>2-Speaker AI Podcast Brief</div>
+          <div style={{ color: "#9ca3af", fontSize: 12, marginTop: 2 }}>Synthesize all indexed notebook sources into a 5-minute audio deep dive podcast.</div>
+        </div>
+
+        {audioDone ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ color: "#34d399", fontSize: 12, fontFamily: mono, fontWeight: 700 }}>✓ Audio Brief Ready (4m 18s)</span>
+            <button style={{ padding: "8px 16px", borderRadius: 8, background: "#10b981", color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
+              ▶ Play Audio Brief
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={handleAudioGenerate}
+            disabled={isGeneratingAudio}
+            style={{
+              padding: "10px 20px", borderRadius: 10, background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+              color: "#fff", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer",
+              boxShadow: "0 0 20px rgba(59,130,246,0.3)"
+            }}
+          >
+            {isGeneratingAudio ? "⚡ Synthesizing AI Podcast..." : "🎙️ Generate Audio Overview"}
+          </button>
+        )}
+      </div>
+
+      {/* Main NotebookLM Chat & Source Citations Panel */}
+      <div style={{ ...card, border: "1px solid rgba(59,130,246,0.25)" }}>
+        <div style={{ color: "#60a5fa", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>GEMINI 2.0 CITATION QUERY ENGINE</div>
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, maxHeight: 320, overflowY: "auto", marginBottom: 20 }}>
+          {chatMsgs.map((m, idx) => (
+            <div key={idx} style={{
+              padding: 14, borderRadius: 10,
+              background: m.role === "user" ? "rgba(59,130,246,0.15)" : "rgba(255,255,255,0.03)",
+              border: m.role === "user" ? "1px solid rgba(59,130,246,0.3)" : "1px solid rgba(255,255,255,0.06)",
+              color: "#f8fff8", fontSize: 13, lineHeight: 1.6, whiteSpace: "pre-wrap"
+            }}>
+              <div style={{ fontSize: 10, fontFamily: mono, color: m.role === "user" ? "#60a5fa" : "#34d399", marginBottom: 4 }}>
+                {m.role === "user" ? "USER QUERY" : "GEMINI 2.0 NOTEBOOKLM CITATION"}
+              </div>
+              {m.text}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: "flex", gap: 10 }}>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            placeholder="Query indexed notebook sources..."
+            style={{
+              flex: 1, padding: "12px 14px", borderRadius: 10, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(59,130,246,0.3)",
+              color: "#f8fff8", fontSize: 13, fontFamily: mono, outline: "none"
+            }}
+          />
+          <button
+            onClick={handleSend}
+            style={{
+              padding: "12px 20px", borderRadius: 10, background: "#3b82f6", color: "#fff",
+              fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer"
+            }}
+          >
+            Ask NotebookLM
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
 
 export default function AIVOS() {
@@ -2207,6 +2371,7 @@ export default function AIVOS() {
       case "pricing":     return <PricingView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
       case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />;
       case "dashboard":   return time ? <Dashboard time={time} /> : null;
+      case "notebooklm":  return <NotebookLMView />;
       case "brief":       return <BriefView />;
       case "memory":      return <Memory />;
       case "para":        return <PARAView />;
