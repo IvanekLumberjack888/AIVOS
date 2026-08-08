@@ -1405,110 +1405,153 @@ function InboxView() {
   );
 }
 
-// ─── STAT CARD ───────────────────────────────────────────────────────────────
-
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={card}>
-      <div style={{ color: "#6b7280", fontSize: 11, fontFamily: mono, letterSpacing: 1, textTransform: "uppercase" as const, marginBottom: 6 }}>{label}</div>
-      <div style={{ color: "#f8fff8", fontSize: 22, fontFamily: mono, fontWeight: 700 }}>{value}</div>
-    </div>
-  );
-}
-
-// ─── DASHBOARD ───────────────────────────────────────────────────────────────
+// ─── AGENTIC OS MISSION CONTROL DASHBOARD ──────────────────────────────────────
 
 function Dashboard({ time }: { time: Date }) {
   const [notionProjects, setNotionProjects] = useState<any[]>([]);
-  const [focusData, setFocusData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      fetch("/api/notion/projects").then(r => r.ok ? r.json() : null),
-      fetch("/api/notion/focus").then(r => r.ok ? r.json() : null)
-    ]).then(([projData, focData]) => {
-      if (projData?.pages && projData.pages.length > 0) setNotionProjects(projData.pages);
-      if (focData?.todos && focData.todos.length > 0) setFocusData(focData);
-    }).catch(() => {}).finally(() => setLoading(false));
+    fetch("/api/notion/projects")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.projects) setNotionProjects(data.projects);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
-  const projectCount = notionProjects.length > 0 ? String(notionProjects.length) : String(DEMO_PROJECTS.length);
-
   return (
-    <div style={{ padding: "2rem", maxWidth: 900, margin: "0 auto" }}>
-      <div style={{ marginBottom: "2rem" }}>
-        <p style={{ color: "#6b7280", fontSize: 13, fontFamily: mono, marginBottom: 4 }}>
-          {time.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
-        </p>
-        <div style={{ color: "#10b981", fontSize: 48, fontWeight: 900, fontFamily: mono, lineHeight: 1 }}>
-          {time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}
-          <span style={{ color: "#374151", fontSize: 32 }}>{":" + String(time.getSeconds()).padStart(2, "0")}</span>
-        </div>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
-        <StatCard label="Projects" value={projectCount} />
-        <StatCard label="Ollama" value="qwen2.5" />
-        <StatCard label="Certs" value="AZ-900+" />
-      </div>
-      <div style={{ ...card, marginBottom: 20 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const }}>Active Projects</div>
-          {loading && <span style={{ color: "#6b7280", fontSize: 11, fontFamily: mono }}>Checking workspace...</span>}
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          {notionProjects.length > 0 ? (
-            notionProjects.map((p, idx) => (
-              <a key={p.id || idx} href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: 10, background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", transition: "all 0.2s" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid #10b981", color: "#10b981", fontFamily: mono }}>PROJECT</span>
-                    <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.title}</span>
-                  </div>
-                  <span style={{ color: "#6b7280", fontSize: 12, fontFamily: mono }}>
-                    {p.lastEdited ? new Date(p.lastEdited).toLocaleDateString("en-US") : ""} ↗
-                  </span>
-                </div>
-              </a>
-            ))
-          ) : (
-            DEMO_PROJECTS.map(p => (
-              <div key={p.name}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid " + p.color, color: p.color, fontFamily: mono, letterSpacing: 1 }}>{p.tag}</span>
-                    <span style={{ color: "#f8fff8", fontSize: 14, fontWeight: 600 }}>{p.name}</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ color: "#6b7280", fontSize: 12 }}>{p.phase}</span>
-                    <span style={{ color: p.color, fontSize: 13, fontFamily: mono, fontWeight: 700, minWidth: 36, textAlign: "right" as const }}>{p.progress + "%"}</span>
-                  </div>
-                </div>
-                <div style={{ height: 4, background: "rgba(16,185,129,0.1)", borderRadius: 4 }}>
-                  <div style={{ height: "100%", width: p.progress + "%", background: "linear-gradient(90deg, " + p.color + ", #6ee7b7)", borderRadius: 4, transition: "width 1s ease" }} />
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-      <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)" }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, marginBottom: 12, textTransform: "uppercase" as const }}>{"Today's Focus"}</div>
-        {focusData?.todos && focusData.todos.length > 0 ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {focusData.todos.map((t: any) => (
-              <div key={t.id} style={{ display: "flex", alignItems: "center", gap: 10, color: t.checked ? "#6b7280" : "#d1fae5", fontSize: 14 }}>
-                <span style={{ color: t.checked ? "#10b981" : "#4b5563" }}>{t.checked ? "☑" : "☐"}</span>
-                <span style={{ textDecoration: t.checked ? "line-through" : "none" }}>{t.text}</span>
-              </div>
-            ))}
+    <div style={{ padding: "2rem", maxWidth: 1180, margin: "0 auto", overflowY: "auto" }}>
+      {/* Header bar: Section I — MISSION CONTROL */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28, flexWrap: "wrap", gap: 16 }}>
+        <div>
+          <div style={{ color: "#d97706", fontSize: 11, fontFamily: mono, fontStyle: "italic", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>
+            I. — MISSION CONTROL
           </div>
-        ) : (
-          <>
-            <p style={{ color: "#d1fae5", fontSize: 15, fontWeight: 600, marginBottom: 6 }}>Azure Integration Pipelines & Data Engineering</p>
-            <p style={{ color: "#6b7280", fontSize: 13 }}>Be certified - Self-developing e.g. AZ-900, etc · AIVOS Platform UI Shell</p>
-          </>
-        )}
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: "#f8fff8", margin: "0 0 6px", letterSpacing: "-0.02em" }}>
+            Mission Control
+          </h1>
+          <p style={{ fontSize: 13, color: "#9ca3af", margin: 0, fontFamily: mono }}>
+            Status of every agent, every memory, every signal.
+          </p>
+        </div>
+
+        {/* Studio Telemetry Pills */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <div style={{ padding: "6px 14px", borderRadius: 20, background: "rgba(22,32,26,0.9)", border: "1px solid rgba(16,185,129,0.25)", color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700 }}>
+            {time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })} LOCAL · STUDIO
+          </div>
+          <div style={{ padding: "6px 14px", borderRadius: 20, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", color: "#e2e8f0", fontSize: 11, fontFamily: mono }}>
+            ⌘K Command palette
+          </div>
+          <div style={{ padding: "6px 14px", borderRadius: 20, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#34d399", fontSize: 11, fontFamily: mono, fontWeight: 800 }}>
+            📊 ALL SYSTEMS LIVE
+          </div>
+        </div>
+      </div>
+
+      {/* Top Agent Telemetry Heartbeat Bar */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 12, marginBottom: 32 }}>
+        {[
+          { label: "CLAUDE 3.7", status: "checking...", color: "#f59e0b", icon: "✦" },
+          { label: "OPENCLAW", status: "online", color: "#ec4899", icon: "◈" },
+          { label: "HERMES 3", status: "checking...", color: "#f97316", icon: "⊗" },
+          { label: "HEARTBEAT", status: "poll ticks · 4s", color: "#eab308", icon: "⚡" },
+          { label: "LATENCY", status: "p50 · 12ms", color: "#10b981", icon: "⚡" },
+          { label: "GEMINI 2.0", status: "live streaming", color: "#3b82f6", icon: "⟁" },
+        ].map((item, idx) => (
+          <div key={idx} style={{
+            ...card, padding: "12px 14px", borderRadius: 12,
+            background: "rgba(13,20,16,0.9)", border: "1px solid rgba(255,255,255,0.08)"
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, fontFamily: mono, color: "#9ca3af", fontWeight: 700 }}>
+              <span style={{ color: item.color }}>{item.icon}</span> {item.label}
+            </div>
+            <div style={{ fontSize: 11, fontFamily: mono, color: "#f8fff8", marginTop: 4, opacity: 0.8 }}>
+              {item.status}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Section II: AGENTS — CLICK TO OPEN CONTROL ROOM */}
+      <div style={{ marginBottom: 32 }}>
+        <div style={{ color: "#d97706", fontSize: 11, fontFamily: mono, fontStyle: "italic", letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>
+          II. — AGENTS - CLICK TO OPEN CONTROL ROOM
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          {/* Card 1: Claude Code Agent */}
+          <div style={{ ...card, border: "1px solid rgba(245,158,11,0.3)", background: "linear-gradient(135deg, rgba(245,158,11,0.1), rgba(13,20,16,0.95))" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+              <div style={{ width: 38, height: 38, borderRadius: 10, background: "rgba(245,158,11,0.2)", color: "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 18 }}>✦</div>
+              <span style={{ fontSize: 10, fontFamily: mono, padding: "3px 8px", borderRadius: 12, background: "rgba(245,158,11,0.15)", border: "1px solid rgba(245,158,11,0.3)", color: "#f59e0b", fontWeight: 700 }}>● DEGRADED</span>
+            </div>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: "#f8fff8", margin: "0 0 6px" }}>Claude Code</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5, margin: "0 0 16px" }}>Direct streaming line to Claude Code. Full tool use, MCPs, plugins.</p>
+            <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 10, fontFamily: mono, color: "#6b7280" }}>
+              <span>VERSION · 3.7 SONNET</span>
+              <span>LATENCY · 1.2s</span>
+            </div>
+          </div>
+
+          {/* Card 2: OpenClaw Local Agent */}
+          <div style={{ ...card, border: "1px solid rgba(236,72,153,0.3)", background: "linear-gradient(135deg, rgba(236,72,153,0.1), rgba(13,20,16,0.95))" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+              <div style={{ width: 38, height: 38, borderRadius: 10, background: "rgba(236,72,153,0.2)", color: "#ec4899", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 18 }}>◈</div>
+              <span style={{ fontSize: 10, fontFamily: mono, padding: "3px 8px", borderRadius: 12, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#34d399", fontWeight: 700 }}>● ONLINE</span>
+            </div>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: "#f8fff8", margin: "0 0 6px" }}>OpenClaw Gateway</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5, margin: "0 0 16px" }}>Local agent gateway. Chat one-shot or open control room.</p>
+            <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 10, fontFamily: mono, color: "#6b7280" }}>
+              <span>AGENTS · 12 ACTIVE</span>
+              <span>SESSIONS · 4 RUNNING</span>
+            </div>
+          </div>
+
+          {/* Card 3: Antigravity & Gemini RAG Agent */}
+          <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+              <div style={{ width: 38, height: 38, borderRadius: 10, background: "rgba(16,185,129,0.2)", color: "#10b981", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 18 }}>⟁</div>
+              <span style={{ fontSize: 10, fontFamily: mono, padding: "3px 8px", borderRadius: 12, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", color: "#34d399", fontWeight: 700 }}>● ONLINE</span>
+            </div>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: "#f8fff8", margin: "0 0 6px" }}>Antigravity Gemini RAG</h3>
+            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5, margin: "0 0 16px" }}>Google DeepMind autonomous coding agent. 2M token context, live SSE stream.</p>
+            <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 10, fontFamily: mono, color: "#6b7280" }}>
+              <span>MODEL · GEMINI 2.0 FLASH</span>
+              <span>PROVIDER · GOOGLE AGY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Active Workflows & Telemetry Projects */}
+      <div style={{ ...card, border: "1px solid rgba(16,185,129,0.25)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" }}>ACTIVE PIPELINE TELEMETRY</div>
+          {loading && <span style={{ color: "#6b7280", fontSize: 11, fontFamily: mono }}>Syncing Notion & Cloud...</span>}
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {DEMO_PROJECTS.map(p => (
+            <div key={p.name}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, border: "1px solid " + p.color, color: p.color, fontFamily: mono }}>{p.tag}</span>
+                  <span style={{ color: "#f8fff8", fontSize: 13, fontWeight: 600 }}>{p.name}</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span style={{ color: "#6b7280", fontSize: 11 }}>{p.phase}</span>
+                  <span style={{ color: p.color, fontSize: 12, fontFamily: mono, fontWeight: 700 }}>{p.progress + "%"}</span>
+                </div>
+              </div>
+              <div style={{ height: 4, background: "rgba(16,185,129,0.1)", borderRadius: 4 }}>
+                <div style={{ height: "100%", width: p.progress + "%", background: "linear-gradient(90deg, " + p.color + ", #6ee7b7)", borderRadius: 4 }} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
