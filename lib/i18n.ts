@@ -22,7 +22,7 @@ export const translations = {
     landing_badge: "✨ NEXT-GEN IT INTEGRATION & AUTOMATION CONSULTANCY",
     landing_h1: "Giving Data Meaning. Automating Enterprise Workflows.",
     landing_subtitle: "High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents crafted by Ivo Doležal · IT Integration and Automation Specialist.",
-    landing_cta_launch: "🚀 Launch Workspace",
+    landing_cta_launch: "🚀 Enter AIVOS OS",
     landing_cta_explore: "⚡ Technical Capabilities",
     
     // Landing Pillars
@@ -98,7 +98,7 @@ export const translations = {
     landing_badge: "✨ NEXT-GEN IT INTEGRACE & AI AUTOMATIZAČNÍ CONSULTING",
     landing_h1: "Dáváme datům význam. Automatizujeme firemní procesy.",
     landing_subtitle: "Špičková cloudová integrace, Azure PySpark Lakehouse a autonomní AI agenti navržení Ivem Doležalem · IT Integration and Automation Specialist.",
-    landing_cta_launch: "🚀 Otevřít Pracovní Prostředí",
+    landing_cta_launch: "🚀 Vstoupit do AIVOS OS",
     landing_cta_explore: "⚡ Technické Kompetence",
 
     // Landing Pillars
