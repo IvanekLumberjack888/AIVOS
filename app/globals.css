@@ -33,3 +33,33 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: #10b981;
 }
+
+/* Bouncing & Pulse Animations from ivaneklumberjack888.github.io */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(16, 185, 129, 0.85);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce 2.2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}

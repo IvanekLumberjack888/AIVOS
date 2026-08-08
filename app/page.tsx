@@ -1896,6 +1896,30 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
           </div>
         )}
       </div>
+
+      {/* Bouncing Scroll Indicator (from ivaneklumberjack888.github.io) */}
+      <div className="animate-bounce-slow" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, margin: "20px 0 10px", cursor: "pointer" }} onClick={() => setSection("solutions")}>
+        <span style={{ color: "#9ca3af", fontSize: 11, fontFamily: mono, letterSpacing: 1.5, textTransform: "uppercase" }}>Scroll to Explore Capabilities</span>
+        <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#10b981", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 900 }}>
+          ↓
+        </div>
+      </div>
+
+      {/* Floating Bouncing AI Control Button (Bottom Right) */}
+      <div
+        onClick={() => setSection("dashboard")}
+        className="animate-bounce-slow animate-pulse-glow"
+        style={{
+          position: "fixed", bottom: 28, right: 28, zIndex: 110,
+          padding: "10px 18px", borderRadius: 24,
+          background: "linear-gradient(135deg, #10b981, #059669)",
+          color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 900,
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
+          boxShadow: "0 0 24px rgba(16,185,129,0.5)"
+        }}
+      >
+        <span>⚡</span> Enter AIVOS OS Mission Control
+      </div>
     </div>
   );
 }
