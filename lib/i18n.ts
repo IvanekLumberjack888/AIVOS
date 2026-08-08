@@ -44,18 +44,18 @@ export const translations = {
     actor3_title: "Notion P.A.R.A. & Local Privacy Sync",
     actor3_desc: "Two-way live synchronization between Notion P.A.R.A. databases and local Ollama zero-trust LLM memory.",
 
-    // Pricing Page (Apify & SaaS Standard)
-    pricing_title: "Transparent & Scalable Pricing",
-    pricing_subtitle: "Choose the tier that fits your automation needs. No hidden fees, no required Discord communities.",
-    plan_starter_title: "Starter Demo",
-    plan_starter_price: "$0 / free",
-    plan_starter_desc: "Open-source demo view on Vercel for exploring capabilities.",
-    plan_pro_title: "Pro Solopreneur",
-    plan_pro_price: "$49 / mo",
-    plan_pro_desc: "Complete Python yt-dlp scripts, Medium generator API, and Notion sync blueprints.",
-    plan_private_title: "Enterprise Consulting",
-    plan_private_price: "$2,500+",
-    plan_private_desc: "Custom Azure Data Factory, Databricks PySpark Lakehouse & tailored AI agent deployment.",
+    // Pricing Page (Fabric Forge Inspired Low-Friction Launch Deal)
+    pricing_title: "Accessible & Fair Early-Bird Pricing",
+    pricing_subtitle: "Start with zero friction. Low early-bird prices inspired by Fabric Forge launch model.",
+    plan_starter_title: "Standard Free",
+    plan_starter_price: "$0 / month",
+    plan_starter_desc: "Full access to public showcase, PULSE digest blogs, and architecture demos.",
+    plan_pro_title: "Early Bird Pro",
+    plan_pro_price: "$5 / month",
+    plan_pro_desc: "Launch deal! Access Python yt-dlp scripts, Medium article generator code, Notion sync blueprints & Azure/PySpark diagrams.",
+    plan_private_title: "Enterprise / Team",
+    plan_private_price: "$1,500 / year",
+    plan_private_desc: "Dedicated Azure Data Factory, Databricks PySpark Lakehouse & custom AI agent deployment.",
 
     // About Section
     about_title: "About AIVOS Platform",
@@ -163,18 +163,18 @@ export const translations = {
     actor3_title: "Notion P.A.R.A. & Lokální Paměťový Sync",
     actor3_desc: "Živá obousměrná synchronizace mezi Notion P.A.R.A. databází a lokální Ollama pamětí.",
 
-    // Pricing Page (Apify & SaaS Standard)
-    pricing_title: "Transparentní ceník bez skrytých poplatků",
-    pricing_subtitle: "Vyberte si úroveň podle vašich potřeb. Žádné povinné Discord komunity, žádné zdržování.",
-    plan_starter_title: "Starter Ukázka",
-    plan_starter_price: "Zdarma",
-    plan_starter_desc: "Open-source ukázka rozhraní na Vercelu pro prozkoumání možností.",
-    plan_pro_title: "Pro Solopreneur",
-    plan_pro_price: "1 200 Kč / měs",
-    plan_pro_desc: "Kompletní Python skripty, Medium API generátor a Notion synchronizace.",
-    plan_private_title: "Enterprise Consulting",
-    plan_private_price: "od 60 000 Kč",
-    plan_private_desc: "Zakázková architektura Azure Data Factory, Databricks PySpark a AI agenti na míru.",
+    // Pricing Page (Fabric Forge Inspired Low-Friction Launch Deal)
+    pricing_title: "Dostupný startovací ceník bez bariér",
+    pricing_subtitle: "Začněte bez překážek. Startovací ceny podle vzoru Fabric Forge (podzim 2025).",
+    plan_starter_title: "Standard Zdarma",
+    plan_starter_price: "0 Kč / měs",
+    plan_starter_desc: "Plný přístup k ukázce rozhraní, PULSE článkům a architektuře.",
+    plan_pro_title: "Early Bird Pro",
+    plan_pro_price: "$5 (120 Kč) / měs",
+    plan_pro_desc: "Zaváděcí cena! Kompletní Python skripty, generátor článků, Notion sync kód a PySpark/Azure diagramy.",
+    plan_private_title: "Enterprise / Tým",
+    plan_private_price: "35 000 Kč / rok",
+    plan_private_desc: "Zakázková architektura Azure Data Factory, Databricks Delta Lake a AI agenti pro váš tým.",
 
     // About Section
     about_title: "O platformě AIVOS",

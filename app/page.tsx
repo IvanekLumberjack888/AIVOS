@@ -1873,7 +1873,7 @@ function MarketplaceView({ setSection, onOpenLogin }: { setSection: (s: Section)
   );
 }
 
-// DEDICATED PRICING PAGE
+// DEDICATED PRICING PAGE (FABRIC FORGE LAUNCH MODEL INSPIRED)
 function PricingView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
   const [lang] = useState<Language>("en");
   const t = translations[lang];
@@ -1881,36 +1881,39 @@ function PricingView({ setSection, onOpenLogin }: { setSection: (s: Section) => 
   return (
     <div style={{ padding: "2.5rem 2rem", maxWidth: 1140, margin: "0 auto" }}>
       <div style={{ marginBottom: 32, textAlign: "center" }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>PRICING TIERS</div>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ACCESSIBLE EARLY-BIRD PRICING</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: "0 0 8px" }}>{t.pricing_title}</h1>
         <p style={{ fontSize: 14, color: "#9ca3af" }}>{t.pricing_subtitle}</p>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        {/* Tier 1: Standard Free */}
         <div style={{ ...card, border: "1px solid rgba(255,255,255,0.15)", padding: 28 }}>
           <div style={{ color: "#6b7280", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_starter_title}</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#f8fff8", margin: "10px 0" }}>{t.plan_starter_price}</div>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px" }}>{t.plan_starter_desc}</p>
+          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_starter_desc}</p>
           <button onClick={() => setSection("dashboard")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", color: "#f8fff8", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
-            Explore Starter Demo →
+            Explore Free Demo →
           </button>
         </div>
 
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28, background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))", boxShadow: "0 0 30px rgba(16,185,129,0.2)" }}>
-          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>{t.plan_pro_title} · POPULAR</div>
+        {/* Tier 2: Early Bird $5 / mo Launch Deal */}
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.4)", padding: 28, background: "linear-gradient(135deg, rgba(16,185,129,0.18), rgba(13,20,16,0.95))", boxShadow: "0 0 30px rgba(16,185,129,0.2)" }}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase" }}>{t.plan_pro_title} · LAUNCH DEAL</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#10b981", margin: "10px 0" }}>{t.plan_pro_price}</div>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px" }}>{t.plan_pro_desc}</p>
+          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_pro_desc}</p>
           <button onClick={() => window.open("https://gumroad.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "linear-gradient(135deg, #10b981, #059669)", color: "#000", fontSize: 12, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer" }}>
-            Get Pro Blueprints →
+            Claim $5 Early Bird Access →
           </button>
         </div>
 
+        {/* Tier 3: Enterprise / Team */}
         <div style={{ ...card, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
           <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_private_title}</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#c084fc", margin: "10px 0" }}>{t.plan_private_price}</div>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px" }}>{t.plan_private_desc}</p>
+          <p style={{ fontSize: 12, color: "#9ca3af", margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_private_desc}</p>
           <button onClick={() => window.open("https://linkedin.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.4)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
-            Contact Ivo Doležal →
+            Contact Enterprise Team →
           </button>
         </div>
       </div>
