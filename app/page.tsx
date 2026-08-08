@@ -300,6 +300,38 @@ function MediumArticleModal({ video, onClose }: { video: VideoItem; onClose: () 
           </button>
         </div>
 
+        {/* Pro Paywall Banner */}
+        <div style={{
+          margin: "12px 24px 0", padding: "10px 14px", borderRadius: 10,
+          background: "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(16,185,129,0.08))",
+          border: "1px solid rgba(139,92,246,0.4)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <Lock size={14} style={{ color: "#c084fc" }} />
+            <span style={{ fontSize: 11, fontFamily: mono, color: "#d8b4fe" }}>
+              <strong>PRO PAYWALL FEATURE</strong> · Unlock Notion Auto-Sync, Full Medium API & PySpark Blueprints
+            </span>
+          </div>
+          <div style={{ display: "flex", gap: 6 }}>
+            <a href="https://gumroad.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <button style={{
+                padding: "5px 12px", borderRadius: 6, background: "linear-gradient(135deg, #8b5cf6, #c084fc)",
+                border: "none", color: "#fff", fontSize: 10, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+              }}>
+                ⚡ Unlock Pro ($19)
+              </button>
+            </a>
+            <a href="https://buymeacoffee.com/aivos_os" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <button style={{
+                padding: "5px 12px", borderRadius: 6, background: "#FFDD00",
+                border: "none", color: "#000", fontSize: 10, fontFamily: mono, fontWeight: 700, cursor: "pointer"
+              }}>
+                ☕ Buy Coffee
+              </button>
+            </a>
+          </div>
+        </div>
+
         {/* Article Body */}
         <div style={{ flex: 1, overflowY: "auto", padding: "20px 24px" }}>
           {loading ? (
@@ -804,10 +836,27 @@ function BriefView() {
         {/* Audio Brief Player */}
         <div style={{ ...card, marginBottom: 20, border: "1px solid rgba(16,185,129,0.2)" }}>
           <audio ref={audioRef} src={audioSrc} preload="metadata" />
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, flexWrap: "wrap", gap: 10 }}>
             <div>
               <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 2 }}>Brain Brief Podcast</div>
-              <div style={{ color: "#f8fff8", fontSize: 16, fontFamily: mono, fontWeight: 700 }}>{brief?.date ?? "Loading..."}</div>
+              <div style={{ color: "#f8fff8", fontSize: 16, fontFamily: mono, fontWeight: 700, display: "flex", alignItems: "center", gap: 10 }}>
+                {brief?.date ?? "Loading..."}
+                {history.length > 1 && (
+                  <select
+                    value={selectedDate}
+                    onChange={e => switchDate(e.target.value)}
+                    style={{
+                      background: "rgba(10,15,10,0.8)", border: "1px solid rgba(16,185,129,0.3)",
+                      color: "#10b981", fontSize: 11, fontFamily: mono, borderRadius: 8, padding: "4px 10px", outline: "none", cursor: "pointer"
+                    }}
+                  >
+                    <option value="latest">⚡ Latest Digest (Today)</option>
+                    {history.filter(d => d !== "latest").map(d => (
+                      <option key={d} value={d}>📅 Digest ({d})</option>
+                    ))}
+                  </select>
+                )}
+              </div>
             </div>
             <button onClick={togglePlay} style={{
               width: 52, height: 52, borderRadius: "50%",
@@ -850,23 +899,6 @@ function BriefView() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {brief.medium.slice(0, 8).map((v, i) => <BriefVideoCard key={i} video={v} color="#c084fc" onDeepDive={setActiveVideo} onMediumArticle={setMediumVideo} />)}
-            </div>
-          </div>
-        )}
-
-        {history.length > 1 && (
-          <div style={card}>
-            <div style={{ color: "#4b5563", fontSize: 10, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" as const, marginBottom: 12 }}>HISTORY</div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {history.map(d => (
-                <button key={d} onClick={() => switchDate(d)} style={{
-                  padding: "4px 12px", borderRadius: 20,
-                  background: selectedDate === d ? "rgba(16,185,129,0.2)" : "transparent",
-                  border: `1px solid ${selectedDate === d ? "#10b981" : "rgba(16,185,129,0.2)"}`,
-                  color: selectedDate === d ? "#10b981" : "#6b7280",
-                  fontSize: 11, fontFamily: mono, cursor: "pointer",
-                }}>{d}</button>
-              ))}
             </div>
           </div>
         )}
