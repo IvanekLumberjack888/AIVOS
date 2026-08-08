@@ -149,6 +149,8 @@ def main():
     parser = argparse.ArgumentParser(description="AIVOS YouTube Brain Brief Pipeline")
     parser.add_argument("--playlist", help="YouTube Playlist URL")
     parser.add_argument("--video", help="Single YouTube Video URL")
+    parser.add_argument("--bulk", action="store_true", help="Run fullload playlist ingestion with BULK category tag")
+    parser.add_argument("--limit", type=int, help="Limit number of videos to process")
     args = parser.parse_args()
 
     default_playlist = "https://www.youtube.com/playlist?list=PLNR1VOh_heg7aoFZ0HGpU6Iscdf3kTiqk"
@@ -160,13 +162,24 @@ def main():
     today_str = datetime.date.today().isoformat()
     videos = fetch_youtube_metadata(target_url)
 
+    # Determine processing limit
+    limit = args.limit if args.limit else (len(videos) if args.bulk else 10)
+    videos_to_process = videos[:limit]
+
+    print(f"[2/3] Processing {len(videos_to_process)} videos (Bulk Mode: {args.bulk})...")
+
     processed_items = []
-    # Take latest 10 videos (YouTube flat-playlist returns items in order)
-    for v in videos[:10]:
+    for v in videos_to_process:
         if api_key:
             item = score_and_summarize_with_gemini(api_key, v)
         else:
             item = fallback_video_summary(v)
+
+        if args.bulk:
+            item["category"] = "BULK"
+            if "#BULK" not in item["tags"]:
+                item["tags"] = f"#BULK {item['tags']}"
+
         processed_items.append(item)
 
     high_items = [v for v in processed_items if v.get("score", 0) >= 8]
@@ -174,7 +187,7 @@ def main():
 
     brief_data = {
         "date": today_str,
-        "text": f"Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máme {len(processed_items)} zpracovaných videí a návodů z tvého YouTube playlistu.",
+        "text": f"Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte {len(processed_items)} zpracovaných videí ({'BULK Fullload' if args.bulk else 'Daily'}).",
         "stats": {
             "high": len(high_items),
             "medium": len(med_items),

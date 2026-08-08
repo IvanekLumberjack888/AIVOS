@@ -274,6 +274,19 @@ function VideoCard({
           }}>
             {isVideo ? "▶ YT" : "✎ READ"}
           </div>
+          {/* Bulk badge (purple) */}
+          {(video.category === "BULK" || video.tags?.includes("BULK")) && (
+            <div style={{
+              position: "absolute", top: 8, left: 62,
+              fontSize: 9, fontFamily: mono, fontWeight: 700, letterSpacing: 0.5,
+              padding: "2px 8px", borderRadius: 20,
+              background: "linear-gradient(135deg, #8b5cf6, #c084fc)",
+              color: "#ffffff",
+              boxShadow: "0 0 8px rgba(168, 85, 247, 0.6)",
+            }}>
+              🔮 BULK
+            </div>
+          )}
           {/* Link overlay */}
           <a href={video.url} target="_blank" rel="noreferrer" style={{
             position: "absolute", inset: 0, display: "flex",
