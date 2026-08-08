@@ -2288,67 +2288,57 @@ function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => vo
           — Ivo Doležal · IT Integration and Automation Specialist (Backend & Data Systems)
         </div>
       </div>
-
-      {/* 3 Core Backend Pillars */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginTop: 24 }}>
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.2)" }}>
-          <div style={{ fontSize: 24, marginBottom: 10 }}>⚙️</div>
-          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>Backend-First Engineering</h3>
-          <p style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.5, margin: 0 }}>Built around robust Azure Data Factory ETL/ELT pipelines, Service Bus queues, and PySpark Lakehouses.</p>
-        </div>
-
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.2)" }}>
-          <div style={{ fontSize: 24, marginBottom: 10 }}>🤖</div>
-          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>Autonomous Agent Ops</h3>
-          <p style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.5, margin: 0 }}>PULSE video triage, automated YouTube/Medium digest publishing, and zero-touch operation.</p>
-        </div>
-
-        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.2)" }}>
-          <div style={{ fontSize: 24, marginBottom: 10 }}>🔒</div>
-          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>Privacy & Local Execution</h3>
-          <p style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.5, margin: 0 }}>Local LLM integration via Ollama (qwen2.5) paired with Google Gemini 2.0 Flash RAG pipelines.</p>
-        </div>
-      </div>
     </div>
   );
 }
 
 // LINEAR / DATAMOLE FUTURISTIC GLASSMORPHIC FLOATING HEADER
-function LinearHeader({ currentSection, setSection, onOpenLogin }: { currentSection: Section; setSection: (s: Section) => void; onOpenLogin: () => void }) {
+function LinearHeader({
+  currentSection,
+  setSection,
+  onOpenLogin,
+  theme,
+  setTheme,
+}: {
+  currentSection: Section;
+  setSection: (s: Section) => void;
+  onOpenLogin: () => void;
+  theme: "dark" | "light";
+  setTheme: (t: "dark" | "light") => void;
+}) {
   const [lang, setLang] = useState<Language>("en");
 
   const navItems: { id: Section; label: string }[] = [
-    { id: "landing",     label: "Home" },
-    { id: "solutions",   label: "Solutions" },
+    { id: "landing", label: "Home" },
+    { id: "solutions", label: "Solutions" },
     { id: "marketplace", label: "Marketplace" },
-    { id: "brief",       label: "PULSE" },
-    { id: "pricing",     label: "Pricing" },
-    { id: "about",       label: "About" },
+    { id: "brief", label: "PULSE" },
+    { id: "pricing", label: "Pricing" },
+    { id: "about", label: "About" },
   ];
+
+  const isLight = theme === "light";
 
   return (
     <header style={{
-      position: "sticky", top: 16, zIndex: 100,
-      maxWidth: 1080, margin: "0 auto", padding: "0 16px"
+      position: "sticky", top: 12, zIndex: 100,
+      maxWidth: 1140, margin: "0 auto 20px", padding: "0 16px"
     }}>
       <div style={{
-        background: "rgba(13,20,16,0.85)", backdropFilter: "blur(24px)",
-        border: "1px solid rgba(16,185,129,0.3)", borderRadius: 24,
-        padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "space-between",
-        boxShadow: "0 16px 40px rgba(0,0,0,0.7), 0 0 24px rgba(16,185,129,0.15)"
+        background: isLight ? "rgba(255,255,255,0.92)" : "rgba(11,18,14,0.85)",
+        backdropFilter: "blur(20px)",
+        border: isLight ? "1px solid rgba(16,185,129,0.3)" : "1px solid rgba(16,185,129,0.35)",
+        borderRadius: 24, padding: "10px 20px",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        boxShadow: isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)",
+        transition: "all 0.3s"
       }}>
         {/* Brand Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => setSection("landing")}>
-          <div style={{
-            width: 32, height: 32, borderRadius: 8,
-            background: "linear-gradient(135deg, #10b981, #059669)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            color: "#000", fontWeight: 900, fontFamily: mono, fontSize: 14,
-            boxShadow: "0 0 14px rgba(16,185,129,0.4)"
-          }}>
-            AI
+        <div onClick={() => setSection("landing")} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
+          <div style={{ width: 28, height: 28, borderRadius: 8, background: "linear-gradient(135deg, #10b981, #059669)", display: "flex", alignItems: "center", justifyContent: "center", color: "#000", fontWeight: 900, fontSize: 14 }}>
+            ⚡
           </div>
-          <span style={{ fontSize: 16, fontWeight: 900, color: "#f8fff8", letterSpacing: 0.5, fontFamily: mono }}>AIVOS OS</span>
+          <span style={{ fontSize: 16, fontWeight: 900, color: isLight ? "#0f172a" : "#f8fff8", letterSpacing: 0.5, fontFamily: mono }}>AIVOS OS</span>
         </div>
 
         {/* Linear Floating Nav Links */}
@@ -2362,7 +2352,7 @@ function LinearHeader({ currentSection, setSection, onOpenLogin }: { currentSect
                 style={{
                   background: active ? "rgba(16,185,129,0.15)" : "transparent",
                   border: active ? "1px solid rgba(16,185,129,0.35)" : "1px solid transparent",
-                  color: active ? "#10b981" : "#9ca3af",
+                  color: active ? (isLight ? "#059669" : "#10b981") : (isLight ? "#475569" : "#9ca3af"),
                   padding: "6px 14px", borderRadius: 16,
                   fontSize: 12, fontFamily: mono, fontWeight: active ? 800 : 600,
                   cursor: "pointer", transition: "all 0.2s"
@@ -2376,15 +2366,29 @@ function LinearHeader({ currentSection, setSection, onOpenLogin }: { currentSect
 
         {/* Right Actions */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {/* Theme Switcher Toggle */}
+          <button
+            onClick={() => setTheme(isLight ? "dark" : "light")}
+            title="Toggle Light / Dark Theme"
+            style={{
+              padding: "4px 10px", borderRadius: 14, fontSize: 11, fontFamily: mono, fontWeight: 700,
+              background: isLight ? "rgba(16,185,129,0.12)" : "rgba(255,255,255,0.06)",
+              border: isLight ? "1px solid rgba(16,185,129,0.3)" : "1px solid rgba(255,255,255,0.15)",
+              color: isLight ? "#059669" : "#34d399", cursor: "pointer", display: "flex", alignItems: "center", gap: 4
+            }}
+          >
+            {isLight ? "☀️ Light" : "🌙 Dark"}
+          </button>
+
           {/* Language Switcher Pills */}
-          <div style={{ display: "flex", gap: 2, background: "rgba(0,0,0,0.5)", padding: 2, borderRadius: 16, border: "1px solid rgba(16,185,129,0.25)" }}>
+          <div style={{ display: "flex", gap: 2, background: isLight ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.5)", padding: 2, borderRadius: 16, border: "1px solid rgba(16,185,129,0.25)" }}>
             <button
               onClick={() => setLang("en")}
               style={{
                 padding: "3px 8px", borderRadius: 12, fontSize: 10, fontFamily: mono, fontWeight: 700,
                 border: "none", cursor: "pointer",
                 background: lang === "en" ? "#10b981" : "transparent",
-                color: lang === "en" ? "#000" : "#6b7280"
+                color: lang === "en" ? "#000" : (isLight ? "#475569" : "#6b7280")
               }}
             >
               EN
@@ -2584,11 +2588,12 @@ function NotebookLMView() {
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
 
-export default function AIVOS() {
+export default function App() {
   const [section, setSection] = useState<Section>("landing");
   const [time, setTime] = useState<Date | null>(null);
   const [ollamaOk, setOllamaOk] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     setTime(new Date());
@@ -2620,13 +2625,21 @@ export default function AIVOS() {
   }
 
   const isPublicPage = ["landing", "solutions", "marketplace", "pricing", "about", "brief"].includes(section);
+  const isLight = theme === "light";
 
   if (isPublicPage) {
     return (
       <>
         {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
-        <div style={{ minHeight: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", paddingTop: 10, paddingBottom: 60 }}>
-          <LinearHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />
+        <div style={{
+          minHeight: "100vh",
+          background: isLight ? "#f8faf9" : "#0f1410",
+          color: isLight ? "#0f172a" : "#f8fff8",
+          fontFamily: "Inter, -apple-system, sans-serif",
+          paddingTop: 10, paddingBottom: 60,
+          transition: "background 0.3s, color 0.3s"
+        }}>
+          <LinearHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} theme={theme} setTheme={setTheme} />
           <main>
             {renderSection()}
           </main>
