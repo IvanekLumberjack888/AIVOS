@@ -58,8 +58,8 @@ export const translations = {
     plan_private_desc: "Custom Azure Data Factory, Databricks PySpark Lakehouse & tailored AI agent deployment.",
 
     // About Section
-    about_title: "About AIVOS & Ivo Doležal",
-    about_desc: "AIVOS is an autonomous IT Integration & Automation platform created by Ivo Doležal, IT Integration and Automation Specialist. Based in Prague, Czech Republic, specializing in Azure cloud architectures, PySpark Lakehouse pipelines, and agentic workflows.",
+    about_title: "About AIVOS Platform",
+    about_desc: "AIVOS is an enterprise IT Integration & Automation platform. Headquartered in Prague, Czech Republic, specializing in Azure cloud architectures, PySpark Lakehouse pipelines, Delta Lake data quality governance, and autonomous agentic workflows.",
 
     // Public Landing Page (Capco & Axians Inspired)
     landing_badge: "✨ NEXT-GEN IT INTEGRACE & AI AUTOMATIZAČNÍ CONSULTING",
@@ -177,8 +177,8 @@ export const translations = {
     plan_private_desc: "Zakázková architektura Azure Data Factory, Databricks PySpark a AI agenti na míru.",
 
     // About Section
-    about_title: "O projektu AIVOS & Ivo Doležal",
-    about_desc: "AIVOS je autonomní IT integrační a automatizační platforma vytvořená Ivem Doležalem, IT Integration and Automation Specialist. Se sídlem v Praze, se specializací na Azure cloud, PySpark Lakehouse a AI agentní workflows.",
+    about_title: "O platformě AIVOS",
+    about_desc: "AIVOS je enterprise platforma pro IT integrace a automatizaci. Se sídlem v Praze, se specializací na Azure cloudové architektury, PySpark Delta Lake pipelines, kontrolu kvality dat a autonomní AI agenty.",
 
     // Navigation
     nav_landing: "Úvodní Stránka",
