@@ -1744,84 +1744,84 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
   const t = translations[lang];
 
   return (
-    <div style={{ padding: "2.5rem 2rem", maxWidth: 1140, margin: "0 auto" }}>
+    <div style={{ padding: "3rem 2rem", maxWidth: 1180, margin: "0 auto" }}>
 
-      {/* Datamole-Style Isometric Hero & Stat Cards Layout */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 32, alignItems: "center", marginBottom: 40 }}>
+      {/* Datamole-Style Hero Section */}
+      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 40, alignItems: "center", marginBottom: 48 }}>
         <div>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 20,
-            background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)",
-            color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 1, marginBottom: 18
-          }}>
-            <Sparkles size={14} /> {t.landing_badge}
-          </div>
-
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: "#f8fff8", lineHeight: 1.18, margin: "0 0 16px", letterSpacing: "-0.02em" }}>
-            {t.landing_h1}
+          <h1 style={{ fontSize: 44, fontWeight: 900, color: "#f8fff8", lineHeight: 1.15, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
+            {t.datamole_h1} <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.datamole_h1_accent}</span>
           </h1>
 
-          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 24px" }}>
-            {t.landing_subtitle}
+          <p style={{ fontSize: 15, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 28px" }}>
+            {t.datamole_subtitle}
           </p>
 
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <button onClick={() => setSection("solutions")} style={{
-              padding: "13px 26px", borderRadius: 10, background: "linear-gradient(135deg, #10b981, #059669)",
-              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 800, border: "none", cursor: "pointer",
-              boxShadow: "0 0 20px rgba(16,185,129,0.3)"
+              padding: "14px 28px", borderRadius: 24, background: "#10b981",
+              color: "#000", fontSize: 13, fontFamily: mono, fontWeight: 900, border: "none", cursor: "pointer",
+              boxShadow: "0 0 24px rgba(16,185,129,0.4)"
             }}>
-              {t.challenges_title} →
+              {t.datamole_btn_cta}
             </button>
             <button onClick={() => setSection("marketplace")} style={{
-              padding: "13px 24px", borderRadius: 10, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
+              padding: "14px 26px", borderRadius: 24, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
               color: "#e2e8f0", fontSize: 13, fontFamily: mono, fontWeight: 700, cursor: "pointer"
             }}>
-              {t.market_title}
+              EXPLORE BLUEPRINTS →
             </button>
           </div>
         </div>
 
-        {/* Datamole Stat Cards Grid */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <div style={{ ...card, padding: 20, border: "1px solid rgba(16,185,129,0.3)", background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(13,20,16,0.95))" }}>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#10b981", fontFamily: mono }}>{t.stat1_num}</div>
-            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.stat1_label}</div>
-          </div>
-          <div style={{ ...card, padding: 20, border: "1px solid rgba(59,130,246,0.3)", background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(13,20,16,0.95))" }}>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#60a5fa", fontFamily: mono }}>{t.stat2_num}</div>
-            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.stat2_label}</div>
-          </div>
-          <div style={{ ...card, padding: 20, border: "1px solid rgba(168,85,247,0.3)", background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(13,20,16,0.95))" }}>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#c084fc", fontFamily: mono }}>{t.stat3_num}</div>
-            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.stat3_label}</div>
-          </div>
+        {/* Datamole Isometric AI Diagram Graphic */}
+        <div style={{
+          ...card, padding: 24, borderRadius: 20,
+          background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(13,20,16,0.95))",
+          border: "1px solid rgba(16,185,129,0.35)", textAlign: "center"
+        }}>
+          <div style={{ fontSize: 72, marginBottom: 12 }}>🛸</div>
+          <div style={{ color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>AIVOS ENTERPRISE AI NODE</div>
+          <div style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, marginTop: 4 }}>Azure ADF · Databricks · Gemini 2.0</div>
+          <p style={{ color: "#9ca3af", fontSize: 12, marginTop: 6, lineHeight: 1.5 }}>High-throughput ETL/ELT pipelines paired with autonomous agent triage.</p>
         </div>
       </div>
 
-      {/* Datamole "Challenges We Solve" Grid */}
-      <div style={{ marginBottom: 40 }}>
-        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>
-          CHALLENGES WE SOLVE
+      {/* Datamole Stat Cards & About Us Row (Exact Image Match!) */}
+      <div style={{ display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 32, alignItems: "center", marginBottom: 48 }}>
+        {/* Left Column: 3 Pristine Stat Cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ ...card, padding: "20px 24px", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 14, background: "rgba(16,185,129,0.06)" }}>
+            <div style={{ fontSize: 36, fontWeight: 900, color: "#10b981", fontFamily: mono }}>{t.datamole_stat1_num}</div>
+            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.datamole_stat1_label}</div>
+          </div>
+          <div style={{ ...card, padding: "20px 24px", border: "1px solid rgba(59,130,246,0.3)", borderRadius: 14, background: "rgba(59,130,246,0.06)" }}>
+            <div style={{ fontSize: 36, fontWeight: 900, color: "#60a5fa", fontFamily: mono }}>{t.datamole_stat2_num}</div>
+            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.datamole_stat2_label}</div>
+          </div>
+          <div style={{ ...card, padding: "20px 24px", border: "1px solid rgba(168,85,247,0.3)", borderRadius: 14, background: "rgba(168,85,247,0.06)" }}>
+            <div style={{ fontSize: 36, fontWeight: 900, color: "#c084fc", fontFamily: mono }}>{t.datamole_stat3_num}</div>
+            <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 700, marginTop: 4 }}>{t.datamole_stat3_label}</div>
+          </div>
         </div>
-        <h2 style={{ fontSize: 24, fontWeight: 800, color: "#f8fff8", margin: "0 0 20px" }}>{t.challenges_subtitle}</h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          <div style={{ ...card, border: "1px solid rgba(16,185,129,0.3)" }}>
-            <div style={{ fontSize: 24, marginBottom: 10 }}>⛓️</div>
-            <h3 style={{ fontSize: 16, fontWeight: 800, color: "#f8fff8", margin: "0 0 8px" }}>{t.ch1_title}</h3>
-            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.ch1_desc}</p>
+        {/* Right Column: Datamole About Us Box */}
+        <div style={{ ...card, padding: 36, border: "1px solid rgba(16,185,129,0.3)", borderRadius: 20 }}>
+          <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, marginBottom: 8 }}>
+            {t.datamole_about_sub}
           </div>
-          <div style={{ ...card, border: "1px solid rgba(59,130,246,0.3)" }}>
-            <div style={{ fontSize: 24, marginBottom: 10 }}>⚡</div>
-            <h3 style={{ fontSize: 16, fontWeight: 800, color: "#f8fff8", margin: "0 0 8px" }}>{t.ch2_title}</h3>
-            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.ch2_desc}</p>
-          </div>
-          <div style={{ ...card, border: "1px solid rgba(168,85,247,0.3)" }}>
-            <div style={{ fontSize: 24, marginBottom: 10 }}>✍️</div>
-            <h3 style={{ fontSize: 16, fontWeight: 800, color: "#f8fff8", margin: "0 0 8px" }}>{t.ch3_title}</h3>
-            <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.6, margin: 0 }}>{t.ch3_desc}</p>
-          </div>
+          <h2 style={{ fontSize: 28, fontWeight: 900, color: "#f8fff8", margin: "0 0 14px" }}>
+            {t.datamole_about_title}
+          </h2>
+          <p style={{ fontSize: 14, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 24px" }}>
+            {t.datamole_about_desc}
+          </p>
+          <button onClick={() => setSection("about")} style={{
+            padding: "10px 22px", borderRadius: 20, background: "transparent",
+            border: "1px solid #10b981", color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 800, cursor: "pointer"
+          }}>
+            {t.datamole_btn_about}
+          </button>
         </div>
       </div>
     </div>

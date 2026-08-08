@@ -63,8 +63,22 @@ export const translations = {
     about_quote: "Engineered from the back-row. Built by a Senior Data & Backend Engineer who prefers rock-solid pipelines, automated execution, and clean architecture over sales pitches or corporate politics.",
     about_quote_tag: "BACKEND & DATA INTEGRATION PHILOSOPHY",
 
-    // Public Landing Page (Capco & Axians Inspired)
-    landing_badge: "✨ NEXT-GEN IT INTEGRACE & AI AUTOMATIZAČNÍ CONSULTING",
+    // Public Landing Page (Datamole Inspired)
+    landing_badge: "✨ DATAMOLE-INSPIRED ENTERPRISE DATA & AI CONSULTING",
+    datamole_h1: "Innovate your business with ",
+    datamole_h1_accent: "data & artificial intelligence solutions",
+    datamole_subtitle: "Optimize processes. Decrease costs. Increase data & pipeline efficiency. We develop custom Azure Data & AI solutions that will make your business thrive.",
+    datamole_btn_cta: "CHALLENGES WE SOLVE →",
+    datamole_stat1_num: "100+",
+    datamole_stat1_label: "Data & AI pipelines engineered in Azure & PySpark",
+    datamole_stat2_num: "24/7",
+    datamole_stat2_label: "Autonomous Agent Operations & PULSE Triage",
+    datamole_stat3_num: "100%",
+    datamole_stat3_label: "Data Quality Governance & Delta Lake Integrity",
+    datamole_about_sub: "About us",
+    datamole_about_title: "Data, Integration & AI experts",
+    datamole_about_desc: "We are a Prague-based data and artificial intelligence (AI) platform. We help enterprise companies become more sustainable and profitable by innovating their business with Azure Data Factory, PySpark Lakehouses, and autonomous AI agents.",
+    datamole_btn_about: "More about us →",
     landing_h1: "Giving Data Meaning. Automating Enterprise Workflows.",
     landing_subtitle: "High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents crafted by Ivo Doležal · IT Integration and Automation Specialist.",
     landing_cta_launch: "🚀 Enter AIVOS OS",
@@ -179,10 +193,27 @@ export const translations = {
     plan_private_desc: "Zakázková architektura Azure Data Factory, Databricks Delta Lake a AI agenti pro váš tým.",
 
     // About Section
-    about_title: "O platformě AIVOS",
-    about_desc: "AIVOS je enterprise platforma pro IT integrace a automatizaci. Se sídlem v Praze, se specializací na Azure cloudové architektury, PySpark Delta Lake pipelines, kontrolu kvality dat a autonomní AI agenty.",
+    about_title: "O platformě AIVOS & Ivo Doležal",
+    about_desc: "AIVOS je enterprise platforma pro IT integrace a automatizaci vytvořená Ivo Doležalem, IT Integration and Automation Specialist. Se sídlem v Praze, se specializací na Azure cloudové architektury, PySpark Delta Lake pipelines a agentní workflow.",
     about_quote: "Vytvořeno tichou prací na backendu. Stavěno datovým inženýrem, který dává přednost neprůstřelným pipeline, automatizaci a čistému kódu před obchodnickými řečmi a vyjednáváním s managmentem.",
     about_quote_tag: "BACKEND A DATOVÁ FILOZOFIE",
+
+    // Public Landing Page (Datamole Inspired)
+    landing_badge: "✨ DATOVÝ & AI CONSULTING PO VZORU DATAMOLE",
+    datamole_h1: "Inovujte vaše podnikání pomocí ",
+    datamole_h1_accent: "datových & AI řešení",
+    datamole_subtitle: "Optimalizujte procesy. Snižte náklady. Zvyšte efektivitu datových pipeline. Vyvíjíme zakázková Azure Data & AI řešení, která posunou vaše podnikání dopředu.",
+    datamole_btn_cta: "VÝZVY, KTERÉ ŘEŠÍME →",
+    datamole_stat1_num: "100+",
+    datamole_stat1_label: "Datových & AI pipeline navržených v Azure & PySparku",
+    datamole_stat2_num: "24/7",
+    datamole_stat2_label: "Autonomní agentní provoz & PULSE triáž",
+    datamole_stat3_num: "100%",
+    datamole_stat3_label: "Kontrola kvality dat a Delta Lake integrita",
+    datamole_about_sub: "O nás",
+    datamole_about_title: "Experti na Data, Integrace & AI",
+    datamole_about_desc: "Jsme pražská datová a AI platforma. Pomáháme firmám zvyšovat ziskovost a efektivitu pomocí modernizací v Azure Data Factory, PySpark Lakehouse a autonomních AI agentech.",
+    datamole_btn_about: "Více o nás →",
 
     // Navigation
     nav_landing: "Úvodní Stránka",
@@ -195,8 +226,7 @@ export const translations = {
     nav_sessions: "Generátor",
     nav_search: "Hledat",
 
-    // Public Landing Page (Capco & Axians Inspired)
-    landing_badge: "✨ NEXT-GEN IT INTEGRACE & AI AUTOMATIZAČNÍ CONSULTING",
+    // Public Landing Page
     landing_h1: "Dáváme datům význam. Automatizujeme firemní procesy.",
     landing_subtitle: "Špičková cloudová integrace, Azure PySpark Lakehouse a autonomní AI agenti navržení Ivem Doležalem · IT Integration and Automation Specialist.",
     landing_cta_launch: "🚀 Vstoupit do AIVOS OS",
