@@ -575,6 +575,7 @@ function BriefView() {
   const [brief, setBrief] = useState<BriefData | null>(null);
   const [history, setHistory] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState("latest");
+  const [digestMode, setDigestMode] = useState<"daily" | "weekly">("daily");
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -655,22 +656,41 @@ function BriefView() {
         transition: "margin-right 0.3s ease",
       }}>
         
-        {/* Tier Switcher Bar (Public Preview Controls) */}
-        <div style={{
-          background: "rgba(13,26,18,0.7)", backdropFilter: "blur(12px)",
-          border: "1px solid rgba(16,185,129,0.2)", borderRadius: 12,
-          padding: "10px 16px", marginBottom: 20,
-          display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10
-        }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 14 }}>💎</span>
-            <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 700, color: "#10b981", letterSpacing: 1 }}>
-              ACTIVE ENVIRONMENT MODE:
-            </span>
+        {/* Top Control Bar: Environment Tier & Digest Mode Switcher */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
+          {/* Daily vs Weekly Toggle */}
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={() => setDigestMode("daily")}
+              style={{
+                padding: "8px 16px", borderRadius: 10, fontSize: 11, fontFamily: mono, fontWeight: 700,
+                cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "all 0.2s",
+                background: digestMode === "daily" ? "rgba(16,185,129,0.2)" : "rgba(255,255,255,0.03)",
+                border: `1px solid ${digestMode === "daily" ? "#10b981" : "rgba(255,255,255,0.1)"}`,
+                color: digestMode === "daily" ? "#10b981" : "#6b7280",
+              }}
+            >
+              ⚡ Daily AI Briefs
+            </button>
+            <button
+              onClick={() => setDigestMode("weekly")}
+              style={{
+                padding: "8px 16px", borderRadius: 10, fontSize: 11, fontFamily: mono, fontWeight: 700,
+                cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "all 0.2s",
+                background: digestMode === "weekly" ? "linear-gradient(135deg, rgba(234,179,8,0.25), rgba(168,85,247,0.25))" : "rgba(255,255,255,0.03)",
+                border: `1px solid ${digestMode === "weekly" ? "#eab308" : "rgba(255,255,255,0.1)"}`,
+                color: digestMode === "weekly" ? "#facc15" : "#6b7280",
+                boxShadow: digestMode === "weekly" ? "0 0 14px rgba(234,179,8,0.3)" : "none"
+              }}
+            >
+              🏆 Weekly Best-of (Týdenní Výběr)
+            </button>
           </div>
+
+          {/* Environment Mode Pills */}
           <div style={{ display: "flex", gap: 6 }}>
             {[
-              { id: "starter", label: "🟢 Starter Public Demo", desc: "Open-source Vercel demo" },
+              { id: "starter", label: "🟢 Starter Demo", desc: "Open-source Vercel demo" },
               { id: "pro", label: "⚡ Pro Commercial", desc: "Medium API & Templates" },
               { id: "private", label: "🔒 Private Local OS", desc: "Notion & Ollama Live Sync" },
             ].map(t => (
@@ -691,6 +711,32 @@ function BriefView() {
             ))}
           </div>
         </div>
+
+        {/* Weekly Best-of Hero Banner (Shown when Weekly mode active) */}
+        {digestMode === "weekly" && (
+          <div style={{
+            ...card, marginBottom: 20,
+            background: "linear-gradient(135deg, rgba(234,179,8,0.15), rgba(139,92,246,0.18), rgba(15,23,42,0.95))",
+            border: "1px solid rgba(234,179,8,0.4)",
+            boxShadow: "0 8px 32px rgba(234,179,8,0.15)",
+            backdropFilter: "blur(16px)"
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+              <div style={{ color: "#facc15", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>
+                🏆 WEEKLY BEST-OF DIGEST · TOP 1% CURATED CONTENT
+              </div>
+              <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "linear-gradient(135deg, #eab308, #ca8a04)", color: "#000", fontFamily: mono, fontWeight: 800 }}>
+                BEST OF THE WEEK
+              </span>
+            </div>
+            <h3 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
+              Týdenní Výběr: Top-Rated Technical Videos & Cloud Architecture Patterns
+            </h3>
+            <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
+              Vybrané nejlepší technické příspěvky, návody pro Azure Data Factory, Databricks PySpark a AI automatizace za uplynulých 7 dní s vysokým skóre přínosu (8.5–10).
+            </p>
+          </div>
+        )}
 
         {/* Architecture & How It Works Banner */}
         <div style={{ ...card, marginBottom: 20, border: "1px solid rgba(16,185,129,0.3)", backdropFilter: "blur(12px)" }}>
