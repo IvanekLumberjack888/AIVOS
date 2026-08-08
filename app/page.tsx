@@ -2425,9 +2425,9 @@ export default function AIVOS() {
     return (
       <>
         {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
-        <div style={{ minHeight: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", paddingTop: 10 }}>
+        <div style={{ minHeight: "100vh", background: "#0f1410", fontFamily: "Inter, -apple-system, sans-serif", paddingTop: 10, paddingBottom: 60 }}>
           <LinearHeader currentSection={section} setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} />
-          <main style={{ overflowY: "auto" }}>
+          <main>
             {renderSection()}
           </main>
         </div>

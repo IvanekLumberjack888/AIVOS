@@ -1,19 +1,35 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 :root {
-  --bg: #070f09;
+  --bg: #0f1410;
   --panel: #0c1a10;
   --border: #1a3520;
-  --accent: #00ff88;
+  --accent: #10b981;
   --dim: #3d6b47;
   --text: #7ab87f;
   --bright: #c8e6cb;
 }
 
 html, body {
-  height: 100%;
-  background: var(--bg);
+  min-height: 100%;
+  background: #0f1410;
   color: var(--text);
-  font-family: 'Courier New', monospace;
-  overflow: hidden;
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow-y: auto;
+}
+
+/* Custom Emerald Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1410;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.35);
+  border-radius: 6px;
+  border: 2px solid #0f1410;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
 }
