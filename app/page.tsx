@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
+import ReactMarkdown from "react-markdown";
 import { LayoutDashboard, Brain, FolderOpen, BookOpen, Inbox, Terminal, Search, Circle, Tv, X, Send, Sparkles, Plus, CheckCircle2, CircleDot, Link as LinkIcon, FileText, CheckSquare, PenTool, BookMarked, DollarSign, Copy, Check, Lock, ExternalLink, Coffee, ShoppingBag, Zap, Info } from "lucide-react";
 
 type Section = "dashboard" | "memory" | "para" | "knowledge" | "inbox" | "sessions" | "search" | "brief";
@@ -307,12 +308,12 @@ function MediumArticleModal({ video, onClose }: { video: VideoItem; onClose: () 
             </div>
           ) : (
             <ReactMarkdown components={{
-              h1: ({children}) => <h1 style={{ fontSize: 20, color: "#f8fff8", margin: "16px 0 8px", fontWeight: 800 }}>{children}</h1>,
-              h2: ({children}) => <h2 style={{ fontSize: 16, color: "#10b981", margin: "14px 0 6px", fontFamily: mono }}>{children}</h2>,
-              h3: ({children}) => <h3 style={{ fontSize: 14, color: "#6ee7b7", margin: "12px 0 4px" }}>{children}</h3>,
-              p: ({children}) => <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 10px" }}>{children}</p>,
-              code: ({children}) => <code style={{ background: "rgba(16,185,129,0.1)", color: "#10b981", padding: "2px 6px", borderRadius: 4, fontFamily: mono, fontSize: 11 }}>{children}</code>,
-              li: ({children}) => <li style={{ fontSize: 13, color: "#9ca3af", marginBottom: 4 }}>{children}</li>
+              h1: ({children}: {children?: any}) => <h1 style={{ fontSize: 20, color: "#f8fff8", margin: "16px 0 8px", fontWeight: 800 }}>{children}</h1>,
+              h2: ({children}: {children?: any}) => <h2 style={{ fontSize: 16, color: "#10b981", margin: "14px 0 6px", fontFamily: mono }}>{children}</h2>,
+              h3: ({children}: {children?: any}) => <h3 style={{ fontSize: 14, color: "#6ee7b7", margin: "12px 0 4px" }}>{children}</h3>,
+              p: ({children}: {children?: any}) => <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 10px" }}>{children}</p>,
+              code: ({children}: {children?: any}) => <code style={{ background: "rgba(16,185,129,0.1)", color: "#10b981", padding: "2px 6px", borderRadius: 4, fontFamily: mono, fontSize: 11 }}>{children}</code>,
+              li: ({children}: {children?: any}) => <li style={{ fontSize: 13, color: "#9ca3af", marginBottom: 4 }}>{children}</li>
             }}>{article}</ReactMarkdown>
           )}
 
