@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "GEMINI_API_KEY / IVCA_GEMINI_API not set" }, { status: 500 });
   }
 
-  const systemPrompt = `You are an AI assistant for Ivo – Data Engineer & AI Specialist (Azure stack, AI Automations).
+  const systemPrompt = `You are an AI assistant for Ivo – IT Integration and Automation Specialist (Azure stack, AI Automations).
 Analyze the YouTube video and answer questions about its technical content.
 Respond in clear, professional English. Be specific, concise, and practical. No fluff.
 

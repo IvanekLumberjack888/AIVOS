@@ -237,7 +237,7 @@ function MediumArticleModal({ video, onClose }: { video: VideoItem; onClose: () 
         setLoading(false);
       })
       .catch(() => {
-        setArticle(`# ${video.title}\n\n**Subheading: Deep Dive & Architectural Analysis**\n\n*By Ivo Doležal · Senior Data Engineer*\n\n---\n\n### Overview\n${video.summary}\n\n### Key Implementation Steps\n- ${video.key_points?.join("\n- ") || "Explore architecture"}\n\n### Knowledge Base Comparison\nThis concept integrates directly with Azure Databricks PySpark Lakehouse pipelines and Gemini 2.0 Flash REST streaming APIs.`);
+        setArticle(`# ${video.title}\n\n**Subheading: Deep Dive & Architectural Analysis**\n\n*By Ivo Doležal · IT Integration and Automation Specialist*\n\n---\n\n### Overview\n${video.summary}\n\n### Key Implementation Steps\n- ${video.key_points?.join("\n- ") || "Explore architecture"}\n\n### Knowledge Base Comparison\nThis concept integrates directly with Azure Databricks PySpark Lakehouse pipelines and Gemini 2.0 Flash REST streaming APIs.`);
         setLoading(false);
       });
   }, [video]);
@@ -288,7 +288,7 @@ function MediumArticleModal({ video, onClose }: { video: VideoItem; onClose: () 
             </div>
             <div>
               <div style={{ fontSize: 12, fontWeight: 700, color: "#e2e8f0" }}>Ivo Doležal</div>
-              <div style={{ fontSize: 10, color: "#6b7280", fontFamily: mono }}>Data Engineer & AI Specialist · 5 min read</div>
+              <div style={{ fontSize: 10, color: "#6b7280", fontFamily: mono }}>IT Integration and Automation Specialist · 5 min read</div>
             </div>
           </div>
           <button onClick={copyMarkdown} style={{
