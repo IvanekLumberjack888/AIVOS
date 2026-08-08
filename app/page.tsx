@@ -1738,23 +1738,55 @@ function AuthModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// LUXURY WOW FRONTEND - AIVOS AGENTIC OS HOMEPAGE
+// LUXURY WOW FRONTEND - AIVOS AGENTIC OS HOMEPAGE (ANIMATED DEMO + STORY FIRST + NUMBERS AFTER)
 function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section) => void; onOpenLogin: () => void }) {
   const [activeTab, setActiveTab] = useState<"adf" | "pyspark" | "pulse">("adf");
-  const [activeNode, setActiveNode] = useState<number>(1);
+  const [isPlayingDemo, setIsPlayingDemo] = useState<boolean>(true);
+  const [demoStep, setDemoStep] = useState<number>(1);
+
+  // Auto-play interactive demo sequence
+  useEffect(() => {
+    if (!isPlayingDemo) return;
+    const interval = setInterval(() => {
+      setDemoStep((prev) => (prev % 3) + 1);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [isPlayingDemo]);
 
   return (
-    <div style={{ padding: "2.5rem 2rem 4rem", maxWidth: 1240, margin: "0 auto", position: "relative" }}>
+    <div style={{ padding: "2rem 1.5rem 4rem", maxWidth: 1240, margin: "0 auto", position: "relative" }}>
+
+      {/* SEO Schema.org JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "AIVOS Agentic OS",
+            "operatingSystem": "Web / Cloud",
+            "applicationCategory": "DeveloperApplication",
+            "description": "Enterprise Azure Data Integration, Databricks Delta Lake PySpark Quality & Autonomous AI Agent Platform by Ivo Doležal.",
+            "author": {
+              "@type": "Person",
+              "name": "Ivo Doležal",
+              "jobTitle": "IT Integration and Automation Specialist",
+              "worksFor": { "@type": "Organization", "name": "Konica Minolta IT Solutions Czech" },
+              "sameAs": ["https://ivaneklumberjack888.github.io", "https://ivousd.gumroad.com/l/switcheros-career"]
+            }
+          })
+        }}
+      />
 
       {/* Hero Ambient Background Lighting Glows */}
       <div style={{
         position: "absolute", top: -60, left: "50%", transform: "translateX(-50%)",
-        width: 600, height: 350, background: "radial-gradient(circle, rgba(16,185,129,0.18) 0%, rgba(5,150,105,0.05) 50%, transparent 70%)",
+        width: "90%", maxWidth: 700, height: 350, background: "radial-gradient(circle, rgba(16,185,129,0.18) 0%, rgba(5,150,105,0.05) 50%, transparent 70%)",
         pointerEvents: "none", zIndex: 0, filter: "blur(40px)"
       }} />
 
-      {/* Hero Section Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: 40, alignItems: "center", marginBottom: 56, position: "relative", zIndex: 1 }}>
+      {/* HERO SECTION GRID (Responsive PC & Mobile) */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 40, alignItems: "center", marginBottom: 56, position: "relative", zIndex: 1 }}>
         
         {/* Left Column: Headline & Action Buttons */}
         <div>
@@ -1764,11 +1796,11 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
             color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, letterSpacing: 1, marginBottom: 20,
             boxShadow: "0 0 16px rgba(16,185,129,0.2)"
           }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 8px #10b981" }} />
-            AIVOS SPARK 2.0 · CONTEXT-NATIVE AI & INTEGRATION ENGINE
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 8px #10b981" }} className="animate-pulse-glow" />
+            AIVOS SPARK 2.0 · IT INTEGRATION & AGENTIC OS
           </div>
 
-          <h1 style={{ fontSize: 46, fontWeight: 900, color: "#f8fff8", lineHeight: 1.12, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
+          <h1 style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 900, color: "#f8fff8", lineHeight: 1.12, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
             Giving Data Meaning. <br />
             <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Automating Enterprise Cloud.
@@ -1795,8 +1827,8 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
             </button>
           </div>
 
-          {/* Integration Ecosystem Logos */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 32, flexWrap: "wrap" }}>
+          {/* Ecosystem Tech Badges */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 32, flexWrap: "wrap" }}>
             <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280", letterSpacing: 1 }}>ECOSYSTEM:</span>
             {["AZURE ADF", "DATABRICKS", "PYSPARK", "GEMINI 2.0", "NOTION API", "OLLAMA"].map((tech) => (
               <span key={tech} style={{
@@ -1809,59 +1841,124 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
           </div>
         </div>
 
-        {/* Right Column: Live Interactive Topology Canvas */}
+        {/* Right Column: Blikající / Spouštěcí Představení AIVOS (Animated Live Demo Console) */}
         <div style={{
           ...card, padding: 24, borderRadius: 24,
-          background: "linear-gradient(135deg, rgba(16,185,129,0.1), rgba(10,18,13,0.95))",
-          border: "1px solid rgba(16,185,129,0.35)", boxShadow: "0 20px 50px rgba(0,0,0,0.6)"
+          background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(10,18,13,0.95))",
+          border: "1px solid rgba(16,185,129,0.4)", boxShadow: "0 20px 50px rgba(0,0,0,0.7)"
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, borderBottom: "1px solid rgba(16,185,129,0.15)", paddingBottom: 12 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 8px #10b981" }} />
-              <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 800, color: "#10b981" }}>LIVE AGENTIC TOPOLOGY SIMULATOR</span>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981" }} className="animate-pulse-glow" />
+              <span style={{ fontSize: 11, fontFamily: mono, fontWeight: 800, color: "#10b981" }}>▶ ANIMATED AIVOS PROCESS DEMO</span>
             </div>
-            <span style={{ fontSize: 10, fontFamily: mono, color: "#6b7280" }}>LATENCY: 12ms</span>
+            <button
+              onClick={() => setIsPlayingDemo(!isPlayingDemo)}
+              style={{
+                fontSize: 10, fontFamily: mono, color: isPlayingDemo ? "#10b981" : "#9ca3af",
+                background: "rgba(0,0,0,0.5)", border: "1px solid rgba(16,185,129,0.3)",
+                padding: "3px 10px", borderRadius: 12, cursor: "pointer", fontWeight: 700
+              }}
+            >
+              {isPlayingDemo ? "⏸ PAUSE SIMULATION" : "▶ PLAY SIMULATION"}
+            </button>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {/* Animated Demo Step Indicators */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, marginBottom: 16 }}>
             {[
-              { id: 1, title: "Azure Data Factory (ADF)", desc: "100+ High-Throughput ETL Runs/Day", status: "ONLINE (64 Pipelines)", icon: "🏢", color: "#10b981" },
-              { id: 2, title: "Databricks Delta Lake", desc: "PySpark ACID Compliance & Quality", status: "GOLD DELTA SYNC", icon: "⚡", color: "#60a5fa" },
-              { id: 3, title: "Gemini 2.0 Agentic OS", desc: "PULSE Video Triage & Podcast Engine", status: "2M TOKEN CONTEXT", icon: "🎙️", color: "#c084fc" },
-              { id: 4, title: "Notion P.A.R.A. & Ollama Sync", desc: "Zero-Trust Privacy Local Memory", status: "SYNCED (0s Tax)", icon: "🔒", color: "#34d399" },
-            ].map((node) => {
-              const active = activeNode === node.id;
-              return (
-                <div
-                  key={node.id}
-                  onClick={() => setActiveNode(node.id)}
-                  style={{
-                    padding: 14, borderRadius: 14, cursor: "pointer", transition: "all 0.2s",
-                    background: active ? "rgba(16,185,129,0.15)" : "rgba(0,0,0,0.4)",
-                    border: `1px solid ${active ? node.color : "rgba(255,255,255,0.08)"}`
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <span style={{ fontSize: 18 }}>{node.icon}</span>
-                      <div>
-                        <div style={{ fontSize: 13, fontWeight: 800, color: "#f8fff8" }}>{node.title}</div>
-                        <div style={{ fontSize: 11, color: "#9ca3af" }}>{node.desc}</div>
-                      </div>
-                    </div>
-                    <span style={{ fontSize: 10, fontFamily: mono, color: node.color, fontWeight: 700, padding: "2px 8px", borderRadius: 8, background: "rgba(0,0,0,0.5)" }}>
-                      {node.status}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+              { step: 1, label: "1. INGESTION", title: "ADF & YT Subtitles" },
+              { step: 2, label: "2. TRIAGE", title: "Gemini 2.0 Score (9.4)" },
+              { step: 3, label: "3. OUTPUT", title: "2-Speaker Audio Brief" },
+            ].map((s) => (
+              <div
+                key={s.step}
+                onClick={() => { setDemoStep(s.step); setIsPlayingDemo(false); }}
+                style={{
+                  padding: "8px 10px", borderRadius: 10, cursor: "pointer", textAlign: "center",
+                  background: demoStep === s.step ? "rgba(16,185,129,0.2)" : "rgba(0,0,0,0.4)",
+                  border: `1px solid ${demoStep === s.step ? "#10b981" : "rgba(255,255,255,0.08)"}`,
+                  transition: "all 0.3s"
+                }}
+              >
+                <div style={{ fontSize: 9, fontFamily: mono, color: demoStep === s.step ? "#10b981" : "#6b7280", fontWeight: 800 }}>{s.label}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: demoStep === s.step ? "#f8fff8" : "#9ca3af", marginTop: 2 }}>{s.title}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Terminal Animation Stream Output */}
+          <div style={{
+            padding: 18, borderRadius: 16, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(16,185,129,0.25)",
+            fontFamily: mono, fontSize: 12, color: "#34d399", minHeight: 150, display: "flex", flexDirection: "column", justifyContent: "center"
+          }}>
+            {demoStep === 1 && (
+              <div>
+                <div style={{ color: "#60a5fa", fontWeight: 800, marginBottom: 6 }}>[STEP 1/3: DATA INGESTION & TRIGGER]</div>
+                <div>📡 Triggering Azure Data Factory Pipeline...</div>
+                <div>🎬 Extracting YouTube Transcripts via yt-dlp...</div>
+                <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 8 }}>Status: 124 records received • Service Bus Event Sent</div>
+              </div>
+            )}
+
+            {demoStep === 2 && (
+              <div>
+                <div style={{ color: "#c084fc", fontWeight: 800, marginBottom: 6 }}>[STEP 2/3: GEMINI 2.0 TRIAGE ENGINE]</div>
+                <div>🤖 Evaluating technical relevance score...</div>
+                <div>✨ Relevance Score: <span style={{ color: "#10b981", fontWeight: 900 }}>9.4 / 10 (High Signal)</span></div>
+                <div style={{ color: "#9ca3af", fontSize: 11, marginTop: 8 }}>Delta Lake PySpark Check: ACID Compliance Passed</div>
+              </div>
+            )}
+
+            {demoStep === 3 && (
+              <div>
+                <div style={{ color: "#f59e0b", fontWeight: 800, marginBottom: 6 }}>[STEP 3/3: AUTOMATED OUTPUT & PODCAST]</div>
+                <div>🎙️ Generated 2-Speaker Audio Podcast (MP3)</div>
+                <div>📝 Synced Notion P.A.R.A. Knowledge Database</div>
+                <div style={{ color: "#10b981", fontSize: 11, marginTop: 8 }}>🎉 Zero-downtime execution complete!</div>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Productboard High-Impact Telemetry Bar */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 48, position: "relative", zIndex: 1 }}>
+      {/* SECTION II — WHAT AIVOS IS ABOUT & IVO DOLEŽAL'S BACKEND STORY ("O ČEM TEN WEB JE & PŘÍBĚH") */}
+      <div style={{ ...card, padding: 36, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48, position: "relative", zIndex: 1 }}>
+        <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, marginBottom: 8 }}>
+          PHILOSOPHY & ORIGIN
+        </div>
+
+        <h2 style={{ fontSize: "clamp(22px, 4vw, 30px)", fontWeight: 900, color: "#f8fff8", margin: "0 0 16px" }}>
+          O čem je AIVOS OS? Vytvořeno tichou prací na backendu.
+        </h2>
+
+        <p style={{ fontSize: 15, color: "#d1fae5", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 900 }}>
+          AIVOS je enterprise platforma pro cloudové IT integrace, správa kvality dat a autonomní AI agenty. Stavěno datovým inženýrem, který dává přednost neprůstřelným Azure Data Factory pipeline, PySpark Delta Lake a čistému kódu před obchodnickými řečmi, komunitním otroctvím (Skool/Discord) a vyjednáváním s managementem.
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20, marginTop: 24 }}>
+          <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(16,185,129,0.2)" }}>
+            <div style={{ fontSize: 24, marginBottom: 8 }}>🏢</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: "#f8fff8", marginBottom: 6 }}>1. Cloud Integration</div>
+            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5 }}>Vysoko-propustné Azure Data Factory pipelines, Service Bus směrování událostí a REST konektory.</div>
+          </div>
+
+          <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(59,130,246,0.2)" }}>
+            <div style={{ fontSize: 24, marginBottom: 8 }}>⚡</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: "#f8fff8", marginBottom: 6 }}>2. Databricks Lakehouse</div>
+            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5 }}>ACID-kompatibilní Delta Lake pipelines a automatická kontrola kvality dat.</div>
+          </div>
+
+          <div style={{ padding: 20, borderRadius: 16, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(168,85,247,0.2)" }}>
+            <div style={{ fontSize: 24, marginBottom: 8 }}>🤖</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: "#f8fff8", marginBottom: 6 }}>3. Autonomous Agents</div>
+            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5 }}>PULSE triáž videí, Gemini 2.0 Flash RAG a 2-speaker audio podcast generátor.</div>
+          </div>
+        </div>
+      </div>
+
+      {/* SECTION III — NUMBERS BAR (PŘESUNUTO AŽ POD PŘEDSTAVENÍ A PŘÍBĚH!) */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16, marginBottom: 48, position: "relative", zIndex: 1 }}>
         {[
           { num: "100%", label: "ACID Delta Lake Integrity", tag: "DATA QUALITY" },
           { num: "2M+", label: "Gemini 2.0 Token Context", tag: "RAG ENGINE" },
@@ -1879,7 +1976,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         ))}
       </div>
 
-      {/* Productboard Interactive Feature Tabs Showcase */}
+      {/* SECTION IV — PRODUCTBOARD INTERACTIVE FEATURE TABS SHOWCASE */}
       <div style={{ ...card, padding: 32, borderRadius: 24, border: "1px solid rgba(16,185,129,0.3)", marginBottom: 48, position: "relative", zIndex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
           <div>
@@ -1926,7 +2023,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
 
         {/* Tab Content Display */}
         {activeTab === "adf" && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
               <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>Enterprise Cloud & Data Factory Pipelines</h3>
               <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
@@ -1943,7 +2040,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         )}
 
         {activeTab === "pyspark" && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
               <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>Databricks PySpark & Delta Lake Quality</h3>
               <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
@@ -1960,7 +2057,7 @@ function LandingHomeView({ setSection, onOpenLogin }: { setSection: (s: Section)
         )}
 
         {activeTab === "pulse" && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
               <h3 style={{ fontSize: 20, fontWeight: 800, color: "#f8fff8", margin: "0 0 10px" }}>PULSE Video Triage & AI Podcast Engine</h3>
               <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 16px" }}>
