@@ -578,7 +578,7 @@ function BriefVideoCard({
 
 // ─── BRAIN BRIEF (ENHANCED PIPELINE INFOGRAPHIC & MONETIZATION) ────────────────
 
-function BriefView() {
+function BriefView({ theme = "dark" }: { theme?: "dark" | "light" }) {
   const [brief, setBrief] = useState<BriefData | null>(null);
   const [history, setHistory] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState("latest");
@@ -596,6 +596,12 @@ function BriefView() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const t = translations[lang];
+  const isLight = theme === "light";
+  const headingColor = isLight ? "#0f172a" : "#f8fff8";
+  const textColor = isLight ? "#334155" : "#9ca3af";
+  const cardBg = isLight ? "#ffffff" : "rgba(13,20,16,0.85)";
+  const cardBorder = isLight ? "1px solid rgba(16,185,129,0.25)" : "1px solid rgba(16,185,129,0.35)";
+  const cardShadow = isLight ? "0 10px 30px rgba(0,0,0,0.06)" : "0 12px 36px rgba(0,0,0,0.6)";
 
   const loadBrief = useCallback((dateKey: string) => {
     const url = dateKey === "latest" ? "/briefs/latest.json" : `/briefs/${dateKey}.json`;
@@ -680,7 +686,8 @@ function BriefView() {
       {showKpiModal && <EnterpriseKpiModal onClose={() => setShowKpiModal(false)} />}
       <div style={{
         padding: "2rem",
-        marginRight: panelOpen ? 496 : 0,
+        maxWidth: 1140, margin: "0 auto",
+        marginRight: panelOpen ? 496 : "auto",
         transition: "margin-right 0.3s ease",
       }}>
         
@@ -693,9 +700,9 @@ function BriefView() {
               style={{
                 padding: "8px 16px", borderRadius: 10, fontSize: 11, fontFamily: mono, fontWeight: 700,
                 cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "all 0.2s",
-                background: digestMode === "daily" ? "rgba(16,185,129,0.2)" : "rgba(255,255,255,0.03)",
-                border: `1px solid ${digestMode === "daily" ? "#10b981" : "rgba(255,255,255,0.1)"}`,
-                color: digestMode === "daily" ? "#10b981" : "#6b7280",
+                background: digestMode === "daily" ? "rgba(16,185,129,0.2)" : (isLight ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.03)"),
+                border: `1px solid ${digestMode === "daily" ? "#10b981" : (isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)")}`,
+                color: digestMode === "daily" ? (isLight ? "#059669" : "#10b981") : textColor,
               }}
             >
               {t.btn_daily}
@@ -705,9 +712,9 @@ function BriefView() {
               style={{
                 padding: "8px 16px", borderRadius: 10, fontSize: 11, fontFamily: mono, fontWeight: 700,
                 cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "all 0.2s",
-                background: digestMode === "weekly" ? "linear-gradient(135deg, rgba(234,179,8,0.25), rgba(168,85,247,0.25))" : "rgba(255,255,255,0.03)",
-                border: `1px solid ${digestMode === "weekly" ? "#eab308" : "rgba(255,255,255,0.1)"}`,
-                color: digestMode === "weekly" ? "#facc15" : "#6b7280",
+                background: digestMode === "weekly" ? "linear-gradient(135deg, rgba(234,179,8,0.25), rgba(168,85,247,0.25))" : (isLight ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.03)"),
+                border: `1px solid ${digestMode === "weekly" ? "#eab308" : (isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)")}`,
+                color: digestMode === "weekly" ? "#d97706" : textColor,
                 boxShadow: digestMode === "weekly" ? "0 0 14px rgba(234,179,8,0.3)" : "none"
               }}
             >
@@ -717,14 +724,14 @@ function BriefView() {
 
           <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
             {/* Language Switcher Pills */}
-            <div style={{ display: "flex", gap: 3, background: "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
+            <div style={{ display: "flex", gap: 3, background: isLight ? "rgba(0,0,0,0.05)" : "rgba(10,15,10,0.8)", padding: 3, borderRadius: 20, border: "1px solid rgba(16,185,129,0.3)" }}>
               <button
                 onClick={() => setLang("en")}
                 style={{
                   padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
                   border: "none", cursor: "pointer", transition: "all 0.2s",
                   background: lang === "en" ? "#10b981" : "transparent",
-                  color: lang === "en" ? "#000" : "#6b7280"
+                  color: lang === "en" ? "#000" : textColor
                 }}
               >
                 🇬🇧 EN
@@ -735,7 +742,7 @@ function BriefView() {
                   padding: "4px 10px", borderRadius: 16, fontSize: 10, fontFamily: mono, fontWeight: 700,
                   border: "none", cursor: "pointer", transition: "all 0.2s",
                   background: lang === "cz" ? "#10b981" : "transparent",
-                  color: lang === "cz" ? "#000" : "#6b7280"
+                  color: lang === "cz" ? "#000" : textColor
                 }}
               >
                 🇨🇿 CZ
@@ -756,9 +763,9 @@ function BriefView() {
                   style={{
                     padding: "5px 12px", borderRadius: 20, fontSize: 10, fontFamily: mono, fontWeight: 600,
                     cursor: "pointer", transition: "all 0.2s",
-                    background: previewTier === tItem.id ? "rgba(16,185,129,0.2)" : "transparent",
-                    border: `1px solid ${previewTier === tItem.id ? "#10b981" : "rgba(255,255,255,0.08)"}`,
-                    color: previewTier === tItem.id ? "#10b981" : "#6b7280",
+                    background: previewTier === tItem.id ? "rgba(16,185,129,0.18)" : "transparent",
+                    border: `1px solid ${previewTier === tItem.id ? "#10b981" : (isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.08)")}`,
+                    color: previewTier === tItem.id ? (isLight ? "#059669" : "#10b981") : textColor,
                   }}
                 >
                   {tItem.label}
@@ -771,24 +778,20 @@ function BriefView() {
         {/* Weekly Best-of Hero Banner (Shown when Weekly mode active) */}
         {digestMode === "weekly" && (
           <div style={{
-            ...card, marginBottom: 20,
-            background: "linear-gradient(135deg, rgba(234,179,8,0.15), rgba(139,92,246,0.18), rgba(15,23,42,0.95))",
-            border: "1px solid rgba(234,179,8,0.4)",
-            boxShadow: "0 8px 32px rgba(234,179,8,0.15)",
-            backdropFilter: "blur(16px)"
+            ...card, marginBottom: 20, background: cardBg, border: cardBorder, boxShadow: cardShadow
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-              <div style={{ color: "#facc15", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>
+              <div style={{ color: "#d97706", fontSize: 11, fontFamily: mono, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>
                 {t.weekly_hero_badge}
               </div>
               <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "linear-gradient(135deg, #eab308, #ca8a04)", color: "#000", fontFamily: mono, fontWeight: 800 }}>
                 {t.weekly_badge}
               </span>
             </div>
-            <h3 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
+            <h3 style={{ color: headingColor, fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
               {t.weekly_title}
             </h3>
-            <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
+            <p style={{ color: textColor, fontSize: 13, lineHeight: 1.6, margin: 0 }}>
               {t.weekly_desc}
             </p>
           </div>
@@ -797,63 +800,62 @@ function BriefView() {
         {/* PULSE Hero Landing & Collapsible Menu Banner */}
         <div style={{
           ...card, marginBottom: 20,
-          background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(15,23,42,0.95), rgba(139,92,246,0.08))",
-          border: "1px solid rgba(16,185,129,0.35)", backdropFilter: "blur(16px)"
+          background: isLight ? "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(255,255,255,0.95))" : "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(15,23,42,0.95), rgba(139,92,246,0.08))",
+          border: cardBorder, boxShadow: cardShadow
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
             <div>
-              <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
+              <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
                 <Zap size={14} /> {t.hero_badge}
               </div>
-              <h2 style={{ color: "#f8fff8", fontSize: 20, fontWeight: 800, margin: 0 }}>
+              <h2 style={{ color: headingColor, fontSize: 20, fontWeight: 800, margin: 0 }}>
                 {t.hero_title}
               </h2>
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <button onClick={generateDigestBlog} style={{
-                padding: "6px 14px", borderRadius: 8, background: "rgba(168,85,247,0.2)", border: "1px solid rgba(168,85,247,0.4)",
-                color: "#c084fc", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700,
-                boxShadow: "0 0 12px rgba(168,85,247,0.2)"
+                padding: "6px 14px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)",
+                color: isLight ? "#7e22ce" : "#c084fc", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700
               }}>
                 {t.btn_generate_blog}
               </button>
               <button onClick={() => setShowKpiModal(true)} style={{
-                padding: "6px 14px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.4)",
-                color: "#60a5fa", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700
+                padding: "6px 14px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)",
+                color: isLight ? "#1d4ed8" : "#60a5fa", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 700
               }}>
                 {t.btn_kpi_analytics}
               </button>
               <button onClick={() => setShowArchInfo(!showArchInfo)} style={{
                 padding: "6px 14px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)",
-                color: "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 600
+                color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontWeight: 600
               }}>
                 <Info size={13} /> {showArchInfo ? t.btn_how_it_works_hide : t.btn_how_it_works_show}
               </button>
             </div>
           </div>
 
-          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
+          <p style={{ color: textColor, fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
             {t.hero_desc}
           </p>
 
           {/* Collapsible Dropdown Menu: How PULSE Works */}
           {showArchInfo && (
-            <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(16,185,129,0.2)", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
-              <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div style={{ color: "#10b981", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step1_title}</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step1_desc}</div>
+            <div style={{ marginTop: 16, paddingTop: 16, borderTop: isLight ? "1px solid rgba(0,0,0,0.08)" : "1px solid rgba(16,185,129,0.2)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
+              <div style={{ background: isLight ? "#f8faf9" : "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
+                <div style={{ color: "#059669", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step1_title}</div>
+                <div style={{ color: textColor, fontSize: 11, lineHeight: 1.4 }}>{t.how_step1_desc}</div>
               </div>
-              <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div style={{ color: "#34d399", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step2_title}</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step2_desc}</div>
+              <div style={{ background: isLight ? "#f8faf9" : "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
+                <div style={{ color: "#059669", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step2_title}</div>
+                <div style={{ color: textColor, fontSize: 11, lineHeight: 1.4 }}>{t.how_step2_desc}</div>
               </div>
-              <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div style={{ color: "#6ee7b7", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step3_title}</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step3_desc}</div>
+              <div style={{ background: isLight ? "#f8faf9" : "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(16,185,129,0.2)" }}>
+                <div style={{ color: "#059669", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step3_title}</div>
+                <div style={{ color: textColor, fontSize: 11, lineHeight: 1.4 }}>{t.how_step3_desc}</div>
               </div>
-              <div style={{ background: "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(168,85,247,0.25)" }}>
-                <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step4_title}</div>
-                <div style={{ color: "#9ca3af", fontSize: 11, lineHeight: 1.4 }}>{t.how_step4_desc}</div>
+              <div style={{ background: isLight ? "#f8faf9" : "rgba(10,15,10,0.7)", padding: 12, borderRadius: 10, border: "1px solid rgba(168,85,247,0.25)" }}>
+                <div style={{ color: "#7e22ce", fontSize: 11, fontFamily: mono, fontWeight: 700, marginBottom: 4 }}>{t.how_step4_title}</div>
+                <div style={{ color: textColor, fontSize: 11, lineHeight: 1.4 }}>{t.how_step4_desc}</div>
               </div>
             </div>
           )}
@@ -862,13 +864,11 @@ function BriefView() {
         {/* High-Converting Monetization & Pro Hacks Card */}
         <div style={{
           ...card, marginBottom: 20,
-          background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(139,92,246,0.12), rgba(16,185,129,0.08))",
-          border: "1px solid rgba(139,92,246,0.35)",
-          boxShadow: "0 8px 32px rgba(139,92,246,0.15)",
-          backdropFilter: "blur(16px)"
+          background: isLight ? "linear-gradient(135deg, rgba(139,92,246,0.08), rgba(255,255,255,0.95))" : "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(139,92,246,0.12), rgba(16,185,129,0.08))",
+          border: "1px solid rgba(139,92,246,0.35)", boxShadow: cardShadow
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#c084fc", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, color: isLight ? "#7e22ce" : "#c084fc", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase" }}>
               <Lock size={13} /> Commercial Blueprints & Pro Automation
             </div>
             <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "linear-gradient(135deg, #8b5cf6, #c084fc)", color: "#ffffff", fontFamily: mono, fontWeight: 700 }}>
@@ -876,10 +876,10 @@ function BriefView() {
             </span>
           </div>
 
-          <h3 style={{ color: "#f8fff8", fontSize: 18, fontWeight: 700, margin: "0 0 8px" }}>
+          <h3 style={{ color: headingColor, fontSize: 18, fontWeight: 700, margin: "0 0 8px" }}>
             Unlock Full Python Automation Scripts & Notion P.A.R.A. Templates
           </h3>
-          <p style={{ color: "#9ca3af", fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
+          <p style={{ color: textColor, fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>
             Get instant access to complete commercial automation pipelines: automated YouTube ingestion scripts, Notion live sync integrations, Medium article generator API, and step-by-step deploy guides for Solopreneurs & Data Engineers.
           </p>
 
@@ -894,8 +894,9 @@ function BriefView() {
             ].map(f => (
               <span key={f} style={{
                 fontSize: 10, fontFamily: mono, padding: "3px 8px", borderRadius: 6,
-                background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.25)",
-                color: "#d8b4fe"
+                background: isLight ? "rgba(139,92,246,0.1)" : "rgba(139,92,246,0.12)",
+                border: isLight ? "1px solid rgba(139,92,246,0.3)" : "1px solid rgba(139,92,246,0.25)",
+                color: isLight ? "#7e22ce" : "#d8b4fe"
               }}>{f}</span>
             ))}
           </div>
@@ -914,7 +915,7 @@ function BriefView() {
             <a href="https://gumroad.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
                 padding: "10px 16px", borderRadius: 8, background: "rgba(16,185,129,0.2)", border: "1px solid #10b981",
-                color: "#10b981", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
+                color: isLight ? "#059669" : "#10b981", fontWeight: 700, fontSize: 12, fontFamily: mono, cursor: "pointer",
                 display: "flex", alignItems: "center", gap: 6, boxShadow: "0 4px 14px rgba(16,185,129,0.2)"
               }}>
                 <ShoppingBag size={14} /> Gumroad Templates
@@ -923,8 +924,10 @@ function BriefView() {
 
             <a href="https://ko-fi.com/aivos_os" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
               <button style={{
-                padding: "10px 16px", borderRadius: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)",
-                color: "#f8fff8", fontWeight: 600, fontSize: 12, fontFamily: mono, cursor: "pointer",
+                padding: "10px 16px", borderRadius: 8,
+                background: isLight ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.08)",
+                border: isLight ? "1px solid rgba(0,0,0,0.15)" : "1px solid rgba(255,255,255,0.2)",
+                color: headingColor, fontWeight: 600, fontSize: 12, fontFamily: mono, cursor: "pointer",
                 display: "flex", alignItems: "center", gap: 6
               }}>
                 <ExternalLink size={14} /> Support on Ko-fi (0% fee)
@@ -935,19 +938,19 @@ function BriefView() {
 
         {/* High-Impact Bento Metric Cards (Clickable for Enterprise KPI Dashboard) */}
         {brief && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12, marginBottom: 20 }}>
             {[
-              { label: "HIGH",  val: brief.stats.high,   color: "#10b981", bg: "rgba(16,185,129,0.06)" },
-              { label: "MED",   val: brief.stats.medium, color: "#c084fc", bg: "rgba(192,132,252,0.06)" },
-              { label: "SKIP",  val: brief.stats.low,    color: "#4b5563", bg: "rgba(75,85,99,0.06)" },
-              { label: "TOTAL", val: brief.stats.total,  color: "#6ee7b7", bg: "rgba(110,231,183,0.06)" },
+              { label: "HIGH",  val: brief.stats.high,   color: isLight ? "#059669" : "#10b981", bg: isLight ? "#ffffff" : "rgba(16,185,129,0.06)" },
+              { label: "MED",   val: brief.stats.medium, color: isLight ? "#7e22ce" : "#c084fc", bg: isLight ? "#ffffff" : "rgba(192,132,252,0.06)" },
+              { label: "SKIP",  val: brief.stats.low,    color: isLight ? "#64748b" : "#4b5563", bg: isLight ? "#ffffff" : "rgba(75,85,99,0.06)" },
+              { label: "TOTAL", val: brief.stats.total,  color: isLight ? "#0284c7" : "#6ee7b7", bg: isLight ? "#ffffff" : "rgba(110,231,183,0.06)" },
             ].map(({ label, val, color, bg }) => (
               <div key={label} onClick={() => setShowKpiModal(true)} title="Click to view Enterprise KPI Analytics Dashboard" style={{
-                ...card, padding: "14px 0", textAlign: "center", background: bg,
-                border: `1px solid ${color}30`, cursor: "pointer", transition: "transform 0.2s ease"
+                ...card, padding: "14px 0", textAlign: "center", background: bg, boxShadow: cardShadow,
+                border: isLight ? "1px solid rgba(0,0,0,0.08)" : `1px solid ${color}30`, cursor: "pointer", transition: "transform 0.2s ease"
               }}>
                 <div style={{ color, fontSize: 24, fontFamily: mono, fontWeight: 800 }}>{val}</div>
-                <div style={{ color: "#6b7280", fontSize: 9, fontFamily: mono, letterSpacing: 1, marginTop: 2 }}>{label}</div>
+                <div style={{ color: isLight ? "#64748b" : "#6b7280", fontSize: 9, fontFamily: mono, letterSpacing: 1, marginTop: 2 }}>{label}</div>
               </div>
             ))}
           </div>
@@ -2651,7 +2654,7 @@ export default function App() {
       case "about":       return <AboutView setSection={setSection} onOpenLogin={() => setShowAuthModal(true)} lang={lang} theme={theme} />;
       case "dashboard":   return time ? <Dashboard time={time} /> : null;
       case "notebooklm":  return <NotebookLMView />;
-      case "brief":       return <BriefView />;
+      case "brief":       return <BriefView theme={theme} />;
       case "memory":      return <Memory />;
       case "para":        return <PARAView />;
       case "knowledge":   return <KnowledgeView />;
