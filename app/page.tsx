@@ -1088,8 +1088,15 @@ function SessionsView() {
                   {copied ? <Check size={12} /> : <Copy size={12} />} {copied ? "Copied!" : "Copy Draft"}
                 </button>
               </div>
-              <div style={{ background: "rgba(10,15,10,0.9)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 10, padding: 16, color: "#d1fae5", fontSize: 13, lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
-                {generatedArticle}
+              <div style={{ background: "rgba(10,15,10,0.9)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 12, padding: 20 }}>
+                <ReactMarkdown components={{
+                  h1: ({children}: {children?: any}) => <h1 style={{ fontSize: 18, color: "#f8fff8", margin: "14px 0 6px", fontWeight: 800 }}>{children}</h1>,
+                  h2: ({children}: {children?: any}) => <h2 style={{ fontSize: 15, color: "#10b981", margin: "12px 0 4px", fontFamily: mono }}>{children}</h2>,
+                  h3: ({children}: {children?: any}) => <h3 style={{ fontSize: 13, color: "#6ee7b7", margin: "10px 0 4px" }}>{children}</h3>,
+                  p: ({children}: {children?: any}) => <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.7, margin: "0 0 8px" }}>{children}</p>,
+                  code: ({children}: {children?: any}) => <code style={{ background: "rgba(16,185,129,0.1)", color: "#10b981", padding: "2px 6px", borderRadius: 4, fontFamily: mono, fontSize: 11 }}>{children}</code>,
+                  li: ({children}: {children?: any}) => <li style={{ fontSize: 12, color: "#9ca3af", marginBottom: 3 }}>{children}</li>
+                }}>{generatedArticle}</ReactMarkdown>
               </div>
             </div>
           )}
