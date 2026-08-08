@@ -2000,6 +2000,27 @@ function AboutView({ setSection, onOpenLogin }: { setSection: (s: Section) => vo
           — Ivo Doležal · IT Integration and Automation Specialist (Backend & Data Systems)
         </div>
       </div>
+
+      {/* 3 Core Backend Pillars */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginTop: 24 }}>
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.2)" }}>
+          <div style={{ fontSize: 24, marginBottom: 10 }}>⚙️</div>
+          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>Backend-First Engineering</h3>
+          <p style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.5, margin: 0 }}>Built around robust Azure Data Factory ETL/ELT pipelines, Service Bus queues, and PySpark Lakehouses.</p>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.2)" }}>
+          <div style={{ fontSize: 24, marginBottom: 10 }}>🤖</div>
+          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>Autonomous Agent Ops</h3>
+          <p style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.5, margin: 0 }}>PULSE video triage, automated YouTube/Medium digest publishing, and zero-touch operation.</p>
+        </div>
+
+        <div style={{ ...card, border: "1px solid rgba(16,185,129,0.2)" }}>
+          <div style={{ fontSize: 24, marginBottom: 10 }}>🔒</div>
+          <h3 style={{ color: "#f8fff8", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>Privacy & Local Execution</h3>
+          <p style={{ color: "#9ca3af", fontSize: 12, lineHeight: 1.5, margin: 0 }}>Local LLM integration via Ollama (qwen2.5) paired with Google Gemini 2.0 Flash RAG pipelines.</p>
+        </div>
+      </div>
     </div>
   );
 }
