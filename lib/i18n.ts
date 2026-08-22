@@ -20,7 +20,7 @@ export const translations = {
     stat1_num: "100+",
     stat1_label: "Azure Data & PySpark Pipelines Engineered",
     stat2_num: "99.9%",
-    stat2_label: "Enterprise Uptime & Pipeline Reliability",
+    stat2_label: "Advance Uptime & Pipeline Reliability",
     stat3_num: "10x",
     stat3_label: "Faster YouTube & Knowledge Triage",
 
@@ -53,18 +53,18 @@ export const translations = {
     plan_pro_title: "Early Bird Pro",
     plan_pro_price: "$5 / month",
     plan_pro_desc: "Launch deal! Access Python yt-dlp scripts, Medium article generator code, Notion sync blueprints & Azure/PySpark diagrams.",
-    plan_private_title: "Enterprise / Team",
+    plan_private_title: "We / Team",
     plan_private_price: "$1,500 / year",
     plan_private_desc: "Dedicated Azure Data Factory, Databricks PySpark Lakehouse & custom AI agent deployment.",
 
     // About Section
     about_title: "About AIVOS Platform",
-    about_desc: "AIVOS is an enterprise IT Integration & Automation platform. Headquartered in Prague, Czech Republic, specializing in Azure cloud architectures, PySpark Lakehouse pipelines, Delta Lake data quality governance, and autonomous agentic workflows.",
+    about_desc: "AIVOS is an IT Integration & Automation platform. Headquartered in Prague, Czech Republic, specializing in Azure cloud architectures, PySpark Lakehouse pipelines, Delta Lake data quality governance, and autonomous agentic workflows.",
     about_quote: "Engineered from the back-row. Built by a Senior Data & Backend Engineer who prefers rock-solid pipelines, automated execution, and clean architecture over sales pitches or corporate politics.",
     about_quote_tag: "BACKEND & DATA INTEGRATION PHILOSOPHY",
 
     // Public Landing Page (Datamole Inspired)
-    landing_badge: "✨ DATAMOLE-INSPIRED ENTERPRISE DATA & AI CONSULTING",
+    landing_badge: "✨ DATAMOLE-INSPIRED DATA & AI CONSULTING",
     datamole_h1: "Innovate your business with ",
     datamole_h1_accent: "data & artificial intelligence solutions",
     datamole_subtitle: "Optimize processes. Decrease costs. Increase data & pipeline efficiency. We develop custom Azure Data & AI solutions that will make your business thrive.",
@@ -77,18 +77,18 @@ export const translations = {
     datamole_stat3_label: "Data Quality Governance & Delta Lake Integrity",
     datamole_about_sub: "About us",
     datamole_about_title: "Data, Integration & AI experts",
-    datamole_about_desc: "We are a Prague-based data and artificial intelligence (AI) platform. We help enterprise companies become more sustainable and profitable by innovating their business with Azure Data Factory, PySpark Lakehouses, and autonomous AI agents.",
+    datamole_about_desc: "We are a Prague-based data and artificial intelligence (AI) platform. We help anyone become more sustainable and profitable by innovating their business with Azure Data Factory, PySpark Lakehouses, and autonomous AI agents.",
     datamole_btn_about: "More about us →",
     philosophy_tag: "AIVOS ARCHITECTURE & PURPOSE",
-    philosophy_title: "Enterprise Cloud Integration & Autonomous AI Agent OS",
-    philosophy_desc: "AIVOS OS is an enterprise-grade platform designed for automated cloud data engineering, real-time telemetry integration, and autonomous AI agents. Built with rock-solid Azure Data Factory pipelines, Databricks PySpark Delta Lake quality checks, and Google Gemini 2.0 Flash agentic RAG workflows.",
-    landing_h1: "Giving Data Meaning. Automating Enterprise Workflows.",
+    philosophy_title: "Cloud Integration & Autonomous AI Agent OS",
+    philosophy_desc: "AIVOS OS is an interesting-grade platform designed for automated cloud data engineering, real-time telemetry integration, and autonomous AI agents. Built with rock-solid Azure Data Factory pipelines, Databricks PySpark Delta Lake quality checks, and Google Gemini 2.0 Flash agentic RAG workflows.",
+    landing_h1: "Giving Data Meaning. Automating Workflows.",
     landing_subtitle: "High-performance Data Engineering, Azure PySpark Lakehouses, and Autonomous AI Agents crafted by Ivo Doležal · IT Integration and Automation Specialist.",
     landing_cta_launch: "🚀 Enter AIVOS OS",
     landing_cta_explore: "⚡ Technical Capabilities",
     
     // Landing Pillars
-    pillar1_title: "Enterprise Cloud & Data Integration",
+    pillar1_title: "Cloud & Data Integration",
     pillar1_tag: "AZURE & INTEGRATION",
     pillar1_desc: "High-throughput Azure Data Factory pipelines, Service Bus event routing, REST connectors, and robust ETL/ELT architecture for complex IT environments.",
 
@@ -115,7 +115,7 @@ export const translations = {
     btn_daily: "⚡ Daily AI Briefs",
     btn_weekly: "🏆 Weekly Best-of (Týdenní Výběr)",
     btn_generate_blog: "📰 Generate Digest Blog",
-    btn_kpi_analytics: "📊 Enterprise KPI Analytics",
+    btn_kpi_analytics: "📊 KPI Analytics",
     btn_how_it_works_show: "How PULSE Works ▼",
     btn_how_it_works_hide: "Hide How PULSE Works ▲",
 
@@ -141,7 +141,7 @@ export const translations = {
 
     // Modals
     medium_modal_title: "MEDIUM.COM DRAFT GENERATOR & KB COMPARISON",
-    kpi_modal_title: "ENTERPRISE KPI & DATA QUALITY DASHBOARD · KONICA MINOLTA STANDARDS",
+    kpi_modal_title: "KPI & DATA QUALITY DASHBOARD · KONICA MINOLTA STANDARDS",
   },
 
   cz: {
@@ -191,13 +191,13 @@ export const translations = {
     plan_pro_title: "Early Bird Pro",
     plan_pro_price: "$5 (120 Kč) / měs",
     plan_pro_desc: "Zaváděcí cena! Kompletní Python skripty, generátor článků, Notion sync kód a PySpark/Azure diagramy.",
-    plan_private_title: "Enterprise / Tým",
+    plan_private_title: "My / Tým",
     plan_private_price: "35 000 Kč / rok",
     plan_private_desc: "Zakázková architektura Azure Data Factory, Databricks Delta Lake a AI agenti pro váš tým.",
 
     // About Section
     about_title: "O platformě AIVOS & Ivo Doležal",
-    about_desc: "AIVOS je enterprise platforma pro IT integrace a automatizaci vytvořená Ivo Doležalem, IT Integration and Automation Specialist. Se sídlem v Praze, se specializací na Azure cloudové architektury, PySpark Delta Lake pipelines a agentní workflow.",
+    about_desc: "AIVOS je platforma pro IT integrace a automatizaci vytvořená Ivo Doležalem, IT Integration and Automation Specialist. Se sídlem v Praze, se specializací na Azure cloudové architektury, PySpark Delta Lake pipelines a agentní workflow.",
     about_quote: "Vytvořeno tichou prací na backendu. Stavěno datovým inženýrem, který dává přednost neprůstřelným pipeline, automatizaci a čistému kódu před obchodnickými řečmi a vyjednáváním s managmentem.",
     about_quote_tag: "BACKEND A DATOVÁ FILOZOFIE",
 
@@ -218,8 +218,8 @@ export const translations = {
     datamole_about_desc: "Jsme pražská datová a AI platforma. Pomáháme firmám zvyšovat ziskovost a efektivitu pomocí modernizací v Azure Data Factory, PySpark Lakehouse a autonomních AI agentech.",
     datamole_btn_about: "Více o nás →",
     philosophy_tag: "ARCHITEKTURA A VÝZNAM AIVOS",
-    philosophy_title: "Enterprise Cloud Integrace & Autonomní AI Agent OS",
-    philosophy_desc: "AIVOS OS je enterprise platforma navržená pro automatizaci cloudového datového inženýrství, integraci v reálném čase a autonomní AI agenty. Postaveno na neprůstřelných Azure Data Factory pipelines, Databricks PySpark Delta Lake kontrole kvality a agentních Gemini 2.0 Flash RAG procesech.",
+    philosophy_title: "Cloud Integrace & Autonomní AI Agent OS",
+    philosophy_desc: "AIVOS OS je platforma navržená pro automatizaci cloudového datového inženýrství, integraci v reálném čase a autonomní AI agenty. Postaveno na neprůstřelných Azure Data Factory pipelines, Databricks PySpark Delta Lake kontrole kvality a agentních Gemini 2.0 Flash RAG procesech.",
 
     // Navigation
     nav_landing: "Úvodní Stránka",
@@ -239,7 +239,7 @@ export const translations = {
     landing_cta_explore: "⚡ Technické Kompetence",
 
     // Landing Pillars
-    pillar1_title: "Enterprise Cloud & Datová Integrace",
+    pillar1_title: "Cloud & Datová Integrace",
     pillar1_tag: "AZURE & INTEGRACE",
     pillar1_desc: "Vysoko-propustné Azure Data Factory pipelines, Service Bus směrování událostí, REST konektory a robustní ETL/ELT architektura pro složitá IT prostředí.",
 
@@ -266,7 +266,7 @@ export const translations = {
     btn_daily: "⚡ Denní AI Přehledy",
     btn_weekly: "🏆 Týdenní Výběr (Best-of)",
     btn_generate_blog: "📰 Vygenerovat Výběrový Blog",
-    btn_kpi_analytics: "📊 Enterprise KPI Analytika",
+    btn_kpi_analytics: "📊 KPI Analytika",
     btn_how_it_works_show: "Jak PULSE funguje ▼",
     btn_how_it_works_hide: "Skrýt jak PULSE funguje ▲",
 
@@ -292,6 +292,6 @@ export const translations = {
 
     // Modals
     medium_modal_title: "GENERÁTOR ČLÁNKŮ MEDIUM.COM & SROVNÁNÍ S WIKI",
-    kpi_modal_title: "ENTERPRISE KPI & DATA QUALITY DASHBOARD · KONICA MINOLTA STANDARDS",
+    kpi_modal_title: "KPI & DATA QUALITY DASHBOARD · KONICA MINOLTA STANDARDS",
   },
 } as const;
