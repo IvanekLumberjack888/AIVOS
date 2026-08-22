@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 function buildFallbackArticle(topic: string, format?: string) {
-  const cleanTopic = topic?.trim() || "Building Enterprise IT Integration & Automation Pipelines";
+  const cleanTopic = topic?.trim() || "Building IT Integration & Automation Pipelines";
   const lower = cleanTopic.toLowerCase();
 
-  let categoryTitle = "Enterprise IT Integration & Automation Architecture";
-  let overviewText = `In modern enterprise environments, connecting software systems, APIs, and cloud services requires reliable integration patterns. This guide provides a step-by-step technical blueprint for **${cleanTopic}**.`;
+  let categoryTitle = "IT Integration & Automation Architecture";
+  let overviewText = `In modern environments, connecting software systems, APIs, and cloud services requires reliable integration patterns. This guide provides a step-by-step technical blueprint for **${cleanTopic}**.`;
   let codeSnippet = `# IT Integration & Automation Event Workflow
 import requests
 import json
@@ -38,7 +38,7 @@ def process_integration_event(event_payload):
 
   if (lower.includes("databricks") || lower.includes("spark") || lower.includes("delta")) {
     categoryTitle = "Databricks PySpark & Delta Lake Integration";
-    overviewText = `Integrating Azure Databricks into enterprise automation pipelines requires robust job acknowledgment, Delta Lake ACID transactions, and optimized cluster management for **${cleanTopic}**.`;
+    overviewText = `Integrating Azure Databricks into automation pipelines requires robust job acknowledgment, Delta Lake ACID transactions, and optimized cluster management for **${cleanTopic}**.`;
     codeSnippet = `# Databricks PySpark Job Acknowledgment & Delta Stream
 from pyspark.sql.functions import col, current_timestamp
 
@@ -64,7 +64,7 @@ query = df.filter(col("status") == "ACKNOWLEDGED") \\
       "Emit callback webhooks to notify upstream integration platforms when jobs finish."
     ];
   } else if (lower.includes("adf") || lower.includes("azure") || lower.includes("factory") || lower.includes("pipeline")) {
-    categoryTitle = "Azure Data Factory & Enterprise Cloud Integration";
+    categoryTitle = "Azure Data Factory & Cloud Integration";
     overviewText = `Automating Azure Data Factory (ADF) pipelines with REST APIs, Managed Identities, and event triggers for **${cleanTopic}**.`;
     codeSnippet = `# Azure ADF Pipeline Execution via Management REST API
 import requests
@@ -196,6 +196,6 @@ Structure the response with:
     return NextResponse.json({ article: articleText });
   } catch (err: any) {
     console.error("Error generating article:", err);
-    return NextResponse.json({ article: buildFallbackArticle("Enterprise IT Integration and Automation"), isFallback: true });
+    return NextResponse.json({ article: buildFallbackArticle("IT Integration and Automation"), isFallback: true });
   }
 }
