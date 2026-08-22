@@ -4,7 +4,7 @@
     "title": "Azure Data Factory – Core Concepts & Pipeline Design",
     "category": "Azure & Integration",
     "tags": ["ADF", "ETL", "Azure", "Integration"],
-    "summary": "Overview of Azure Data Factory pipelines, activities, data flows, linked services, and triggers for enterprise data integration.",
+    "summary": "Overview of Azure Data Factory pipelines, activities, data flows, linked services, and triggers for data integration.",
     "content": "Azure Data Factory (ADF) is a cloud-based data integration service for creating automated ETL and ELT data pipelines.\n\nKey Components:\n- Pipelines: Logical grouping of activities that perform a task.\n- Activities: Single processing steps (Copy Activity, Databricks Notebook, Execute Pipeline, Web Activity).\n- Datasets: Named structures pointing to data stores (SQL DB, Blob Storage, ADLS Gen2).\n- Linked Services: Connection strings defining how ADF connects to external resources.\n- Integration Runtimes (IR): Compute infrastructure powering execution (Azure IR, Self-Hosted IR for on-prem)."
   },
   {
@@ -21,7 +21,7 @@
     "category": "Azure & Integration",
     "tags": ["EventHub", "ServiceBus", "Messaging", "Architecture"],
     "summary": "Architectural guidelines for selecting between telemetry event streaming (Event Hub) and high-value transactional messaging (Service Bus).",
-    "content": "Selecting the right Azure messaging service:\n\n1. Azure Event Hubs:\n- Designed for high-throughput big data streaming (telemetry, log ingestion, IoT).\n- Partition-based consumer model with high parallelism.\n- Time-series replay capabilities.\n\n2. Azure Service Bus:\n- Enterprise messaging broker for transactions and workflow decoupling.\n- Features: Queues, Topics & Subscriptions, Dead-lettering, Duplicate detection, FIFO sessions."
+    "content": "Selecting the right Azure messaging service:\n\n1. Azure Event Hubs:\n- Designed for high-throughput big data streaming (telemetry, log ingestion, IoT).\n- Partition-based consumer model with high parallelism.\n- Time-series replay capabilities.\n\n2. Azure Service Bus:\n- Messaging broker for transactions and workflow decoupling.\n- Features: Queues, Topics & Subscriptions, Dead-lettering, Duplicate detection, FIFO sessions."
   },
   {
     "id": "gemini-api-rag-integration",
@@ -57,7 +57,7 @@
   },
   {
     "id": "power-bi-dax-modeling",
-    "title": "Power BI & DAX – Enterprise Data Modeling",
+    "title": "Power BI & DAX – Data Modeling",
     "category": "Data Analytics",
     "tags": ["PowerBI", "DAX", "DataModeling", "Analytics"],
     "summary": "Star schema design, DAX time intelligence functions, and What-If parameter modeling.",
