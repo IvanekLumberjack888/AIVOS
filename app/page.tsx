@@ -10,7 +10,7 @@ interface Msg { role: MsgRole; text: string; }
 
 // Public Showcase Demo Projects (No internal/private company data)
 const DEMO_PROJECTS = [
-  { name: "Enterprise Cloud Integration", tag: "WORK",  progress: 65, phase: "Phase 2 / 4",       color: "#10b981" },
+  { name: "Cloud Integration", tag: "WORK",  progress: 65, phase: "Phase 2 / 4",       color: "#10b981" },
   { name: "Be certified (AZ-900, etc)", tag: "CERT",  progress: 60, phase: "Self-developing",    color: "#34d399" },
   { name: "AIVOS Platform Build",       tag: "BUILD", progress: 25, phase: "Phase 1 Scaffold",   color: "#6ee7b7" },
   { name: "Power BI Analytics",         tag: "DONE",  progress: 100, phase: "Completed",        color: "#34d399" },
@@ -371,9 +371,9 @@ function MediumArticleModal({ video, onClose }: { video: VideoItem; onClose: () 
   );
 }
 
-// ─── KONICA MINOLTA ENTERPRISE KPI DASHBOARD MODAL ────────────────────────────
+// ─── KONICA MINOLTA KPI DASHBOARD MODAL ────────────────────────────
 
-function EnterpriseKpiModal({ onClose }: { onClose: () => void }) {
+function KpiModal({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<"quality" | "roi" | "health">("quality");
 
   return (
@@ -396,7 +396,7 @@ function EnterpriseKpiModal({ onClose }: { onClose: () => void }) {
         }}>
           <div>
             <div style={{ fontSize: 10, fontFamily: mono, color: "#10b981", letterSpacing: 2, textTransform: "uppercase" }}>
-              ENTERPRISE KPI & DATA QUALITY DASHBOARD · KONICA MINOLTA STANDARDS
+              KPI & DATA QUALITY DASHBOARD · KONICA MINOLTA STANDARDS
             </div>
             <div style={{ fontSize: 18, color: "#f8fff8", fontWeight: 800, marginTop: 2 }}>
               AIVOS Data Platform Metrics & Business Value
@@ -683,7 +683,7 @@ function BriefView({ theme = "dark" }: { theme?: "dark" | "light" }) {
     <>
       {panelOpen && <DeepDiveChat video={activeVideo!} onClose={() => setActiveVideo(null)} />}
       {mediumVideo && <MediumArticleModal video={mediumVideo} onClose={() => setMediumVideo(null)} />}
-      {showKpiModal && <EnterpriseKpiModal onClose={() => setShowKpiModal(false)} />}
+      {showKpiModal && <KpiModal onClose={() => setShowKpiModal(false)} />}
       <div style={{
         padding: "2rem",
         maxWidth: 1140, margin: "0 auto",
@@ -936,7 +936,7 @@ function BriefView({ theme = "dark" }: { theme?: "dark" | "light" }) {
           </div>
         </div>
 
-        {/* High-Impact Bento Metric Cards (Clickable for Enterprise KPI Dashboard) */}
+        {/* High-Impact Bento Metric Cards (Clickable for KPI Dashboard) */}
         {brief && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12, marginBottom: 20 }}>
             {[
@@ -945,7 +945,7 @@ function BriefView({ theme = "dark" }: { theme?: "dark" | "light" }) {
               { label: "SKIP",  val: brief.stats.low,    color: isLight ? "#64748b" : "#4b5563", bg: isLight ? "#ffffff" : "rgba(75,85,99,0.06)" },
               { label: "TOTAL", val: brief.stats.total,  color: isLight ? "#0284c7" : "#6ee7b7", bg: isLight ? "#ffffff" : "rgba(110,231,183,0.06)" },
             ].map(({ label, val, color, bg }) => (
-              <div key={label} onClick={() => setShowKpiModal(true)} title="Click to view Enterprise KPI Analytics Dashboard" style={{
+              <div key={label} onClick={() => setShowKpiModal(true)} title="Click to view KPI Analytics Dashboard" style={{
                 ...card, padding: "14px 0", textAlign: "center", background: bg, boxShadow: cardShadow,
                 border: isLight ? "1px solid rgba(0,0,0,0.08)" : `1px solid ${color}30`, cursor: "pointer", transition: "transform 0.2s ease"
               }}>
@@ -1777,7 +1777,7 @@ function LandingHomeView({ setSection, onOpenLogin, lang, theme }: { setSection:
             "name": "AIVOS Agentic OS",
             "operatingSystem": "Web / Cloud",
             "applicationCategory": "DeveloperApplication",
-            "description": "Enterprise Azure Data Integration, Databricks Delta Lake PySpark Quality & Autonomous AI Agent Platform.",
+            "description": "Azure Data Integration, Databricks Delta Lake PySpark Quality & Autonomous AI Agent Platform.",
             "url": "https://aivos-two.vercel.app",
             "publisher": {
               "@type": "Organization",
@@ -1814,7 +1814,7 @@ function LandingHomeView({ setSection, onOpenLogin, lang, theme }: { setSection:
           <h1 style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 900, color: headingColor, lineHeight: 1.12, margin: "0 0 18px", letterSpacing: "-0.03em" }}>
             Giving Data Meaning. <br />
             <span style={{ color: "#10b981", background: "linear-gradient(90deg, #10b981, #34d399, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              Automating Enterprise Cloud.
+              Automating Cloud.
             </span>
           </h1>
 
@@ -2044,9 +2044,9 @@ function LandingHomeView({ setSection, onOpenLogin, lang, theme }: { setSection:
         {activeTab === "adf" && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
             <div>
-              <h3 style={{ fontSize: 20, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>Enterprise Cloud & Data Factory Pipelines</h3>
+              <h3 style={{ fontSize: 20, fontWeight: 800, color: headingColor, margin: "0 0 10px" }}>Cloud & Data Factory Pipelines</h3>
               <p style={{ fontSize: 13, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>
-                High-throughput Azure Data Factory ETL/ELT pipelines, Service Bus event routing, REST connectors, and robust enterprise architecture designed for zero-downtime operation.
+                High-throughput Azure Data Factory ETL/ELT pipelines, Service Bus event routing, REST connectors, and robust architecture designed for zero-downtime operation.
               </p>
               <button onClick={() => setSection("solutions")} style={{ padding: "8px 18px", borderRadius: 12, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, fontWeight: 700, cursor: "pointer" }}>
                 View Azure ADF Architecture →
@@ -2133,7 +2133,7 @@ function SolutionsView({ setSection, onOpenLogin, lang, theme }: { setSection: (
   return (
     <div style={{ padding: "2.5rem 1.5rem", maxWidth: 1140, margin: "0 auto" }}>
       <div style={{ marginBottom: 32 }}>
-        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>ENTERPRISE SOLUTIONS</div>
+        <div style={{ color: isLight ? "#059669" : "#10b981", fontSize: 11, fontFamily: mono, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>SOLUTIONS</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: headingColor, margin: 0 }}>Tailored Data Engineering & AI Automation</h1>
       </div>
 
@@ -2143,7 +2143,7 @@ function SolutionsView({ setSection, onOpenLogin, lang, theme }: { setSection: (
           <h2 style={{ fontSize: 22, fontWeight: 800, color: headingColor, margin: "6px 0 12px" }}>{t.pillar1_title}</h2>
           <p style={{ fontSize: 14, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar1_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
-            Explore Enterprise Pricing →
+            Explore Pricing →
           </button>
         </div>
 
@@ -2152,7 +2152,7 @@ function SolutionsView({ setSection, onOpenLogin, lang, theme }: { setSection: (
           <h2 style={{ fontSize: 22, fontWeight: 800, color: headingColor, margin: "6px 0 12px" }}>{t.pillar2_title}</h2>
           <p style={{ fontSize: 14, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar2_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)", color: "#60a5fa", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
-            Explore Enterprise Pricing →
+            Explore Pricing →
           </button>
         </div>
 
@@ -2161,7 +2161,7 @@ function SolutionsView({ setSection, onOpenLogin, lang, theme }: { setSection: (
           <h2 style={{ fontSize: 22, fontWeight: 800, color: headingColor, margin: "6px 0 12px" }}>{t.pillar3_title}</h2>
           <p style={{ fontSize: 14, color: textColor, lineHeight: 1.6, margin: "0 0 16px" }}>{t.pillar3_desc}</p>
           <button onClick={() => setSection("pricing")} style={{ padding: "8px 18px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
-            Explore Enterprise Pricing →
+            Explore Pricing →
           </button>
         </div>
       </div>
@@ -2272,13 +2272,13 @@ function PricingView({ setSection, onOpenLogin, lang, theme }: { setSection: (s:
           </button>
         </div>
 
-        {/* Tier 3: Enterprise / Team */}
+        {/* Tier 3: / Team */}
         <div style={{ ...card, background: cardBg, boxShadow: cardShadow, border: "1px solid rgba(168,85,247,0.4)", padding: 28 }}>
           <div style={{ color: "#c084fc", fontSize: 11, fontFamily: mono, fontWeight: 700, textTransform: "uppercase" }}>{t.plan_private_title}</div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#c084fc", margin: "10px 0" }}>{t.plan_private_price}</div>
           <p style={{ fontSize: 12, color: textColor, margin: "0 0 20px", lineHeight: 1.5 }}>{t.plan_private_desc}</p>
           <button onClick={() => window.open("https://linkedin.com", "_blank")} style={{ width: "100%", padding: "10px", borderRadius: 8, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.4)", color: "#c084fc", fontSize: 12, fontFamily: mono, cursor: "pointer" }}>
-            Contact Enterprise Team →
+            Contact Team →
           </button>
         </div>
       </div>
