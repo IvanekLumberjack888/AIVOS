@@ -1,154 +1,126 @@
 {
   "date": "2026-08-23",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "# AIVOS Brain Brief – Sobota 23. srpna 2026\n\nAhoj Ivo, Good morning! Dnes máme zajímavou sobotu v autě – chystaš se do práce nebo si užíváš drive? Každopádně máme v hledáčku jednu opravdu solidní věc o free LLM tokenech, pak pár středně relevantních videí, která stojí za okrajové pozornosti. Pojďme na to.\n\n---\n\n## HIGH PRIORITY – Tvůj fokus dneška\n\nMáš jeden video, které se ti opravdu hodí: \"4 Billion Free LLM Tokens… One API\" od Better Stack. Score devět z deseti, takže to není náhoda.\n\nO čem to je? Krátce řečeno, existuje služba jménem FreeLLMAPI, která ti dává přístup ke čtyřem miliardám free tokenů na LLM modely přes jedno jednotné API. Já vím, znáš Azure OpenAI, máš tam svoje kredity, ale tohle je trochu jiný mindset – zero cost experimentation.\n\nProč je to pro tebe důležité? Jednak jako junior data engineer máš teď prostor na side projekty a experimenty. Jednak se dostáváš do RAG territory a AI agentů, a víš sám, kolik to stojí. Každá API requestu má svou cenu. Tohle ti dá prostor zkoušet bez nervů z nákladů.\n\nKlíčové věci, kterých si všimni: Zaprvé, FreeLLMAPI je jednotné API pro více LLM modelů najednou. To znamená, že nemusíš řešit integraci s pěti různými poskytovatelům, když chceš porovnat třeba Claude versus GPT. Jednoduchá abstrakce, takový unified gateway. Zadruhé, čtyři miliardy tokenů není nula – stačí ti to na fázi prototypování a experimentování, ideálně na месíc-dva nepřetržitého práce. Zatřetí, rate limits a reliability – to je klíč. Nechceš discovery projekt, který ti spadne v produkci.\n\nCo konkrétně udělat? Zajeď si na jejich dokumentaci, přečti si, jak se to integruje. Pak si vezmi jeden svůj side projekt – třeba ten RAG experiment, který jsem tě slyšel zmínit, nebo třeba jednoduchého AI agenta – a zkoušej tam FreeLLMAPI paralelně s tím, co máš v Azure. Porovnáš si rate limity, latenci, kvalitu responses. A pak se rozhodneš, jestli to chceš používat, nebo zůstaneš u Anthropic free tier plus Azure. Data-driven decision, jak se patří.\n\n---\n\n## MEDIUM PRIORITY – Povědom si jich, ale ne dneska\n\nPak máme pár videí, která nejsou primárně pro tebe, ale stojí za zmínku.\n\nOliver Cordingley analyzoval sto CV a job aplikací. Našel v tom patterny, co hiring manageři hledají. Pro juniora je to někdy užitečné, ale není to zaměřené na data engineering konkrétně. Tip: Pokud během zimy budeš dělat refresh CV, podívej se na to – ale teď to nechat pasivně stranou.\n\nLara Acosta – LinkedIn strategie. Věci o tom, jak posílat signály, jak se prezentovat online. Moc relevantní pro tvůj career growth, vzlášť když chceš růst z juniora na mid-level. Jeden konkrétní tip: Dej si na to 15 minut v týdnu. Jedno vlákno, jeden post o tom, co ses naučil. Nemusí být perfektní, jen authentic. LinkedIn growth u tech lidí není nic tajného – konzistence víc než kvalita.\n\nNathan Armada o hiring a scalingu – to je spí",
   "stats": {
-    "high": 10,
-    "medium": 0,
-    "low": 0,
-    "total": 10
+    "high": 1,
+    "medium": 6,
+    "low": 8,
+    "total": 15
   },
   "high": [
     {
-      "title": "Google Antigravity: Remote Control Walkthrough",
-      "channel": "Google Antigravity",
-      "url": "https://www.youtube.com/watch?v=8QGW7ePYepE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
+      "title": "4 Billion Free LLM Tokens… One API (FreeLLMAPI)",
+      "channel": "Better Stack",
+      "url": "https://youtube.com/watch?v=sHOwbyMbun0",
+      "summary": "Video pojednává o FreeLLMAPI – službě poskytující 4 miliardy free tokenů pro LLM modely přes jedno API. Relevantní pro Iva jako junior data engineer, který pracuje s Azure a má zájem o AI/LLM ekosystém. Potenciálně užitečné pro experimentování s LLM bez nákladů během prototypování.",
+      "action": "Prozkoumat FreeLLMAPI dokumentaci + vyzkoušet integraci do jednoho side-projektu (např. RAG experimentu nebo AI agenta) – porovnat s Anthropic API free tier a Azure OpenAI. Ověřit rate limits a reliability pro produkční use case.",
+      "tags": "#LLM #API #Experimenty #CostOptimization #AITools #SideProjects #FreeResources",
+      "score": 9,
       "category": "AI / WORK",
       "key_points": [
-        "Google Antigravity: Remote Control Walkthrough",
-        "Kanál: Google Antigravity"
-      ]
-    },
-    {
-      "title": "Why 5 Million People Are OBSESSED With Excalidraw",
-      "channel": "Karlos Obsidian Tutorials",
-      "url": "https://www.youtube.com/watch?v=CkoGWHyLTsk",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Why 5 Million People Are OBSESSED With Excalidraw",
-        "Kanál: Karlos Obsidian Tutorials"
-      ]
-    },
-    {
-      "title": "7 Skills I Wish I Had Before My First Embedded Engineering Job",
-      "channel": "TaisonTech",
-      "url": "https://www.youtube.com/watch?v=T9PDlRu1bXg",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Skills I Wish I Had Before My First Embedded Engineering Job",
-        "Kanál: TaisonTech"
-      ]
-    },
-    {
-      "title": "AI Won't Build Your Fractional Career—But These Prompts Will",
-      "channel": "Wandering Duchess",
-      "url": "https://www.youtube.com/watch?v=Fb4IRXPrDdw",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "AI Won't Build Your Fractional Career—But These Prompts Will",
-        "Kanál: Wandering Duchess"
-      ]
-    },
-    {
-      "title": "I Was Qualified But Still Not Getting Hired: What Changed",
-      "channel": "Wandering Duchess",
-      "url": "https://www.youtube.com/watch?v=FfjWcb1mkqQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Was Qualified But Still Not Getting Hired: What Changed",
-        "Kanál: Wandering Duchess"
-      ]
-    },
-    {
-      "title": "How to Get More Offers: Make Hiring Managers Pick You",
-      "channel": "Kate Kirchner",
-      "url": "https://www.youtube.com/watch?v=_mXNp0XfTB8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Get More Offers: Make Hiring Managers Pick You",
-        "Kanál: Kate Kirchner"
-      ]
-    },
-    {
-      "title": "How to Find Jobs on LinkedIn Before Everyone Else (Cheat Code)",
-      "channel": "Kate Kirchner",
-      "url": "https://www.youtube.com/watch?v=h9MhKqPlzXs",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Find Jobs on LinkedIn Before Everyone Else (Cheat Code)",
-        "Kanál: Kate Kirchner"
-      ]
-    },
-    {
-      "title": "These LinkedIn Profile Tips Will Get you HIRED in 2026",
-      "channel": "CareerShakers",
-      "url": "https://www.youtube.com/watch?v=4yP2_1fIGpo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "These LinkedIn Profile Tips Will Get you HIRED in 2026",
-        "Kanál: CareerShakers"
-      ]
-    },
-    {
-      "title": "How to Host a Website on GitHub Pages for Free",
-      "channel": "KodeBase",
-      "url": "https://www.youtube.com/watch?v=pmqOhOcuQTY",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Host a Website on GitHub Pages for Free",
-        "Kanál: KodeBase"
-      ]
-    },
-    {
-      "title": "What is SSH and How SSH Works? (Full-  Deep Dive)",
-      "channel": "Bit Byte Talks",
-      "url": "https://www.youtube.com/watch?v=Q7IxCEvXGvc",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "What is SSH and How SSH Works? (Full-  Deep Dive)",
-        "Kanál: Bit Byte Talks"
+        "FreeLLMAPI umožňuje přístup k velkému množství free tokenů (4B) bez placení",
+        "Jednotné API pro více LLM modelů – zjednodušuje integraci",
+        "Vhodné pro experimenty, side projects a rychlý prototyping bez finančního rizika"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "medium": [
+    {
+      "title": "Top 10 AI GitHub Repos: The 2 Commit Repo Outrunning Every Tool",
+      "channel": "Cloud Codes",
+      "url": "https://youtube.com/watch?v=YHPVQvrvYeQ",
+      "summary": "Video mapuje top 10 AI repozitářů na GitHubu se zaměřením na projekty s vysokou adopcí a praktickou hodnotou. Zajímavý je claim o \"2 commit repo\" – minimalistické řešení, které překonává složité nástroje – relevantní pro Ivův mindset (INTJ: elegance a efektivita). Kombinuje AI tooling discovery s GitHub best practices.",
+      "action": "",
+      "tags": "#GitHub #AI-Tools #LLMOps #Python #Discovery #MinimalistCode #ADHD-Productivity",
+      "score": 7,
+      "category": "AI / WORK",
+      "key_points": [
+        "Top AI repos na GitHubu (relevantní pro discovery nástrojů jako Claude, LangChain, RAG frameworky)",
+        "Koncept \"2 commit repo\" (minimalistické, high-impact projekty – soulad s produktivitou u ADHD)",
+        "Praktické AI nástroje pro data engineering / AI agenty (potenciálně LLMOps relevantní)",
+        "Projít top 5 repozitářů z videa a zmapovat, které jsou relevantní pro Ivův stack (Claude SDK, RAG, LLMOps)",
+        "Identifikovat, zda \"2 commit repo\" obsahuje architekturu vhodnou pro Medalli architecture v Azure",
+        "Zvážit follow-up: jak aplikovat learnings z minimálních repozitářů na vlastní AI agenty v Coworku"
+      ]
+    },
+    {
+      "title": "I Reviewed 100 Job Applications: Here Is What I Found",
+      "channel": "Oliver Cordingley",
+      "url": "https://youtube.com/watch?v=P1Yn9-2IVp0",
+      "summary": "Oliver Cordingley analyzuje 100 CV/žádostí a odhaluje patterns, co recruitery a hiring managery zajímá. Pro juniora v IT to může být relevantní pohled na to, jak se prezentovat, ale není to specificky zaměřeno na data engineering nebo Ivo's stack.",
+      "action": "Sledovat – pokud ti chybí clarity na to, jak se prezentovat recruitům v tech. Ale raději prioritizuj Azure/data engineering specifika.",
+      "tags": "#career #hiring #junior-to-senior #soft-skills #job-search",
+      "score": 6,
+      "category": "WORK / CAREER",
+      "key_points": [
+        "Hiring perspektiva – co senior inženýři hledají v juniorních kandidátech",
+        "CV/LinkedIn signály, které otevírají dveře (relevantní pro Iva's growth do senior role)",
+        "Možné insights na soft skills a professionální prezentaci"
+      ]
+    },
+    {
+      "title": "Why Every Hire You Make Makes You More Dependent on Yourself",
+      "channel": "Nathan Armada",
+      "url": "https://youtube.com/watch?v=0lq0YuPYWaI",
+      "summary": "Videa o scalingu týmu a delegaci jsou relevantní pro junior→senior growth, který Ivo sleduje. Bez transkriptu předpokládám, že jde o paradox: více zaměstnanců = více závislosti na founder/leaderovi. Týká se dlouhodobé strategie firmy a leadership mindset.",
+      "action": "Doplnit si transkript a zhodnotit konkrétní parallely s Azure/data engineering teamy; Jak to aplikovat na technické odlučování (automation, CI/CD, self-service infra)?",
+      "tags": "#career #scalability #leadership #future-growth #team-dynamics",
+      "score": 6,
+      "category": "WORK / CAREER",
+      "key_points": [
+        "Scalování bez budování systémů vede k bottlenecku na osobě",
+        "Delegace vs. dependency – jak správně předávat ownership",
+        "Relevantní pro future careerpath, když Ivo bude v seniorní pozici"
+      ]
+    },
+    {
+      "title": "10 Github Repos That Solve Your Token Problems",
+      "channel": "The Next New Thing",
+      "url": "https://youtube.com/watch?v=BKAPj1OJ-t4",
+      "summary": "Video o open-source GitHub repozitářích zaměřených na řešení problémů s token limity v LLM aplikacích. Relevantní pro Ivův growth v AI/LLMStackOverflow – konkrétně pro RAG, LangChain a AI agenty, kde je tokenomics kritický.",
+      "action": "Projít 2-3 z top repos v transkriptu → implementovat token counting do vlastního RAG/agent projektu → měřit cost savings",
+      "tags": "#LLM #TokenOptimization #RAG #OpenSource #LLMOps #CostEfficiency",
+      "score": 6,
+      "category": "AI / WORK",
+      "key_points": [
+        "Seznámení s open-source řešeními pro optimalizaci token consumption (nutné pro production RAG/agent systémy)",
+        "Praktické repos z komunity, která řeší problém ceny a latence LLM callů",
+        "Relevance pro LLMOps workflow – cost optimization je nedílná součást Ivova learning pathu",
+        "Nemáme transkript → nemohu verifikovat konkrétní repos",
+        "\"Token problems\" jsou TIER 2 topic (ne tier 1)",
+        "The Next New Thing není tier-recognized kanal"
+      ]
+    },
+    {
+      "title": "How I'd Learn Full Stack Development In 2026-2027 (If I could start over)",
+      "channel": "Phillip Choi",
+      "url": "https://youtube.com/watch?v=fxOGPqJV7dw",
+      "summary": "Video o full-stack development roadmapě pro 2026-2027 od autora Phillip Choi. Relevantní pro长期career growth, ale Ivo jako Junior Data Engineer se zaměřuje primárně na data engineering a AI – full-stack dev je mimo jeho core domain. Některé principy o learningové strategii mohou být aplikovatelné.",
+      "action": "Zkontrolovat, zda autor pokrývá data engineering / AI vrstvu nebo je to čistě web dev. Pokud ano → adaptovat do Iva's learning path. Pokud ne → skippnout, zaměřit se na domain-specific kurzy (Databricks, dbt, RAG).",
+      "tags": "#career #fullstack #learning-strategy #2026-roadmap",
+      "score": 6,
+      "category": "WORK / CAREER",
+      "key_points": [
+        "Roadmap pro full-stack development stack (frontend/backend/deployment) – relevant pro breadth znalostí",
+        "Motivace a strategická volba technologií pro rok 2026-2027",
+        "Principy career progression a continuous learning"
+      ]
+    },
+    {
+      "title": "I’m begging you to start posting on LinkedIn",
+      "channel": "Lara Acosta",
+      "url": "https://youtube.com/watch?v=9QiqofqNHq8",
+      "summary": "Video o LinkedIn stratégii od Lary Acosty. Relevantní pro Ivův career growth jako junior data engineer, ale bez konkrétního tech obsahu. Může být užitečné pro networking a personal branding v IT komunity.",
+      "action": "Pokud má Ivo jasný profil v LinkedIn s portofoliem (Azure projektů, data eng příspěvky), pak stojí za to. Jinak prioritizovat: nejdřív dělat, pak sdílet (ne obráceně). Můžeš vytvořit jednoduchou cadenci: 2× měsíčně post o „learned this week in Data Eng/Azure\" → dlouhodobě efektivnější než chaotické sdílení.",
+      "tags": "#LinkedIn #CareerGrowth #PersonalBranding #DataEngineering #Networking",
+      "score": 5,
+      "category": "LIFE / CAREER",
+      "key_points": [
+        "LinkedIn visibility pro IT profesionály a jejich growth trajectory",
+        "Personal branding strategie pro juniors (relevantní pro Ivův seniority journey)",
+        "Network effects v tech industrii – důležité pro Azure/Data Engineering community"
+      ]
+    }
+  ],
+  "has_audio": true
 }
