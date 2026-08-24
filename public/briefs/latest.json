@@ -1,154 +1,129 @@
 {
   "date": "2026-08-24",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "# AIVOS Brain Brief – Pondělí 24. srpna 2026\n\nAhoj Ivo, dobré ráno! Stejně jako minulý týden máme tady osm videí, která ses dostal podívat, a jak si všimneš, pořádně silný týden na AI agentech. Dnes ti projdu tři ty super zajímavé HIGH relevance videa a pak zbývajících pět, ať víš, co tě čeká. Jdeme na to.\n\n## HIGH RELEVANCE VIDEA – Fakt důležité\n\nZačneme tím hlavním. Máš tři videa, která jsou opravdu na nule devítce.\n\nPrvní je od ByteMonk – \"What It Actually Takes to Run an AI Agent in Production\". Znáš to od nich – konkrétní, praktické, bez zbytečné teorie. Tohle video je přesně to, co si říkal, že chceš dělat, pravda? Jde o to, když máš AI agenta naprogramovaného a teď ho potřebuješ dostat do produkce. A tady přichází ta reality check část. Video pokrývá tři kritické věci.\n\nElső je scalability a monitoring – jak udělat z toho něco, co není jenom prototyp na tvém notebooku, ale něco, co běží 24/7, zvládá tisíce requestů a když se stane něco špatného, tak to víš. To je část LLMOps, kterou budeš potřebovat vědět, když se posouváš z juniora k něčemu víc senior. ByteMonk tady jde konkrétně na monitoring agentů, error handling a jak to šachovat s Azure. To je přesně tvoje směr.\n\nDruhá věc je orchestrace agentů a management promptů v enterprise prostředí. To znamená, že nebudeš mít jedno agenta, budeš mít víc jich, pracující spolu, a potřebuješ je nějak koordinovat a verzovat ty prompty. To je to, co je teď zajímavé – není to jen \"zavolám Claude API\" – je to architektura. A třetí bod je integrace s Azure Cloud – event hubs, inference pipelines a jak to všechno komunikuje.\n\nCo si z toho vezmeš? Dívej se zvlášť na části, kde ByteMonk ukazuje konkrétní selhání v produkci. Ta část, kde něco vybouchne, je nejcennější. Vezmi si jeden konkrétní pattern na monitoring a zkus ho adaptovat na jednoho z tvých agentů, i když je to teď jenom hobby projekt. To je ta cesta k senior skillset.\n\nDruhé video je od AI Engineer kanálu – \"LLM Knowledge Bases: a practical guide\" od Bena Holmese z Warpu. Ben ví, o čem mluví, protože Warp je opravdu v tom AI engineeringu. Tohle video je o tom, jak postavit knowledge base, kterou pak používají LLM systémy. Pro tebe konkrétně to znamená RAG – retrieval augmented generation – což je klíč k tomu, aby agenti měli informace, se kterými pracují.\n\nKlíčové tři věci tady. Jedna je strukturování těch knowledge bases – není to jenom hodit texty do vectorku a doufat. Musíš přemýšlet o tom, jak jsou věci organizované, jak se dohledávají. Druhá je embedding strategie a optimalizace vector databází – to znamená, jak ty texty převedeš na vektory a jak je efektivně hledáš. A třetí je integrační pattern – jak se to propojuje s agenty, které máš, takže když agent potřebuje informaci, ví, kam se podívat.\n\nBen v tom videu jde řekl bych prakticky – není to jen teorie. Jde o to, jak to udržuješ v produkci, jak to aktualizuješ,",
   "stats": {
-    "high": 10,
-    "medium": 0,
-    "low": 0,
-    "total": 10
+    "high": 3,
+    "medium": 4,
+    "low": 1,
+    "total": 8
   },
   "high": [
     {
-      "title": "You're Not Behind (Yet): How to Build Your First AI Agent (Google Gemini Spark Full Tutorial)",
-      "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=xUCZIfi_Lgo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
+      "title": "What It Actually Takes to Run an AI Agent in Production",
+      "channel": "ByteMonk",
+      "url": "https://youtube.com/watch?v=Y9YU5GCppNo",
+      "summary": "Video se zaměřuje na praktické aspekty nasazení AI agentů do produkce – klíčové téma pro Ivovu budoucnost v AI/LLM stack. ByteMonk je kvalitní edukační kanál zaměřený na applied AI a engineering. Jde o intersection Ivových zájmů: LLMOps, AI agents a production-ready knowledge.",
+      "action": "",
+      "tags": "#AIagents #LLMOps #production #Azure #PythonAI #appliedAI #ByteMonk",
+      "score": 9,
       "category": "AI / WORK",
       "key_points": [
-        "You're Not Behind (Yet): How to Build Your First AI Agent (Google Gemini Spark Full Tutorial)",
-        "Kanál: Shawn Builds AI"
+        "Praktické výzvy při deploymentu AI agentů (scalability, monitoring, error handling)",
+        "LLMOps best practices pro produkční prostředí",
+        "Orchestrace agentů a management promptů v enterprise nastavení",
+        "Integrace s Azure/cloud stackem pro kontinuální inference",
+        "✅ Tier 1 skill (AI agents, LLMOps)",
+        "✅ Azure direction (Event Hub → agent orchestration)",
+        "✅ ADHD-friendly: konkrétní, praktické, ne teoretické",
+        "✅ Career growth: production deployment = senior engineer skills"
+      ]
+    },
+    {
+      "title": "LLM Knowledge Bases: a practical guide — Ben Holmes, Warp",
+      "channel": "AI Engineer",
+      "url": "https://youtube.com/watch?v=I3bpdgFJCUY",
+      "summary": "Praktický průvodce budováním knowledge bases pro LLM systémy – přesně to, co Ivo potřebuje pro RAG a AI agents implementaci. Ben Holmes (Warp) se zaměřuje na architektonické rozhodnutí a best practices pro produkční knowledge management v LLM aplikacích.",
+      "action": "",
+      "tags": "#RAG #LLM #KnowledgeBase #VectorDB #AIAgents #LangChain #Claude #DataEngineering #AI-Agents #ProductionReady",
+      "score": 9,
+      "category": "AI / WORK",
+      "key_points": [
+        "Strukturování knowledge bases pro efektivní retrieval v RAG systémech",
+        "Best practices pro embedding strategie a vector DB optimalizaci",
+        "Integrační vzory mezi knowledge bases a LLM agenty (pravděpodobně s Claude/OpenAI)",
+        "Praktické řešení pro maintenance a update knowledge v produkci",
+        "RAG je TIER 1, ale video není explicitně o Claude ekosystému nebo MCP (které by garantovaly 9+)",
+        "Autorita (Ben Holmes/Warp) je relevantní, ale ne v \"top tier\" instrukčních kanálech",
+        "Bez transkriptu nemohu ověřit konkrétní hloubku Azure Data engineering connection"
+      ]
+    },
+    {
+      "title": "Bare Minimum Setup You Need to Build Your First AI Agent (Google Gemini Spark)",
+      "channel": "Shawn Builds AI",
+      "url": "https://youtube.com/watch?v=xUCZIfi_Lgo",
+      "summary": "Video pokrývá základní setup pro první AI agenty s Google Gemini Spark. Relevantní pro Ivovy AI/LLM cíle, ale primárně orientované na Gemini ekosystém místo preferovaného Claude + Anthropic stacku. Užitečné pro breadth knowledge v AI agent toolingu.",
+      "action": "Zhlédnout pro srovnání Gemini vs. Claude approachu, ale fokus zůstat na Claude Code + Anthropic API. Vzít si pattern minimálního setupu a adaptovat na Claude ekosystém (LangChain agents, MCP).",
+      "tags": "#AI #agents #LLM #Gemini #alternative-stack #foundations",
+      "score": 9,
+      "category": "AI",
+      "key_points": [
+        "Gemini Spark jako alternativa k Claude pro AI agenty (srovnání s Ivovým Claude-first přístupem)",
+        "Minimální setup pattern pro agentic workflows (transferable do Claude/LangChain)",
+        "Praktické foundations pro agent building (relevantní pro LLMOps)"
+      ]
+    }
+  ],
+  "medium": [
+    {
+      "title": "Durable Workflows Explained: Exactly-Once Execution with Checkpointing",
+      "channel": "Aisle",
+      "url": "https://youtube.com/watch?v=4GOeFqN8PAo",
+      "summary": "Video vysvětluje principy durable workflows a exactly-once execution s checkpointing – relevantní pro distribuované systémy a data pipelines. Pro Data Engineera s Azure stackem zajímavé z pohledu robustnosti ETL/ELT procesů, ale méně kritické než Databricks/Data Factory specifika.",
+      "action": "Přidat do learningového backlgu pro understanding resilience patterns v Azure Synapse/Data Factory pipelines. Ověřit, jak se to mapuje na praktické DE scénáře v Konica Minolta.",
+      "tags": "#dataengineering #distributedSystems #resilience #azure-adjacent #workflows",
+      "score": 6,
+      "category": "WORK",
+      "key_points": [
+        "Checkpointing mechanismy pro garantování exactly-once semantiky",
+        "Durable execution patterns v distribuovaných workflowech",
+        "Odolnost vůči selhání bez duplikace dat"
+      ]
+    },
+    {
+      "title": "Ontology vs Metadata: What’s the Difference? [TalkIT Global 184, En-core]",
+      "channel": "TalkIT Global",
+      "url": "https://youtube.com/watch?v=ve7AA01vplE",
+      "summary": "Video vysvětluje rozdíl mezi ontologií a metadaty – koncepty relevantní pro datové modelování a správu informací. Pro Data Engineera užitečné k pochopení struktury dat a knowledge management systémů, zejména v kontextu enterprise Azure řešení.",
+      "action": "Propojit koncepty s praktickou implementací v Azure Data Factory pipelinez a dbt modely – jak strukturovat metadata pro lepší governance v Medallion architektuře. Užitečné i pro budoucí RAG systémy, kde ontologie může zlepšit retrieval.",
+      "tags": "#DataEngineering #Metadata #Azure #DataGovernance #Knowledge-Management",
+      "score": 6,
+      "category": "WORK",
+      "key_points": [
+        "Rozdíl mezi ontologií (formální reprezentace znalostí) a metadaty (popis dat)",
+        "Aplikace v datovém modelování a enterprise architektuře",
+        "Relevance pro správu dat v Medallion architektuře a Synapse/Fabric"
+      ]
+    },
+    {
+      "title": "8 open-source apps that replaced my subscriptions",
+      "channel": "Reysu",
+      "url": "https://youtube.com/watch?v=5QjPi6LxQXY",
+      "summary": "Video o open-source aplikacích, které nahrazují placené služby – je relevantní pro Ivův interest v cost-efficiency a side-hustle mindset, ale pro junior data engineera bez přímé vazby na Azure/AI/data engineering. Reysu je kvalitní creator, ale obsah je spíš lifestyle/productivity než tech-skill focused.",
+      "action": "Prohlédnout, pokud hledáš tools pro own setup (poznámky, automatizace), ale ne priorita. Spíš inspirace než skill-building.",
+      "tags": "#opensourcealternatives #sidehusleminset #costefficiency #lifehacks",
+      "score": 5,
+      "category": "FINANCE / LIFE",
+      "key_points": [
+        "Open-source alternativy k placenému SaaS → mindset pro personální automatizaci",
+        "Potenciálně něco pro second brain / PKM setup (Notion replacement možnosti?)",
+        "Finance angle – redukce subscription costs do side-hustle nákladů"
       ]
     },
     {
       "title": "The 3-step vibe coding framework | Google",
       "channel": "Grow with Google",
-      "url": "https://www.youtube.com/watch?v=6Qot-dysrp4",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=6Qot-dysrp4",
+      "summary": "Video o \"vibe coding\" frameworku od Google Grow – pravděpodobně o intuitivním/subjektivním přístupu k psaní kódu. Tematika se váže na developer experience a mindset, ne na konkrétní tech stack, kterým se Ivo primárně zabývá (Azure, Data Engineering, Python/PySpark).",
+      "action": "Zhlédnout pouze pokud máš čas navíc; soustředit se spíš na Azure/Databricks konkrétní tutorials. Pokud se jedná o Developer Experience/Mental Models, pak by to mohlo být zajímavé pro sekundární learning.",
+      "tags": "#coding-mindset #developer-experience #soft-skills #Python #subjektivní-Rating",
+      "score": 5,
+      "category": "WORK / AI",
       "key_points": [
-        "The 3-step vibe coding framework | Google",
-        "Kanál: Grow with Google"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Remote Control Walkthrough",
-      "channel": "Google Antigravity",
-      "url": "https://www.youtube.com/watch?v=8QGW7ePYepE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Remote Control Walkthrough",
-        "Kanál: Google Antigravity"
-      ]
-    },
-    {
-      "title": "Why 5 Million People Are OBSESSED With Excalidraw",
-      "channel": "Karlos Obsidian Tutorials",
-      "url": "https://www.youtube.com/watch?v=CkoGWHyLTsk",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Why 5 Million People Are OBSESSED With Excalidraw",
-        "Kanál: Karlos Obsidian Tutorials"
-      ]
-    },
-    {
-      "title": "7 Skills I Wish I Had Before My First Embedded Engineering Job",
-      "channel": "TaisonTech",
-      "url": "https://www.youtube.com/watch?v=T9PDlRu1bXg",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Skills I Wish I Had Before My First Embedded Engineering Job",
-        "Kanál: TaisonTech"
-      ]
-    },
-    {
-      "title": "AI Won't Build Your Fractional Career—But These Prompts Will",
-      "channel": "Wandering Duchess",
-      "url": "https://www.youtube.com/watch?v=Fb4IRXPrDdw",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "AI Won't Build Your Fractional Career—But These Prompts Will",
-        "Kanál: Wandering Duchess"
-      ]
-    },
-    {
-      "title": "I Was Qualified But Still Not Getting Hired: What Changed",
-      "channel": "Wandering Duchess",
-      "url": "https://www.youtube.com/watch?v=FfjWcb1mkqQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Was Qualified But Still Not Getting Hired: What Changed",
-        "Kanál: Wandering Duchess"
-      ]
-    },
-    {
-      "title": "How to Get More Offers: Make Hiring Managers Pick You",
-      "channel": "Kate Kirchner",
-      "url": "https://www.youtube.com/watch?v=_mXNp0XfTB8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Get More Offers: Make Hiring Managers Pick You",
-        "Kanál: Kate Kirchner"
-      ]
-    },
-    {
-      "title": "How to Find Jobs on LinkedIn Before Everyone Else (Cheat Code)",
-      "channel": "Kate Kirchner",
-      "url": "https://www.youtube.com/watch?v=h9MhKqPlzXs",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Find Jobs on LinkedIn Before Everyone Else (Cheat Code)",
-        "Kanál: Kate Kirchner"
-      ]
-    },
-    {
-      "title": "These LinkedIn Profile Tips Will Get you HIRED in 2026",
-      "channel": "CareerShakers",
-      "url": "https://www.youtube.com/watch?v=4yP2_1fIGpo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "These LinkedIn Profile Tips Will Get you HIRED in 2026",
-        "Kanál: CareerShakers"
+        "\"Vibe coding\" framework (spekulace: přístup k psaní kódu mimo rigidní best practices)",
+        "Google Grow edukační kanál (kvalitní zdroj, ale obecnější)",
+        "Relevantní pro ADHD mozek – intuice vs. procedury (nepotvrzeno bez transkriptu)"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
