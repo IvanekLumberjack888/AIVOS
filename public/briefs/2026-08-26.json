@@ -1,154 +1,31 @@
 {
   "date": "2026-08-26",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "Ahoj Ivo, vítej v Brain Briefu na pondělí osmnáctého srpna dvacet šest. Dneska máme pro tebe jednoduchý den, ale zato solidní – jedno video, kterým se opravdu stojí zabývat. Jedeme na to.\n\nTakže dnes se musíš podívat na „What Is Microsoft Fabric? And Why Should You Care?\" od Pragmatic Works. Mimochodem, skóre devět z deseti, takže víme, že to není spam. Jde o to, že Microsoft Fabric je vlastně to, na co čekal každý, kdo pracuje s Azure – jedna platforma, která ti vezme Data Factory, Synapse Analytics, Power BI a všechny ty menší věci a poskytne ti je jako jeden ekosystém. A to není jenom marketing bullshit, Ivo.\n\nPoslouchej, ty teď pracuješ s Data Factory a Synapse, že jo? Víš, jak je to bolestivé přepínat mezi tím, nastavovat integrace, sledovat, kde jsou data, a pak je do BI něco dostávat? Fabric se toho zbavuje. Je to jako když koupíš auto, kde ti všechno funguje z jednoho místa místo toho, aby sis musel v garáži hledat pět různých nástrojů.\n\nTři věci, které si z toho musíš vzít. Prvně – Fabric nativně podporuje Medallion architecture a Lakehouse design. To znamená Bronze, Silver, Gold layer úplně přirozeně, bez že by sis musel vymýšlet, jak to všechno zapojit mezi třídy storage accountů a Azure Data Lake. Druhé – v tom je zabudovaná i Real-time analytics a AI integrace. To je pro tebe důležité, protože ty máš ambice s LLM a machine learning. Nebudeš muset hledat novou sadu nástrojů. A třetí – redukce komplexity. Místo abys spravoval pět Azure služeb, máš jednu. To znamená méně chyb, méně debugování, víc času na to, co opravdu zajímá.\n\nJak s tím pracovat? Zaprvé si to video pusť, nemusíš si ho zapisovat, jen seber tu logiku. Zadruhé – až skončíš s autem, otevři si excel a napsal si tabulku, kde si porovnáš, co teď máš v Azure versus co by ti Fabric přinesl. To není jenom akademické cvičení – to ti pomůže pochopit, jestli je to pro tvůj projekt relevantní nebo ne. Zatřetí – vzorec je přesně ten, který slýchávám od všech datařů – půjdi na docs.microsoft.com, najdi Fabric Labs a projdi si aspoň dva hands-on labáky. Když jen čteš, zapomeneš. Když to děláš, zůstane ti to v mozku. A čtvrtě – Pragmatic Works jsou věrohodný zdroj, nejsou to někdo náhodný, takže si můžeš být jistý, že to není zastaralý obsah.\n\nA když už jsme u toho, Ivo, máš DP-700 na plánu, že? To je Microsoft Certified Data Engineer exam. Fabric je tam jedna z těch věcí, které se objevují čím dál tím víc. Není to ještě všechno na examu, ale za rok to bude core knowledge. Takže se na to dívej i z perspektivy přípravy.\n\nShrnutí na závěr – dnešní takeaway je prostě tenhle: Microsoft Fabric je pro tebe. Není to exotika, není to volitelné. Je to evoluce toho, co už děláš, a je to správný čas se do toho podívat. \n\nNa odpolední deep dive si vezmi jeden konkrétní tip – po tom, co skončíš s videem, si vytáh",
   "stats": {
-    "high": 10,
+    "high": 1,
     "medium": 0,
     "low": 0,
-    "total": 10
+    "total": 1
   },
   "high": [
     {
       "title": "What Is Microsoft Fabric? (And Why Should You Care?)",
       "channel": "Pragmatic Works",
-      "url": "https://www.youtube.com/watch?v=BgOb9W14vHI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=BgOb9W14vHI",
+      "summary": "Microsoft Fabric je integrovaná analytická platforma od Microsoftu, která kombinuje Data Engineering, Data Warehousing a Business Intelligence do jednoho ekosystému. Video vysvětluje, proč by měl datový inženýr jako Ivo tento stack zvážit, особě v kontextu Azure (který již používá). Fabric je přirozenou evolucí pro někoho pracujícího s Data Factory, Synapse a Power BI.",
+      "action": "1) Sleduj video komplet, 2) Porovnej Fabric vs. tvůj současný Azure stack (DF + Synapse), 3) Nastuduj Fabric Labs na docs.microsoft.com (hands-on), 4) Zvažuj Fabric v kontextu DP-700 přípravy",
+      "tags": "#Azure #Fabric #DataEngineering #Medallion #Lakehouse #MicrosoftStack #CareerGrowth",
+      "score": 9,
+      "category": "WORK",
       "key_points": [
-        "What Is Microsoft Fabric? (And Why Should You Care?)",
-        "Kanál: Pragmatic Works"
-      ]
-    },
-    {
-      "title": "How to Build Your First AI Agent with Gemini Spark (Google Full Tutorial)",
-      "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=xUCZIfi_Lgo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Build Your First AI Agent with Gemini Spark (Google Full Tutorial)",
-        "Kanál: Shawn Builds AI"
-      ]
-    },
-    {
-      "title": "The 3-step vibe coding framework | Google",
-      "channel": "Grow with Google",
-      "url": "https://www.youtube.com/watch?v=6Qot-dysrp4",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The 3-step vibe coding framework | Google",
-        "Kanál: Grow with Google"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Remote Control Walkthrough",
-      "channel": "Google Antigravity",
-      "url": "https://www.youtube.com/watch?v=8QGW7ePYepE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Remote Control Walkthrough",
-        "Kanál: Google Antigravity"
-      ]
-    },
-    {
-      "title": "Why 5 Million People Are OBSESSED With Excalidraw",
-      "channel": "Karlos Obsidian Tutorials",
-      "url": "https://www.youtube.com/watch?v=CkoGWHyLTsk",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Why 5 Million People Are OBSESSED With Excalidraw",
-        "Kanál: Karlos Obsidian Tutorials"
-      ]
-    },
-    {
-      "title": "7 Skills I Wish I Had Before My First Embedded Engineering Job",
-      "channel": "TaisonTech",
-      "url": "https://www.youtube.com/watch?v=T9PDlRu1bXg",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Skills I Wish I Had Before My First Embedded Engineering Job",
-        "Kanál: TaisonTech"
-      ]
-    },
-    {
-      "title": "AI Won't Build Your Fractional Career—But These Prompts Will",
-      "channel": "Wandering Duchess",
-      "url": "https://www.youtube.com/watch?v=Fb4IRXPrDdw",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "AI Won't Build Your Fractional Career—But These Prompts Will",
-        "Kanál: Wandering Duchess"
-      ]
-    },
-    {
-      "title": "I Was Qualified But Still Not Getting Hired: What Changed",
-      "channel": "Wandering Duchess",
-      "url": "https://www.youtube.com/watch?v=FfjWcb1mkqQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Was Qualified But Still Not Getting Hired: What Changed",
-        "Kanál: Wandering Duchess"
-      ]
-    },
-    {
-      "title": "How to Get More Offers: Make Hiring Managers Pick You",
-      "channel": "Kate Kirchner",
-      "url": "https://www.youtube.com/watch?v=_mXNp0XfTB8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Get More Offers: Make Hiring Managers Pick You",
-        "Kanál: Kate Kirchner"
-      ]
-    },
-    {
-      "title": "How to Find Jobs on LinkedIn Before Everyone Else (Cheat Code)",
-      "channel": "Kate Kirchner",
-      "url": "https://www.youtube.com/watch?v=h9MhKqPlzXs",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Find Jobs on LinkedIn Before Everyone Else (Cheat Code)",
-        "Kanál: Kate Kirchner"
+        "Fabric unifikuje Azure Data Factory, Synapse Analytics, Power BI a lakehouse architekturu v jedné platformě",
+        "Medallion architecture + Lakehouse design se nativně podporují v Fabric",
+        "Jednoduší správa dat a redukce komplexity vs. řešení více Azure služeb zvlášť",
+        "Real-time analytics a AI integrace jsou built-in (relevantní pro tvoje LLM ambice)",
+        "Pragmatic Works jsou renomovaný zdroj pro Microsoft BI/data stack (věrohodný kanál)"
       ]
     }
   ],
   "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
