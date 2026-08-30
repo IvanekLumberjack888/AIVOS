@@ -1,154 +1,32 @@
 {
   "date": "2026-08-30",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "# AIVOS Brain Brief – Pátek, 30. srpna 2026\n\nAhoj Ivo! Máš před sebou pátkový podcast. Dnes máme jeden zajímavý medium článek, kterého bys neměl přeskočit, i když se na první pohled nezdá přímo technický. Tak se zapni a pojďme na to.\n\n---\n\n## MEDIUM RELEVANCE\n\nTakže máme tady jedno video od Ryana Holidaye. Jmenuje se to \"Seven Books AI Can't Replace\" a právě tohle téma je pro tebe teď víc relevantní, než by se mohlo zdát.\n\nHoliday se v tom videu ptá otázky, která je vlastně i pro nás data engineery zásadní – které věci si opravdu musíme přečíst a promyslet sami a které věci nám AI může a neměla by nahradit. A jestli chceš být opravdu dobrej data engineer, ne jen člověk, co copíruje Stack Overflow, tak by tě to mělo zajímat.\n\nJde mu o to, že jsou určité knihy a určitý typ obsahu, kde je ten proces čtení a hloubkové porozumění absolutně klíčový. Není to jenom o tom získat informaci, ale o tom, jak se ti v hlavě změní pojetí věcí. A to je přesně to, co ti chybí, když prostě jen seženeš code snippet z ChatGPT.\n\nPro tebe konkrétně – třeba pokud čteš nějakou klasiku o design patterech nebo fundamenty SQL, tak tam není asi ten nejlepší přístup si to nechat vygenerovat AI shrnutí. Ty je musíš opravdu projít, experimentovat, selhat. To je to, co tě dělá lepším engineerem.\n\nJeden konkrétní tip – Holiday tam zmiňuje důležitost čtení kníž o historii a filosofii. Pro data engineering bych ti doporučil podobný mindset k čtení o architektuře systémů nebo o tom, proč se věci dělají tak, jak se dělají. Není to sexy jako latest AI framework, ale bude ti to chybět, až budeš debugovat něco na production.\n\n---\n\n## ZÁVĚR\n\nTakže shrnutí – dneska není zase tolik videí, ale to znamená, že máš prostor se soustředit. Zapamatuj si ten mindset od Holidaye. AI je parádní na mnohem věcí, ale nahrazuje to, co tě vzdělává, je chyba.\n\nKonkrétní tip na dnes – když máš dneska čas po práci, seber si jednu technickou knížku, kterou sis kupoval ale ještě si ji nenačetl. Třeba něco o data pipeline architektuře nebo o SQL optimizaci. Nemusí to být dlouhá session, ale skutečné čtení, nikoliv video.\n\nIvo, ať ti to jede celej den. Nasleduj příští Brain Brief v pondělí – tam by mělo být víc tech obsahu. Ahoj!",
   "stats": {
-    "high": 10,
-    "medium": 0,
+    "high": 0,
+    "medium": 1,
     "low": 0,
-    "total": 10
+    "total": 1
   },
-  "high": [
+  "high": [],
+  "medium": [
     {
       "title": "7 Books AI Can't Replace",
       "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=AeBuZjNq8u0",
+      "summary": "Ryan Holiday se zabývá tím, kterými knihami se AI nemůže porovnat a proč zůstává čtení fundament­ální. Videa je relevantní pro budování second brain a vědomého konzumu obsahu, ale není přímo vázané na technické growth Ivy.",
+      "action": "Přidat do Notion/PARA 1-2 knihy z Holiday doporučení s konkrétním zaměřením na data engineering / AI (např. \"Thinking, Fast and Slow\" pro probabilistické uvažování v ML)",
+      "tags": "#secondbrain #PARA #deepwork #INTJ #knowlèdgemanagement #personaldev",
+      "score": 5,
+      "category": "LIFE / PKM",
       "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
-      ]
-    },
-    {
-      "title": "The Master Prompt 2.0: Live Session with Tiago Forte",
-      "channel": "Tiago Forte",
-      "url": "https://www.youtube.com/watch?v=VfDZnvUCM_Q",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Master Prompt 2.0: Live Session with Tiago Forte",
-        "Kanál: Tiago Forte"
-      ]
-    },
-    {
-      "title": "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-      "channel": "iampauljames",
-      "url": "https://www.youtube.com/watch?v=vgz2dSxuiIQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-        "Kanál: iampauljames"
-      ]
-    },
-    {
-      "title": "The Website Era Is Ending. Here’s What to Build Next",
-      "channel": "Phlash Consulting",
-      "url": "https://www.youtube.com/watch?v=ms-ULf9m2lI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Website Era Is Ending. Here’s What to Build Next",
-        "Kanál: Phlash Consulting"
-      ]
-    },
-    {
-      "title": "What Is Microsoft Fabric? (And Why Should You Care?)",
-      "channel": "Pragmatic Works",
-      "url": "https://www.youtube.com/watch?v=BgOb9W14vHI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "What Is Microsoft Fabric? (And Why Should You Care?)",
-        "Kanál: Pragmatic Works"
-      ]
-    },
-    {
-      "title": "Bare Minimum Setup You Need to Build Your First AI Agent (Google Gemini Spark)",
-      "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=xUCZIfi_Lgo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Bare Minimum Setup You Need to Build Your First AI Agent (Google Gemini Spark)",
-        "Kanál: Shawn Builds AI"
-      ]
-    },
-    {
-      "title": "The 3-step vibe coding framework | Google",
-      "channel": "Grow with Google",
-      "url": "https://www.youtube.com/watch?v=6Qot-dysrp4",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The 3-step vibe coding framework | Google",
-        "Kanál: Grow with Google"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Remote Control Walkthrough",
-      "channel": "Google Antigravity",
-      "url": "https://www.youtube.com/watch?v=8QGW7ePYepE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Remote Control Walkthrough",
-        "Kanál: Google Antigravity"
+        "Identifikace knih, které mají nepomíjející hodnotu (filozofie, psychologie, strategie)",
+        "Argument pro deep work a focused čtení versus algoritmicky filtrovaný obsah",
+        "Connection mezi čtením a decision-making procesem (relevantní pro INTJ profil)",
+        "Není specificky vázáno na Azure, Python, AI engineering, LLM nebo ADHD management",
+        "Ryan Holiday = generalist personal development (spíše 💚 pro Iva, ale ne TOP priority)",
+        "Užitečné, ale ne urgentní pro tech growth trajectory"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
