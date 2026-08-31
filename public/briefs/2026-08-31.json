@@ -1,154 +1,29 @@
 {
   "date": "2026-08-31",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "# AIVOS Brain Brief – 31. srpna 2026\n\nAhoj Ivo, vítej v novém epizodu Brain Brief. Dnes je neděle, 31. srpna, a máme pro tebe jeden zajímavý tip, který se hodí spíš ke knowledge managementu, než k datovému inženýrství – ale věř mi, zase se ti bude hodit. Tak pojďme na to.\n\n## MEDIUM RELEVANCE – Craig Does AI\n\nMáme tu video od Craiga jménem \"I Discovered a Gemini Notebook Method That Gets You Power User Results – Full Tutorial\". Víš, jak to je – Craig se vždy podívá na ty věci ze zajímavého úhlu, a tentokrát se zaměřil na Gemini Notebooks jako na produktivnostní nástroj.\n\nTakže krátce – jde o to, že se tam objevila nějaká metoda, jak s Gemini Notebooky pracovat tak, aby ti to skutečně zvýšilo efektivitu. Není to zas tak blízko tvému daily work s data pipelinama a SQL, ale poslechni – v našem oboru je knowledge management strašně důležitý. Každý den se učíš něco nového, sháníš si dokumentaci, dělíš si poznámky, a tímto způsobem si je můžeš organizovat pomocí AI.\n\nKlíčová věc je právě ta druhá mozková hemisféra – second brain systém. Craig tam pravděpodobně ukazuje, jak si v Gemini Notebooku udělat strukturovaný systém pro ukládání informací, takže když budeš později řešit nějaký problém s optimalizací tvého data pipeline nebo budeš experimentovat s novým transformation framework, nebudeš se trápit tím, že sis zapomněl, kde jsi tu informaci viděl.\n\nMůj tip pro tebe – zkus si z toho webináře vzít principy knowledge organizace a aplikuj je na svůj osobní systém poznámek. Třeba v Notion, nebo kdykoliv používáš. Nemusíš to dělat přesně podle Craiga, ale systém se ti bude hodit.\n\n## ZÁVĚR\n\nTakže shrnutí – dnes máme pouze jedno relevantní video a je spíš na straně soft skills a produktivity. Není to klasická datová inženýrství, ale v dlouhodobém výhledu ti to zjednoduší život, věř mi.\n\nNa odpolední deep dive ti doporučuju, když máš čas, zkus si Gemini Notebook otevřít a nějak hrát si s ním. Nemusíš hned dělat nic na produkci – jenom si to vyzkoušej, abys věděl, jak to funguje.\n\nIvo, užij si cestu autem a slyšíme se zase zítra. Měj se!",
   "stats": {
-    "high": 10,
-    "medium": 0,
-    "low": 0,
-    "total": 10
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "total": 2
   },
-  "high": [
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
+  "high": [],
+  "medium": [
     {
       "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
       "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=me-sEyJ0MEE",
+      "summary": "Video o Gemini Notebooks jako produktivnostním nástroji pro power usery. Zaměřuje se na metody a workflow, které mohou zlepšit efektivitu práce s AI. Relevantní pro second brain a knowledge management systémy, ale mimo core tech stack Iva.",
+      "action": "Zkontrolovat, jestli Gemini Notebooks může doplnit PARA systém v Notionu jako layer pro AI-assisted research či knowledge capture. Zvážit pro \"second brain evolution\" projekt.",
+      "tags": "#SecondBrain #PKM #Gemini #ProductivityTool #AIWorkflow",
+      "score": 6,
+      "category": "AI / PKM",
       "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
-      ]
-    },
-    {
-      "title": "The Master Prompt 2.0: Live Session with Tiago Forte",
-      "channel": "Tiago Forte",
-      "url": "https://www.youtube.com/watch?v=VfDZnvUCM_Q",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Master Prompt 2.0: Live Session with Tiago Forte",
-        "Kanál: Tiago Forte"
-      ]
-    },
-    {
-      "title": "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-      "channel": "iampauljames",
-      "url": "https://www.youtube.com/watch?v=vgz2dSxuiIQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-        "Kanál: iampauljames"
-      ]
-    },
-    {
-      "title": "The Website Era Is Ending. Here’s What to Build Next",
-      "channel": "Phlash Consulting",
-      "url": "https://www.youtube.com/watch?v=ms-ULf9m2lI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Website Era Is Ending. Here’s What to Build Next",
-        "Kanál: Phlash Consulting"
-      ]
-    },
-    {
-      "title": "What Is Microsoft Fabric? (And Why Should You Care?)",
-      "channel": "Pragmatic Works",
-      "url": "https://www.youtube.com/watch?v=BgOb9W14vHI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "What Is Microsoft Fabric? (And Why Should You Care?)",
-        "Kanál: Pragmatic Works"
-      ]
-    },
-    {
-      "title": "Bare Minimum Setup You Need to Build Your First AI Agent (Google Gemini Spark)",
-      "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=xUCZIfi_Lgo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Bare Minimum Setup You Need to Build Your First AI Agent (Google Gemini Spark)",
-        "Kanál: Shawn Builds AI"
+        "Gemini Notebooks jako alternativa k tradičním poznámkovým systémům a Notion",
+        "Konkrétní workflow a best practices pro maximalizaci produktivity",
+        "Pravděpodobně návod na strukturování poznámek a automatizaci s AI"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
