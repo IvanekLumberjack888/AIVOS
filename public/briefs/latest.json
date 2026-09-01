@@ -1,154 +1,29 @@
 {
   "date": "2026-09-01",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "# AIVOS Brain Brief – Skript pro Ivu – 1. září 2026\n\nAhoj Ivo, vítej u ranního Brain Briefu. Je úterý, první září, tedy začátek nového měsíce – ideální čas si vyjasnit, co tě čeká. Dnes máme pro tebe jedno super relevantní video, které přesně sedí do tvého career pathu. Pojďme na to.\n\nTakže dnes jsme vypískali poměrně skvělou věc – máme tady video od Cloud X Berry s názvem Sedm kodexů seniora. Vím, vím, slyšíš slovo senior a možná si říkáš, proč by to měl poslouchat junior. Ale znám tě, Ivo, věřím, že máš mentálnost růstu a chceš se posouvat. Tohle video je přesně na to.\n\nObsah je zaměřený na věci, které dělají rozdíl mezi tím, když dělasz jen feature a když dělasz správně. Není to specificky o Azure nebo Spark, takže to nejsou technical deep dives, ale spíš principy. A to je přesně to, co často chybí – lidi znají tools, ale neznají mindset.\n\nKlíčové věci, které tam vyčítáme. První je čitelnost kódu přes všechny ostatní věci. Senior dev nenapíše jeden liner, který ho bude bavit, ale napíše kód, kterému rozumí i člověk za ním. Ve tvém kontextu data engineeringu – to znamená že deine SQL queries, deine Pythonní transformace, to všechno musí být napsáno tak, aby to za rok pochopil někdo úplně jiný nebo ty sám.\n\nDruhá věc je komunikace. Video to zmiňuje – senior nebude jen psát Pull Request s jedním řádkem. Bude tam kontext, bude tam vysvětlení, proč dělá to co dělá. To v data engineeringu znamená dokumentace pipelines, vysvětlení transformací, proč si vybral именно ten přístup a ne jiný.\n\nA třetí, která je pro tebe super důležitá – testování a robustnost. Junior píše kód, který funguje na happy path. Senior píše kód, který ví, co se stane, když data budou špatná, když bude chybět sloupec, když bude million záznamů místo deseti. Zvlášť v data engineeringu to je kritické – tvoje pipelines běží noční, někdo na ně čeká, nemohou spadnout.\n\nCo z toho konkrétně použít? Vezmi si jednu svou nejnovější transformaci nebo query a přečti si ji jako by ji psal někdo jiný. Udělaj test cases pro edge cases. Dej tomu komentář, aby bylo jasné, co dělasz a proč. To je step, který tě posune viditelně.\n\nA to je prostě z našeho výběru dneska všechno, Ivo. Jedno video, ale solidní.\n\nTakže shrnutí – máš tady sedm principů od seniora, které nejsou o kódování samotném, ale o přístupu. Aplikuj je na svou práci, zvlášť na testování a dokumentaci – to je právě to, kde vidím největší potenciál.\n\nOdpoledne si dej čas na deep dive – vezmi si něco z toho, co jsi nedávno dělal, a zkus to zlepšit podle těchto principů. Nebude to trvat dlouho, ale bude vidět.\n\nAť ti to jede. Zase někdy brzy.",
   "stats": {
-    "high": 10,
-    "medium": 0,
+    "high": 0,
+    "medium": 1,
     "low": 0,
-    "total": 10
+    "total": 1
   },
-  "high": [
+  "high": [],
+  "medium": [
     {
       "title": "7 Coding Laws of Senior Developer",
       "channel": "Cloud X Berry",
-      "url": "https://www.youtube.com/watch?v=JcYMtYbNUhU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=JcYMtYbNUhU",
+      "summary": "Video se zaměřuje na klíčové principy, které odlišují seniory od juniorů v kódování. Obsah je relevantní pro Ivův career growth z pozice Junior Data Engineera, ale bez konkrétních příkladů z Azure/data engineeringu se jedná spíše o universální soft skills a best practices. Relevance se zvyšuje vzhledem k jeho růstovému mindset a cíli dosáhnout seniorní úrovně.",
+      "action": "Sledovat video jako refresh na \"co rozlišuje seniorníka\" a reflektovat, které zákony v každodenní práci v Konica Minolta chybí. Ideální bonus: vzít si 2-3 principy a aplikovat je konkrétně na ETL/dbt pipeline v příštích 2 týdnech.",
+      "tags": "#career-growth #senior-mindset #coding-principles #soft-skills #junior-to-senior",
+      "score": 6,
+      "category": "WORK",
       "key_points": [
-        "7 Coding Laws of Senior Developer",
-        "Kanál: Cloud X Berry"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
-    {
-      "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-      "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
-      ]
-    },
-    {
-      "title": "The Master Prompt 2.0: Live Session with Tiago Forte",
-      "channel": "Tiago Forte",
-      "url": "https://www.youtube.com/watch?v=VfDZnvUCM_Q",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Master Prompt 2.0: Live Session with Tiago Forte",
-        "Kanál: Tiago Forte"
-      ]
-    },
-    {
-      "title": "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-      "channel": "iampauljames",
-      "url": "https://www.youtube.com/watch?v=vgz2dSxuiIQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-        "Kanál: iampauljames"
-      ]
-    },
-    {
-      "title": "The Website Era Is Ending. Here’s What to Build Next",
-      "channel": "Phlash Consulting",
-      "url": "https://www.youtube.com/watch?v=ms-ULf9m2lI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Website Era Is Ending. Here’s What to Build Next",
-        "Kanál: Phlash Consulting"
-      ]
-    },
-    {
-      "title": "What Is Microsoft Fabric? (And Why Should You Care?)",
-      "channel": "Pragmatic Works",
-      "url": "https://www.youtube.com/watch?v=BgOb9W14vHI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "What Is Microsoft Fabric? (And Why Should You Care?)",
-        "Kanál: Pragmatic Works"
+        "Praktické zákony pro práci v týmu a komunikaci, které junior inženýři často ignorují",
+        "Principy psaní čitelného a maintainable kódu (relevantní pro Python/PySpark práci)",
+        "Mindset difference: senior developers vs. juniors v přístupu k problémům"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
