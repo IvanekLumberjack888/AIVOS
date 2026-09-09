@@ -1,154 +1,29 @@
 {
   "date": "2026-09-09",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "Ahoj Ivo, vítáme tě u ranní edice AIVOS Brain Brief. Je středa devátého září dvacet dvacet šest, a máme pro tebe jedno opravdu super relevantní video, které ti dnes v autě chceme rozebrat. Je to přesně na míru tvé situaci – učení, efektivita a překonávání těch běžných předsudků. Tak si dej kafe, zapni poslech a pojďme na to.\n\nMáme pro tebe jedno HIGH relevance video a je to bomba, tak mu věnujeme víc času.\n\n\"How to Learn So Fast People Assume You're Naturally Gifted\" od Justina Sunga. Justin je skutečně uznávaný expert na learning science, specialista na study techniques, a hlavně – tvoří content specificky pro lidi s ADHD a dalšími neurodivergentními profily. Takže ten obsah není obecný, je to vědecky-backed systematika, která funguje právě pro tvůj mozek.\n\nO čem video je? Jde vlastně o rozboření jednoho velkého mýtu. Ten mýtus je v tom, že někdo je \"přirozeně nadaný\" a ostatní ne. Vidíš to všude – programátoři, který se zdá neuvěřitelně rychlý, lidé, kterým se Azure certifikace zdá lehká. Všichni okolo říkají \"jo, ten je prostě talentovaný\". Ale Justin v tom videu ukazuje, že to není pravda. Učení je skill. To znamená, že se to dá tréninkem zlepšit a systematizovat, stejně jako trénuješ tělo.\n\nPrvních pár minut je motivace – potkává se tam i na to, že přirozený talent je vlastně narativ, kterým si vysvětlujeme rozdíly v cílové skupině. Ale pak se video posune k tomu, co skutečně funguje. A tady je pro tebe zásadní věc číslo jedna: retention versus fluency. Justin rozlišuje mezi tím, jak si věc pamatuješ na dlouho – to je retention – a tím, jak ji zvládáš používat bez přemýšlení – to je fluency. Když se učíš Python nebo grafy v Airflow, potřebuješ oboje. Poznámky nebo tutoriály ti dají retention, ale bez pojetí opakování a praktiky – repetition, spacing – fluency se neobjeví. Klasicky to vidíš, když se koukaš na tutoriál na YouTube, všemu rozumíš, ale pak sedneš psát vlastní kod a tápneš. To je právě rozdíl mezi retention a fluency.\n\nDruhá klíčová věc: Justin mluví o feynman techniku a o tom, jak ji správně aplikovat. Znáš to? Vezmutě koncept, představ si, že to vysvetlovaneš dítěti, a piš to vlastními slovy bez opory. Když to neuděláš správně, snadno si myslíš, že rozumíš, přestože ne. To se jmenuje illusion of competence – vidíš je v procesu, máš to před sebou, a tvůj mozek si myslí, že rozumí. Takže když se učíš cloudové služby – třeba Azure Storage, Functions, nebo Databricks – nedrž se jen příkladů. Zastavit video, zavřít dokumentaci a řekni vlastně jaký je rozdíl mezi Table Storage a Blob Storage z hlavy. Když to nemůžeš udělat čistě, tak wisi.\n\nTřetí věc, která je pro tebe ultra-relevantní: interleaving a chunking. Interleaving znamená, že si nemixuješ jen podobné problémy vedle sebe – místo toho si integrujete různé typy úloh dohromady. Třeba v data engineeringu – neděláš jeden den jen SQL, druhý den jen orchestration,",
   "stats": {
-    "high": 10,
+    "high": 1,
     "medium": 0,
     "low": 0,
-    "total": 10
+    "total": 1
   },
   "high": [
     {
       "title": "How to Learn So Fast People Assume You're Naturally Gifted",
       "channel": "Justin Sung",
-      "url": "https://www.youtube.com/watch?v=nIABz0Z4IRA",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
+      "url": "https://youtube.com/watch?v=nIABz0Z4IRA",
+      "summary": "Justin Sung je uznávaný expert na learning science a study techniques pro neurodivergentní lidi. Video se zaměřuje na systematické přístupy k rychlému učení, které překonávají mýtus \"přirozeného talentu\" – téma klíčové pro Ivova osobního rozvoje s ADHD-PI profilem. Obsah je zaměřený na neuroscience-backed metody, které zlepšují retenční kapacitu a efektivitu studia.",
+      "action": "",
+      "tags": "#ADHD #learning-science #neurodivergent #study-techniques #personal-growth #knowledge-management",
       "score": 8,
-      "category": "AI / WORK",
+      "category": "ADHD / PKM / LIFE",
       "key_points": [
-        "How to Learn So Fast People Assume You're Naturally Gifted",
-        "Kanál: Justin Sung"
-      ]
-    },
-    {
-      "title": "7 Coding Laws of Senior Developer",
-      "channel": "Cloud X Berry",
-      "url": "https://www.youtube.com/watch?v=JcYMtYbNUhU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Coding Laws of Senior Developer",
-        "Kanál: Cloud X Berry"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
-    {
-      "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-      "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
-      ]
-    },
-    {
-      "title": "The Master Prompt 2.0: Live Session with Tiago Forte",
-      "channel": "Tiago Forte",
-      "url": "https://www.youtube.com/watch?v=VfDZnvUCM_Q",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Master Prompt 2.0: Live Session with Tiago Forte",
-        "Kanál: Tiago Forte"
-      ]
-    },
-    {
-      "title": "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-      "channel": "iampauljames",
-      "url": "https://www.youtube.com/watch?v=vgz2dSxuiIQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-        "Kanál: iampauljames"
-      ]
-    },
-    {
-      "title": "The Website Era Is Ending. Here’s What to Build Next",
-      "channel": "Phlash Consulting",
-      "url": "https://www.youtube.com/watch?v=ms-ULf9m2lI",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Website Era Is Ending. Here’s What to Build Next",
-        "Kanál: Phlash Consulting"
+        "Justin Sung vytváří content specificky pro ADHD/neurodivergentní studenty – jeho kanál je vědecky-založený",
+        "Metody překonávají \"gifted myth\" – fokus na systém, ne talent, což je pro Ivu relevantní",
+        "Učení je skill, který se dá optimalizovat (relevantní pro Azure certifikace, Python, AI/LLM path)"
       ]
     }
   ],
   "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
