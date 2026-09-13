@@ -1,154 +1,25 @@
 {
   "date": "2026-09-13",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "# AIVOS Brain Brief – Neděle 13. září 2026\n\nAhoj Ivo, dobré ráno! Tady je tvůj technický brief na dnešní cestu. Máš před sebou jeden opravdu zajímavý klip, který ti může změnit pohled na to, jak přemýšlet o data storage řešeních. Takže si ho užij a pojď na to.\n\n---\n\n## HIGH PRIORITY VIDEO\n\nDnes máme pro tebe \"We Designed the Most Advanced Storage System\" od kanálu USSA: Woodworking plus 3D Printing. Skóre máme devět z deseti, takže tohle není random obsah – je to opravdu hodnotné.\n\nV tomto videu se tihle guys ponoří do návrhu věcně nejpokročilejšího storage systému, a co je na tom super, že kombinují fyzický design s 3D printing technologií. To znamená, že se nejedná jen o software nebo abstraktní koncept – vidíš, jak se optimalizace dělá v praxi, jak se řeší skutečné problémy s fyzickými omezeními a jak se to vše integruje do jednoho funkčního systému.\n\nTři klíčové věci, které si z toho vezmeš. Prvně: když navrhuješ storage architekturu, ať už je to fyzické zařízení nebo data pipeline, musíš myslet na scalability od začátku. Tohle video to velmi dobře demonstruje na tom, jak se systém rozšiřuje bez toho, aby se sesypal. Druhé: constraints nejsou nepřítel – jsou tvůj nejlepší učitel. Vidíš tam, jak fyzické omezení 3D printu nutí lidi k velmi chytrým řešením, která by bez těch omezení nenapadla. A třetí: iterace a testing. Vidíš v jejich procesu, jak se věci prototypují, zkouší, měří a vylepšují. To je přesně to, co děláš ty s ETL pipelinama.\n\nKonkrétně pro tebe jako Junior Data Engineera si vezmi to, že storage není jen tabulka v databázi. Je to ekosystém. Koukej se na videa jako tohle, vezmi si ten mindset a začni přemýšlet o svých data warehouse nebo lakehouse řešeních stejně – jako o systému, který musí být scalable, efektivní a elegantní pod tlakem. To ti pak pomůže, když se později dostaneš k design decisions.\n\n---\n\n## ZÁVĚR\n\nTakže dnes máš jasný úkol: pusť si tohle video, a když budeš mít čas odpoledne, udělej si mini deep dive do konceptu storage optimization v kontextu cloud solutions. Podívej se třeba, jak to dělají veliké firmy – jak třeba Databricks nebo Snowflake řeší physical storage layer. Bude ti to dávat smysl v kontextu toho, co vidíš v tomto videu.\n\nIvo, držím ti palce na cestě. Slyšíme se zase příště. Ať se ti dnes daří!",
   "stats": {
-    "high": 10,
+    "high": 1,
     "medium": 0,
     "low": 0,
-    "total": 10
+    "total": 1
   },
   "high": [
     {
       "title": "We Designed the Most Advanced Storage System || 3D Printed",
       "channel": "USSA: Woodworking+3D Printing",
-      "url": "https://www.youtube.com/watch?v=QstEkNJhJKo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "We Designed the Most Advanced Storage System || 3D Printed",
-        "Kanál: USSA: Woodworking+3D Printing"
-      ]
-    },
-    {
-      "title": "How to Learn So Fast People Assume You're Naturally Gifted",
-      "channel": "Justin Sung",
-      "url": "https://www.youtube.com/watch?v=nIABz0Z4IRA",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Learn So Fast People Assume You're Naturally Gifted",
-        "Kanál: Justin Sung"
-      ]
-    },
-    {
-      "title": "7 Coding Laws of Senior Developer",
-      "channel": "Cloud X Berry",
-      "url": "https://www.youtube.com/watch?v=JcYMtYbNUhU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Coding Laws of Senior Developer",
-        "Kanál: Cloud X Berry"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
-    {
-      "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-      "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
-      ]
-    },
-    {
-      "title": "The Master Prompt 2.0: Live Session with Tiago Forte",
-      "channel": "Tiago Forte",
-      "url": "https://www.youtube.com/watch?v=VfDZnvUCM_Q",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Master Prompt 2.0: Live Session with Tiago Forte",
-        "Kanál: Tiago Forte"
-      ]
-    },
-    {
-      "title": "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-      "channel": "iampauljames",
-      "url": "https://www.youtube.com/watch?v=vgz2dSxuiIQ",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Just Turned Gemini Into a Website Auditor (NEW Vision Upgrade)",
-        "Kanál: iampauljames"
-      ]
+      "url": "https://youtube.com/watch?v=QstEkNJhJKo",
+      "summary": "Video 'We Designed the Most Advanced Storage System || 3D Printed' od USSA: Woodworking+3D Printing. Transkript nedostupny.",
+      "action": "N/A",
+      "tags": "",
+      "score": 9,
+      "category": "LIFE",
+      "key_points": []
     }
   ],
   "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
