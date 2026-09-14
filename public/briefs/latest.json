@@ -1,154 +1,32 @@
 {
   "date": "2026-09-14",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "Ahoj Ivo! Máš před sebou pondělí 14. září 2026 a máme pro tebe jeden super zajímavý obsah, který by ti mohl otevřít oči. Jde o to, jak se dá Gemini AI používat téměř neférově efektivně, a hlavně jak to může vést na peníze. Pojď s námi na padesát minut cesty.\n\nTakže dneska máme jedno medium relevance video, který ti chci pořádně rozebrat. Je od karálu Shawna z Shawn Builds AI a jmenuje se to \"20 Hacks To Use Gemini AI So Well It Feels Unfair – Make Money Online\". Slyším, slyším, že to zní trochu como BS, ale tohle není takový ten clickbait kanál, který by tě koukal na oči. Shawn se opravdu věnuje praktickým věcem a umí vysvětlit, jak se dají AI tools monetizovat reálně.\n\nTeď, co je na tom videu důležité pro tebe konkrétně. Jednak se tam asi objeví bunch of prompting techniques, které budeš moct hned aplikovat. Ne jenom nějaké random triky, ale strukturované způsoby, jak si s Gemini rozumět lépe. To je důležité, protože jako Junior Data Engineer jsi právě v té fázi, kdy potřebuješ sci-fi AI leveragovat pro efektivitu. Druhá věc je monetizace – video se zaměřuje na konkrétní use cases, kde se AI dá proměnit na cash flow. To není pro tebe teď priority, ale je fajn vědět, kam to až sahá. A třetí – a to beru vážně – je že si Shawn říká \"feels unfair\", což v AI světě znamená, že tam jsou shortcuts, na které ostatní lidi zapomínají.\n\nKonkrétní tip z tebe pro dnešek: když se dostaneš k těm hackům ohledně data processing nebo automace, vytvoř si notes. Ne celý video rewatch, jen si zapamatuj dva tři hacky, které by šly aplikovat přímo na tvé daily tasking. Třeba na ETL pipeline review nebo data validation, který teď dělíš.\n\nTakže závěrem – máš dneska jeden skvělý obsah, který by ti měl dát nový úhel na to, jak pracovat s AI a zároveň ti otevře perspektivu na to, že tahle skills mají opravdu value. Můj konkrétní tip na odpolední deep dive: pusť si to video skutečně pořádně, pauzuj si ho, a zkus implementovat aspoň jeden hack přímo do něčeho, co teď dělíš. Nemusí to být věc, kterou pak prodáš, ale bude to pro tebe cenný. Ivo, fajn jízdu a ať se ti dneska daří!",
   "stats": {
-    "high": 10,
-    "medium": 0,
+    "high": 0,
+    "medium": 1,
     "low": 0,
-    "total": 10
+    "total": 1
   },
-  "high": [
+  "high": [],
+  "medium": [
     {
       "title": "20 Hacks To Use Gemini AI So Well It Feels Unfair (Make Money Online)",
       "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=ASlLmFPlJ3M",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=ASlLmFPlJ3M",
+      "summary": "Video o 20 hacích pro Gemini AI se zaměřením na online výdělky. Shawn Builds AI se zaměřuje na praktické use cases a monetizaci AI nástrojů. Bez transkriptu posuzuji podle názvu a reputace kanálu.",
+      "action": "Sleduj pro konkrétní Gemini features (v kontextu tvého Azure/Claude stacku ho používej jako sekundární tool). Některé hacky mohou inspirovat tvůj LLMOps workflow, ale prioritizuj Claude + Anthropic API pro tvé projekty.",
+      "tags": "#Gemini #AI-tools #make-money-online #productivity-hacks #side-hustle",
+      "score": 6,
+      "category": "AI / FINANCE",
       "key_points": [
-        "20 Hacks To Use Gemini AI So Well It Feels Unfair (Make Money Online)",
-        "Kanál: Shawn Builds AI"
-      ]
-    },
-    {
-      "title": "We Designed the Most Advanced Storage System || 3D Printed",
-      "channel": "USSA: Woodworking+3D Printing",
-      "url": "https://www.youtube.com/watch?v=QstEkNJhJKo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "We Designed the Most Advanced Storage System || 3D Printed",
-        "Kanál: USSA: Woodworking+3D Printing"
-      ]
-    },
-    {
-      "title": "How to Learn So Fast People Assume You're Naturally Gifted",
-      "channel": "Justin Sung",
-      "url": "https://www.youtube.com/watch?v=nIABz0Z4IRA",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Learn So Fast People Assume You're Naturally Gifted",
-        "Kanál: Justin Sung"
-      ]
-    },
-    {
-      "title": "7 Coding Laws of Senior Developer",
-      "channel": "Cloud X Berry",
-      "url": "https://www.youtube.com/watch?v=JcYMtYbNUhU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Coding Laws of Senior Developer",
-        "Kanál: Cloud X Berry"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
-    {
-      "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-      "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
-      ]
-    },
-    {
-      "title": "The Master Prompt 2.0: Live Session with Tiago Forte",
-      "channel": "Tiago Forte",
-      "url": "https://www.youtube.com/watch?v=VfDZnvUCM_Q",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "The Master Prompt 2.0: Live Session with Tiago Forte",
-        "Kanál: Tiago Forte"
+        "Gemini AI produktivní hacky pro efektivnější práci",
+        "Monetizační strategie přes AI (s potenciálem na side hustle)",
+        "Praktické tipy od etablovaného AI edukátora",
+        "Skóre 6 = sledovat, ale NE priority (tvůj stack je Claude + Anthropic API + Microsoft Copilot)",
+        "Gemini je dobrý poznávací nástroj, ALE investuj čas spíš do Claude Code, RAG, embeddings",
+        "Pokud by video mělo konkrétní section o LLMOps nebo workflow automation (n8n), skóre by bylo 7+"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
