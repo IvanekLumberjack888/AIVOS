@@ -1,154 +1,29 @@
 {
   "date": "2026-09-15",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "Ahoj Ivo, je úterý 15. září 2026 a dnes máme na programu jedno zajímavé video o tom, jak Google řeší problém, který znáš určitě ze svých projektů – jak nakrmit AI modely firemními pravidly bez toho, aby ses bláznil s fine-tuningem. Pojďme se na to podívat.\n\nDnes máme jedno médium relevantní video, které tě asi zaujme – je od youtubera AI with Surya a jmenuje se Google WikiSkill Teaches Itself Your Company's Rules, No Fine-Tuning. Je to vlastně docela geniální věc. Surya v tom videu ukazuje, jak Google WikiSkill funguje. Jde o nástroj, který se sám učí pravidla a procesy tvé firmy bez toho, aby ses musel pouštět do fine-tuningu. Vím, že ty pracuješ s daty a modely, tak tohle je relevantní hlavně z hlediska architektonických vzorů.\n\nTeď co konkrétně. První klíčová věc je, že WikiSkill prakticky automatizuje to, co byl dřív manuální proces – učení modelů tvým specifickým procesům. Místo toho, aby sis sedl a tvořil training data, tak si to WikiSkill řeší samo pomocí nějakého smart kontextuálního učení. To znamená méně práce pro tebe, jednodušší deployment a rychlejší iterace.\n\nDruhá věc – a tady to je důležité – tenhle approach je vlastně skvělý vzor pro RAG systémy, které určitě děláš. WikiSkill se v podstatě chová jako very intelligent retrieval augmented generation na steroidech. Místo abys musel ručně kódovat všechna firemní pravidla, tak se model učí z existujícího obsahu a pravidel, která už máš. To je přesně to, co potřebuješ v LLM agentech.\n\nTřetí věc – a tohle si konkrétně poznamenej – je, že tohle není nástroj, který budeš psát do kódu přímo dneska. Je to spíš architektonické myšlení. Pokud teď pracuješ na nějakém projektu, kde máš problém s tím, jak správně nakrmit model firemními pravidly bez fine-tuningu, tak tohle video ti dá inspiraci na to, jakým způsobem by mohl vypadat řešení. Můžeš si vzít ten princip – kontextové učení bez fine-tuningu – a aplikovat ho na své vlastní RAG pipeline.\n\nPrakticky? Podívej se, jak Surya vysvětluje механiku toho, jak WikiSkill parsuje a učí se z interního knowledge base. Ten pattern se dá aplikovat i na tvoje vlastní systémy. Třeba když máš Pinecone nebo Weaviate jako vector database, tak by ses mohl podívat, jestli tam nejde udělat něco podobného s lepší kontextualizací.\n\nZávěr – dnes máš jedno video, které není něco, co budeš hned kódovat, ale je to super inspirace na to, jak by měl vypadat moderní přístup k data engineeringu v kontextu LLM agenů a RAG systémů. Google se tím zabývá, takže vědí, co dělají.\n\nMěj dobrý den v autě a když se dneska dostaneš do práce, věnuj si třeba po obědě deep dive do toho videa. Konkrétní tip – při poslechu si všimni, jak vysvětluje Surya passage retrieval a reranking. To je ta část, kde se WikiSkill liší od klasických RAG přístupů a kde je v tom největší potenciál pro tvoje projekty.\n\nZase za pár dní. Ať se ti daří.",
   "stats": {
-    "high": 10,
-    "medium": 0,
+    "high": 0,
+    "medium": 1,
     "low": 0,
-    "total": 10
+    "total": 1
   },
-  "high": [
+  "high": [],
+  "medium": [
     {
       "title": "Google WikiSkill Teaches Itself Your Company's Rules (No Fine-Tuning!)",
       "channel": "AI with Surya",
-      "url": "https://www.youtube.com/watch?v=ewxQLr7IxzY",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
+      "url": "https://youtube.com/watch?v=ewxQLr7IxzY",
+      "summary": "Video pojednává o Google WikiSkill – nástroji, který se učí firemním pravidlům a procesům bez potřeby fine-tuningu modelů. Relevantní pro data engineery pracující s LLM agenty a RAG systémy, ale spíše jako inspirace pro architektonické vzory než přímý tooling.",
+      "action": "Přidat do watchlistu Tier 2 – zkoumat, jak by se WikiSkill dalo kombinovat s Azure OpenAI + vlastním RAG backendem v Databricks pro interní knowledge base v Konica Minolta",
+      "tags": "#AI #LLMOps #RAG #GoogleAI #AgentArchitecture",
+      "score": 6,
       "category": "AI / WORK",
       "key_points": [
-        "Google WikiSkill Teaches Itself Your Company's Rules (No Fine-Tuning!)",
-        "Kanál: AI with Surya"
-      ]
-    },
-    {
-      "title": "20 Hacks To Use Gemini AI So Well It Feels Unfair (Make Money Online)",
-      "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=ASlLmFPlJ3M",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "20 Hacks To Use Gemini AI So Well It Feels Unfair (Make Money Online)",
-        "Kanál: Shawn Builds AI"
-      ]
-    },
-    {
-      "title": "We Designed the Most Advanced Storage System || 3D Printed",
-      "channel": "USSA: Woodworking+3D Printing",
-      "url": "https://www.youtube.com/watch?v=QstEkNJhJKo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "We Designed the Most Advanced Storage System || 3D Printed",
-        "Kanál: USSA: Woodworking+3D Printing"
-      ]
-    },
-    {
-      "title": "How to Learn So Fast People Assume You're Naturally Gifted",
-      "channel": "Justin Sung",
-      "url": "https://www.youtube.com/watch?v=nIABz0Z4IRA",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Learn So Fast People Assume You're Naturally Gifted",
-        "Kanál: Justin Sung"
-      ]
-    },
-    {
-      "title": "7 Coding Laws of Senior Developer",
-      "channel": "Cloud X Berry",
-      "url": "https://www.youtube.com/watch?v=JcYMtYbNUhU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Coding Laws of Senior Developer",
-        "Kanál: Cloud X Berry"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
-    {
-      "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-      "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
-      ]
-    },
-    {
-      "title": "Python Dictionaries - Visually Explained",
-      "channel": "YouTube Channel",
-      "url": "https://www.youtube.com/watch?v=4t10v2QmTHU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Python Dictionaries - Visually Explained",
-        "Kanál: YouTube Channel"
-      ]
-    },
-    {
-      "title": "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-      "channel": "BitBiasedAI",
-      "url": "https://www.youtube.com/watch?v=YFH2k4M_x0o",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Gemini 3.7 Flash: You're Only Using 20% of Its Prompting Power",
-        "Kanál: BitBiasedAI"
+        "Self-learning mechanismus pro dokumentaci firemních pravidel (relevantní pro AI agents a knowledge management)",
+        "Možnost aplikace na interní RAG systémy a corporate AI",
+        "Transkript není dostupný – hodnocení limitováno"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
