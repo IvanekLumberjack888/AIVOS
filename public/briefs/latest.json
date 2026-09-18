@@ -1,154 +1,29 @@
 {
   "date": "2026-09-18",
-  "text": "Dobré ráno Ivo! V dnešním AIVOS Brain Briefu máte 10 zpracovaných videí (Daily).",
+  "text": "Ahoj Ivo, je pátek osmnáctý září, máš před sebou nový den a dneska máme pro tebe přehled jednoho zajímavého videa, které by ti mohlo hodit pro tvůj tech stack. Pojďme na to.\n\nTakže dneska máme jediné medium relevance video, ale stojí za to se mu věnovat. Jmenuje se \"New Google Gemini and NotebookLM Updates for September 2026\" od More Rob the AI Guy. Rob v tom videu projíždí novinkami, kterých se dočkala Gemini verze tři bod osm a hlavně NotebookLM, který zažil pár výrazných updatů.\n\nCo tam Rob rozebírá? Především ty nové feature kolem nahrávání a zpracování dat. NotebookLM teď umí pracovat s audio inputem, což může být fakt solidní pro tvoje knowledge management. Představ si, že budeš mít dataset nebo dokumentaci, kterou chceš načíst a chtěl bys s tím pracovat přes conversational interface. NotebookLM to teď zvládne lépe než dřív.\n\nProč je to relevantní pro tebe? Jednak – už jsi věděl, že se chystáš kolem RAG systémů, že ne? NotebookLM by mohl být candidate pro tu část, kde potřebuješ ingestionovat data a pak je elegantně queryovat. Jednak – Google Gemini sice není tvůj primární AI tool, máš Claude, ale v production stacku se vyplácí mít backup a vědět, co umí konkurence. A třetí věc – ty recording features, kterým se video věnuje, by ti mohly pomoct s dokumentací. Místo toho abys psál, můžeš si věci namluvit a systém to zprocesuje.\n\nJeden praktický tip z toho videa – Rob zmiňuje, že NotebookLM umí teď agregovat insights z více zdrojů najednou. To znamená, že pokud máš třeba projekt, kde zpracováváš data z API, z dokumentace a z logu, můžeš to všechno natáhnout do NotebookLM a ptát se na to jako na jednu věc. Není to nic revolucionního, ale je to convenience upgrade, který ušetří čas.\n\nSouhrn – máš tady update, který je spíš inkrementální než game-changing, ale stojí za to vědět, kam se Gemini a NotebookLM posouvají. Google iteruje na AI nástrojích pořád a NotebookLM by mohl být zajímavý nástoj pro tvoji toolbelt, obzvlášť když budeš mít víc dat a budeš chtít s tím pracovat bez psaní scriptu.\n\nNa odpoledne si dej tip – koukat se na dokumentaci NotebookLM API, pokud je veřejná. Mohlo by to být vhodné pro RAG proof of concept, který máš v plánu.\n\nIvo, máš úspěšný den a v autě si ještě přehraj to Rob video, když budeš mít čas. Ať se ti daří. Ahoj.",
   "stats": {
-    "high": 10,
-    "medium": 0,
+    "high": 0,
+    "medium": 1,
     "low": 0,
-    "total": 10
+    "total": 1
   },
-  "high": [
+  "high": [],
+  "medium": [
     {
       "title": "New Google Gemini & NotebookLM Updates for September 2026 (Gemini 3.8, Recording & More)",
       "channel": "More Rob the AI Guy",
-      "url": "https://www.youtube.com/watch?v=z2IB8eeBeIE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
+      "url": "https://youtube.com/watch?v=z2IB8eeBeIE",
+      "summary": "Video se zaměřuje na nové aktualizace Google Gemini a NotebookLM (verze 3.8) z září 2026, včetně nových funkcí pro nahrávání a zpracování dat. Relevantní pro Ivův stack AI nástrojů, ale Gemini je secondary tool oproti Claude ekosystému. NotebookLM by mohl být zajímavý pro knowledge management a RAG implementaci.",
+      "action": "Zkus NotebookLM s vlastními daty (test RAG + embeddings), porovnej s Claude-based řešením; Gemini používej jako secondary tool, ne hlavní (focus zůstává Claude)",
+      "tags": "#AI #Gemini #NotebookLM #RAG #SecondBrain #DataProcessing",
+      "score": 6,
+      "category": "AI",
       "key_points": [
-        "New Google Gemini & NotebookLM Updates for September 2026 (Gemini 3.8, Recording & More)",
-        "Kanál: More Rob the AI Guy"
-      ]
-    },
-    {
-      "title": "Write a Killer Résumé in the AI Era: 5 New Rules!",
-      "channel": "Jeff Su",
-      "url": "https://www.youtube.com/watch?v=N1Fm4JYae1I",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Write a Killer Résumé in the AI Era: 5 New Rules!",
-        "Kanál: Jeff Su"
-      ]
-    },
-    {
-      "title": "Google WikiSkill Teaches Itself Your Company's Rules (No Fine-Tuning!)",
-      "channel": "AI with Surya",
-      "url": "https://www.youtube.com/watch?v=ewxQLr7IxzY",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google WikiSkill Teaches Itself Your Company's Rules (No Fine-Tuning!)",
-        "Kanál: AI with Surya"
-      ]
-    },
-    {
-      "title": "20 Hacks To Use Gemini AI So Well It Feels Unfair (Make Money Online)",
-      "channel": "Shawn Builds AI",
-      "url": "https://www.youtube.com/watch?v=ASlLmFPlJ3M",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "20 Hacks To Use Gemini AI So Well It Feels Unfair (Make Money Online)",
-        "Kanál: Shawn Builds AI"
-      ]
-    },
-    {
-      "title": "We Designed the Most Advanced Storage System || 3D Printed",
-      "channel": "USSA: Woodworking+3D Printing",
-      "url": "https://www.youtube.com/watch?v=QstEkNJhJKo",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "We Designed the Most Advanced Storage System || 3D Printed",
-        "Kanál: USSA: Woodworking+3D Printing"
-      ]
-    },
-    {
-      "title": "How to Learn So Fast People Assume You're Naturally Gifted",
-      "channel": "Justin Sung",
-      "url": "https://www.youtube.com/watch?v=nIABz0Z4IRA",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "How to Learn So Fast People Assume You're Naturally Gifted",
-        "Kanál: Justin Sung"
-      ]
-    },
-    {
-      "title": "7 Coding Laws of Senior Developer",
-      "channel": "Cloud X Berry",
-      "url": "https://www.youtube.com/watch?v=JcYMtYbNUhU",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Coding Laws of Senior Developer",
-        "Kanál: Cloud X Berry"
-      ]
-    },
-    {
-      "title": "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-      "channel": "Ctrl+Alt+AI",
-      "url": "https://www.youtube.com/watch?v=6e1y8cPAWA8",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "Google Antigravity: Hidden superpower within Google AI Pro? (CLI Test)",
-        "Kanál: Ctrl+Alt+AI"
-      ]
-    },
-    {
-      "title": "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-      "channel": "Craig Does AI",
-      "url": "https://www.youtube.com/watch?v=me-sEyJ0MEE",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "I Discovered a Gemini Notebook Method That Gets You Power User Results [Full Tutorial]",
-        "Kanál: Craig Does AI"
-      ]
-    },
-    {
-      "title": "7 Books AI Can't Replace",
-      "channel": "Ryan Holiday",
-      "url": "https://www.youtube.com/watch?v=AeBuZjNq8u0",
-      "summary": "Automatizovaně stažený příspěvek z YouTube playlistu AIVOS Queue.",
-      "action": "Shlédnout video na YouTube",
-      "tags": "#AI #DataEngineering #Automation",
-      "score": 8,
-      "category": "AI / WORK",
-      "key_points": [
-        "7 Books AI Can't Replace",
-        "Kanál: Ryan Holiday"
+        "Gemini 3.8 updates – nové capabilities pro data processing",
+        "NotebookLM recording features – potenciálně užitečné pro vytváření druhého mozku",
+        "Praktické use-case pro AI agents a workflow automatizaci"
       ]
     }
   ],
-  "medium": [],
-  "has_audio": false
+  "has_audio": true
 }
